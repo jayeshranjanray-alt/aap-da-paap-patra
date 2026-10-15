@@ -1,0 +1,9 @@
+# Dependencies & Cache
+node_modules/
+.playwright-mcp/
+.gemini/
+.system_generated/
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
