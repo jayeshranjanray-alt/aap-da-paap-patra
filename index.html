@@ -511,48 +511,17 @@
 <body class="bg-obsidian text-slate-100 antialiased selection:bg-crimson selection:text-white bg-forensic-grid relative w-full overflow-x-hidden">
 
   <!-- CINEMATIC INVESTIGATIVE PRELOADER -->
-  <div id="investigativePreloader" class="fixed inset-0 z-50 bg-[#030305] flex flex-col items-center justify-center p-6 transition-all duration-700">
-    <div class="max-w-md w-full space-y-6">
-      <!-- Stamp & Decryption Badge -->
-      <div class="flex items-center justify-between border-b border-panelBorder/80 pb-3">
-        <div class="flex items-center gap-2 text-xs font-mono font-bold text-crimson">
-          <span class="w-2.5 h-2.5 rounded-full bg-crimson animate-ping"></span>
-          <span>SECURE PROTOCOL INITIALIZED</span>
-        </div>
-        <span class="text-[10px] font-mono text-slate-500">DOSSIER REF: PB-2022-2026</span>
+  <div id="investigativePreloader" class="fixed inset-0 z-50 bg-[#030305] flex flex-col items-center justify-center p-6 transition-all duration-500">
+    <div class="max-w-xs w-full text-center space-y-4">
+      <div class="w-12 h-12 mx-auto rounded-2xl bg-gradient-to-br from-crimson to-red-950 flex items-center justify-center text-white font-mono font-black text-2xl shadow-xl shadow-crimson/30 animate-pulse">
+        P
       </div>
-
-      <!-- Terminal Output Window -->
-      <div class="bg-charcoal/90 rounded-xl border border-panelBorder p-4 font-mono text-xs space-y-2 shadow-2xl">
-        <div class="text-slate-400 flex items-center gap-2">
-          <span class="text-crimson">&gt;</span> <span id="preloaderLine1">ESTABLISHING ENCRYPTED CITIZEN ARCHIVE...</span>
-        </div>
-        <div class="text-slate-400 flex items-center gap-2" id="preloaderLine2">
-          <span class="text-crimson">&gt;</span> <span>CORROBORATING 51,516 NDPS FIRS &amp; 1.40L CRIMES...</span>
-        </div>
-        <div class="text-slate-400 flex items-center gap-2" id="preloaderLine3">
-          <span class="text-crimson">&gt;</span> <span>AUDITING ₹4.47L CR DEBT SURGE &amp; GMADA SCAMS...</span>
-        </div>
-        <div class="text-green-400 font-bold flex items-center gap-2" id="preloaderLine4">
-          <span class="text-green-400">&gt;</span> <span>STATUS: [ACCESS GRANTED // CHARGESHEET DECLASSIFIED]</span>
-        </div>
+      <div>
+        <h3 class="font-display font-black text-white text-lg tracking-tight">AAP DA PAAP PATRA</h3>
+        <p class="font-mono text-xs text-crimson font-bold">ਆਪ ਦਾ ਪਾਪ ਪੱਤਰ</p>
       </div>
-
-      <!-- Progress Meter -->
-      <div class="space-y-2">
-        <div class="flex justify-between text-[11px] font-mono text-slate-400">
-          <span>DECRYPTING EVIDENCE VAULT</span>
-          <span id="preloaderPercent" class="text-crimson font-bold">100%</span>
-        </div>
-        <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-          <div id="preloaderBar" class="h-full bg-gradient-to-r from-red-700 via-crimson to-crimsonBright w-full transition-all duration-300"></div>
-        </div>
-      </div>
-
-      <div class="text-center pt-2">
-        <button onclick="dismissPreloader()" class="text-[11px] font-mono text-slate-500 hover:text-slate-300 underline tracking-wider">
-          [ENTER INVESTIGATIVE CHARGESHEET]
-        </button>
+      <div class="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
+        <div id="preloaderBar" class="h-full bg-crimson w-full transition-all duration-300"></div>
       </div>
     </div>
   </div>
@@ -563,41 +532,37 @@
   <div class="spotlight-glow" id="spotlightGlow"></div>
 
   <!-- TOP LIVE FORENSIC TICKER -->
-  <div id="tickerBar" class="bg-gradient-to-r from-red-950 via-crimson to-red-950 text-white font-mono text-xs py-2 px-4 border-b border-red-500/40 sticky top-0 z-50 shadow-2xl overflow-hidden no-print w-full">
+  <div id="tickerBar" class="bg-gradient-to-r from-red-950 via-crimson to-red-950 text-white font-mono text-xs py-1.5 px-4 border-b border-red-500/40 sticky top-0 z-50 shadow-2xl overflow-hidden no-print w-full">
     <div class="flex items-center">
-      <div class="flex items-center gap-2 pr-4 bg-red-950/90 font-bold tracking-wider uppercase text-[11px] sm:text-xs z-10 shrink-0 border-r border-red-400/40">
-        <span class="inline-block w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
-        <span data-i18n="tickerLabel">INVESTIGATIVE CHARGESHEET ARCHIVE // DOSSIER REF: PB-2022-2026</span>
+      <div class="flex items-center gap-2 pr-3 bg-red-950/90 font-bold tracking-wider uppercase text-[11px] sm:text-xs z-10 shrink-0 border-r border-red-400/40">
+        <span class="inline-block w-2 h-2 rounded-full bg-white animate-ping"></span>
+        <span data-i18n="tickerLabel">CHARGESHEET ARCHIVE</span>
       </div>
       <div class="overflow-hidden whitespace-nowrap w-full">
         <div class="animate-marquee flex items-center gap-8 text-[11px] font-medium tracking-wide">
-          <span class="flex items-center gap-2 font-bold text-white">🚨 51,516 NDPS FIRs (ਮਾਰਚ 2025–ਜੁਲਾਈ 2026)</span>
+          <span class="flex items-center gap-1.5 font-bold text-white">🚨 51,516 NDPS Drug Cases</span>
           <span class="text-red-300">•</span>
-          <span>⚠️ 1,40,000+ ਕੁੱਲ ਅਪਰਾਧ (2,100+ ਕਤਲ 3 ਸਾਲਾਂ ਵਿੱਚ)</span>
+          <span>⚠️ 1,40,000+ Total Crimes</span>
           <span class="text-red-300">•</span>
-          <span>📉 ₹4.47 ਲੱਖ ਕਰੋੜ ਅਨੁਮਾਨਿਤ ਕਰਜ਼ਾ (ਮਾਰਚ 2027 ਤੱਕ)</span>
+          <span>📉 ₹4.47 Lakh Cr State Debt Surge</span>
           <span class="text-red-300">•</span>
-          <span>💥 22 ਪੁਲਿਸ ਥਾਣਿਆਂ 'ਤੇ ਆਰਪੀਜੀ ਤੇ ਗ੍ਰਨੇਡ ਹਮਲੇ (ਮੁਹਾਲੀ ਇੰਟੈਲੀਜੈਂਸ ਹੈੱਡਕੁਆਰਟਰ ਸਮੇਤ)</span>
+          <span>💥 22 Police Stations Attacked</span>
           <span class="text-red-300">•</span>
-          <span>⚖️ 25 ਲੱਖ ਨੌਕਰੀਆਂ ਦੇ ਵਾਅਦੇ ਵਿੱਚੋਂ ਸਿਰਫ਼ 2.45% ਡਿਲੀਵਰ (61,281)</span>
+          <span>⚖️ Only 2.45% Jobs Delivered (61,281 / 25 Lakh)</span>
           <span class="text-red-300">•</span>
-          <span>🏥 16,000 ਮੁਹੱਲਾ ਕਲੀਨਿਕਾਂ ਤੋਂ ਘਟਾ ਕੇ ਸਿਰਫ਼ 1,432 (91% ਕਟੌਤੀ)</span>
-          <span class="text-red-300">•</span>
-          <span>🌾 ਮੂੰਗੀ ਦੀ MSP 'ਤੇ 0 MT ਖਰੀਦ (ਕਿਸਾਨਾਂ ਨੂੰ ₹14–20 ਕਰੋੜ ਦਾ ਨੁਕਸਾਨ)</span>
-          <span class="text-red-300">•</span>
-          <span>🏛️ ਸੀਐਮ ਕੈਂਪ ਆਫਿਸ 'ਤੇ ਸੀਬੀਆਈ ਛਾਪੇ (ਓਐਸਡੀ ਰਾਜਬੀਰ ਘੁਮਣ ਮਾਮਲਾ)</span>
-          <span class="text-red-300">•</span>
-          <span>🏢 ₹10,000 ਕਰੋੜ ਗਮਾਡਾ ਜ਼ਮੀਨ ਨਿਲਾਮੀ ਘੁਟਾਲਾ</span>
-          <span class="text-red-300">•</span>
-          <span>🛑 90,248 ਮ੍ਰਿਤਕ ਪੈਨਸ਼ਨਰਾਂ ਦੇ ਨਾਂ 'ਤੇ ਕਰੋੜਾਂ ਦਾ ਘਪਲਾ</span>
+          <span>🏢 ₹10,000 Cr Land Auction Scams</span>
 
           <!-- Seamless Duplicate Loop -->
           <span class="text-red-300">•</span>
-          <span class="flex items-center gap-2 font-bold text-white">🚨 51,516 NDPS FIRs (ਮਾਰਚ 2025–ਜੁਲਾਈ 2026)</span>
+          <span class="flex items-center gap-1.5 font-bold text-white">🚨 51,516 NDPS Drug Cases</span>
           <span class="text-red-300">•</span>
-          <span>⚠️ 1,40,000+ ਕੁੱਲ ਅਪਰਾਧ (2,100+ ਕਤਲ 3 ਸਾਲਾਂ ਵਿੱਚ)</span>
+          <span>⚠️ 1,40,000+ Total Crimes</span>
           <span class="text-red-300">•</span>
-          <span>📉 ₹4.47 ਲੱਖ ਕਰੋੜ ਅਨੁਮਾਨਿਤ ਕਰਜ਼ਾ</span>
+          <span>📉 ₹4.47 Lakh Cr State Debt Surge</span>
+          <span class="text-red-300">•</span>
+          <span>💥 22 Police Stations Attacked</span>
+          <span class="text-red-300">•</span>
+          <span>⚖️ Only 2.45% Jobs Delivered (61,281 / 25 Lakh)</span>
         </div>
       </div>
     </div>
@@ -704,317 +669,151 @@
 
   <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-24 sm:space-y-32 w-full overflow-hidden">
 
-    <!-- SECTION 1: INTERACTIVE 4-ISSUES CINEMATIC HERO -->
-    <section id="home" class="relative pt-6 pb-8 overflow-hidden rounded-3xl border border-panelBorder/90 glass-card">
-      <!-- Ambient Background Video with Subtle Parallax & Vignette -->
-      <div class="absolute inset-0 z-0 opacity-20 pointer-events-none overflow-hidden">
-        <video autoplay loop muted playsinline class="w-full h-full object-cover object-center filter saturate-150 contrast-125 scale-105">
-          <source src="img/Mother_lifting_gaze_in_scene_f10e3758_1080p.mp4" type="video/mp4" />
-        </video>
-        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-graphite/90 to-transparent"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-obsidian via-transparent to-obsidian"></div>
+    <!-- SECTION 1: CINEMATIC VIDEO HERO SECTION -->
+    <section id="home" class="relative pt-4 pb-8 overflow-hidden rounded-3xl border border-panelBorder/90 glass-card">
+      
+      <!-- Minimalist Editorial Heading -->
+      <div class="relative z-10 text-center space-y-2 max-w-3xl mx-auto px-4 pt-4 pb-4">
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-display font-black tracking-tight text-white leading-tight">
+          <span class="block bg-gradient-to-b from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">AAP DA PAAP PATRA</span>
+          <span class="block text-lg sm:text-2xl font-mono text-crimson font-bold mt-0.5">ਆਪ ਦਾ ਪਾਪ ਪੱਤਰ</span>
+        </h1>
+        <p class="font-serif italic text-crimsonBright text-lg sm:text-2xl font-normal" data-i18n="heroTagline">
+          “ਵਾਅਦਿਆਂ ਤੋਂ ਹਕੀਕਤ ਤੱਕ” — From Promises to Reality
+        </p>
       </div>
 
-      <div class="relative z-10 px-4 sm:px-8 lg:px-10 py-3 w-full space-y-6">
-        
-        <!-- TOP CONTROLS & CASE BADGE BAR -->
-        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-panelBorder/70 pb-3">
-          <div class="flex flex-wrap items-center gap-2 sm:gap-3">
-            <span class="evidence-stamp">OFFICIAL CHARGESHEET</span>
-            <span class="text-xs font-mono text-slate-400 px-3 py-1 rounded-full bg-slateDark border border-panelBorder flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-crimson animate-ping"></span>
-              <span>CASE REF: AAP-PB-GOV-2022-26</span>
-            </span>
-            <span class="hidden sm:inline-block text-xs font-mono text-cyan-400 px-3 py-1 rounded-full bg-cyan-950/40 border border-cyan-500/30">
-              CITIZEN WHISTLEBLOWER VERIFIED
-            </span>
-          </div>
-
-          <!-- Auto Play / Interactive Mode Toggle -->
-          <div class="flex items-center gap-2">
-            <button id="heroPlayPauseBtn" onclick="toggleHeroStoryline()" class="px-3 py-1.5 rounded-lg bg-slateDark hover:bg-slate-800 border border-slate-700 text-xs font-mono text-slate-300 hover:text-white transition flex items-center gap-1.5 shadow-sm">
-              <i data-lucide="pause" id="heroPlayIcon" class="w-3.5 h-3.5 text-crimson"></i>
-              <span id="heroPlayText">Auto Storyline</span>
-            </button>
-            <span class="text-[10px] font-mono text-slate-500 hidden md:inline">CRISIS <span id="heroActIndicator" class="text-crimson font-bold">1 / 4</span></span>
-          </div>
-        </div>
-
-        <!-- MAIN HERO GRID (TWO COLUMNS ON LG) -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <!-- CENTERPIECE HERO ELEMENT: CINEMATIC VIDEO -->
+      <div class="relative z-10 px-3 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full">
+        <div id="narrativeStageFrame" class="video-hero-container relative rounded-2xl sm:rounded-3xl border border-panelBorder bg-black shadow-2xl overflow-hidden group">
           
-          <!-- LEFT COLUMN: EDITORIAL, TELEMETRY HUD & ACTIONS (Col 6/12) -->
-          <div class="lg:col-span-6 space-y-5">
+          <div class="video-ambient-glow"></div>
+
+          <!-- Video Frame (Widescreen 16:9 Cinema Aspect) -->
+          <div class="relative w-full aspect-[16/9] max-h-[560px] overflow-hidden bg-black">
             
-            <div class="space-y-2">
-              <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-black tracking-tight text-white leading-tight">
-                <span class="block bg-gradient-to-b from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">AAP DA PAAP PATRA</span>
-                <span class="block text-xl sm:text-2xl font-mono text-crimson font-bold mt-1">ਆਪ ਦਾ ਪਾਪ ਪੱਤਰ</span>
-                <span class="block font-serif italic text-crimsonBright font-normal text-2xl sm:text-3xl lg:text-3xl mt-2 leading-relaxed" data-i18n="heroTagline">
-                  “ਵਾਅਦਿਆਂ ਤੋਂ ਹਕੀਕਤ ਤੱਕ” — From Promises to Reality
-                </span>
-              </h1>
+            <video id="heroCinematicVideo" autoplay loop muted playsinline class="w-full h-full object-cover object-center filter brightness-95 contrast-105 transition-transform duration-700">
+              <source src="img/Mother_lifting_gaze_in_scene_f10e3758_1080p.mp4" type="video/mp4" />
+            </video>
 
-              <p class="text-slate-300 text-xs sm:text-sm leading-relaxed pt-1" data-i18n="heroDesc">
-                A forensic investigative chargesheet documenting four years of administrative collapse, catastrophic drug overdose deaths, unfulfilled public guarantees, extortion syndicates, and institutional corruption under the AAP government in Punjab.
-              </p>
+            <!-- Subtle Surveillance Scanline -->
+            <div class="surveillance-overlay absolute inset-0 z-10 pointer-events-none opacity-30"></div>
+
+            <!-- Sleek Corner Controls: Audio & Playback Pill -->
+            <div class="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/15 shadow-xl">
+              <button onclick="toggleHeroVideoMute()" id="videoAudioBtn" class="text-slate-300 hover:text-white transition p-1" title="Toggle Sound">
+                <i data-lucide="volume-x" id="videoAudioIcon" class="w-4 h-4"></i>
+              </button>
+              <span class="w-px h-3.5 bg-white/20"></span>
+              <button onclick="toggleHeroVideoPlay()" id="videoPlayPauseBtn" class="text-slate-300 hover:text-white transition p-1" title="Play/Pause">
+                <i data-lucide="pause" id="videoPlayPauseIcon" class="w-4 h-4"></i>
+              </button>
             </div>
 
-            <!-- LIVE FINANCIAL & HUMAN COST TELEMETRY HUD -->
-            <div class="p-4 rounded-xl bg-charcoal/90 border border-panelBorder/90 backdrop-blur-xl shadow-xl space-y-2.5">
-              <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 border-b border-panelBorder/60 pb-2">
-                <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-                  <span class="font-bold text-red-400">STATE DEBT SURGE CLOCK</span>
-                </div>
-                <span class="text-slate-400 font-mono">+₹847 / SEC</span>
-              </div>
-              <div class="grid grid-cols-3 gap-3 pt-1">
-                <div>
-                  <span class="text-[9px] font-mono text-slate-400 block uppercase">PUNJAB PUBLIC DEBT</span>
-                  <div class="counter text-base sm:text-lg lg:text-xl font-mono font-black text-crimson truncate" id="liveDebtDisplay">
-                    ₹4,47,189.42 Cr
-                  </div>
-                </div>
-                <div>
-                  <span class="text-[9px] font-mono text-slate-400 block uppercase">JOBS DELIVERED</span>
-                  <div class="counter text-base sm:text-lg lg:text-xl font-display font-black text-amberAlert">
-                    2.45%
-                  </div>
-                </div>
-                <div>
-                  <span class="text-[9px] font-mono text-slate-400 block uppercase">NDPS DRUG CASES</span>
-                  <div class="counter text-base sm:text-lg lg:text-xl font-mono font-black text-cyan-400">
-                    51,516
-                  </div>
+            <!-- 4 Subtle Hotspot Pins (Clean pulsing markers on video quadrants) -->
+            <!-- 01 GUNFIRE: Top-Right Gunman -->
+            <div onclick="selectHeroAct(0, true)" id="hotspot-0" class="video-hotspot active-hotspot" style="top: 22%; left: 80%;" title="Act 1: Gunfire & Gangsters">
+              <div class="relative flex items-center justify-center">
+                <div class="hotspot-pulse-ring absolute w-8 h-8 rounded-full bg-red-600/60"></div>
+                <div class="w-5 h-5 rounded-full bg-crimson border-2 border-white flex items-center justify-center text-[10px] shadow-lg shadow-crimson text-white font-bold">
+                  💥
                 </div>
               </div>
             </div>
 
-            <!-- CTAS ROW -->
-            <div class="flex flex-wrap items-center gap-2.5 pt-1">
-              <a href="#chargesheets" class="px-4 py-2.5 rounded-xl bg-crimson hover:bg-crimsonBright text-white font-mono font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-crimson/30 transition transform hover:-translate-y-0.5">
-                <i data-lucide="folder-search" class="w-4 h-4"></i>
-                <span data-i18n="exploreBtn">Explore 4 Dossiers</span>
-              </a>
-              <a href="#crime-map" class="px-4 py-2.5 rounded-xl bg-slateDark hover:bg-slate-800 border border-panelBorder hover:border-crimson text-white font-mono font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition">
-                <i data-lucide="crosshair" class="w-4 h-4 text-crimson"></i>
-                <span data-i18n="trackerBtn">3D Crime Tracker</span>
-              </a>
-              <a href="#submit-story" class="px-4 py-2.5 rounded-xl bg-cyan-950/50 hover:bg-cyan-900 border border-cyan-500/40 text-cyan-200 hover:text-white font-mono font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition">
-                <i data-lucide="upload-cloud" class="w-4 h-4 text-cyan-400"></i>
-                <span>Submit Evidence</span>
-              </a>
+            <!-- 02 CORRUPTION: Bottom-Right Officials -->
+            <div onclick="selectHeroAct(1, true)" id="hotspot-1" class="video-hotspot" style="top: 62%; left: 86%;" title="Act 2: Institutional Corruption">
+              <div class="relative flex items-center justify-center">
+                <div class="hotspot-pulse-ring absolute w-8 h-8 rounded-full bg-amber-500/60"></div>
+                <div class="w-5 h-5 rounded-full bg-amberAlert border-2 border-white flex items-center justify-center text-[10px] shadow-lg shadow-amber-500 text-black font-bold">
+                  ⚖️
+                </div>
+              </div>
+            </div>
+
+            <!-- 03 DRUGS: Top-Left Addicted Youth -->
+            <div onclick="selectHeroAct(2, true)" id="hotspot-2" class="video-hotspot" style="top: 26%; left: 34%;" title="Act 3: Narcotics Epidemic">
+              <div class="relative flex items-center justify-center">
+                <div class="hotspot-pulse-ring absolute w-8 h-8 rounded-full bg-cyan-500/60"></div>
+                <div class="w-5 h-5 rounded-full bg-cyanGlow border-2 border-white flex items-center justify-center text-[10px] shadow-lg shadow-cyan-500 text-black font-bold">
+                  ⚠️
+                </div>
+              </div>
+            </div>
+
+            <!-- 04 VADAKHILAFI: Mother's Gaze (Center) -->
+            <div onclick="selectHeroAct(3, true)" id="hotspot-3" class="video-hotspot" style="top: 50%; left: 58%;" title="Act 4: Broken Promises & Mother's Grief">
+              <div class="relative flex items-center justify-center">
+                <div class="hotspot-pulse-ring absolute w-9 h-9 rounded-full bg-red-500/70"></div>
+                <div class="w-5 h-5 rounded-full bg-red-600 border-2 border-white flex items-center justify-center text-[10px] shadow-lg shadow-red-600 text-white font-bold">
+                  💔
+                </div>
+              </div>
             </div>
 
           </div>
 
-          <!-- RIGHT COLUMN: THE 4 ISSUES MOTION NARRATIVE STAGE (Col 6/12) -->
-          <div class="lg:col-span-6 space-y-3">
+          <!-- Sleek Bottom Bar: 4 Crisis Pills & Act Indicator -->
+          <div class="bg-charcoal/95 border-t border-panelBorder/80 px-4 py-3 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
             
-            <!-- VIDEO HERO STAGE -->
-            <div id="narrativeStageFrame" class="video-hero-container relative rounded-2xl border border-panelBorder p-3 sm:p-4 min-h-[390px] sm:min-h-[440px] flex flex-col justify-between overflow-hidden group">
-              
-              <div class="video-ambient-glow"></div>
-
-              <!-- MAIN CINEMATIC VIDEO PLAYER -->
-              <div class="relative w-full h-[280px] sm:h-[320px] rounded-xl overflow-hidden border border-panelBorder/80 bg-black shadow-inner">
-                
-                <video id="heroCinematicVideo" autoplay loop muted playsinline class="w-full h-full object-cover object-center filter brightness-95 contrast-105 transition-transform duration-700">
-                  <source src="img/Mother_lifting_gaze_in_scene_f10e3758_1080p.mp4" type="video/mp4" />
-                </video>
-
-                <!-- Forensic Surveillance HUD Grid Overlay -->
-                <div class="surveillance-overlay absolute inset-0 z-10 pointer-events-none"></div>
-
-                <!-- Live Camera HUD Watermark -->
-                <div class="absolute top-2.5 left-3 z-20 flex items-center gap-2 pointer-events-none">
-                  <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-                  <span class="text-[10px] font-mono font-bold tracking-wider text-red-400 bg-black/70 px-2 py-0.5 rounded border border-red-500/30">
-                    EVIDENCE // MOTHER'S GAZE &amp; 4 CRISES
-                  </span>
-                </div>
-
-                <!-- Video Audio & Playback Controls Overlay -->
-                <div class="absolute top-2.5 right-3 z-30 flex items-center gap-1.5">
-                  <button onclick="toggleHeroVideoMute()" id="videoAudioBtn" class="p-1.5 rounded-lg bg-black/70 hover:bg-crimson border border-white/20 text-white text-xs font-mono transition" title="Toggle Video Audio">
-                    <i data-lucide="volume-x" id="videoAudioIcon" class="w-3.5 h-3.5"></i>
-                  </button>
-                  <button onclick="toggleHeroVideoPlay()" id="videoPlayPauseBtn" class="p-1.5 rounded-lg bg-black/70 hover:bg-crimson border border-white/20 text-white text-xs font-mono transition" title="Play/Pause Video">
-                    <i data-lucide="pause" id="videoPlayPauseIcon" class="w-3.5 h-3.5"></i>
-                  </button>
-                </div>
-
-                <!-- ==============================================
-                     4 INTERACTIVE FORENSIC HOTSPOTS OVERLAID ON VIDEO
-                     ============================================== -->
-
-                <!-- HOTSPOT 1: GUNFIRE & GANGSTERS (Top-Right / Gunman in Video) -->
-                <div onclick="selectHeroAct(0, true)" id="hotspot-0" class="video-hotspot active-hotspot" style="top: 22%; left: 80%;" title="Click to inspect: Gunfire & Gangsters">
-                  <div class="relative flex items-center justify-center">
-                    <div class="hotspot-pulse-ring absolute w-8 h-8 rounded-full bg-red-600/50"></div>
-                    <div class="w-5 h-5 rounded-full bg-crimson border-2 border-white flex items-center justify-center text-[9px] shadow-lg shadow-crimson/80 text-white font-bold">
-                      💥
-                    </div>
-                  </div>
-                  <div class="absolute left-1/2 -translate-x-1/2 top-6 whitespace-nowrap bg-black/85 border border-red-500/60 px-2 py-0.5 rounded text-[9px] font-mono text-red-300 font-bold shadow-xl">
-                    01 GUNFIRE
-                  </div>
-                </div>
-
-                <!-- HOTSPOT 2: CORRUPTION SCAMS (Bottom-Right / Officials at desk in Video) -->
-                <div onclick="selectHeroAct(1, true)" id="hotspot-1" class="video-hotspot" style="top: 62%; left: 86%;" title="Click to inspect: Institutional Corruption">
-                  <div class="relative flex items-center justify-center">
-                    <div class="hotspot-pulse-ring absolute w-8 h-8 rounded-full bg-amber-500/50"></div>
-                    <div class="w-5 h-5 rounded-full bg-amberAlert border-2 border-white flex items-center justify-center text-[9px] shadow-lg shadow-amber-500/80 text-black font-bold">
-                      ⚖️
-                    </div>
-                  </div>
-                  <div class="absolute left-1/2 -translate-x-1/2 top-6 whitespace-nowrap bg-black/85 border border-amber-500/60 px-2 py-0.5 rounded text-[9px] font-mono text-amber-300 font-bold shadow-xl">
-                    02 SCAMS
-                  </div>
-                </div>
-
-                <!-- HOTSPOT 3: CHITTA & DRUGS (Top-Left / Youth in shadow in Video) -->
-                <div onclick="selectHeroAct(2, true)" id="hotspot-2" class="video-hotspot" style="top: 26%; left: 34%;" title="Click to inspect: Narcotics Crisis">
-                  <div class="relative flex items-center justify-center">
-                    <div class="hotspot-pulse-ring absolute w-8 h-8 rounded-full bg-cyan-500/50"></div>
-                    <div class="w-5 h-5 rounded-full bg-cyanGlow border-2 border-white flex items-center justify-center text-[9px] shadow-lg shadow-cyan-500/80 text-black font-bold">
-                      ⚠️
-                    </div>
-                  </div>
-                  <div class="absolute left-1/2 -translate-x-1/2 top-6 whitespace-nowrap bg-black/85 border border-cyan-500/60 px-2 py-0.5 rounded text-[9px] font-mono text-cyan-300 font-bold shadow-xl">
-                    03 DRUGS
-                  </div>
-                </div>
-
-                <!-- HOTSPOT 4: VADAKHILAFI / MOTHER'S TEARS (Center Foreground / Mother in Video) -->
-                <div onclick="selectHeroAct(3, true)" id="hotspot-3" class="video-hotspot" style="top: 50%; left: 58%;" title="Click to inspect: Mother's Grief & Broken Promises">
-                  <div class="relative flex items-center justify-center">
-                    <div class="hotspot-pulse-ring absolute w-9 h-9 rounded-full bg-red-500/60"></div>
-                    <div class="w-5 h-5 rounded-full bg-red-600 border-2 border-white flex items-center justify-center text-[9px] shadow-lg shadow-red-600/80 text-white font-bold">
-                      💔
-                    </div>
-                  </div>
-                  <div class="absolute left-1/2 -translate-x-1/2 top-6 whitespace-nowrap bg-black/85 border border-red-500/60 px-2 py-0.5 rounded text-[9px] font-mono text-red-200 font-bold shadow-xl">
-                    04 VADAKHILAFI
-                  </div>
-                </div>
-
-                <!-- DYNAMIC CRISIS OVERLAY CARD (Expands on active act) -->
-                <div id="videoCrisisOverlayCard" class="absolute bottom-2 inset-x-2 z-25 bg-black/85 backdrop-blur-md border border-panelBorder p-2.5 rounded-lg flex items-center justify-between gap-2 shadow-2xl transition-all duration-300">
-                  <div class="min-w-0">
-                    <div class="flex items-center gap-1.5">
-                      <span id="actBadgeTag" class="px-1.5 py-0.5 rounded text-[9px] font-mono font-bold bg-crimson/20 border border-crimson/50 text-crimson uppercase">
-                        ACT 01 // GUNFIRE
-                      </span>
-                      <span id="actTitleText" class="text-xs font-mono font-bold text-white truncate">
-                        Law & Order: Gangster Gunfire
-                      </span>
-                    </div>
-                    <p id="actMetricCallout" class="text-[10px] font-mono text-slate-300 truncate mt-0.5">
-                      🚨 2,100+ Murders • 22 Police Stations Attacked • Extortion Syndicates
-                    </p>
-                  </div>
-
-                  <button id="actActionTriggerBtn" onclick="triggerCurrentActAction()" class="px-2.5 py-1 rounded bg-crimson hover:bg-crimsonBright text-white text-[11px] font-mono font-bold transition flex items-center gap-1 shrink-0 shadow-md">
-                    <span id="actActionIcon">💥</span>
-                    <span id="actActionLabel">Pull Trigger</span>
-                  </button>
-                </div>
-
-              </div>
-
-              <!-- STAGE FOOTER: PROGRESS SCRUB BAR & PREV/NEXT -->
-              <div class="z-20 pt-2.5 space-y-1.5">
-                <div class="flex items-center justify-between text-[10px] font-mono text-slate-400">
-                  <span class="text-slate-400 flex items-center gap-1">
-                    <i data-lucide="film" class="w-3 h-3 text-crimson"></i>
-                    <span>EVIDENCE EXHIBIT: MOTHER'S GAZE &amp; 4 CRISES OF PUNJAB</span>
-                  </span>
-                  <div class="flex items-center gap-1 shrink-0">
-                    <button onclick="prevHeroAct()" class="p-1 rounded bg-slateDark hover:bg-slate-700 text-slate-300 hover:text-white transition" title="Previous Act">
-                      <i data-lucide="chevron-left" class="w-3.5 h-3.5"></i>
-                    </button>
-                    <button onclick="nextHeroAct()" class="p-1 rounded bg-slateDark hover:bg-slate-700 text-slate-300 hover:text-white transition" title="Next Act">
-                      <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- 5-Second Act Countdown Bar -->
-                <div class="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
-                  <div id="heroActProgressBar" class="h-full bg-gradient-to-r from-red-600 to-crimsonBright w-0 transition-all duration-100 ease-linear"></div>
-                </div>
-              </div>
-
-            </div>
-
-            <!-- INTERACTIVE 4 CRISIS SELECTOR PILLS -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              <button onclick="selectHeroAct(0)" id="heroTab-0" class="crisis-tab-active px-3 py-2 rounded-xl bg-slateDark border border-panelBorder text-xs font-mono font-bold text-slate-300 hover:text-white transition flex items-center justify-center gap-1.5 text-center">
-                <span class="text-crimson font-mono font-black">01</span>
+            <!-- 4 Crisis Tabs -->
+            <div class="grid grid-cols-4 gap-1.5 sm:gap-2 w-full sm:w-auto">
+              <button onclick="selectHeroAct(0)" id="heroTab-0" class="crisis-tab-active px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition flex items-center justify-center gap-1.5">
+                <span class="text-crimson font-black">01</span>
                 <span>Gunfire</span>
               </button>
-              <button onclick="selectHeroAct(1)" id="heroTab-1" class="px-3 py-2 rounded-xl bg-slateDark border border-panelBorder text-xs font-mono font-bold text-slate-300 hover:text-white transition flex items-center justify-center gap-1.5 text-center">
-                <span class="text-crimson font-mono font-black">02</span>
+              <button onclick="selectHeroAct(1)" id="heroTab-1" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold text-slate-400 hover:text-white transition flex items-center justify-center gap-1.5">
+                <span class="text-crimson font-black">02</span>
                 <span>Corruption</span>
               </button>
-              <button onclick="selectHeroAct(2)" id="heroTab-2" class="px-3 py-2 rounded-xl bg-slateDark border border-panelBorder text-xs font-mono font-bold text-slate-300 hover:text-white transition flex items-center justify-center gap-1.5 text-center">
-                <span class="text-crimson font-mono font-black">03</span>
+              <button onclick="selectHeroAct(2)" id="heroTab-2" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold text-slate-400 hover:text-white transition flex items-center justify-center gap-1.5">
+                <span class="text-crimson font-black">03</span>
                 <span>Drugs</span>
               </button>
-              <button onclick="selectHeroAct(3)" id="heroTab-3" class="px-3 py-2 rounded-xl bg-slateDark border border-panelBorder text-xs font-mono font-bold text-slate-300 hover:text-white transition flex items-center justify-center gap-1.5 text-center">
-                <span class="text-crimson font-mono font-black">04</span>
+              <button onclick="selectHeroAct(3)" id="heroTab-3" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold text-slate-400 hover:text-white transition flex items-center justify-center gap-1.5">
+                <span class="text-crimson font-black">04</span>
                 <span>Vadakhilafi</span>
               </button>
             </div>
 
-            <!-- QUICK JUMP TACTICAL DOCK -->
-            <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-panelBorder/70">
-              <span class="text-xs font-mono text-slate-400 font-bold uppercase tracking-wider pr-1">Jump to File:</span>
-              <a href="#chargesheets" class="px-2.5 py-1 rounded-lg bg-slateDark hover:bg-crimson/20 border border-panelBorder hover:border-crimson text-slate-300 hover:text-white text-xs font-mono transition flex items-center gap-1.5">
-                <span class="text-crimson font-bold">01</span> Drugs
-              </a>
-              <a href="#crime-map" class="px-2.5 py-1 rounded-lg bg-slateDark hover:bg-crimson/20 border border-panelBorder hover:border-crimson text-slate-300 hover:text-white text-xs font-mono transition flex items-center gap-1.5">
-                <span class="text-crimson font-bold">02</span> Crime Map
-              </a>
-              <a href="#issues-detail" class="px-2.5 py-1 rounded-lg bg-slateDark hover:bg-crimson/20 border border-panelBorder hover:border-crimson text-slate-300 hover:text-white text-xs font-mono transition flex items-center gap-1.5">
-                <span class="text-crimson font-bold">03</span> Scams
-              </a>
-              <a href="#evidence-room" class="px-2.5 py-1 rounded-lg bg-slateDark hover:bg-crimson/20 border border-panelBorder hover:border-crimson text-slate-300 hover:text-white text-xs font-mono transition flex items-center gap-1.5">
-                <span class="text-crimson font-bold">04</span> Clippings
-              </a>
-              <a href="#submit-story" class="px-2.5 py-1 rounded-lg bg-cyan-950/50 hover:bg-cyan-900/60 border border-cyan-500/40 text-cyan-400 font-bold text-xs font-mono transition flex items-center gap-1.5 shadow-sm">
-                <i data-lucide="upload-cloud" class="w-3.5 h-3.5"></i> Submit Story
-              </a>
+            <!-- Minimal Active Act Indicator & Progress -->
+            <div class="flex items-center gap-3 text-xs font-mono shrink-0">
+              <span id="actBadgeTag" class="px-2 py-0.5 rounded bg-crimson/20 border border-crimson/50 text-crimson font-bold uppercase text-[10px]">
+                ACT 01 // GUNFIRE
+              </span>
+              <span id="actTitleText" class="text-slate-300 font-semibold truncate hidden md:inline">
+                Gangster Gunfire
+              </span>
+              <div class="w-16 sm:w-20 h-1 bg-slate-800 rounded-full overflow-hidden">
+                <div id="heroActProgressBar" class="h-full bg-crimson w-0 transition-all duration-100 ease-linear"></div>
+              </div>
             </div>
 
           </div>
 
         </div>
 
+        <!-- Clean Scroll Cue -->
+        <div class="text-center pt-4">
+          <a href="#chargesheets" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-400 hover:text-crimson transition tracking-wider uppercase">
+            <span>Explore Chargesheet Dossiers</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 animate-bounce"></i>
+          </a>
+        </div>
       </div>
+
     </section>
 
     <!-- SECTION 2: FOUR ISSUE-BASED CHARGESHEETS (3D DOSSIER EXPERIENCE) -->
     <section id="chargesheets" class="space-y-8 scroll-mt-24">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <div class="flex items-center gap-2 text-crimson font-mono text-xs font-bold tracking-widest uppercase">
-            <i data-lucide="shield-alert" class="w-4 h-4"></i>
-            <span>PRIMARY INDICTMENTS</span>
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white mt-1">
-            Four Core Issue-Based Chargesheets
+          <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
+            Core Chargesheet Dossiers
           </h2>
-          <p class="text-slate-400 text-sm max-w-2xl mt-1">
-            Dedicated investigative dossiers on Drugs, Law & Order, Vadakhilafi, and Corruption. Click "View Evidence Dossier" to trigger the 3D animated file folder experience.
+          <p class="text-slate-400 text-sm mt-1">
+            Investigative findings across Punjab's four critical crises.
           </p>
-        </div>
-        <div class="text-right font-mono text-xs text-slate-400">
-          <span>CLASSIFIED STATUS: </span>
-          <span class="text-green-400 font-bold">PUBLICLY AUDITED</span>
         </div>
       </div>
 
@@ -1188,23 +987,12 @@
     <section id="crime-map" class="space-y-6 scroll-mt-24">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <div class="flex items-center gap-2 text-crimson font-mono text-xs font-bold tracking-widest uppercase">
-            <i data-lucide="crosshair" class="w-4 h-4"></i>
-            <span>3D GEOSPATIAL INTELLIGENCE RADAR</span>
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white mt-1">
-            Interactive Punjab Crime & Corruption Tracker
+          <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
+            Punjab Crime &amp; Incident Tracker
           </h2>
-          <p class="text-slate-400 text-sm max-w-3xl mt-1">
-            An interactive 3D topographical map tracking real-time law and order incidents. Select or hover over hotspots across Punjab districts to examine recent crimes, drug seizures, and administrative breaches.
+          <p class="text-slate-400 text-sm mt-1">
+            Geospatial tracking of verified crimes, seizures, and administrative breaches across all 23 districts.
           </p>
-        </div>
-
-        <div class="flex items-center gap-2 font-mono text-xs">
-          <span class="text-slate-400">PROMPT: </span>
-          <span class="text-white font-bold bg-slateDark px-3 py-1.5 rounded-lg border border-panelBorder">
-            "See what crimes have been committed in Punjab in the last week"
-          </span>
         </div>
       </div>
 
@@ -1381,15 +1169,11 @@
     <section id="issues-detail" class="space-y-6 scroll-mt-24">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <div class="flex items-center gap-2 text-crimson font-mono text-xs font-bold tracking-widest uppercase">
-            <i data-lucide="file-text" class="w-4 h-4"></i>
-            <span>ITEMIZED INDICTMENT REPOSITORY</span>
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white mt-1">
-            Detailed Chargesheet Entries
+          <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
+            Detailed Chargesheet Records
           </h2>
-          <p class="text-slate-400 text-sm max-w-2xl mt-1">
-            Full itemized evidence records across 54+ documented cases. Search keywords or click redacted text lines to declassify verified facts.
+          <p class="text-slate-400 text-sm mt-1">
+            54 itemized cases with verified FIRs, audit reports, and judicial findings.
           </p>
         </div>
 
@@ -1419,15 +1203,11 @@
     <section id="evidence-room" class="space-y-8 scroll-mt-24">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <div class="flex items-center gap-2 text-crimson font-mono text-xs font-bold tracking-widest uppercase">
-            <i data-lucide="newspaper" class="w-4 h-4"></i>
-            <span>INVESTIGATIVE MEDIA ARCHIVE</span>
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white mt-1">
-            Evidence Room: Media Clippings &amp; Press Reports
+          <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
+            Media &amp; Press Evidence Room
           </h2>
-          <p class="text-slate-400 text-sm max-w-2xl mt-1">
-            Real published investigative newspaper clippings, front-page news reports, and documented press findings covering drug deaths, jail cartels, police station blasts, and government failures.
+          <p class="text-slate-400 text-sm mt-1">
+            Published investigative reporting, front-page news, and editorial coverage.
           </p>
         </div>
 
@@ -1645,41 +1425,18 @@
         <!-- Left: Portal Info & Moderation Process -->
         <div class="space-y-4 max-w-xl flex-1 min-w-0">
           <div class="flex items-center gap-2">
-            <span class="citizen-stamp">CITIZEN WHISTLEBLOWER PORTAL</span>
-            <span class="text-xs font-mono text-cyan-400">256-BIT ENCRYPTED</span>
+            <span class="citizen-stamp">WHISTLEBLOWER PORTAL</span>
           </div>
           <h2 class="text-3xl sm:text-4xl font-display font-black text-white leading-tight">
-            Submit Your Evidence &amp; Ground Story
+            Submit Evidence &amp; Ground Reports
           </h2>
           <p class="text-slate-300 text-sm leading-relaxed">
-            Have you or your community faced open drug trafficking, extortion threats, broken guarantees, or bribe demands under this government? Upload photos, videos, FIRs, or personal testimonies directly.
+            Report drug trafficking, extortion, broken guarantees, or corruption directly with documented photos, videos, or FIR records.
           </p>
 
-          <div class="p-4 rounded-xl bg-obsidian border border-panelBorder space-y-3 font-mono text-xs">
-            <div class="text-cyan-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
-              <i data-lucide="shield-check" class="w-4 h-4"></i>
-              <span>CIVIC VERIFICATION WORKFLOW:</span>
-            </div>
-            <div class="space-y-2 text-slate-300">
-              <div class="flex items-start gap-2">
-                <span class="text-cyan-400 font-bold">1.</span>
-                <span>Upload photos, videos, or documents (anonymous submissions supported).</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <span class="text-cyan-400 font-bold">2.</span>
-                <span>Our legal and investigative desk audits location, metadata, and primary evidence.</span>
-              </div>
-              <div class="flex items-start gap-2">
-                <span class="text-cyan-400 font-bold">3.</span>
-                <span>Approved entries are published into the Evidence Room with a distinct <strong>"Citizen Submission"</strong> badge.</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Privacy Shield Pill -->
-          <div class="flex items-center gap-3 p-3 rounded-lg bg-cyan-950/30 border border-cyan-500/20 text-xs font-mono text-cyan-300">
-            <i data-lucide="lock" class="w-4 h-4 text-cyan-400 shrink-0"></i>
-            <span>Whistleblower Identity Protection: IP addresses are not stored. All uploaded files are scrubbed of EXIF geolocation data.</span>
+          <div class="flex items-center gap-2.5 p-3 rounded-xl bg-obsidian border border-panelBorder/80 font-mono text-xs text-slate-300">
+            <i data-lucide="shield-check" class="w-4 h-4 text-cyan-400 shrink-0"></i>
+            <span>Anonymous submissions supported. File EXIF metadata is scrubbed automatically.</span>
           </div>
         </div>
 
@@ -1857,15 +1614,11 @@
     <!-- SECTION 7: PROMISE VS. PERFORMANCE (COMPARATIVE AUDIT) -->
     <section id="promise-vs-reality" class="space-y-8 scroll-mt-24">
       <div>
-        <div class="flex items-center gap-2 text-crimson font-mono text-xs font-bold tracking-widest uppercase">
-          <i data-lucide="bar-chart-2" class="w-4 h-4"></i>
-          <span>COMPARATIVE PERFORMANCE AUDIT</span>
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white mt-1">
-          Guarantees Made vs. Ground Delivery
+        <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
+          Guarantees vs. Delivery
         </h2>
-        <p class="text-slate-400 text-sm max-w-2xl mt-1">
-          Contrasting official electoral pledges signed by AAP leadership with documented government statistics and ground reality after 4 years in office.
+        <p class="text-slate-400 text-sm mt-1">
+          Electoral pledges compared directly against official audited delivery.
         </p>
       </div>
 
@@ -1958,15 +1711,11 @@
     <!-- SECTION 8: GROUND REPORTS (DISTRICT DISTRESS SIGNALS) -->
     <section id="ground-reports" class="space-y-6 scroll-mt-24">
       <div>
-        <div class="flex items-center gap-2 text-crimson font-mono text-xs font-bold tracking-widest uppercase">
-          <i data-lucide="radio" class="w-4 h-4"></i>
-          <span>GROUND REPORTS & PUBLIC GRIEVANCES</span>
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white mt-1">
-          Ground Reports: Distress Signals Across Punjab
+        <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
+          Ground Reports
         </h2>
-        <p class="text-slate-400 text-sm max-w-2xl mt-1">
-          When governance collapses, citizens resort to desperate distress signals. Verified reports from communities across the state.
+        <p class="text-slate-400 text-sm mt-1">
+          Direct distress signals and public memorandums from communities across Punjab.
         </p>
       </div>
 
@@ -2021,12 +1770,11 @@
     <section id="downloads" class="p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-charcoal via-slateDark to-obsidian border border-panelBorder space-y-6 scroll-mt-24 shadow-2xl">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <span class="evidence-stamp text-xs">OFFICIAL EXPORT PORTAL</span>
-          <h2 class="text-3xl font-display font-black text-white mt-2">
-            Chargesheet Downloads & Archival Hub
+          <h2 class="text-3xl font-display font-black text-white">
+            Downloads &amp; Archival Records
           </h2>
-          <p class="text-slate-400 text-sm max-w-xl mt-1">
-            Download the verified digital chargesheet, executive briefings, and full factual exhibits for public distribution and legal scrutiny.
+          <p class="text-slate-400 text-sm mt-1">
+            Complete digital chargesheets, district briefings, and verified evidence files.
           </p>
         </div>
         <button onclick="window.print()" class="px-5 py-3 rounded-xl bg-crimson hover:bg-crimsonBright text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-lg transition">
@@ -3348,25 +3096,25 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
     // --- 11. MULTILINGUAL SUPPORT ---
     const langStrings = {
       en: {
-        tickerLabel: 'INVESTIGATIVE CHARGESHEET ARCHIVE // DOSSIER REF: PB-2022-2026',
+        tickerLabel: 'CHARGESHEET ARCHIVE',
         heroTagline: '“ਵਾਅਦਿਆਂ ਤੋਂ ਹਕੀਕਤ ਤੱਕ” — From Promises to Reality',
-        heroDesc: 'A digital investigative chargesheet documenting four years of administrative collapse, catastrophic drug overdose deaths, unfulfilled public guarantees, extortion syndicates, and institutional corruption under the AAP government in Punjab.',
-        exploreBtn: 'Explore 4 Dossiers',
-        trackerBtn: '3D Crime Tracker'
+        heroDesc: '',
+        exploreBtn: 'Explore Dossiers',
+        trackerBtn: 'Crime Tracker'
       },
       pa: {
-        tickerLabel: 'ਅਧਿਕਾਰਤ ਜਾਂਚ ਦੋਸ਼ ਪੱਤਰ ਆਰਕਾਈਵ // ਰੈਫ: PB-2022-2026',
+        tickerLabel: 'ਆਪ ਦਾ ਪਾਪ ਪੱਤਰ ਆਰਕਾਈਵ',
         heroTagline: '“ਵਾਅਦਿਆਂ ਤੋਂ ਹਕੀਕਤ ਤੱਕ” — ਚਾਰ ਸਾਲਾਂ ਦਾ ਕਾਲਾ ਚਿੱਠਾ',
-        heroDesc: 'ਪੰਜਾਬ ਵਿੱਚ ਆਮ ਆਦਮੀ ਪਾਰਟੀ ਸਰਕਾਰ ਦੇ ਚਾਰ ਸਾਲਾਂ ਦੇ ਪ੍ਰਸ਼ਾਸਨਿਕ ਪਤਨ, ਜਾਨਲੇਵਾ ਨਸ਼ਾ ਮਹਾਂਮਾਰੀ, ਝੂਠੇ ਵਾਅਦਿਆਂ, ਗੈਂਗਸਟਰ ਰਾਜ, ਪੁਲਿਸ ਥਾਣਿਆਂ \'ਤੇ ਆਰਪੀਜੀ ਹਮਲਿਆਂ ਅਤੇ ਸੰਸਥਾਗਤ ਭ੍ਰਿਸ਼ਟਾਚਾਰ ਦਾ ਅਧਿਕਾਰਤ ਜਾਂਚ ਦਸਤਾਵੇਜ਼।',
-        exploreBtn: '4 ਮੁੱਖ ਦਸਤਾਵੇਜ਼ ਦੇਖੋ',
-        trackerBtn: '3D ਕ੍ਰਾਈਮ ਟਰੈਕਰ'
+        heroDesc: '',
+        exploreBtn: 'ਦਸਤਾਵੇਜ਼ ਦੇਖੋ',
+        trackerBtn: 'ਕ੍ਰਾਈਮ ਟਰੈਕਰ'
       },
       hi: {
-        tickerLabel: 'जांच आरोप-पत्र पुरालेख // संदर्भ: PB-2022-2026',
+        tickerLabel: 'चार्जशीट आर्काइव',
         heroTagline: '“वादों से हकीकत तक” — डिजिटल जांच आरोप-पत्र',
-        heroDesc: 'पंजाब में आम आदमी पार्टी सरकार के चार वर्षों के प्रशासनिक पतन, जानलेवा नशे के प्रकोप, वादाखिलाफी, रंगदारी, थानों पर आरपीजी हमलों और संस्थागत भ्रष्टाचार का विस्तृत सार्वजनिक आरोप-पत्र।',
-        exploreBtn: '4 मुख्य फाइलें देखें',
-        trackerBtn: '3D अपराध ट्रैकर'
+        heroDesc: '',
+        exploreBtn: 'फाइलें देखें',
+        trackerBtn: 'अपराध ट्रैकर'
       }
     };
 
@@ -3381,11 +3129,15 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       });
 
       const s = langStrings[lang] || langStrings.en;
-      document.querySelector('[data-i18n="tickerLabel"]').innerText = s.tickerLabel;
-      document.querySelector('[data-i18n="heroTagline"]').innerText = s.heroTagline;
-      document.querySelector('[data-i18n="heroDesc"]').innerText = s.heroDesc;
-      document.querySelector('[data-i18n="exploreBtn"]').innerText = s.exploreBtn;
-      document.querySelector('[data-i18n="trackerBtn"]').innerText = s.trackerBtn;
+      const setI18n = (key, val) => {
+        const el = document.querySelector(`[data-i18n="${key}"]`);
+        if (el && val) el.innerText = val;
+      };
+      setI18n('tickerLabel', s.tickerLabel);
+      setI18n('heroTagline', s.heroTagline);
+      setI18n('heroDesc', s.heroDesc);
+      setI18n('exploreBtn', s.exploreBtn);
+      setI18n('trackerBtn', s.trackerBtn);
       currentHeroLang = lang;
       selectHeroAct(currentHeroAct, false);
     }
