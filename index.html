@@ -376,7 +376,7 @@
           <span class="text-red-300">•</span>
           <span>🏛️ ਸੀਐਮ ਕੈਂਪ ਆਫਿਸ 'ਤੇ ਸੀਬੀਆਈ ਛਾਪੇ (ਓਐਸਡੀ ਰਾਜਬੀਰ ਘੁਮਣ ਮਾਮਲਾ)</span>
           <span class="text-red-300">•</span>
-          <span>🏢 ₹10,000 ਕਰੋੜ ਗਮਾਡਾ ਜ਼ਮੀਨ ਨਿਲਾਮੀ ਘੁਟਾਲਾ</span>
+          <span>🏢 ₹10,000 ਕਰੋੜ ��ਮਾਡਾ ਜ਼ਮੀਨ ਨਿਲਾਮੀ ਘੁਟਾਲਾ</span>
           <span class="text-red-300">•</span>
           <span>🛑 90,248 ਮ੍ਰਿਤਕ ਪੈਨਸ਼ਨਰਾਂ ਦੇ ਨਾਂ 'ਤੇ ਕਰੋੜਾਂ ਦਾ ਘਪਲਾ</span>
 
@@ -411,17 +411,17 @@
       </a>
 
       <!-- Desktop Nav (Visible on XL screens >= 1280px to prevent any right-edge cut) -->
-      <nav class="hidden xl:flex items-center gap-5 text-xs font-mono font-medium text-slate-300 shrink-0">
-        <a href="#chargesheets" class="hover:text-crimson transition">Chargesheets</a>
-        <a href="#crime-map" class="hover:text-crimson transition">Crime Map</a>
-        <a href="#issues-detail" class="hover:text-crimson transition">Issues in Detail</a>
-        <a href="#evidence-room" class="hover:text-crimson transition">Evidence Room</a>
+      <nav class="hidden xl:flex items-center gap-5 text-xs font-mono font-medium text-slate-300 shrink-0" aria-label="Primary navigation">
+        <a href="#home" class="hover:text-crimson transition">Home</a>
+        <a href="#chargesheets" class="hover:text-crimson transition">Distress Signals</a>
+        <a href="#crime-map" class="hover:text-crimson transition">Map</a>
+        <a href="#issues-detail" class="hover:text-crimson transition">Chargesheet Pointers</a>
+        <a href="#evidence-room" class="hover:text-crimson transition">Newspaper Clippings</a>
         <a href="#submit-story" class="hover:text-cyanGlow transition font-bold text-cyan-400 flex items-center gap-1">
           <i data-lucide="upload-cloud" class="w-3.5 h-3.5"></i>
-          <span>Submit Story</span>
+          <span>Submit Your Story</span>
         </a>
-        <a href="#promise-vs-reality" class="hover:text-crimson transition">Promise vs Reality</a>
-        <a href="#downloads" class="hover:text-crimson transition">Downloads</a>
+        <a href="#promise-vs-reality" class="hover:text-crimson transition">Guarantees vs Delivery</a>
       </nav>
 
       <!-- Utilities -->
@@ -460,26 +460,26 @@
     <!-- Responsive Mobile / Tablet Navigation Drawer -->
     <div id="mobileNavDrawer" class="hidden xl:hidden border-t border-panelBorder bg-obsidian/98 backdrop-blur-2xl px-4 sm:px-6 py-4 space-y-3 font-mono text-xs shadow-2xl">
       <div class="grid grid-cols-2 gap-2 pb-3 border-b border-panelBorder/70">
+        <a href="#home" onclick="toggleMobileNav()" class="p-2.5 rounded-lg bg-charcoal hover:bg-slateDark text-slate-300 hover:text-white flex items-center gap-2">
+          <i data-lucide="house" class="w-3.5 h-3.5 text-crimson"></i> Home
+        </a>
         <a href="#chargesheets" onclick="toggleMobileNav()" class="p-2.5 rounded-lg bg-charcoal hover:bg-slateDark text-slate-300 hover:text-white flex items-center gap-2">
-          <i data-lucide="file-text" class="w-3.5 h-3.5 text-crimson"></i> Chargesheets
+          <i data-lucide="file-warning" class="w-3.5 h-3.5 text-crimson"></i> Distress Signals
         </a>
         <a href="#crime-map" onclick="toggleMobileNav()" class="p-2.5 rounded-lg bg-charcoal hover:bg-slateDark text-slate-300 hover:text-white flex items-center gap-2">
-          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-crimson"></i> Crime Map
+          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-crimson"></i> Map
         </a>
         <a href="#issues-detail" onclick="toggleMobileNav()" class="p-2.5 rounded-lg bg-charcoal hover:bg-slateDark text-slate-300 hover:text-white flex items-center gap-2">
-          <i data-lucide="alert-octagon" class="w-3.5 h-3.5 text-crimson"></i> Issues in Detail
+          <i data-lucide="alert-octagon" class="w-3.5 h-3.5 text-crimson"></i> Chargesheet Pointers
         </a>
         <a href="#evidence-room" onclick="toggleMobileNav()" class="p-2.5 rounded-lg bg-charcoal hover:bg-slateDark text-slate-300 hover:text-white flex items-center gap-2">
-          <i data-lucide="newspaper" class="w-3.5 h-3.5 text-crimson"></i> Evidence Room
+          <i data-lucide="newspaper" class="w-3.5 h-3.5 text-crimson"></i> Newspaper Clippings
         </a>
-        <a href="#submit-story" onclick="toggleMobileNav()" class="p-2.5 rounded-lg bg-cyan-950/40 border border-cyan-500/30 text-cyan-400 font-bold flex items-center gap-2 col-span-2">
-          <i data-lucide="upload-cloud" class="w-4 h-4"></i> Submit Whistleblower Story
+        <a href="#submit-story" onclick="toggleMobileNav()" class="p-2.5 rounded-lg bg-cyan-950/40 border border-cyan-500/30 text-cyan-400 font-bold flex items-center gap-2">
+          <i data-lucide="upload-cloud" class="w-4 h-4"></i> Submit Your Story
         </a>
-        <a href="#promise-vs-reality" onclick="toggleMobileNav()" class="p-2.5 rounded-lg bg-charcoal hover:bg-slateDark text-slate-300 hover:text-white flex items-center gap-2">
-          <i data-lucide="scale" class="w-3.5 h-3.5 text-amberAlert"></i> Promise vs Reality
-        </a>
-        <a href="#downloads" onclick="toggleMobileNav()" class="p-2.5 rounded-lg bg-charcoal hover:bg-slateDark text-slate-300 hover:text-white flex items-center gap-2">
-          <i data-lucide="download" class="w-3.5 h-3.5 text-slate-400"></i> Downloads
+        <a href="#promise-vs-reality" onclick="toggleMobileNav()" class="p-2.5 rounded-lg bg-charcoal hover:bg-slateDark text-slate-300 hover:text-white flex items-center gap-2 col-span-2">
+          <i data-lucide="scale" class="w-3.5 h-3.5 text-amberAlert"></i> Guarantees Made vs. Ground Delivery
         </a>
       </div>
       <div class="flex items-center justify-between pt-1 text-[11px] text-slate-400">
@@ -608,7 +608,7 @@
       </div>
     </section>
 
-    <!-- SECTION 2: FOUR ISSUE-BASED CHARGESHEETS (3D DOSSIER EXPERIENCE) -->
+    <!-- SECTION 2: DISTRESS SIGNALS ACROSS PUNJAB -->
     <section id="chargesheets" class="space-y-8 scroll-mt-24">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
@@ -617,7 +617,7 @@
             <span>PRIMARY INDICTMENTS</span>
           </div>
           <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white mt-1">
-            Four Core Issue-Based Chargesheets
+            Distress Signals Across Punjab
           </h2>
           <p class="text-slate-400 text-sm max-w-2xl mt-1">
             Dedicated investigative dossiers on Drugs, Law & Order, Vadakhilafi, and Corruption. Click "View Evidence Dossier" to trigger the 3D animated file folder experience.
@@ -795,7 +795,7 @@
       </div>
     </section>
 
-    <!-- SECTION 3: INTERACTIVE 3D MAP OF PUNJAB (CRIME & CORRUPTION TRACKER) -->
+    <!-- SECTION 3: MAP OF PUNJAB (CRIME & CORRUPTION TRACKER) -->
     <section id="crime-map" class="space-y-6 scroll-mt-24">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
@@ -988,7 +988,7 @@
       </div>
     </section>
 
-    <!-- SECTION 4: DETAILED CHARGESHEET ENTRIES (TABBED & SEARCHABLE) -->
+    <!-- SECTION 4: CHARGESHEET POINTERS (TABBED & SEARCHABLE) -->
     <section id="issues-detail" class="space-y-6 scroll-mt-24">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
@@ -997,7 +997,7 @@
             <span>ITEMIZED INDICTMENT REPOSITORY</span>
           </div>
           <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white mt-1">
-            Detailed Chargesheet Entries
+            Chargesheet Pointers
           </h2>
           <p class="text-slate-400 text-sm max-w-2xl mt-1">
             Full itemized evidence records across 54+ documented cases. Search keywords or click redacted text lines to declassify verified facts.
@@ -1026,7 +1026,7 @@
       </div>
     </section>
 
-    <!-- SECTION 5: EVIDENCE ROOM (AUTHENTIC MEDIA CLIPPINGS & PRESS DOSSIERS) -->
+    <!-- SECTION 5: NEWSPAPER CLIPPINGS (AUTHENTIC MEDIA & PRESS DOSSIERS) -->
     <section id="evidence-room" class="space-y-8 scroll-mt-24">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
@@ -1035,7 +1035,7 @@
             <span>INVESTIGATIVE MEDIA ARCHIVE</span>
           </div>
           <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white mt-1">
-            Evidence Room: Media Clippings &amp; Press Reports
+            Newspaper Clippings &amp; Press Reports
           </h2>
           <p class="text-slate-400 text-sm max-w-2xl mt-1">
             Real published investigative newspaper clippings, front-page news reports, and documented press findings covering drug deaths, jail cartels, police station blasts, and government failures.
@@ -1465,7 +1465,7 @@
       </div>
     </section>
 
-    <!-- SECTION 7: PROMISE VS. PERFORMANCE (COMPARATIVE AUDIT) -->
+    <!-- SECTION 7: GUARANTEES MADE VS. GROUND DELIVERY -->
     <section id="promise-vs-reality" class="space-y-8 scroll-mt-24">
       <div>
         <div class="flex items-center gap-2 text-crimson font-mono text-xs font-bold tracking-widest uppercase">
@@ -2253,7 +2253,7 @@
           id: "VAD-08",
           cat: "vadakhilafi",
           title: "Bargari Sacrilege & Firing Justice Unfulfilled",
-          punjabi: "ਬਰਗਾੜੀ ਬੇਅਦਬੀ ਇਨਸਾਫ਼ ਦਾ ਅਣਸੁਲਝਿਆ ਮਾਮਲਾ",
+          punjabi: "ਬਰਗਾੜੀ ਬੇਅਦਬੀ ਇਨਸਾਫ਼ ਦਾ ਅਣਸੁਲਝਿਆ ਮਾਮ��ਾ",
           desc: "Promised prompt and decisive closure in the 2015 Bargari sacrilege and police firing cases. Victims' families and Sikh panthic organizations continue waiting after 4+ years.",
           stat: "Over a decade since 2015 incidents without final justice.",
           redacted: "Special Investigation Team chargesheets remain ensnarled in procedural delays."
@@ -2291,7 +2291,7 @@
           id: "COR-04",
           cat: "corruption",
           title: "AAP Leader Deepak Singla Arrested in ₹155.21 Cr Bank Fraud",
-          punjabi: "ਆਪ ਆਗੂ ਦੀਪਕ ਸਿੰਗਲਾ 155.21 ਕਰੋੜ ਦੇ ਬੈਂਕ ਧੋਖਾਧੜੀ ਮਾਮਲੇ ਵਿੱਚ ਗ੍ਰਿਫ਼ਤਾਰ",
+          punjabi: "ਆਪ ਆਗੂ ਦੀਪਕ ਸਿੰਗਲ��� 155.21 ਕਰੋੜ ਦੇ ਬੈਂਕ ਧੋਖਾਧੜੀ ਮਾਮਲੇ ਵਿੱਚ ਗ੍ਰਿਫ਼ਤਾਰ",
           desc: "In May 2026, the Enforcement Directorate arrested prominent AAP leader Deepak Singla under PMLA in a money-laundering case involving fraudulent Letters of Credit.",
           stat: "₹155.21 Crore bank fraud chargesheet filed.",
           redacted: "Funds diverted into shell companies and election campaign publicity logistics."
