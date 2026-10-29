@@ -506,6 +506,9 @@
       background-size: 100% 4px, 6px 100%;
       pointer-events: none;
     }
+    .cinema-vignette {
+      background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.15) 0%, rgba(5, 5, 8, 0.55) 60%, rgba(5, 5, 8, 0.95) 100%);
+    }
   </style>
 </head>
 <body class="bg-obsidian text-slate-100 antialiased selection:bg-crimson selection:text-white bg-forensic-grid relative w-full overflow-x-hidden">
@@ -667,142 +670,118 @@
     </div>
   </header>
 
-  <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-24 sm:space-y-32 w-full overflow-hidden">
-
-    <!-- SECTION 1: CINEMATIC VIDEO HERO SECTION -->
-    <section id="home" class="relative pt-4 pb-8 overflow-hidden rounded-3xl border border-panelBorder/90 glass-card">
+  <!-- ==============================================
+       FULL-BLEED CINEMATIC HERO SECTION (EDGE-TO-EDGE)
+       ============================================== -->
+  <section id="home" class="relative w-full min-h-[92vh] sm:min-h-screen flex flex-col justify-between overflow-hidden bg-black">
+    
+    <!-- Edge-to-Edge Cinematic Video Canvas -->
+    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      <video id="heroCinematicVideo" autoplay loop muted playsinline class="w-full h-full object-cover object-center filter brightness-95 contrast-105 scale-100 transition-transform duration-1000 ease-out">
+        <source src="img/Mother_lifting_gaze_in_scene_f10e3758_1080p.mp4" type="video/mp4" />
+      </video>
       
-      <!-- Minimalist Editorial Heading -->
-      <div class="relative z-10 text-center space-y-2 max-w-3xl mx-auto px-4 pt-4 pb-4">
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-display font-black tracking-tight text-white leading-tight">
-          <span class="block bg-gradient-to-b from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">AAP DA PAAP PATRA</span>
-          <span class="block text-lg sm:text-2xl font-mono text-crimson font-bold mt-0.5">ਆਪ ਦਾ ਪਾਪ ਪੱਤਰ</span>
-        </h1>
-        <p class="font-serif italic text-crimsonBright text-lg sm:text-2xl font-normal" data-i18n="heroTagline">
-          “ਵਾਅਦਿਆਂ ਤੋਂ ਹਕੀਕਤ ਤੱਕ” — From Promises to Reality
-        </p>
-      </div>
+      <!-- Top Vignette for Sticky Header Legibility -->
+      <div class="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-black/85 via-obsidian/50 to-transparent"></div>
 
-      <!-- CENTERPIECE HERO ELEMENT: CINEMATIC VIDEO -->
-      <div class="relative z-10 px-3 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full">
-        <div id="narrativeStageFrame" class="video-hero-container relative rounded-2xl sm:rounded-3xl border border-panelBorder bg-black shadow-2xl overflow-hidden group">
-          
-          <div class="video-ambient-glow"></div>
+      <!-- Cinema Vignette Filter -->
+      <div class="absolute inset-0 cinema-vignette"></div>
 
-          <!-- Video Frame (Widescreen 16:9 Cinema Aspect) -->
-          <div class="relative w-full aspect-[16/9] max-h-[560px] overflow-hidden bg-black">
-            
-            <video id="heroCinematicVideo" autoplay loop muted playsinline class="w-full h-full object-cover object-center filter brightness-95 contrast-105 transition-transform duration-700">
-              <source src="img/Mother_lifting_gaze_in_scene_f10e3758_1080p.mp4" type="video/mp4" />
-            </video>
+      <!-- Bottom Fade to Obsidian so it seamlessly melts into page -->
+      <div class="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-obsidian via-obsidian/85 to-transparent"></div>
 
-            <!-- Subtle Surveillance Scanline -->
-            <div class="surveillance-overlay absolute inset-0 z-10 pointer-events-none opacity-30"></div>
+      <!-- Left-to-right gradient for text legibility on the left, leaving center & right crystal clear -->
+      <div class="absolute inset-y-0 left-0 w-full sm:w-3/5 bg-gradient-to-r from-obsidian/90 via-obsidian/40 to-transparent pointer-events-none"></div>
+    </div>
 
-            <!-- Sleek Corner Controls: Audio & Playback Pill -->
-            <div class="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-white/15 shadow-xl">
-              <button onclick="toggleHeroVideoMute()" id="videoAudioBtn" class="text-slate-300 hover:text-white transition p-1" title="Toggle Sound">
-                <i data-lucide="volume-x" id="videoAudioIcon" class="w-4 h-4"></i>
-              </button>
-              <span class="w-px h-3.5 bg-white/20"></span>
-              <button onclick="toggleHeroVideoPlay()" id="videoPlayPauseBtn" class="text-slate-300 hover:text-white transition p-1" title="Play/Pause">
-                <i data-lucide="pause" id="videoPlayPauseIcon" class="w-4 h-4"></i>
-              </button>
-            </div>
+    <!-- Top Spacer for Header -->
+    <div class="relative z-10 pt-16 sm:pt-20"></div>
 
-            <!-- 4 Subtle Hotspot Pins (Clean pulsing markers on video quadrants) -->
-            <!-- 01 GUNFIRE: Top-Right Gunman -->
-            <div onclick="selectHeroAct(0, true)" id="hotspot-0" class="video-hotspot active-hotspot" style="top: 22%; left: 80%;" title="Act 1: Gunfire & Gangsters">
-              <div class="relative flex items-center justify-center">
-                <div class="hotspot-pulse-ring absolute w-8 h-8 rounded-full bg-red-600/60"></div>
-                <div class="w-5 h-5 rounded-full bg-crimson border-2 border-white flex items-center justify-center text-[10px] shadow-lg shadow-crimson text-white font-bold">
-                  💥
-                </div>
-              </div>
-            </div>
-
-            <!-- 02 CORRUPTION: Bottom-Right Officials -->
-            <div onclick="selectHeroAct(1, true)" id="hotspot-1" class="video-hotspot" style="top: 62%; left: 86%;" title="Act 2: Institutional Corruption">
-              <div class="relative flex items-center justify-center">
-                <div class="hotspot-pulse-ring absolute w-8 h-8 rounded-full bg-amber-500/60"></div>
-                <div class="w-5 h-5 rounded-full bg-amberAlert border-2 border-white flex items-center justify-center text-[10px] shadow-lg shadow-amber-500 text-black font-bold">
-                  ⚖️
-                </div>
-              </div>
-            </div>
-
-            <!-- 03 DRUGS: Top-Left Addicted Youth -->
-            <div onclick="selectHeroAct(2, true)" id="hotspot-2" class="video-hotspot" style="top: 26%; left: 34%;" title="Act 3: Narcotics Epidemic">
-              <div class="relative flex items-center justify-center">
-                <div class="hotspot-pulse-ring absolute w-8 h-8 rounded-full bg-cyan-500/60"></div>
-                <div class="w-5 h-5 rounded-full bg-cyanGlow border-2 border-white flex items-center justify-center text-[10px] shadow-lg shadow-cyan-500 text-black font-bold">
-                  ⚠️
-                </div>
-              </div>
-            </div>
-
-            <!-- 04 VADAKHILAFI: Mother's Gaze (Center) -->
-            <div onclick="selectHeroAct(3, true)" id="hotspot-3" class="video-hotspot" style="top: 50%; left: 58%;" title="Act 4: Broken Promises & Mother's Grief">
-              <div class="relative flex items-center justify-center">
-                <div class="hotspot-pulse-ring absolute w-9 h-9 rounded-full bg-red-500/70"></div>
-                <div class="w-5 h-5 rounded-full bg-red-600 border-2 border-white flex items-center justify-center text-[10px] shadow-lg shadow-red-600 text-white font-bold">
-                  💔
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Sleek Bottom Bar: 4 Crisis Pills & Act Indicator -->
-          <div class="bg-charcoal/95 border-t border-panelBorder/80 px-4 py-3 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-            
-            <!-- 4 Crisis Tabs -->
-            <div class="grid grid-cols-4 gap-1.5 sm:gap-2 w-full sm:w-auto">
-              <button onclick="selectHeroAct(0)" id="heroTab-0" class="crisis-tab-active px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition flex items-center justify-center gap-1.5">
-                <span class="text-crimson font-black">01</span>
-                <span>Gunfire</span>
-              </button>
-              <button onclick="selectHeroAct(1)" id="heroTab-1" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold text-slate-400 hover:text-white transition flex items-center justify-center gap-1.5">
-                <span class="text-crimson font-black">02</span>
-                <span>Corruption</span>
-              </button>
-              <button onclick="selectHeroAct(2)" id="heroTab-2" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold text-slate-400 hover:text-white transition flex items-center justify-center gap-1.5">
-                <span class="text-crimson font-black">03</span>
-                <span>Drugs</span>
-              </button>
-              <button onclick="selectHeroAct(3)" id="heroTab-3" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold text-slate-400 hover:text-white transition flex items-center justify-center gap-1.5">
-                <span class="text-crimson font-black">04</span>
-                <span>Vadakhilafi</span>
-              </button>
-            </div>
-
-            <!-- Minimal Active Act Indicator & Progress -->
-            <div class="flex items-center gap-3 text-xs font-mono shrink-0">
-              <span id="actBadgeTag" class="px-2 py-0.5 rounded bg-crimson/20 border border-crimson/50 text-crimson font-bold uppercase text-[10px]">
-                ACT 01 // GUNFIRE
-              </span>
-              <span id="actTitleText" class="text-slate-300 font-semibold truncate hidden md:inline">
-                Gangster Gunfire
-              </span>
-              <div class="w-16 sm:w-20 h-1 bg-slate-800 rounded-full overflow-hidden">
-                <div id="heroActProgressBar" class="h-full bg-crimson w-0 transition-all duration-100 ease-linear"></div>
-              </div>
-            </div>
-
-          </div>
-
+    <!-- Left-Aligned Editorial Typography (Leaving Mother's Face and Gaze 100% Unobstructed) -->
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 my-auto pt-24 sm:pt-32 pb-12 flex flex-col items-start justify-center">
+      <div class="max-w-2xl text-left space-y-4">
+        
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-crimson/20 border border-crimson/40 backdrop-blur-md">
+          <span class="w-2 h-2 rounded-full bg-crimson animate-ping"></span>
+          <span class="text-[11px] sm:text-xs font-mono font-bold tracking-widest text-red-300 uppercase">DIGITAL INVESTIGATIVE CHARGESHEET</span>
         </div>
 
-        <!-- Clean Scroll Cue -->
-        <div class="text-center pt-4">
-          <a href="#chargesheets" class="inline-flex items-center gap-1.5 text-xs font-mono text-slate-400 hover:text-crimson transition tracking-wider uppercase">
-            <span>Explore Chargesheet Dossiers</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 animate-bounce"></i>
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-display font-black tracking-tight text-white leading-none drop-shadow-2xl">
+          <span class="block bg-gradient-to-b from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">AAP DA PAAP PATRA</span>
+          <span class="block text-2xl sm:text-4xl font-mono text-crimson font-bold mt-2 sm:mt-3 tracking-tight drop-shadow-lg">ਆਪ ਦਾ ਪਾਪ ਪੱਤਰ</span>
+        </h1>
+        
+        <p class="font-serif italic text-crimsonBright text-xl sm:text-2xl lg:text-3xl font-normal drop-shadow-lg" data-i18n="heroTagline">
+          “ਵਾਅਦਿਆਂ ਤੋਂ ਹਕੀਕਤ ਤੱਕ” — From Promises to Reality
+        </p>
+
+        <!-- Minimal Call to Action -->
+        <div class="pt-4 flex items-center gap-4">
+          <a href="#chargesheets" class="px-7 py-3.5 rounded-full bg-crimson hover:bg-crimsonBright text-white font-mono text-xs sm:text-sm font-bold uppercase tracking-widest shadow-2xl shadow-crimson/50 transition transform hover:scale-105 flex items-center gap-2.5 border border-white/20">
+            <span>Explore Chargesheets</span>
+            <i data-lucide="arrow-down" class="w-4 h-4 animate-bounce"></i>
           </a>
         </div>
       </div>
+    </div>
 
-    </section>
+    <!-- Bottom Controls & Navigation Strip -->
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 pb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      
+      <!-- Minimalist 4-Crisis Navigator Pills (Without any dots on the video) -->
+      <div class="flex flex-nowrap items-center justify-center gap-1 sm:gap-2 bg-black/70 backdrop-blur-xl p-1.5 rounded-2xl border border-white/10 shadow-2xl">
+        <button onclick="selectHeroAct(0)" id="heroTab-0" class="crisis-tab-active px-2.5 sm:px-3.5 py-1.5 rounded-xl text-[11px] sm:text-xs font-mono font-bold transition flex items-center gap-1.5 whitespace-nowrap">
+          <span class="text-crimson font-black">01</span>
+          <span>Gunfire</span>
+        </button>
+        <button onclick="selectHeroAct(1)" id="heroTab-1" class="px-2.5 sm:px-3.5 py-1.5 rounded-xl text-[11px] sm:text-xs font-mono font-bold text-slate-400 hover:text-white transition flex items-center gap-1.5 whitespace-nowrap">
+          <span class="text-crimson font-black">02</span>
+          <span>Corruption</span>
+        </button>
+        <button onclick="selectHeroAct(2)" id="heroTab-2" class="px-2.5 sm:px-3.5 py-1.5 rounded-xl text-[11px] sm:text-xs font-mono font-bold text-slate-400 hover:text-white transition flex items-center gap-1.5 whitespace-nowrap">
+          <span class="text-crimson font-black">03</span>
+          <span>Drugs</span>
+        </button>
+        <button onclick="selectHeroAct(3)" id="heroTab-3" class="px-2.5 sm:px-3.5 py-1.5 rounded-xl text-[11px] sm:text-xs font-mono font-bold text-slate-400 hover:text-white transition flex items-center gap-1.5 whitespace-nowrap">
+          <span class="text-crimson font-black">04</span>
+          <span>Vadakhilafi</span>
+        </button>
+      </div>
+
+      <!-- Right Side: Act Title & Audio / Playback Controls -->
+      <div class="flex items-center gap-3">
+        <div class="hidden lg:flex items-center gap-2 bg-black/70 backdrop-blur-xl px-3.5 py-1.5 rounded-full border border-white/10 text-xs font-mono">
+          <span id="actBadgeTag" class="text-crimson font-bold uppercase text-[10px]">
+            ACT 01 // GUNFIRE
+          </span>
+          <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+          <span id="actTitleText" class="text-slate-300 font-semibold truncate max-w-[200px]">
+            Gangster Gunfire
+          </span>
+          <div class="w-16 h-1 bg-slate-800 rounded-full overflow-hidden ml-1">
+            <div id="heroActProgressBar" class="h-full bg-crimson w-0 transition-all duration-100 ease-linear"></div>
+          </div>
+        </div>
+
+        <!-- Cinema Audio & Playback Toggle Pill -->
+        <div class="flex items-center gap-2 bg-black/70 backdrop-blur-xl px-3.5 py-1.5 rounded-full border border-white/15 text-white text-xs font-mono shadow-2xl">
+          <button onclick="toggleHeroVideoMute()" id="videoAudioBtn" class="hover:text-crimson transition flex items-center gap-1.5" title="Toggle Sound">
+            <i data-lucide="volume-x" id="videoAudioIcon" class="w-4 h-4"></i>
+            <span id="videoAudioText" class="text-[11px] font-bold">Sound</span>
+          </button>
+          <span class="w-px h-3.5 bg-white/20"></span>
+          <button onclick="toggleHeroVideoPlay()" id="videoPlayPauseBtn" class="hover:text-crimson transition p-0.5" title="Play/Pause">
+            <i data-lucide="pause" id="videoPlayPauseIcon" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- MAIN DOSSIER CONTENT -->
+  <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24 sm:space-y-32 w-full overflow-hidden">
 
     <!-- SECTION 2: FOUR ISSUE-BASED CHARGESHEETS (3D DOSSIER EXPERIENCE) -->
     <section id="chargesheets" class="space-y-8 scroll-mt-24">
@@ -3481,12 +3460,16 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
     function toggleHeroVideoMute() {
       const vid = document.getElementById('heroCinematicVideo');
       const icon = document.getElementById('videoAudioIcon');
+      const text = document.getElementById('videoAudioText');
       if (!vid) return;
       vid.muted = !vid.muted;
       if (icon) {
         icon.setAttribute('data-lucide', vid.muted ? 'volume-x' : 'volume-2');
-        if (window.lucide) lucide.createIcons();
       }
+      if (text) {
+        text.innerText = vid.muted ? 'Sound' : 'Mute';
+      }
+      if (window.lucide) lucide.createIcons();
     }
 
     function toggleHeroVideoPlay() {
