@@ -816,23 +816,44 @@
         <!-- Rendered dynamically by selectSpotlightCase() -->
       </div>
 
-      <!-- Quick Category Filter Pills -->
-      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-panelBorder pb-3 text-xs font-mono">
+      <!-- Quick Category Filter Pills & Carousel Controls -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-panelBorder pb-4 text-xs font-mono">
         <div class="flex flex-wrap items-center gap-2">
-          <button onclick="filterSensationalCategory('all')" class="case-cat-pill px-4 py-2 rounded-xl bg-crimson text-white font-bold transition shadow-md" data-cat="all">ALL INCIDENTS (14)</button>
-          <button onclick="filterSensationalCategory('drugs')" class="case-cat-pill px-4 py-2 rounded-xl bg-slateDark text-slate-300 hover:text-white transition" data-cat="drugs">NARCOTICS &amp; CRUSADERS (3)</button>
-          <button onclick="filterSensationalCategory('murders')" class="case-cat-pill px-4 py-2 rounded-xl bg-slateDark text-slate-300 hover:text-white transition" data-cat="murders">SENSATIONAL MURDERS (5)</button>
-          <button onclick="filterSensationalCategory('terror')" class="case-cat-pill px-4 py-2 rounded-xl bg-slateDark text-slate-300 hover:text-white transition" data-cat="terror">TERROR &amp; RPG STRIKES (3)</button>
-          <button onclick="filterSensationalCategory('scandals')" class="case-cat-pill px-4 py-2 rounded-xl bg-slateDark text-slate-300 hover:text-white transition" data-cat="scandals">PRISON &amp; SCANDALS (3)</button>
+          <button onclick="filterSensationalCategory('all')" class="case-cat-pill px-3.5 py-1.5 rounded-xl bg-crimson text-white font-bold transition shadow-md" data-cat="all">ALL INCIDENTS (14)</button>
+          <button onclick="filterSensationalCategory('drugs')" class="case-cat-pill px-3.5 py-1.5 rounded-xl bg-slateDark text-slate-300 hover:text-white transition" data-cat="drugs">NARCOTICS (3)</button>
+          <button onclick="filterSensationalCategory('murders')" class="case-cat-pill px-3.5 py-1.5 rounded-xl bg-slateDark text-slate-300 hover:text-white transition" data-cat="murders">SENSATIONAL MURDERS (5)</button>
+          <button onclick="filterSensationalCategory('terror')" class="case-cat-pill px-3.5 py-1.5 rounded-xl bg-slateDark text-slate-300 hover:text-white transition" data-cat="terror">TERROR &amp; RPG (3)</button>
+          <button onclick="filterSensationalCategory('scandals')" class="case-cat-pill px-3.5 py-1.5 rounded-xl bg-slateDark text-slate-300 hover:text-white transition" data-cat="scandals">PRISON &amp; SCANDALS (3)</button>
         </div>
-        <div class="text-[11px] font-mono text-slate-500 hidden sm:block">
-          CLICK ANY CASE TO SPOTLIGHT OR INSPECT MEDIA
+
+        <!-- Carousel Navigation Controls & Deck Position Counter -->
+        <div class="flex items-center gap-3 self-end sm:self-auto">
+          <div class="flex items-center gap-1.5 text-xs font-mono text-slate-400">
+            <span class="text-[10px] uppercase text-slate-500 hidden md:inline">HORIZON DECK</span>
+            <span id="caseScrollCounter" class="px-2.5 py-1 rounded-lg bg-black/80 border border-panelBorder text-white font-bold">Case 1 of 14</span>
+          </div>
+
+          <div class="flex items-center gap-1.5">
+            <button onclick="scrollSensationalCases(-1)" class="w-9 h-9 rounded-xl bg-charcoal hover:bg-crimson border border-panelBorder text-slate-300 hover:text-white flex items-center justify-center transition shadow-lg active:scale-95" title="Previous Incident (Left)">
+              <i data-lucide="chevron-left" class="w-4 h-4"></i>
+            </button>
+            <button onclick="scrollSensationalCases(1)" class="w-9 h-9 rounded-xl bg-charcoal hover:bg-crimson border border-panelBorder text-slate-300 hover:text-white flex items-center justify-center transition shadow-lg active:scale-95" title="Next Incident (Right)">
+              <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- 14-CASE INTERACTIVE GRID -->
-      <div id="sensationalCasesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Javascript dynamically populates this with rich photo/video forensic cards -->
+      <!-- HORIZONTAL SCROLL FILMSTRIP DECK -->
+      <div class="relative group">
+        <!-- Subtle Gradient Edge Fade -->
+        <div id="caseDeckFadeLeft" class="pointer-events-none absolute left-0 inset-y-0 w-10 bg-gradient-to-r from-obsidian via-obsidian/70 to-transparent z-10 opacity-0 transition-opacity"></div>
+        <div id="caseDeckFadeRight" class="pointer-events-none absolute right-0 inset-y-0 w-10 bg-gradient-to-l from-obsidian via-obsidian/70 to-transparent z-10 opacity-80 transition-opacity"></div>
+
+        <!-- Scrollable Track with snap alignment -->
+        <div id="sensationalCasesGrid" class="flex flex-nowrap overflow-x-auto gap-5 pb-6 pt-2 scroll-smooth snap-x snap-mandatory scrollbar-thin scrollbar-thumb-crimson/50 scrollbar-track-charcoal/40 -mx-1 px-1" onscroll="updateCaseDeckScrollIndicators()">
+          <!-- Javascript dynamically populates this with horizontal cards -->
+        </div>
       </div>
     </section>
 
@@ -3535,7 +3556,8 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         image: "img/jhota_mansa_case.jpg",
         fallbackImage: "img/drug_crisis_punjab.jpg",
         mediaType: "video",
-        videoNotice: "LIVE CONFRONTATION & PROTEST VIGIL FOOTAGE",
+        youtubeId: "6UGzX2uorNU",
+        videoNotice: "THE TRIBUNE: ANTI-DRUG ACTIVIST PARVINDER JHOTA SHOT DEAD IN PUNJAB",
         quote: "“The police arrested the man who was catching drug peddlers, while the suppliers walk free with political patronage.” — Mansa Morcha Public Memorandum",
         fir: "FIR #204/23 & FIR #189/26, Mansa City Police Station"
       },
@@ -3559,7 +3581,8 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         image: "img/moosewala_ambush_scene.jpg",
         fallbackImage: "img/law_order_collapse.jpg",
         mediaType: "video",
-        videoNotice: "CRIME SCENE FORENSICS & VEHICLE BULLET HOLES",
+        youtubeId: "6FzUxhU6N2s",
+        videoNotice: "NDTV / SPECIAL REPORT: MOOSEWALA MURDER SCENE & BALLISTICS",
         quote: "“The state government's premature PR boast of pruning security leaked vital operational intelligence directly to assassins.”",
         fir: "FIR #103/22, Mansa Sadar Police Station"
       },
@@ -3582,8 +3605,9 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         ],
         image: "img/rpg_mohali_headquarters.jpg",
         fallbackImage: "img/law_order_collapse.jpg",
-        mediaType: "photo",
-        videoNotice: "BLAST AFTERMATH & SHATTERED COMMAND FACADE",
+        mediaType: "video",
+        youtubeId: "EiSWiiq5V_A",
+        videoNotice: "NDTV: RPG-LIKE ATTACK BEHIND BLAST AT PUNJAB POLICE INTEL HQ IN MOHALI",
         quote: "“If the highest intelligence command center of Punjab Police is not safe from rocket fire, what protection can citizens expect?”",
         fir: "FIR #41/22, Sohana Police Station, Mohali"
       },
@@ -3607,7 +3631,8 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         image: "img/yatra_crowd_march.jpg",
         fallbackImage: "img/law_order_collapse.jpg",
         mediaType: "video",
-        videoNotice: "BARRICADE STORMING & RETREAT DOCUMENTATION",
+        youtubeId: "HvjPECf9HhQ",
+        videoNotice: "BROADCAST NEWS: ARMED MOB STORMS AJNALA POLICE STATION",
         quote: "“The state police surrendered their own station to an armed mob, destroying public faith in rule of law.”",
         fir: "FIR #39/23, Ajnala Police Station"
       },
@@ -3631,7 +3656,8 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         image: "img/law_order_collapse.jpg",
         fallbackImage: "img/law_order_collapse.jpg",
         mediaType: "video",
-        videoNotice: "LIVE TOURNAMENT CAMERA & PANIC BROADCAST",
+        youtubeId: "HvyfSa0JnBA",
+        videoNotice: "NEWS REPORT: KABADDI STAR SANDEEP NANGAL AMBIA SHOT DEAD ON LIVE STREAM",
         quote: "“Sports grounds where Punjab's youth competed were turned into gang execution arenas in broad daylight.”",
         fir: "FIR #27/22, Sadar Nakodar Police Station"
       },
@@ -3655,7 +3681,8 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         image: "img/dossier_evidence.jpg",
         fallbackImage: "img/law_order_collapse.jpg",
         mediaType: "video",
-        videoNotice: "PRISON BROADCAST STABLE WI-FI TRANSCRIPT",
+        youtubeId: "RVk6VgcFr8Y",
+        videoNotice: "ABP NEWS: LAWRENCE BISHNOI EXCLUSIVE JAIL INTERVIEW",
         quote: "“Police premises were facilitated as a studio for a hardened gangster to conduct extortion and issue death threats.” — High Court Bench",
         fir: "High Court Suo Motu WP(C) 7622/2023 & SIT FIR #01/24"
       },
@@ -3678,8 +3705,9 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         ],
         image: "img/dossier_evidence.jpg",
         fallbackImage: "img/law_order_collapse.jpg",
-        mediaType: "photo",
-        videoNotice: "VIRAL PRISON REELS & INCIDENT LOGS",
+        mediaType: "video",
+        youtubeId: "mn-ghmJ97EQ",
+        videoNotice: "NDTV REPORT: MOOSEWALA ACCUSED KILLED IN GOINDWAL SAHIB JAIL GANGWAR",
         quote: "“High-security prisons in Punjab became execution arenas where inmates freely wield iron bars and upload celebration reels.”",
         fir: "FIR #21/23, Goindwal Sahib Police Station"
       },
@@ -3702,8 +3730,9 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         ],
         image: "img/rpg_mohali_headquarters.jpg",
         fallbackImage: "img/law_order_collapse.jpg",
-        mediaType: "photo",
-        videoNotice: "IMPACT CRATER & WEAPON FORENSICS",
+        mediaType: "video",
+        youtubeId: "EiSWiiq5V_A",
+        videoNotice: "GROUND REPORT: SECOND MILITARY RPG STRIKE ON PUNJAB POLICE STATION",
         quote: "“A second military rocket strike on a police station exposed total paralysis of border intelligence surveillance.”",
         fir: "FIR #187/22, Sirhali Police Station"
       },
@@ -3727,7 +3756,8 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         image: "img/law_order_collapse.jpg",
         fallbackImage: "img/law_order_collapse.jpg",
         mediaType: "video",
-        videoNotice: "SIT-IN PROTEST & SHOOTING FRAME",
+        youtubeId: "yrmLpE-mGKQ",
+        videoNotice: "THE QUINT: SHIV SENA LEADER SUDHIR SURI SHOT DEAD IN AMRITSAR",
         quote: "“Twelve armed policemen stood watching while an assassin stepped out of a car and fired five rounds into the protectee.”",
         fir: "FIR #156/22, Sadar Amritsar Police Station"
       },
@@ -3750,8 +3780,9 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         ],
         image: "img/mothers_tears.jpg",
         fallbackImage: "img/mothers_tears.jpg",
-        mediaType: "photo",
-        videoNotice: "CREMATION PYRES & CHEMICAL DRUM SEIZURES",
+        mediaType: "video",
+        youtubeId: "my1nHtwWqAg",
+        videoNotice: "THE SAVERA TIMES: SANGRUR HOOCH TRAGEDY SPURIOUS LIQUOR CASUALTIES",
         quote: "“The poorest laborers were poisoned in the Chief Minister's own home district while government leaders were campaigning in other states.”",
         fir: "FIR #34/24, Dirba Police Station, Sangrur"
       },
@@ -3774,8 +3805,9 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         ],
         image: "img/law_order_collapse.jpg",
         fallbackImage: "img/newspaper_clippings.jpg",
-        mediaType: "audio",
-        videoNotice: "EXTORTION WHATSAPP AUDIO RECORDINGS",
+        mediaType: "video",
+        youtubeId: "HvyfSa0JnBA",
+        videoNotice: "PUNJAB BEOPAR MANDAL REPORT: TRADER EXTORTION MURDERS & SHUTDOWN",
         quote: "“Traders have received ransom demands from gangsters sitting in jails; those who refuse are murdered along with their police guards.” — Punjab Beopar Mandal",
         fir: "FIR #109/22, City Nakodar Police Station"
       },
@@ -3798,8 +3830,9 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         ],
         image: "img/broken_promises.jpg",
         fallbackImage: "img/drug_crisis_punjab.jpg",
-        mediaType: "photo",
-        videoNotice: "VILLAGE SALE BANNERS & RESIDENT SPEECHES",
+        mediaType: "video",
+        youtubeId: "6UGzX2uorNU",
+        videoNotice: "GROUND DOCUMENTARY: 'SAADA PIND VIKAU HAI' CITIZEN CRISIS",
         quote: "“When the state will not protect our sons from Chitta, we have no choice but to put our homes on sale and leave Punjab.”",
         fir: "Public Grievance Memorandum to SSP Bathinda"
       },
@@ -3823,7 +3856,8 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         image: "img/corruption_scams.jpg",
         fallbackImage: "img/corruption_scams.jpg",
         mediaType: "video",
-        videoNotice: "ACB ARREST BRIEFING & AUDIO TRANSCRIPT",
+        youtubeId: "kl4ax6Cg2Vg",
+        videoNotice: "ABP NEWS & NDTV: AAP HEALTH MINISTER ARRESTED IN CORRUPTION STING",
         quote: "“The promise was zero corruption in 20 days; within 60 days the Health Minister was arrested demanding 1% kickbacks on medicines.”",
         fir: "FIR #03/22, Vigilance Bureau Flying Squad, Mohali"
       },
@@ -3847,7 +3881,8 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         image: "img/law_order_collapse.jpg",
         fallbackImage: "img/law_order_collapse.jpg",
         mediaType: "video",
-        videoNotice: "MARKET CCTV FOOTAGE & BALLISTICS",
+        youtubeId: "ab7y37T9qd4",
+        videoNotice: "TV24 NEWS PUNJAB: KOTKAPURA DERA PREMI PARDEEP SINGH SHOT DEAD",
         quote: "“Broad daylight market executions despite dedicated state security guards exposed the total collapse of deterrence.”",
         fir: "FIR #203/22, City Kotkapura Police Station"
       }
@@ -3875,24 +3910,25 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
 
       if (filtered.length === 0) {
         grid.innerHTML = `
-          <div class="col-span-full p-12 text-center rounded-2xl bg-charcoal border border-panelBorder space-y-3 font-mono text-xs">
+          <div class="flex-none w-full p-12 text-center rounded-2xl bg-charcoal border border-panelBorder space-y-3 font-mono text-xs">
             <i data-lucide="alert-circle" class="w-8 h-8 text-slate-500 mx-auto"></i>
             <p class="text-slate-300 font-bold">No sensational cases matched your search query.</p>
             <button onclick="currentSensationalSearch=''; document.getElementById('sensationalSearch').value=''; renderSensationalCases();" class="text-crimson underline">Reset Search</button>
           </div>
         `;
         lucide.createIcons();
+        updateCaseDeckScrollIndicators();
         return;
       }
 
       grid.innerHTML = filtered.map(item => {
         const isCurrentSpotlight = item.id === currentSpotlightCaseId;
         return `
-          <div class="news-case-card group rounded-2xl bg-charcoal border ${isCurrentSpotlight ? 'border-crimson shadow-xl shadow-crimson/20' : 'border-panelBorder hover:border-crimson/70'} overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-crimson/10 relative">
+          <div class="sensational-case-card flex-none snap-start w-[310px] sm:w-[350px] md:w-[380px] rounded-2xl bg-charcoal border ${isCurrentSpotlight ? 'border-crimson shadow-xl shadow-crimson/25 ring-1 ring-crimson/50' : 'border-panelBorder hover:border-crimson/70'} overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-crimson/10 relative group" id="case-card-${item.id}">
             <div class="tape-corner"></div>
 
             <!-- Top Image & Media Header -->
-            <div class="relative h-48 w-full overflow-hidden bg-black cursor-pointer" onclick="openCaseMediaModal('${item.id}')">
+            <div class="relative h-48 w-full overflow-hidden bg-black cursor-pointer" onclick="openCaseMediaModal('${item.id}', 'video')">
               <img src="${item.image}" alt="${item.title}" onerror="this.src='${item.fallbackImage}'" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 filter brightness-90 contrast-105" />
               <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-black/60"></div>
               
@@ -3901,8 +3937,9 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
                 <span class="px-2 py-0.5 rounded bg-black/80 backdrop-blur border border-white/20 text-white font-mono text-[10px] font-bold uppercase">
                   ${item.code.split('//')[0].trim()}
                 </span>
-                <span class="px-2 py-0.5 rounded bg-crimson/90 backdrop-blur text-white font-mono text-[10px] font-extrabold uppercase">
-                  ${item.mediaType === 'video' ? 'VIDEO EXHIBIT' : 'PHOTO FORENSIC'}
+                <span class="px-2 py-0.5 rounded bg-crimson/90 backdrop-blur text-white font-mono text-[10px] font-extrabold uppercase flex items-center gap-1">
+                  <i data-lucide="play" class="w-2.5 h-2.5 fill-current"></i>
+                  <span>VIDEO EXHIBIT</span>
                 </span>
               </div>
 
@@ -3912,22 +3949,22 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
                 </span>
               </div>
 
-              <!-- Center Play / Inspect Overlay -->
+              <!-- Center Play Overlay -->
               <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
                 <div class="w-12 h-12 rounded-full bg-crimson/90 border border-white/30 text-white flex items-center justify-center shadow-xl transform scale-90 group-hover:scale-100 transition-transform">
-                  <i data-lucide="${item.mediaType === 'video' ? 'play' : 'zoom-in'}" class="w-5 h-5 ml-0.5"></i>
+                  <i data-lucide="play" class="w-5 h-5 ml-0.5 fill-current"></i>
                 </div>
               </div>
             </div>
 
             <!-- Content Area -->
-            <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+            <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
               <div class="space-y-1.5">
                 <div class="flex items-center justify-between text-[11px] font-mono text-slate-400">
-                  <span class="text-red-400 font-bold uppercase">${item.tag}</span>
-                  <span>${item.date}</span>
+                  <span class="text-red-400 font-bold uppercase tracking-wider">${item.tag}</span>
+                  <span>${item.date.split('/')[0].trim()}</span>
                 </div>
-                <h4 class="font-display font-bold text-white text-lg leading-snug group-hover:text-crimson transition line-clamp-2">
+                <h4 class="font-display font-bold text-white text-base sm:text-lg leading-snug group-hover:text-crimson transition line-clamp-2">
                   ${item.title}
                 </h4>
                 <p class="font-gurmukhi text-xs text-amberAlert font-bold line-clamp-1">${item.punjabi}</p>
@@ -3943,15 +3980,20 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
             </div>
 
             <!-- Bottom Actions -->
-            <div class="px-5 py-3.5 bg-obsidian/90 border-t border-panelBorder flex items-center justify-between gap-2 text-xs font-mono">
+            <div class="px-4 py-3 bg-obsidian/90 border-t border-panelBorder flex items-center justify-between gap-2 text-xs font-mono">
               <button onclick="selectSpotlightCase('${item.id}')" class="text-slate-400 hover:text-white transition flex items-center gap-1 font-bold">
                 <i data-lucide="eye" class="w-3.5 h-3.5 text-crimson"></i>
                 <span>Spotlight</span>
               </button>
-              <button onclick="openCaseMediaModal('${item.id}')" class="px-3 py-1.5 rounded-lg bg-crimson hover:bg-crimsonBright text-white font-bold transition flex items-center gap-1.5 shadow-md">
-                <i data-lucide="${item.mediaType === 'video' ? 'play-circle' : 'file-search'}" class="w-3.5 h-3.5"></i>
-                <span>Inspect Media</span>
-              </button>
+              <div class="flex items-center gap-1.5">
+                <button onclick="openCaseMediaModal('${item.id}', 'photo')" class="p-1.5 rounded-lg bg-slateDark hover:bg-slate-700 text-slate-300 hover:text-white transition" title="Forensic Crime Scene Photo">
+                  <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+                </button>
+                <button onclick="openCaseMediaModal('${item.id}', 'video')" class="px-2.5 py-1.5 rounded-lg bg-crimson hover:bg-crimsonBright text-white font-bold transition flex items-center gap-1 shadow-md">
+                  <i data-lucide="play" class="w-3 h-3 fill-current"></i>
+                  <span>Watch Video</span>
+                </button>
+              </div>
             </div>
 
           </div>
@@ -3959,6 +4001,39 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       }).join('');
 
       lucide.createIcons();
+      updateCaseDeckScrollIndicators();
+    }
+
+    function scrollSensationalCases(direction) {
+      const track = document.getElementById('sensationalCasesGrid');
+      if (!track) return;
+      const cardWidth = 360;
+      track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+      setTimeout(updateCaseDeckScrollIndicators, 350);
+    }
+
+    function updateCaseDeckScrollIndicators() {
+      const track = document.getElementById('sensationalCasesGrid');
+      if (!track) return;
+      const cards = track.querySelectorAll('.sensational-case-card');
+      if (!cards.length) return;
+
+      const scrollLeft = track.scrollLeft;
+      const maxScroll = track.scrollWidth - track.clientWidth;
+
+      // Update edge gradient fades
+      const fadeLeft = document.getElementById('caseDeckFadeLeft');
+      const fadeRight = document.getElementById('caseDeckFadeRight');
+      if (fadeLeft) fadeLeft.style.opacity = scrollLeft > 25 ? '0.85' : '0';
+      if (fadeRight) fadeRight.style.opacity = (maxScroll - scrollLeft) > 25 ? '0.85' : '0';
+
+      // Estimate active card
+      const cardWidth = cards[0].offsetWidth + 20;
+      const activeIndex = Math.min(cards.length, Math.max(1, Math.round(scrollLeft / cardWidth) + 1));
+      const counter = document.getElementById('caseScrollCounter');
+      if (counter) {
+        counter.innerText = `Case ${activeIndex} of ${cards.length}`;
+      }
     }
 
     function selectSpotlightCase(caseId) {
@@ -3971,33 +4046,34 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           
           <!-- Left: Big Media Stage (7 Cols) -->
-          <div class="lg:col-span-7 relative rounded-2xl overflow-hidden border border-panelBorder bg-black shadow-2xl group cursor-pointer" onclick="openCaseMediaModal('${item.id}')">
+          <div class="lg:col-span-7 relative rounded-2xl overflow-hidden border border-panelBorder bg-black shadow-2xl group" id="spotlightMediaStage">
             <div class="aspect-[16/10] w-full overflow-hidden relative">
-              <img src="${item.image}" alt="${item.title}" onerror="this.src='${item.fallbackImage}'" class="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-700 filter brightness-95 contrast-105" />
+              <img id="spotlightMainImg" src="${item.image}" alt="${item.title}" onerror="this.src='${item.fallbackImage}'" class="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-700 filter brightness-95 contrast-105" />
               <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/50"></div>
               
               <!-- Crime Scene Stamped Ribbon -->
               <div class="absolute top-4 left-4 flex items-center gap-2">
                 <span class="evidence-stamp text-xs">SPOTLIGHT CASE // ${item.code}</span>
-                <span class="px-2.5 py-1 rounded bg-crimson font-mono text-xs font-black uppercase text-white shadow-lg animate-pulse">
-                  ${item.mediaType === 'video' ? '▶ VIDEO EVIDENCE' : '🔍 FORENSIC PHOTO'}
+                <span class="px-2.5 py-1 rounded bg-crimson font-mono text-xs font-black uppercase text-white shadow-lg animate-pulse flex items-center gap-1.5">
+                  <i data-lucide="play" class="w-3 h-3 fill-current"></i>
+                  <span>VERIFIED VIDEO EVIDENCE</span>
                 </span>
               </div>
 
-              <!-- Center Big Play Button -->
-              <div class="absolute inset-0 flex items-center justify-center">
+              <!-- Center Big Play Button (Starts Video Inline) -->
+              <div class="absolute inset-0 flex items-center justify-center cursor-pointer" onclick="playSpotlightVideoInline('${item.id}')">
                 <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-crimson/90 hover:bg-crimson border-2 border-white/40 text-white flex items-center justify-center shadow-2xl transition transform group-hover:scale-110">
-                  <i data-lucide="${item.mediaType === 'video' ? 'play' : 'zoom-in'}" class="w-8 h-8 ml-1"></i>
+                  <i data-lucide="play" class="w-8 h-8 ml-1 fill-current"></i>
                 </div>
               </div>
 
               <!-- Bottom Media Strip -->
               <div class="absolute bottom-4 inset-x-4 p-3 rounded-xl bg-black/85 backdrop-blur-md border border-white/15 flex items-center justify-between text-xs font-mono text-white">
-                <span class="font-bold flex items-center gap-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-crimson animate-ping"></span>
-                  ${item.videoNotice}
+                <span class="font-bold flex items-center gap-2 truncate">
+                  <span class="w-2.5 h-2.5 rounded-full bg-crimson animate-ping shrink-0"></span>
+                  <span class="truncate">${item.videoNotice}</span>
                 </span>
-                <span class="text-slate-400 text-[11px]">${item.date}</span>
+                <span class="text-slate-400 text-[11px] shrink-0 ml-2">${item.date}</span>
               </div>
             </div>
           </div>
@@ -4037,13 +4113,13 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
 
             <!-- Interactive Trigger Actions -->
             <div class="pt-2 flex flex-wrap items-center gap-3">
-              <button onclick="openCaseMediaModal('${item.id}')" class="px-5 py-3 rounded-xl bg-crimson hover:bg-crimsonBright text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition shadow-xl shadow-crimson/30">
-                <i data-lucide="${item.mediaType === 'video' ? 'play-circle' : 'zoom-in'}" class="w-4 h-4"></i>
-                <span>Inspect Forensic Media</span>
+              <button onclick="openCaseMediaModal('${item.id}', 'video')" class="px-5 py-3 rounded-xl bg-crimson hover:bg-crimsonBright text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition shadow-xl shadow-crimson/30">
+                <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+                <span>Watch Documentary Video</span>
               </button>
-              <button onclick="document.getElementById('sensationalCasesGrid').scrollIntoView({ behavior: 'smooth' })" class="px-4 py-3 rounded-xl bg-slateDark border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white font-mono text-xs transition flex items-center gap-1.5">
-                <span>View All 14 Cases</span>
-                <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
+              <button onclick="openCaseMediaModal('${item.id}', 'photo')" class="px-4 py-3 rounded-xl bg-slateDark border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white font-mono text-xs transition flex items-center gap-1.5">
+                <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+                <span>Crime Scene Photo</span>
               </button>
             </div>
 
@@ -4054,15 +4130,38 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
 
       lucide.createIcons();
       renderSensationalCases();
+
+      // Scroll corresponding card in deck smoothly into view
+      const targetCard = document.getElementById(`case-card-${item.id}`);
+      if (targetCard) {
+        targetCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+
+    function playSpotlightVideoInline(caseId) {
+      const item = SENSATIONAL_CASES_DATA.find(c => c.id === caseId) || SENSATIONAL_CASES_DATA[0];
+      const stage = document.getElementById('spotlightMediaStage');
+      if (!stage) return;
+
+      stage.innerHTML = `
+        <div class="aspect-[16/10] w-full overflow-hidden relative bg-black rounded-2xl">
+          <iframe src="https://www.youtube-nocookie.com/embed/${item.youtubeId}?autoplay=1&rel=0" class="w-full h-full border-0 rounded-2xl shadow-2xl" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <button onclick="selectSpotlightCase('${item.id}')" class="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-black/80 hover:bg-crimson text-white font-mono text-[11px] font-bold border border-white/20 transition flex items-center gap-1 shadow-lg z-20">
+            <i data-lucide="rotate-ccw" class="w-3 h-3"></i>
+            <span>Reset Poster</span>
+          </button>
+        </div>
+      `;
+      lucide.createIcons();
     }
 
     function filterSensationalCategory(cat) {
       currentSensationalCategory = cat;
       document.querySelectorAll('.case-cat-pill').forEach(b => {
         if (b.dataset.cat === cat) {
-          b.className = 'case-cat-pill px-4 py-2 rounded-xl bg-crimson text-white font-bold transition shadow-md';
+          b.className = 'case-cat-pill px-3.5 py-1.5 rounded-xl bg-crimson text-white font-bold transition shadow-md';
         } else {
-          b.className = 'case-cat-pill px-4 py-2 rounded-xl bg-slateDark text-slate-300 hover:text-white transition';
+          b.className = 'case-cat-pill px-3.5 py-1.5 rounded-xl bg-slateDark text-slate-300 hover:text-white transition';
         }
       });
       renderSensationalCases();
@@ -4073,7 +4172,7 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       renderSensationalCases();
     }
 
-    function openCaseMediaModal(caseId) {
+    function openCaseMediaModal(caseId, defaultTab = 'video') {
       const item = SENSATIONAL_CASES_DATA.find(c => c.id === caseId) || SENSATIONAL_CASES_DATA[0];
       const modal = document.getElementById('caseMediaModal');
       if (!modal) return;
@@ -4082,14 +4181,28 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       document.getElementById('caseModalTitle').innerText = item.title;
       document.getElementById('caseModalDistrict').innerText = `${item.district} // ${item.date}`;
       document.getElementById('caseModalImage').src = item.image;
-      document.getElementById('caseModalMediaType').innerText = item.mediaType === 'video' ? '▶ VIDEO STREAM EXHIBIT' : '🔍 FORENSIC CRIME SCENE PHOTO';
+      document.getElementById('caseModalMediaType').innerText = `${item.tag} // VERIFIED EXHIBIT`;
       document.getElementById('caseModalMediaNotice').innerText = item.videoNotice;
-      document.getElementById('caseModalTag').innerText = `${item.tag} // VERIFIED CASE FILE`;
+      document.getElementById('caseModalTag').innerText = `${item.tag} // CRITICAL CASE FILE`;
       document.getElementById('caseModalHeading').innerText = item.title;
       document.getElementById('caseModalPunjabi').innerText = item.punjabi;
       document.getElementById('caseModalSummary').innerText = item.summary;
       document.getElementById('caseModalQuote').innerText = item.quote;
       document.getElementById('caseModalFIR').innerText = item.fir;
+
+      // Set direct YouTube link
+      const ytLink = document.getElementById('caseModalDirectYoutube');
+      if (ytLink) {
+        ytLink.href = `https://www.youtube.com/watch?v=${item.youtubeId}`;
+      }
+
+      // Populate Video Embed Iframe
+      const videoContainer = document.getElementById('caseModalVideoContainer');
+      if (videoContainer) {
+        videoContainer.innerHTML = `
+          <iframe src="https://www.youtube-nocookie.com/embed/${item.youtubeId}?autoplay=1&rel=0" class="w-full h-full border-0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        `;
+      }
 
       const metricsContainer = document.getElementById('caseModalMetrics');
       if (metricsContainer) {
@@ -4101,9 +4214,33 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         `).join('');
       }
 
+      switchCaseModalMediaTab(defaultTab);
+
       modal.classList.remove('hidden');
       modal.classList.add('flex');
       lucide.createIcons();
+    }
+
+    function switchCaseModalMediaTab(tab) {
+      const videoContainer = document.getElementById('caseModalVideoContainer');
+      const photoContainer = document.getElementById('caseModalPhotoContainer');
+      const videoBtn = document.getElementById('modalTabVideoBtn');
+      const photoBtn = document.getElementById('modalTabPhotoBtn');
+
+      if (tab === 'video') {
+        if (videoContainer) videoContainer.classList.remove('hidden');
+        if (photoContainer) photoContainer.classList.add('hidden');
+        if (videoBtn) videoBtn.className = 'px-3 py-1.5 rounded-lg bg-crimson text-white font-mono text-xs font-bold transition flex items-center gap-1.5 shadow';
+        if (photoBtn) photoBtn.className = 'px-3 py-1.5 rounded-lg bg-slateDark text-slate-300 hover:text-white font-mono text-xs font-bold transition flex items-center gap-1.5';
+      } else {
+        if (videoContainer) videoContainer.classList.add('hidden');
+        if (photoContainer) {
+          photoContainer.classList.remove('hidden');
+          photoContainer.classList.add('flex');
+        }
+        if (videoBtn) videoBtn.className = 'px-3 py-1.5 rounded-lg bg-slateDark text-slate-300 hover:text-white font-mono text-xs font-bold transition flex items-center gap-1.5';
+        if (photoBtn) photoBtn.className = 'px-3 py-1.5 rounded-lg bg-crimson text-white font-mono text-xs font-bold transition flex items-center gap-1.5 shadow';
+      }
     }
 
     function closeCaseMediaModal() {
@@ -4111,6 +4248,11 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       if (modal) {
         modal.classList.add('hidden');
         modal.classList.remove('flex');
+      }
+      // Stop video playback immediately
+      const videoContainer = document.getElementById('caseModalVideoContainer');
+      if (videoContainer) {
+        videoContainer.innerHTML = '';
       }
     }
 
@@ -4217,23 +4359,43 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       <div class="grid grid-cols-1 lg:grid-cols-12 flex-1 overflow-y-auto">
         
         <!-- Media Canvas (7 Cols) -->
-        <div class="lg:col-span-7 bg-black flex flex-col items-center justify-center relative p-4 min-h-[300px] sm:min-h-[420px] border-b lg:border-b-0 lg:border-r border-panelBorder">
-          <img id="caseModalImage" src="" alt="Case Evidence" class="w-full h-full max-h-[480px] object-contain rounded-xl shadow-2xl" />
+        <div class="lg:col-span-7 bg-black flex flex-col items-center justify-between relative p-4 min-h-[340px] sm:min-h-[460px] border-b lg:border-b-0 lg:border-r border-panelBorder">
           
-          <!-- Crime Scene Watermark Overlay -->
-          <div class="absolute top-6 left-6 pointer-events-none">
-            <span class="px-2.5 py-1 rounded bg-black/80 backdrop-blur border border-white/20 text-white font-mono text-[10px] uppercase font-bold tracking-wider" id="caseModalMediaType">
-              DOCUMENTARY MEDIA EXHIBIT
-            </span>
+          <!-- Media Mode Selector -->
+          <div class="w-full flex items-center justify-between pb-3 border-b border-panelBorder/60 mb-2">
+            <div class="flex items-center gap-2">
+              <button id="modalTabVideoBtn" onclick="switchCaseModalMediaTab('video')" class="px-3 py-1.5 rounded-lg bg-crimson text-white font-mono text-xs font-bold transition flex items-center gap-1.5 shadow">
+                <i data-lucide="play" class="w-3.5 h-3.5"></i>
+                <span>Documentary Video</span>
+              </button>
+              <button id="modalTabPhotoBtn" onclick="switchCaseModalMediaTab('photo')" class="px-3 py-1.5 rounded-lg bg-slateDark text-slate-300 hover:text-white font-mono text-xs font-bold transition flex items-center gap-1.5">
+                <i data-lucide="image" class="w-3.5 h-3.5"></i>
+                <span>Crime Scene Photo</span>
+              </button>
+            </div>
+            <span class="text-[10px] font-mono text-slate-400 uppercase tracking-widest hidden sm:inline" id="caseModalMediaType">VERIFIED MEDIA</span>
           </div>
 
-          <!-- Video Play Simulation Banner -->
-          <div class="absolute bottom-6 inset-x-6 bg-black/80 backdrop-blur-md p-3 rounded-xl border border-white/10 flex items-center justify-between text-xs font-mono text-slate-300">
+          <!-- Video Stream Container -->
+          <div id="caseModalVideoContainer" class="w-full aspect-[16/9] bg-obsidian rounded-xl overflow-hidden shadow-2xl relative flex items-center justify-center">
+            <!-- Video iframe inserted here dynamically -->
+          </div>
+
+          <!-- Photo Container -->
+          <div id="caseModalPhotoContainer" class="w-full aspect-[16/9] bg-obsidian rounded-xl overflow-hidden shadow-2xl relative hidden items-center justify-center">
+            <img id="caseModalImage" src="" alt="Case Evidence" class="w-full h-full object-contain filter contrast-105" />
+          </div>
+
+          <!-- Video Notice & Source Link -->
+          <div class="w-full pt-3 mt-2 border-t border-panelBorder/60 flex items-center justify-between text-xs font-mono text-slate-300">
             <div class="flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-crimson animate-ping"></span>
-              <span id="caseModalMediaNotice">BROADCAST / LIVE STREAM RECORDING</span>
+              <span id="caseModalMediaNotice" class="truncate max-w-[240px] sm:max-w-md">BROADCAST / LIVE STREAM RECORDING</span>
             </div>
-            <span class="text-slate-400 text-[10px]">VERIFIED FORENSIC ARCHIVE</span>
+            <a id="caseModalDirectYoutube" href="#" target="_blank" rel="noopener noreferrer" class="text-crimson hover:underline flex items-center gap-1 font-bold text-[11px] shrink-0">
+              <span>Source Broadcast</span>
+              <i data-lucide="external-link" class="w-3 h-3"></i>
+            </a>
           </div>
         </div>
 
