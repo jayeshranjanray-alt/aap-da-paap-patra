@@ -789,7 +789,7 @@
     <section id="cases-that-shook-punjab" class="space-y-8 scroll-mt-24">
       <span id="issues-detail" class="hidden"></span>
       
-      <!-- Section Header & Fast Search -->
+      <!-- Section Header & Filter Controls -->
       <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-panelBorder pb-6">
         <div>
           <div class="flex items-center gap-2 mb-2">
@@ -800,7 +800,7 @@
             Cases That Shook Punjab
           </h2>
           <p class="text-slate-400 text-sm sm:text-base mt-1.5 max-w-3xl leading-relaxed">
-            Verified documentary archives, video streams, and forensic crime scene records of the landmark assassinations, terror strikes, and crusader crackdowns that altered Punjab.
+            Verified investigative archives, authentic news photojournalism, and forensic crime records of the landmark assassinations, rocket strikes, and crusader crackdowns that altered Punjab.
           </p>
         </div>
 
@@ -811,50 +811,93 @@
         </div>
       </div>
 
-      <!-- INTERACTIVE SPOTLIGHT THEATRE (FEATURED CASE) -->
-      <div id="caseSpotlightTheatre" class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-charcoal via-slateDark to-obsidian border-2 border-crimson/50 shadow-2xl p-6 sm:p-8 transition-all duration-500">
-        <!-- Rendered dynamically by selectSpotlightCase() -->
-      </div>
-
-      <!-- Quick Category Filter Pills & Carousel Controls -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-panelBorder pb-4 text-xs font-mono">
-        <div class="flex flex-wrap items-center gap-2">
-          <button onclick="filterSensationalCategory('all')" class="case-cat-pill px-3.5 py-1.5 rounded-xl bg-crimson text-white font-bold transition shadow-md" data-cat="all">ALL INCIDENTS (14)</button>
-          <button onclick="filterSensationalCategory('drugs')" class="case-cat-pill px-3.5 py-1.5 rounded-xl bg-slateDark text-slate-300 hover:text-white transition" data-cat="drugs">NARCOTICS (3)</button>
-          <button onclick="filterSensationalCategory('murders')" class="case-cat-pill px-3.5 py-1.5 rounded-xl bg-slateDark text-slate-300 hover:text-white transition" data-cat="murders">SENSATIONAL MURDERS (5)</button>
-          <button onclick="filterSensationalCategory('terror')" class="case-cat-pill px-3.5 py-1.5 rounded-xl bg-slateDark text-slate-300 hover:text-white transition" data-cat="terror">TERROR &amp; RPG (3)</button>
-          <button onclick="filterSensationalCategory('scandals')" class="case-cat-pill px-3.5 py-1.5 rounded-xl bg-slateDark text-slate-300 hover:text-white transition" data-cat="scandals">PRISON &amp; SCANDALS (3)</button>
+      <!-- Quick Category Filter Pills -->
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-panelBorder/70 pb-4 text-xs font-mono">
+        <div class="flex flex-wrap items-center gap-2" id="caseCategoryFilters">
+          <button onclick="filterSensationalCategory('all')" class="case-cat-pill px-4 py-2 rounded-xl bg-crimson text-white font-bold transition shadow-lg shadow-crimson/20" data-cat="all">ALL INCIDENTS (14)</button>
+          <button onclick="filterSensationalCategory('drugs')" class="case-cat-pill px-4 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white transition" data-cat="drugs">NARCOTICS (3)</button>
+          <button onclick="filterSensationalCategory('murders')" class="case-cat-pill px-4 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white transition" data-cat="murders">SENSATIONAL MURDERS (5)</button>
+          <button onclick="filterSensationalCategory('terror')" class="case-cat-pill px-4 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white transition" data-cat="terror">TERROR &amp; RPG (3)</button>
+          <button onclick="filterSensationalCategory('scandals')" class="case-cat-pill px-4 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white transition" data-cat="scandals">PRISON &amp; SCANDALS (3)</button>
         </div>
 
-        <!-- Carousel Navigation Controls & Deck Position Counter -->
-        <div class="flex items-center gap-3 self-end sm:self-auto">
-          <div class="flex items-center gap-1.5 text-xs font-mono text-slate-400">
-            <span class="text-[10px] uppercase text-slate-500 hidden md:inline">HORIZON DECK</span>
-            <span id="caseScrollCounter" class="px-2.5 py-1 rounded-lg bg-black/80 border border-panelBorder text-white font-bold">Case 1 of 14</span>
+        <!-- Keyboard Navigation Hint -->
+        <div class="hidden sm:flex items-center gap-2 text-[11px] font-mono text-slate-500">
+          <span class="px-2 py-0.5 rounded bg-black/60 border border-panelBorder text-slate-400">←</span>
+          <span class="px-2 py-0.5 rounded bg-black/60 border border-panelBorder text-slate-400">→</span>
+          <span>Use keyboard arrows or swipe left / right</span>
+        </div>
+      </div>
+
+      <!-- PROMINENT TOP NAVIGATION & POSITION BAR -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-obsidian/85 backdrop-blur-md p-3 sm:p-4 rounded-2xl border border-panelBorder shadow-xl">
+        
+        <!-- Large Previous Incident Button -->
+        <button onclick="navigateSensationalCase(-1)" class="w-full sm:w-auto px-5 py-3 rounded-xl bg-charcoal hover:bg-crimson border border-panelBorder hover:border-crimson text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2.5 transition shadow-lg active:scale-95 group" title="Previous Incident (Left Arrow)">
+          <i data-lucide="chevron-left" class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform"></i>
+          <span>Previous Case</span>
+          <span class="text-[10px] text-slate-400 group-hover:text-white/80 hidden md:inline">[←]</span>
+        </button>
+
+        <!-- Center: Case Counter & Interactive Position Segment Track -->
+        <div class="flex flex-col items-center gap-2 w-full max-w-md px-2">
+          <div class="flex items-center gap-3 font-mono text-xs">
+            <span class="w-2.5 h-2.5 rounded-full bg-crimson animate-pulse"></span>
+            <span id="caseTopIndicator" class="font-extrabold text-white text-sm sm:text-base tracking-wider">CASE 01 OF 14</span>
+            <span class="text-slate-500">|</span>
+            <span id="caseTopTitleMini" class="text-slate-300 truncate max-w-[180px] sm:max-w-[240px] font-semibold">Parvinder Singh Jhota</span>
           </div>
 
-          <div class="flex items-center gap-1.5">
-            <button onclick="scrollSensationalCases(-1)" class="w-9 h-9 rounded-xl bg-charcoal hover:bg-crimson border border-panelBorder text-slate-300 hover:text-white flex items-center justify-center transition shadow-lg active:scale-95" title="Previous Incident (Left)">
-              <i data-lucide="chevron-left" class="w-4 h-4"></i>
-            </button>
-            <button onclick="scrollSensationalCases(1)" class="w-9 h-9 rounded-xl bg-charcoal hover:bg-crimson border border-panelBorder text-slate-300 hover:text-white flex items-center justify-center transition shadow-lg active:scale-95" title="Next Incident (Right)">
-              <i data-lucide="chevron-right" class="w-4 h-4"></i>
-            </button>
+          <!-- 14 Interactive Segment Dots / Pill Track -->
+          <div id="caseSegmentTrack" class="flex items-center justify-center gap-1.5 w-full">
+            <!-- Dynamically populated 14 segment pills -->
           </div>
         </div>
+
+        <!-- Large Next Incident Button -->
+        <button onclick="navigateSensationalCase(1)" class="w-full sm:w-auto px-5 py-3 rounded-xl bg-crimson hover:bg-crimsonBright border border-crimson text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2.5 transition shadow-xl shadow-crimson/30 active:scale-95 group" title="Next Incident (Right Arrow)">
+          <span>Next Case</span>
+          <span class="text-[10px] text-white/80 hidden md:inline">[→]</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+        </button>
+
       </div>
 
-      <!-- HORIZONTAL SCROLL FILMSTRIP DECK -->
-      <div class="relative group">
-        <!-- Subtle Gradient Edge Fade -->
-        <div id="caseDeckFadeLeft" class="pointer-events-none absolute left-0 inset-y-0 w-10 bg-gradient-to-r from-obsidian via-obsidian/70 to-transparent z-10 opacity-0 transition-opacity"></div>
-        <div id="caseDeckFadeRight" class="pointer-events-none absolute right-0 inset-y-0 w-10 bg-gradient-to-l from-obsidian via-obsidian/70 to-transparent z-10 opacity-80 transition-opacity"></div>
+      <!-- MAIN SINGLE-CASE STAGE (ONE CASE VISIBLE AT A TIME) -->
+      <div class="relative group" id="caseStageContainer">
+        
+        <!-- Large Floating Left Navigation Button -->
+        <button onclick="navigateSensationalCase(-1)" class="absolute -left-3 sm:-left-5 lg:-left-7 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/90 hover:bg-crimson border-2 border-white/20 hover:border-white text-white flex items-center justify-center transition-all duration-300 shadow-2xl hover:scale-110 active:scale-95 cursor-pointer backdrop-blur-md" title="Previous Incident (Left)">
+          <i data-lucide="chevron-left" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+        </button>
 
-        <!-- Scrollable Track with snap alignment -->
-        <div id="sensationalCasesGrid" class="flex flex-nowrap overflow-x-auto gap-5 pb-6 pt-2 scroll-smooth snap-x snap-mandatory scrollbar-thin scrollbar-thumb-crimson/50 scrollbar-track-charcoal/40 -mx-1 px-1" onscroll="updateCaseDeckScrollIndicators()">
-          <!-- Javascript dynamically populates this with horizontal cards -->
+        <!-- Large Floating Right Navigation Button -->
+        <button onclick="navigateSensationalCase(1)" class="absolute -right-3 sm:-right-5 lg:-right-7 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/90 hover:bg-crimson border-2 border-white/20 hover:border-white text-white flex items-center justify-center transition-all duration-300 shadow-2xl hover:scale-110 active:scale-95 cursor-pointer backdrop-blur-md" title="Next Incident (Right)">
+          <i data-lucide="chevron-right" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+        </button>
+
+        <!-- Stage Card Content Wrapper (Single Case Rendered Dynamically) -->
+        <div id="singleCaseStageCard" class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-charcoal via-slateDark to-obsidian border-2 border-panelBorder hover:border-crimson/50 shadow-2xl p-5 sm:p-7 lg:p-9 transition-all duration-300">
+          <!-- Rendered dynamically by renderActiveSingleCase() -->
+        </div>
+
+      </div>
+
+      <!-- BOTTOM MINIATURE THUMBNAIL TRACK (QUICK BROWSE ALL 14 CASES) -->
+      <div class="space-y-2 pt-2">
+        <div class="flex items-center justify-between text-xs font-mono text-slate-400 px-1">
+          <span class="flex items-center gap-1.5 font-bold uppercase tracking-wider text-slate-300">
+            <i data-lucide="layers" class="w-3.5 h-3.5 text-crimson"></i>
+            <span>Quick Case Navigator</span>
+          </span>
+          <span class="text-[11px] text-slate-500">Click any incident to inspect</span>
+        </div>
+
+        <div id="caseThumbnailsTrack" class="flex flex-nowrap overflow-x-auto gap-3 pb-3 pt-1 scroll-smooth scrollbar-thin scrollbar-thumb-crimson/50 scrollbar-track-charcoal/40 px-1">
+          <!-- Populated dynamically with 14 thumbnail cards -->
         </div>
       </div>
+
     </section>
 
     <!-- ==============================================
@@ -3546,18 +3589,17 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         date: "October 2026 / July 2023",
         district: "Mansa (ਮਾਨਸਾ)",
         category: "drugs",
-        summary: "Parvinder Singh Jhota, a recovered addict turned folk hero who caught Chitta peddlers and chemist cartels on Facebook Live, was shot dead inside a medical store while streaming live. In 2023, Punjab Police booked Jhota under non-bailable NDPS sections while peddlers operated with impunity, sparking the statewide 'Jhota Rihai Morcha'. Following his daylight murder, widespread mass protests erupted across Malwa; his family refused cremation for weeks, forcing the state government to hand the probe to the CBI.",
+        summary: "Parvinder Singh Jhota, a recovered addict turned folk hero who caught Chitta peddlers and chemist cartels on Facebook Live, was shot dead inside a medical store while streaming live. In 2023, Punjab Police booked Jhota under non-bailable NDPS sections while peddlers operated with impunity, sparking the statewide 'Jhota Rihai Morcha'. Following his daylight murder, mass protests erupted across Malwa; his family refused cremation for weeks, forcing the probe to be transferred to the CBI.",
         metrics: [
-          { label: "Target", val: "Anti-Drug Crusader Parvinder Singh Jhota" },
-          { label: "Modus Operandi", val: "Shot Dead Live on Facebook Video" },
-          { label: "Public Fallout", val: "Statewide Morcha / 3-Week Cremation Refusal" },
-          { label: "Investigation", val: "Transferred to CBI Following National Furor" }
+          { label: "Target", val: "Crusader Parvinder Singh Jhota" },
+          { label: "Modus Operandi", val: "Shot Dead Live on Video" },
+          { label: "Public Fallout", val: "Statewide Morcha / Cremation Refusal" },
+          { label: "Investigation", val: "Transferred to CBI" }
         ],
         image: "img/jhota_mansa_case.jpg",
-        fallbackImage: "img/drug_crisis_punjab.jpg",
-        mediaType: "video",
-        youtubeId: "6UGzX2uorNU",
-        videoNotice: "THE TRIBUNE: ANTI-DRUG ACTIVIST PARVINDER JHOTA SHOT DEAD IN PUNJAB",
+        fallbackImage: "img/jhota_mansa_case.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "Anti-drug activist Parvinder Singh Jhota addressing public gathering in Mansa",
         quote: "“The police arrested the man who was catching drug peddlers, while the suppliers walk free with political patronage.” — Mansa Morcha Public Memorandum",
         fir: "FIR #204/23 & FIR #189/26, Mansa City Police Station"
       },
@@ -3574,15 +3616,14 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         summary: "Global music icon Sidhu Moosewala was ambushed and gunned down by 6 shooters in Jawaharke village, less than 24 hours after the AAP government publicly publicized the pruning of his security detail on social media. Assailants fired over 30 rounds from automatic Russian AN-94 assault rifles into his black Thar.",
         metrics: [
           { label: "Rounds Fired", val: "30+ Bullets (AN-94 Assault Rifles)" },
-          { label: "Security Leak", val: "Publicized on Social Media by AAP Government" },
+          { label: "Security Leak", val: "Publicized on Social Media by AAP Govt" },
           { label: "Contract Killers", val: "6 Shooters Across 2 Modules" },
           { label: "Gang Syndicate", val: "Lawrence Bishnoi / Goldy Brar Syndicate" }
         ],
         image: "img/moosewala_ambush_scene.jpg",
-        fallbackImage: "img/law_order_collapse.jpg",
-        mediaType: "video",
-        youtubeId: "6FzUxhU6N2s",
-        videoNotice: "NDTV / SPECIAL REPORT: MOOSEWALA MURDER SCENE & BALLISTICS",
+        fallbackImage: "img/moosewala_ambush_scene.jpg",
+        photoSource: "The Tribune / PTI Archive",
+        photoCaption: "Forensic teams and Punjab Police cordoning off Moosewala's bullet-riddled Thar in Jawaharke",
         quote: "“The state government's premature PR boast of pruning security leaked vital operational intelligence directly to assassins.”",
         fir: "FIR #103/22, Mansa Sadar Police Station"
       },
@@ -3598,16 +3639,15 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         category: "terror",
         summary: "Assailants fired a Russian RPG-22 rocket warhead directly into the 3rd floor of the Punjab Police State Intelligence Headquarters in Sector 77, Mohali. Shattered windows and reinforced concrete penetrations exposed a catastrophic collapse of security at the nerve center of Punjab's counter-terror apparatus.",
         metrics: [
-          { label: "Ordnance Used", val: "Russian RPG-22 Rocket-Propelled Grenade" },
+          { label: "Ordnance Used", val: "Russian RPG-22 Rocket Warhead" },
           { label: "Target Struck", val: "State Intelligence HQ Command Floor" },
           { label: "Perimeter Alert", val: "Unprecedented Warhead Strike on Police HQ" },
           { label: "Systemic Outposts", val: "Part of 22 Police Station Explosive Attacks" }
         ],
         image: "img/rpg_mohali_headquarters.jpg",
-        fallbackImage: "img/law_order_collapse.jpg",
-        mediaType: "video",
-        youtubeId: "EiSWiiq5V_A",
-        videoNotice: "NDTV: RPG-LIKE ATTACK BEHIND BLAST AT PUNJAB POLICE INTEL HQ IN MOHALI",
+        fallbackImage: "img/rpg_mohali_headquarters.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "Punjab Police Intelligence HQ in Mohali and recovered RPG launcher ordnance",
         quote: "“If the highest intelligence command center of Punjab Police is not safe from rocket fire, what protection can citizens expect?”",
         fir: "FIR #41/22, Sohana Police Station, Mohali"
       },
@@ -3621,18 +3661,17 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         date: "February 23, 2023",
         district: "Amritsar Rural (ਅੰਮ੍ਰਿਤਸਰ)",
         category: "scandals",
-        summary: "Hundreds of armed supporters of Waris Punjab De brandishing swords, assault weapons, and lathis stormed Ajnala Police Station, broke security barricades, and clashed with police, injuring 6 cops. In an unprecedented capitulation, Punjab Police relented to the mob and discharged kidnapping accused Lovepreet Toofan within 24 hours.",
+        summary: "Hundreds of armed supporters brandishing swords, assault weapons, and lathis stormed Ajnala Police Station, broke security barricades, and clashed with police, injuring 6 cops. In an unprecedented capitulation, Punjab Police relented to the mob and discharged kidnapping accused Lovepreet Toofan within 24 hours.",
         metrics: [
           { label: "Police Casualties", val: "6 Police Officers Injured" },
           { label: "Facility Breached", val: "Ajnala Main Police Station" },
           { label: "State Capitulation", val: "Accused Released in 24 Hours Under Duress" },
           { label: "Subsequent Action", val: "Statewide NSA Operation Following Backlash" }
         ],
-        image: "img/yatra_crowd_march.jpg",
-        fallbackImage: "img/law_order_collapse.jpg",
-        mediaType: "video",
-        youtubeId: "HvjPECf9HhQ",
-        videoNotice: "BROADCAST NEWS: ARMED MOB STORMS AJNALA POLICE STATION",
+        image: "img/ajnala_station_siege.jpg",
+        fallbackImage: "img/ajnala_station_siege.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "Armed crowd storming barricades outside Thana Ajnala carrying traditional weapons",
         quote: "“The state police surrendered their own station to an armed mob, destroying public faith in rule of law.”",
         fir: "FIR #39/23, Ajnala Police Station"
       },
@@ -3653,11 +3692,10 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
           { label: "Motive", val: "Extortion & League Revenue Takeover" },
           { label: "Syndicate", val: "Cross-Border Gangland Handlers" }
         ],
-        image: "img/law_order_collapse.jpg",
-        fallbackImage: "img/law_order_collapse.jpg",
-        mediaType: "video",
-        youtubeId: "HvyfSa0JnBA",
-        videoNotice: "NEWS REPORT: KABADDI STAR SANDEEP NANGAL AMBIA SHOT DEAD ON LIVE STREAM",
+        image: "img/sandeep_nangal_ambia.jpg",
+        fallbackImage: "img/sandeep_nangal_ambia.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "International Kabaddi legend Sandeep Nangal Ambia slain during a live match",
         quote: "“Sports grounds where Punjab's youth competed were turned into gang execution arenas in broad daylight.”",
         fir: "FIR #27/22, Sadar Nakodar Police Station"
       },
@@ -3678,11 +3716,10 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
           { label: "High Court Finding", val: "Active Police Facilitation & Wi-Fi" },
           { label: "Judicial Action", val: "High Court Ordered DGP SIT Probe" }
         ],
-        image: "img/dossier_evidence.jpg",
-        fallbackImage: "img/law_order_collapse.jpg",
-        mediaType: "video",
-        youtubeId: "RVk6VgcFr8Y",
-        videoNotice: "ABP NEWS: LAWRENCE BISHNOI EXCLUSIVE JAIL INTERVIEW",
+        image: "img/lawrence_bishnoi_interview.jpg",
+        fallbackImage: "img/lawrence_bishnoi_interview.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "Gangster Lawrence Bishnoi in custody of Punjab Police during court proceedings",
         quote: "“Police premises were facilitated as a studio for a hardened gangster to conduct extortion and issue death threats.” — High Court Bench",
         fir: "High Court Suo Motu WP(C) 7622/2023 & SIT FIR #01/24"
       },
@@ -3703,11 +3740,10 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
           { label: "Prison Security", val: "7 Jail Officials Suspended/Arrested" },
           { label: "Inquiry", val: "Magisterial Judicial Probe" }
         ],
-        image: "img/dossier_evidence.jpg",
-        fallbackImage: "img/law_order_collapse.jpg",
-        mediaType: "video",
-        youtubeId: "mn-ghmJ97EQ",
-        videoNotice: "NDTV REPORT: MOOSEWALA ACCUSED KILLED IN GOINDWAL SAHIB JAIL GANGWAR",
+        image: "img/goindwal_jail_clash.jpg",
+        fallbackImage: "img/goindwal_jail_clash.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "High-security cells of Goindwal Sahib Central Jail where rival gang warfare erupted",
         quote: "“High-security prisons in Punjab became execution arenas where inmates freely wield iron bars and upload celebration reels.”",
         fir: "FIR #21/23, Goindwal Sahib Police Station"
       },
@@ -3716,23 +3752,22 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         code: "CASE-08 // TARN TARAN",
         tag: "SECOND RPG ROCKET ATTACK",
         badgeColor: "red",
-        title: "Second Rocket Strike: Sirhali Police Station RPG Attack",
+        title: "Second Rocket Strike: Sarhali Police Station RPG Attack",
         punjabi: "ਸਰਹਾਲੀ ਥਾਣੇ 'ਤੇ ਦੂਜਾ ਆਰਪੀਜੀ ਰਾਕੇਟ ਹਮਲਾ — ਸਰਹੱਦੀ ਸੁਰੱਖਿਆ ਤਹਿਸ-ਨਹਿਸ",
         date: "December 9, 2022",
         district: "Tarn Taran (ਤਰਨ ਤਾਰਨ)",
         category: "terror",
-        summary: "Within 7 months of the Mohali strike, another RPG was fired into the Sanjh Kendra of Sirhali Police Station on the Amritsar-Bathinda highway. The rocket damaged the iron gate and pillar, proving terror elements possessed military-grade rockets inside Punjab with zero detection.",
+        summary: "Within 7 months of the Mohali strike, another RPG was fired into the Saanjh Kendra of Sarhali Police Station on the Amritsar-Bathinda highway. The rocket damaged the iron gate and pillar, proving terror elements possessed military-grade rockets inside Punjab with zero detection.",
         metrics: [
-          { label: "Target", val: "Sirhali Police Station Sanjh Kendra" },
+          { label: "Target", val: "Sarhali Police Station Saanjh Kendra" },
           { label: "Ordnance", val: "Military RPG Warhead" },
           { label: "Interval", val: "7 Months After Mohali HQ Strike" },
           { label: "Perimeter", val: "Border District Vulnerability" }
         ],
-        image: "img/rpg_mohali_headquarters.jpg",
-        fallbackImage: "img/law_order_collapse.jpg",
-        mediaType: "video",
-        youtubeId: "EiSWiiq5V_A",
-        videoNotice: "GROUND REPORT: SECOND MILITARY RPG STRIKE ON PUNJAB POLICE STATION",
+        image: "img/sarhali_rpg_attack.jpg",
+        fallbackImage: "img/sarhali_rpg_attack.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "Sarhali Saanjh Kendra police facility in Tarn Taran inspected following RPG hit",
         quote: "“A second military rocket strike on a police station exposed total paralysis of border intelligence surveillance.”",
         fir: "FIR #187/22, Sirhali Police Station"
       },
@@ -3753,11 +3788,10 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
           { label: "Location", val: "Majitha Road Commercial Area" },
           { label: "Public Panic", val: "Curfew & Mass Market Shutdown" }
         ],
-        image: "img/law_order_collapse.jpg",
-        fallbackImage: "img/law_order_collapse.jpg",
-        mediaType: "video",
-        youtubeId: "yrmLpE-mGKQ",
-        videoNotice: "THE QUINT: SHIV SENA LEADER SUDHIR SURI SHOT DEAD IN AMRITSAR",
+        image: "img/sudhir_suri_murder.jpg",
+        fallbackImage: "img/sudhir_suri_murder.jpg",
+        photoSource: "The Hindu / PTI Archive",
+        photoCaption: "Sudhir Suri escorted by armed Punjab Police personnel in Amritsar prior to murder",
         quote: "“Twelve armed policemen stood watching while an assassin stepped out of a car and fired five rounds into the protectee.”",
         fir: "FIR #156/22, Sadar Amritsar Police Station"
       },
@@ -3778,11 +3812,10 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
           { label: "Toxin Used", val: "Industrial Chemical Methanol" },
           { label: "Excise Failure", val: "Unregulated Spurious Distillation" }
         ],
-        image: "img/mothers_tears.jpg",
-        fallbackImage: "img/mothers_tears.jpg",
-        mediaType: "video",
-        youtubeId: "my1nHtwWqAg",
-        videoNotice: "THE SAVERA TIMES: SANGRUR HOOCH TRAGEDY SPURIOUS LIQUOR CASUALTIES",
+        image: "img/sangrur_hooch_tragedy.jpg",
+        fallbackImage: "img/sangrur_hooch_tragedy.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "Grieving villagers and women in Gujran block road demanding justice for 21 hooch deaths",
         quote: "“The poorest laborers were poisoned in the Chief Minister's own home district while government leaders were campaigning in other states.”",
         fir: "FIR #34/24, Dirba Police Station, Sangrur"
       },
@@ -3803,38 +3836,36 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
           { label: "Business Impact", val: "Capital Flight & Market Closure" },
           { label: "Threat Registrations", val: "560+ Commercial Extortion FIRs" }
         ],
-        image: "img/law_order_collapse.jpg",
-        fallbackImage: "img/newspaper_clippings.jpg",
-        mediaType: "video",
-        youtubeId: "HvyfSa0JnBA",
-        videoNotice: "PUNJAB BEOPAR MANDAL REPORT: TRADER EXTORTION MURDERS & SHUTDOWN",
+        image: "img/nakodar_merchant_murder.jpg",
+        fallbackImage: "img/nakodar_merchant_murder.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "Cloth merchant Bhupinder Singh (Timmy Chawla) and Constable Mandeep Singh martyred on duty",
         quote: "“Traders have received ransom demands from gangsters sitting in jails; those who refuse are murdered along with their police guards.” — Punjab Beopar Mandal",
         fir: "FIR #109/22, City Nakodar Police Station"
       },
       {
         id: "village-sale",
-        code: "CASE-12 // BATHINDA",
+        code: "CASE-12 // BATHINDA & KOTKAPURA",
         tag: "CIVIC CHITTA UPRISING",
         badgeColor: "crimson",
-        title: "Bhai Bhakhtaur & Kotkapura: 'Our Village is for Sale' (ਸਾਡਾ ਪਿੰਡ ਵਿਕਾਊ ਹੈ)",
-        punjabi: "'ਸਾਡਾ ਪਿੰਡ ਵਿਕਾਊ ਹੈ' — ਨਸ਼ਿਆਂ ਅਤੇ ਪੁਲਿਸ ਮਿਲੀਭੁਗਤ ਖ਼ਿਲਾਫ਼ ਲੋਕਾਂ ਦਾ ਦਰਦ",
+        title: "Kotkapura & Bhai Bhakhtaur: 'Our Houses are for Sale' (ਇਹ ਘਰ ਵਿਕਾਊ ਹੈ)",
+        punjabi: "'ਇਹ ਘਰ ਵਿਕਾਊ ਹੈ' — ਨਸ਼ਿਆਂ ਅਤੇ ਪੁਲਿਸ ਮਿਲੀਭੁਗਤ ਖ਼ਿਲਾਫ਼ ਲੋਕਾਂ ਦਾ ਦਰਦ",
         date: "2023 – 2024",
-        district: "Bathinda & Faridkot",
+        district: "Kotkapura & Bathinda",
         category: "drugs",
-        summary: "Villagers in Bhai Bhakhtaur (Bathinda) and Kotkapura (Faridkot) erected banners declaring 'Our Village is for Sale' and 'This House is for Sale' after drug peddlers operated openly on residential streets. Villagers documented that reporting peddlers resulted in intimidation from local police.",
+        summary: "Desperate residents in Ram Basti (Kotkapura) and Bhai Bhakhtaur (Bathinda) put up yellow posters declaring 'ਇਹ ਘਰ ਵਿਕਾਊ ਹੈ' ('This House is for Sale') after drug peddlers operated openly on residential streets and police took zero action against cartels, forcing citizens to sell their homes at half price.",
         metrics: [
-          { label: "Civic Action", val: "'Village For Sale' Black Banners" },
-          { label: "Malwa Epidemic", val: "Overdoses in 14 to 22 Age Group" },
+          { label: "Civic Action", val: "'House For Sale' Posters on Doors" },
+          { label: "Malwa Epidemic", val: "Open Chitta Peddling in Mohallas" },
           { label: "Police Collusion", val: "Peddlers Protected, Informants Harassed" },
           { label: "Official Admission", val: "Speaker Kultar Sandhwan Acknowledged Failure" }
         ],
-        image: "img/broken_promises.jpg",
-        fallbackImage: "img/drug_crisis_punjab.jpg",
-        mediaType: "video",
-        youtubeId: "6UGzX2uorNU",
-        videoNotice: "GROUND DOCUMENTARY: 'SAADA PIND VIKAU HAI' CITIZEN CRISIS",
+        image: "img/village_for_sale.jpg",
+        fallbackImage: "img/village_for_sale.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "Kotkapura residents standing outside homes with 'ਇਹ ਘਰ ਵਿਕਾਊ ਹੈ' posters against drug trade",
         quote: "“When the state will not protect our sons from Chitta, we have no choice but to put our homes on sale and leave Punjab.”",
-        fir: "Public Grievance Memorandum to SSP Bathinda"
+        fir: "Public Grievance Memorandum to SSP Faridkot & Bathinda"
       },
       {
         id: "vijay-singla",
@@ -3853,11 +3884,10 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
           { label: "Contract Value", val: "₹58 Cr Department Procurement" },
           { label: "Subsequent Scandals", val: "Fauja Singh Sarari Tape & OSD CBI Raids" }
         ],
-        image: "img/corruption_scams.jpg",
-        fallbackImage: "img/corruption_scams.jpg",
-        mediaType: "video",
-        youtubeId: "kl4ax6Cg2Vg",
-        videoNotice: "ABP NEWS & NDTV: AAP HEALTH MINISTER ARRESTED IN CORRUPTION STING",
+        image: "img/vijay_singla_arrest.jpg",
+        fallbackImage: "img/vijay_singla_arrest.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "Former Health Minister Dr. Vijay Singla arrested by Punjab Police Vigilance Bureau",
         quote: "“The promise was zero corruption in 20 days; within 60 days the Health Minister was arrested demanding 1% kickbacks on medicines.”",
         fir: "FIR #03/22, Vigilance Bureau Flying Squad, Mohali"
       },
@@ -3878,25 +3908,25 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
           { label: "Police Guard", val: "Security Gunman Shot & Injured" },
           { label: "Sensitive Case", val: "Sacrilege Accused Under Trial" }
         ],
-        image: "img/law_order_collapse.jpg",
-        fallbackImage: "img/law_order_collapse.jpg",
-        mediaType: "video",
-        youtubeId: "ab7y37T9qd4",
-        videoNotice: "TV24 NEWS PUNJAB: KOTKAPURA DERA PREMI PARDEEP SINGH SHOT DEAD",
+        image: "img/pardeep_singh_kotkapura.jpg",
+        fallbackImage: "img/pardeep_singh_kotkapura.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "Pardeep Singh (Raju Dhodi) shot dead inside his Kotkapura dairy despite police protection",
         quote: "“Broad daylight market executions despite dedicated state security guards exposed the total collapse of deterrence.”",
         fir: "FIR #203/22, City Kotkapura Police Station"
       }
     ];
 
+    // =======================================================
+    // SINGLE-CASE PROMINENT SLIDESHOW CONTROLLER
+    // =======================================================
     let currentSensationalCategory = 'all';
     let currentSensationalSearch = '';
-    let currentSpotlightCaseId = 'jhota';
+    let activeCaseIndex = 0;
+    let activeFilteredCases = [...SENSATIONAL_CASES_DATA];
 
-    function renderSensationalCases() {
-      const grid = document.getElementById('sensationalCasesGrid');
-      if (!grid) return;
-
-      const filtered = SENSATIONAL_CASES_DATA.filter(item => {
+    function getFilteredSensationalCases() {
+      return SENSATIONAL_CASES_DATA.filter(item => {
         const matchesCat = (currentSensationalCategory === 'all') || (item.category === currentSensationalCategory);
         const q = currentSensationalSearch.toLowerCase().trim();
         const matchesSearch = !q || 
@@ -3907,352 +3937,332 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
           item.tag.toLowerCase().includes(q);
         return matchesCat && matchesSearch;
       });
+    }
 
-      if (filtered.length === 0) {
-        grid.innerHTML = `
-          <div class="flex-none w-full p-12 text-center rounded-2xl bg-charcoal border border-panelBorder space-y-3 font-mono text-xs">
-            <i data-lucide="alert-circle" class="w-8 h-8 text-slate-500 mx-auto"></i>
-            <p class="text-slate-300 font-bold">No sensational cases matched your search query.</p>
-            <button onclick="currentSensationalSearch=''; document.getElementById('sensationalSearch').value=''; renderSensationalCases();" class="text-crimson underline">Reset Search</button>
-          </div>
-        `;
-        lucide.createIcons();
-        updateCaseDeckScrollIndicators();
+    function renderSensationalCases(direction = 0) {
+      activeFilteredCases = getFilteredSensationalCases();
+      if (activeFilteredCases.length === 0) {
+        const card = document.getElementById('singleCaseStageCard');
+        if (card) {
+          card.innerHTML = `
+            <div class="p-12 text-center rounded-2xl bg-charcoal border border-panelBorder space-y-4 font-mono text-xs">
+              <i data-lucide="alert-circle" class="w-10 h-10 text-crimson mx-auto"></i>
+              <p class="text-slate-200 text-sm font-bold">No sensational cases matched your search query or filter.</p>
+              <button onclick="resetSensationalFilter()" class="px-4 py-2 rounded-xl bg-crimson text-white font-bold transition">Reset Filter &amp; Search</button>
+            </div>
+          `;
+          lucide.createIcons();
+        }
         return;
       }
 
-      grid.innerHTML = filtered.map(item => {
-        const isCurrentSpotlight = item.id === currentSpotlightCaseId;
-        return `
-          <div class="sensational-case-card flex-none snap-start w-[310px] sm:w-[350px] md:w-[380px] rounded-2xl bg-charcoal border ${isCurrentSpotlight ? 'border-crimson shadow-xl shadow-crimson/25 ring-1 ring-crimson/50' : 'border-panelBorder hover:border-crimson/70'} overflow-hidden flex flex-col justify-between transition-all duration-300 hover:shadow-2xl hover:shadow-crimson/10 relative group" id="case-card-${item.id}">
-            <div class="tape-corner"></div>
+      if (activeCaseIndex >= activeFilteredCases.length) activeCaseIndex = 0;
+      if (activeCaseIndex < 0) activeCaseIndex = activeFilteredCases.length - 1;
 
-            <!-- Top Image & Media Header -->
-            <div class="relative h-48 w-full overflow-hidden bg-black cursor-pointer" onclick="openCaseMediaModal('${item.id}', 'video')">
-              <img src="${item.image}" alt="${item.title}" onerror="this.src='${item.fallbackImage}'" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 filter brightness-90 contrast-105" />
-              <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-black/60"></div>
+      renderActiveSingleCase(direction);
+      renderTopIndicatorAndPills();
+      renderBottomThumbnailStrip();
+    }
+
+    function navigateSensationalCase(step) {
+      activeFilteredCases = getFilteredSensationalCases();
+      if (!activeFilteredCases.length) return;
+      
+      activeCaseIndex = (activeCaseIndex + step + activeFilteredCases.length) % activeFilteredCases.length;
+      renderSensationalCases(step);
+    }
+
+    function jumpToCaseByIndex(index) {
+      activeFilteredCases = getFilteredSensationalCases();
+      if (index < 0 || index >= activeFilteredCases.length) return;
+      const step = index >= activeCaseIndex ? 1 : -1;
+      activeCaseIndex = index;
+      renderSensationalCases(step);
+    }
+
+    function jumpToCaseById(id) {
+      activeFilteredCases = getFilteredSensationalCases();
+      const idx = activeFilteredCases.findIndex(c => c.id === id);
+      if (idx !== -1) {
+        jumpToCaseByIndex(idx);
+      }
+    }
+
+    // Alias for backward compatibility
+    const selectSpotlightCase = jumpToCaseById;
+
+    function renderActiveSingleCase(direction = 0) {
+      const card = document.getElementById('singleCaseStageCard');
+      if (!card) return;
+
+      const item = activeFilteredCases[activeCaseIndex];
+      if (!item) return;
+
+      const initialTransform = direction > 0 ? 'translateX(28px)' : direction < 0 ? 'translateX(-28px)' : 'scale(0.98)';
+      card.style.opacity = '0';
+      card.style.transform = initialTransform;
+
+      setTimeout(() => {
+        card.innerHTML = `
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-9 items-center">
+            
+            <!-- Left Column: Large Real Editorial News Photo (7 Cols) -->
+            <div class="lg:col-span-7 relative rounded-2xl overflow-hidden border border-panelBorder bg-black shadow-2xl group cursor-pointer" onclick="openPhotoLightbox('${item.id}')">
+              <div class="aspect-[16/10] w-full overflow-hidden relative">
+                <img src="${item.image}" alt="${item.title}" onerror="this.src='${item.fallbackImage}'" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 filter brightness-95 contrast-105" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60 pointer-events-none"></div>
+                
+                <!-- Top Badges Overlay -->
+                <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2 z-10">
+                  <div class="flex items-center gap-1.5 flex-wrap">
+                    <span class="evidence-stamp text-[11px]">${item.code}</span>
+                    <span class="px-2.5 py-0.5 rounded bg-crimson font-mono text-[10px] font-black uppercase text-white shadow-md flex items-center gap-1">
+                      <i data-lucide="check-circle" class="w-3 h-3"></i>
+                      <span>100% REAL PRESS PHOTO</span>
+                    </span>
+                  </div>
+                  <span class="px-2.5 py-1 rounded-lg bg-black/85 backdrop-blur border border-white/20 text-white font-mono text-[11px] font-bold">
+                    ${activeCaseIndex + 1} / ${activeFilteredCases.length}
+                  </span>
+                </div>
+
+                <!-- Center Enlarge Prompt Hover Overlay -->
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px]">
+                  <div class="px-4 py-2.5 rounded-xl bg-crimson text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-2xl transform scale-95 group-hover:scale-100 transition-transform">
+                    <i data-lucide="maximize-2" class="w-4 h-4"></i>
+                    <span>Enlarge Real Photo</span>
+                  </div>
+                </div>
+
+                <!-- Bottom Photo Caption Strip -->
+                <div class="absolute bottom-3 inset-x-3 p-3 rounded-xl bg-black/85 backdrop-blur-md border border-white/15 flex items-center justify-between text-xs font-mono text-white gap-2">
+                  <div class="flex items-center gap-2 truncate">
+                    <i data-lucide="camera" class="w-4 h-4 text-crimson shrink-0"></i>
+                    <span class="truncate text-slate-200 text-[11px] sm:text-xs font-medium">${item.photoCaption}</span>
+                  </div>
+                  <span class="text-slate-400 text-[10px] shrink-0 font-bold uppercase">${item.photoSource}</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Forensic Dossier Record (5 Cols) -->
+            <div class="lg:col-span-5 space-y-4">
               
-              <!-- Badges -->
-              <div class="absolute top-3 left-3 flex items-center gap-1.5">
-                <span class="px-2 py-0.5 rounded bg-black/80 backdrop-blur border border-white/20 text-white font-mono text-[10px] font-bold uppercase">
-                  ${item.code.split('//')[0].trim()}
-                </span>
-                <span class="px-2 py-0.5 rounded bg-crimson/90 backdrop-blur text-white font-mono text-[10px] font-extrabold uppercase flex items-center gap-1">
-                  <i data-lucide="play" class="w-2.5 h-2.5 fill-current"></i>
-                  <span>VIDEO EXHIBIT</span>
-                </span>
+              <!-- Badges & Location -->
+              <div class="flex items-center justify-between gap-2 text-xs font-mono text-slate-400 border-b border-panelBorder pb-2.5">
+                <span class="px-2.5 py-1 rounded-lg bg-crimson/20 border border-crimson/50 text-crimson font-bold uppercase tracking-wider">${item.tag}</span>
+                <span class="flex items-center gap-1 text-slate-300 truncate"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-crimson shrink-0"></i> ${item.district}</span>
+                <span class="text-slate-400 font-bold shrink-0">${item.date.split('/')[0].trim()}</span>
               </div>
 
-              <div class="absolute top-3 right-3">
-                <span class="px-2 py-0.5 rounded bg-black/75 backdrop-blur text-slate-300 font-mono text-[10px]">
-                  ${item.district.split('(')[0].trim()}
-                </span>
-              </div>
-
-              <!-- Center Play Overlay -->
-              <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-[2px]">
-                <div class="w-12 h-12 rounded-full bg-crimson/90 border border-white/30 text-white flex items-center justify-center shadow-xl transform scale-90 group-hover:scale-100 transition-transform">
-                  <i data-lucide="play" class="w-5 h-5 ml-0.5 fill-current"></i>
-                </div>
-              </div>
-            </div>
-
-            <!-- Content Area -->
-            <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
+              <!-- Headlines -->
               <div class="space-y-1.5">
-                <div class="flex items-center justify-between text-[11px] font-mono text-slate-400">
-                  <span class="text-red-400 font-bold uppercase tracking-wider">${item.tag}</span>
-                  <span>${item.date.split('/')[0].trim()}</span>
-                </div>
-                <h4 class="font-display font-bold text-white text-base sm:text-lg leading-snug group-hover:text-crimson transition line-clamp-2">
+                <p class="font-gurmukhi text-base sm:text-lg text-amberAlert font-bold leading-snug">${item.punjabi}</p>
+                <h3 class="text-xl sm:text-2xl font-display font-black text-white leading-tight">
                   ${item.title}
-                </h4>
-                <p class="font-gurmukhi text-xs text-amberAlert font-bold line-clamp-1">${item.punjabi}</p>
-                <p class="text-slate-300 text-xs leading-relaxed line-clamp-3 pt-1">
-                  ${item.summary}
-                </p>
+                </h3>
               </div>
 
-              <!-- Fact Key Callout -->
-              <div class="pt-2 border-t border-panelBorder/70 text-[11px] font-mono flex items-center justify-between gap-2">
-                <span class="text-amberAlert font-semibold truncate">⚡ ${item.metrics[0].val}</span>
+              <!-- Narrative Summary -->
+              <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                ${item.summary}
+              </p>
+
+              <!-- 4 Key Metrics Matrix -->
+              <div class="grid grid-cols-2 gap-2 pt-1 font-mono text-xs">
+                ${item.metrics.map(m => `
+                  <div class="p-2.5 rounded-xl bg-obsidian/90 border border-panelBorder/80 hover:border-slate-600 transition">
+                    <span class="text-[10px] text-slate-400 uppercase block font-semibold">${m.label}</span>
+                    <span class="text-white font-bold text-xs truncate block mt-0.5">${m.val}</span>
+                  </div>
+                `).join('')}
               </div>
+
+              <!-- Quote Block -->
+              <div class="p-3 rounded-xl bg-charcoal border-l-4 border-crimson font-serif italic text-xs text-slate-200">
+                ${item.quote}
+              </div>
+
+              <!-- Official FIR Jurisdictional Badge -->
+              <div class="p-2.5 rounded-xl bg-obsidian border border-panelBorder/70 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                <div class="flex items-center gap-1.5 truncate">
+                  <i data-lucide="file-check" class="w-3.5 h-3.5 text-amberAlert shrink-0"></i>
+                  <span class="text-slate-300 font-bold truncate">${item.fir}</span>
+                </div>
+                <button onclick="shareCaseIncident('${item.id}')" class="text-crimson hover:text-white transition flex items-center gap-1 shrink-0 ml-2 font-bold">
+                  <i data-lucide="share-2" class="w-3 h-3"></i>
+                  <span>Share</span>
+                </button>
+              </div>
+
+              <!-- Side-to-Side Navigation Controls & Action Buttons -->
+              <div class="pt-2 flex items-center justify-between gap-3">
+                <button onclick="openPhotoLightbox('${item.id}')" class="px-4 py-2.5 rounded-xl bg-slateDark hover:bg-slate-700 border border-panelBorder text-white font-mono text-xs font-bold transition flex items-center gap-2 shadow">
+                  <i data-lucide="zoom-in" class="w-3.5 h-3.5 text-crimson"></i>
+                  <span>View Full Photo</span>
+                </button>
+                <div class="flex items-center gap-2">
+                  <button onclick="navigateSensationalCase(-1)" class="px-3.5 py-2.5 rounded-xl bg-charcoal hover:bg-crimson border border-panelBorder text-slate-300 hover:text-white transition flex items-center gap-1.5 text-xs font-mono font-bold active:scale-95 shadow" title="Previous Incident">
+                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                    <span>Prev</span>
+                  </button>
+                  <button onclick="navigateSensationalCase(1)" class="px-4 py-2.5 rounded-xl bg-crimson hover:bg-crimsonBright text-white transition flex items-center gap-1.5 text-xs font-mono font-bold shadow-lg shadow-crimson/30 active:scale-95" title="Next Incident">
+                    <span>Next</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </div>
+
             </div>
 
-            <!-- Bottom Actions -->
-            <div class="px-4 py-3 bg-obsidian/90 border-t border-panelBorder flex items-center justify-between gap-2 text-xs font-mono">
-              <button onclick="selectSpotlightCase('${item.id}')" class="text-slate-400 hover:text-white transition flex items-center gap-1 font-bold">
-                <i data-lucide="eye" class="w-3.5 h-3.5 text-crimson"></i>
-                <span>Spotlight</span>
-              </button>
-              <div class="flex items-center gap-1.5">
-                <button onclick="openCaseMediaModal('${item.id}', 'photo')" class="p-1.5 rounded-lg bg-slateDark hover:bg-slate-700 text-slate-300 hover:text-white transition" title="Forensic Crime Scene Photo">
-                  <i data-lucide="camera" class="w-3.5 h-3.5"></i>
-                </button>
-                <button onclick="openCaseMediaModal('${item.id}', 'video')" class="px-2.5 py-1.5 rounded-lg bg-crimson hover:bg-crimsonBright text-white font-bold transition flex items-center gap-1 shadow-md">
-                  <i data-lucide="play" class="w-3 h-3 fill-current"></i>
-                  <span>Watch Video</span>
-                </button>
-              </div>
-            </div>
+          </div>
+        `;
 
+        lucide.createIcons();
+        card.style.transition = 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease';
+        card.style.opacity = '1';
+        card.style.transform = 'translateX(0) scale(1)';
+      }, 70);
+    }
+
+    function renderTopIndicatorAndPills() {
+      const topInd = document.getElementById('caseTopIndicator');
+      const topTitle = document.getElementById('caseTopTitleMini');
+      const track = document.getElementById('caseSegmentTrack');
+      
+      const item = activeFilteredCases[activeCaseIndex];
+      if (!item) return;
+
+      if (topInd) {
+        topInd.innerText = `CASE ${String(activeCaseIndex + 1).padStart(2, '0')} OF ${String(activeFilteredCases.length).padStart(2, '0')}`;
+      }
+      if (topTitle) {
+        topTitle.innerText = item.title.split('Murder')[0].split('Assassination')[0].split('(')[0].trim();
+      }
+
+      if (track) {
+        track.innerHTML = activeFilteredCases.map((c, idx) => {
+          const isActive = idx === activeCaseIndex;
+          return `
+            <button onclick="jumpToCaseByIndex(${idx})" class="h-2 rounded-full transition-all duration-300 ${isActive ? 'w-8 bg-crimson shadow-md shadow-crimson/50' : 'w-2 sm:w-2.5 bg-slate-700 hover:bg-slate-500'}" title="${c.title}"></button>
+          `;
+        }).join('');
+      }
+    }
+
+    function renderBottomThumbnailStrip() {
+      const track = document.getElementById('caseThumbnailsTrack');
+      if (!track) return;
+
+      track.innerHTML = activeFilteredCases.map((c, idx) => {
+        const isActive = idx === activeCaseIndex;
+        return `
+          <div onclick="jumpToCaseByIndex(${idx})" class="flex-none snap-start w-28 sm:w-36 rounded-xl overflow-hidden cursor-pointer border-2 transition-all duration-300 ${isActive ? 'border-crimson shadow-lg shadow-crimson/30 scale-105 ring-1 ring-crimson' : 'border-panelBorder hover:border-slate-500 opacity-70 hover:opacity-100'} bg-charcoal group" id="thumb-case-${c.id}">
+            <div class="h-16 sm:h-20 w-full relative overflow-hidden bg-black">
+              <img src="${c.image}" alt="${c.title}" onerror="this.src='${c.fallbackImage}'" class="w-full h-full object-cover filter brightness-90 group-hover:scale-105 transition-transform" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+              <span class="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-black/80 font-mono text-[9px] font-bold text-white">
+                #${String(idx + 1).padStart(2, '0')}
+              </span>
+            </div>
+            <div class="p-1.5 sm:p-2 bg-charcoal/95">
+              <p class="font-mono text-[10px] text-slate-300 truncate font-semibold">${c.district.split('(')[0].trim()}</p>
+              <p class="font-display text-[11px] text-white truncate font-bold group-hover:text-crimson">${c.tag}</p>
+            </div>
           </div>
         `;
       }).join('');
 
-      lucide.createIcons();
-      updateCaseDeckScrollIndicators();
-    }
-
-    function scrollSensationalCases(direction) {
-      const track = document.getElementById('sensationalCasesGrid');
-      if (!track) return;
-      const cardWidth = 360;
-      track.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
-      setTimeout(updateCaseDeckScrollIndicators, 350);
-    }
-
-    function updateCaseDeckScrollIndicators() {
-      const track = document.getElementById('sensationalCasesGrid');
-      if (!track) return;
-      const cards = track.querySelectorAll('.sensational-case-card');
-      if (!cards.length) return;
-
-      const scrollLeft = track.scrollLeft;
-      const maxScroll = track.scrollWidth - track.clientWidth;
-
-      // Update edge gradient fades
-      const fadeLeft = document.getElementById('caseDeckFadeLeft');
-      const fadeRight = document.getElementById('caseDeckFadeRight');
-      if (fadeLeft) fadeLeft.style.opacity = scrollLeft > 25 ? '0.85' : '0';
-      if (fadeRight) fadeRight.style.opacity = (maxScroll - scrollLeft) > 25 ? '0.85' : '0';
-
-      // Estimate active card
-      const cardWidth = cards[0].offsetWidth + 20;
-      const activeIndex = Math.min(cards.length, Math.max(1, Math.round(scrollLeft / cardWidth) + 1));
-      const counter = document.getElementById('caseScrollCounter');
-      if (counter) {
-        counter.innerText = `Case ${activeIndex} of ${cards.length}`;
+      // Auto scroll active thumbnail into view
+      const activeThumb = document.getElementById(`thumb-case-${activeFilteredCases[activeCaseIndex]?.id}`);
+      if (activeThumb) {
+        activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }
-    }
-
-    function selectSpotlightCase(caseId) {
-      const item = SENSATIONAL_CASES_DATA.find(c => c.id === caseId) || SENSATIONAL_CASES_DATA[0];
-      currentSpotlightCaseId = item.id;
-      const theatre = document.getElementById('caseSpotlightTheatre');
-      if (!theatre) return;
-
-      theatre.innerHTML = `
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
-          <!-- Left: Big Media Stage (7 Cols) -->
-          <div class="lg:col-span-7 relative rounded-2xl overflow-hidden border border-panelBorder bg-black shadow-2xl group" id="spotlightMediaStage">
-            <div class="aspect-[16/10] w-full overflow-hidden relative">
-              <img id="spotlightMainImg" src="${item.image}" alt="${item.title}" onerror="this.src='${item.fallbackImage}'" class="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-700 filter brightness-95 contrast-105" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/50"></div>
-              
-              <!-- Crime Scene Stamped Ribbon -->
-              <div class="absolute top-4 left-4 flex items-center gap-2">
-                <span class="evidence-stamp text-xs">SPOTLIGHT CASE // ${item.code}</span>
-                <span class="px-2.5 py-1 rounded bg-crimson font-mono text-xs font-black uppercase text-white shadow-lg animate-pulse flex items-center gap-1.5">
-                  <i data-lucide="play" class="w-3 h-3 fill-current"></i>
-                  <span>VERIFIED VIDEO EVIDENCE</span>
-                </span>
-              </div>
-
-              <!-- Center Big Play Button (Starts Video Inline) -->
-              <div class="absolute inset-0 flex items-center justify-center cursor-pointer" onclick="playSpotlightVideoInline('${item.id}')">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-crimson/90 hover:bg-crimson border-2 border-white/40 text-white flex items-center justify-center shadow-2xl transition transform group-hover:scale-110">
-                  <i data-lucide="play" class="w-8 h-8 ml-1 fill-current"></i>
-                </div>
-              </div>
-
-              <!-- Bottom Media Strip -->
-              <div class="absolute bottom-4 inset-x-4 p-3 rounded-xl bg-black/85 backdrop-blur-md border border-white/15 flex items-center justify-between text-xs font-mono text-white">
-                <span class="font-bold flex items-center gap-2 truncate">
-                  <span class="w-2.5 h-2.5 rounded-full bg-crimson animate-ping shrink-0"></span>
-                  <span class="truncate">${item.videoNotice}</span>
-                </span>
-                <span class="text-slate-400 text-[11px] shrink-0 ml-2">${item.date}</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Right: Fact Breakdown & Dossier (5 Cols) -->
-          <div class="lg:col-span-5 space-y-4">
-            <div class="space-y-1.5">
-              <div class="flex items-center gap-2 text-xs font-mono text-slate-400">
-                <span class="text-crimson font-bold uppercase tracking-wider">${item.tag}</span>
-                <span>•</span>
-                <span class="flex items-center gap-1 text-slate-300"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-crimson"></i> ${item.district}</span>
-              </div>
-              <h3 class="text-2xl sm:text-3xl font-display font-black text-white leading-tight">
-                ${item.title}
-              </h3>
-              <p class="font-gurmukhi text-sm text-amberAlert font-bold">${item.punjabi}</p>
-            </div>
-
-            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
-              ${item.summary}
-            </p>
-
-            <!-- Metrics Matrix -->
-            <div class="grid grid-cols-2 gap-2 pt-1 font-mono text-xs">
-              ${item.metrics.map(m => `
-                <div class="p-2.5 rounded-xl bg-obsidian/90 border border-panelBorder/80">
-                  <span class="text-[10px] text-slate-400 uppercase block">${m.label}</span>
-                  <span class="text-white font-bold text-xs truncate block mt-0.5">${m.val}</span>
-                </div>
-              `).join('')}
-            </div>
-
-            <!-- Quote Block -->
-            <div class="p-3.5 rounded-xl bg-charcoal border-l-4 border-crimson font-serif italic text-xs text-slate-200">
-              ${item.quote}
-            </div>
-
-            <!-- Interactive Trigger Actions -->
-            <div class="pt-2 flex flex-wrap items-center gap-3">
-              <button onclick="openCaseMediaModal('${item.id}', 'video')" class="px-5 py-3 rounded-xl bg-crimson hover:bg-crimsonBright text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition shadow-xl shadow-crimson/30">
-                <i data-lucide="play" class="w-4 h-4 fill-current"></i>
-                <span>Watch Documentary Video</span>
-              </button>
-              <button onclick="openCaseMediaModal('${item.id}', 'photo')" class="px-4 py-3 rounded-xl bg-slateDark border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white font-mono text-xs transition flex items-center gap-1.5">
-                <i data-lucide="camera" class="w-3.5 h-3.5"></i>
-                <span>Crime Scene Photo</span>
-              </button>
-            </div>
-
-          </div>
-
-        </div>
-      `;
-
-      lucide.createIcons();
-      renderSensationalCases();
-
-      // Scroll corresponding card in deck smoothly into view
-      const targetCard = document.getElementById(`case-card-${item.id}`);
-      if (targetCard) {
-        targetCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-      }
-    }
-
-    function playSpotlightVideoInline(caseId) {
-      const item = SENSATIONAL_CASES_DATA.find(c => c.id === caseId) || SENSATIONAL_CASES_DATA[0];
-      const stage = document.getElementById('spotlightMediaStage');
-      if (!stage) return;
-
-      stage.innerHTML = `
-        <div class="aspect-[16/10] w-full overflow-hidden relative bg-black rounded-2xl">
-          <iframe src="https://www.youtube-nocookie.com/embed/${item.youtubeId}?autoplay=1&rel=0" class="w-full h-full border-0 rounded-2xl shadow-2xl" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          <button onclick="selectSpotlightCase('${item.id}')" class="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-black/80 hover:bg-crimson text-white font-mono text-[11px] font-bold border border-white/20 transition flex items-center gap-1 shadow-lg z-20">
-            <i data-lucide="rotate-ccw" class="w-3 h-3"></i>
-            <span>Reset Poster</span>
-          </button>
-        </div>
-      `;
-      lucide.createIcons();
     }
 
     function filterSensationalCategory(cat) {
       currentSensationalCategory = cat;
       document.querySelectorAll('.case-cat-pill').forEach(b => {
         if (b.dataset.cat === cat) {
-          b.className = 'case-cat-pill px-3.5 py-1.5 rounded-xl bg-crimson text-white font-bold transition shadow-md';
+          b.className = 'case-cat-pill px-4 py-2 rounded-xl bg-crimson text-white font-bold transition shadow-lg shadow-crimson/20';
         } else {
-          b.className = 'case-cat-pill px-3.5 py-1.5 rounded-xl bg-slateDark text-slate-300 hover:text-white transition';
+          b.className = 'case-cat-pill px-4 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white transition';
         }
       });
+      activeCaseIndex = 0;
       renderSensationalCases();
     }
 
     function onSensationalSearchInput(val) {
       currentSensationalSearch = val || '';
+      activeCaseIndex = 0;
       renderSensationalCases();
     }
 
-    function openCaseMediaModal(caseId, defaultTab = 'video') {
+    function resetSensationalFilter() {
+      currentSensationalSearch = '';
+      currentSensationalCategory = 'all';
+      const searchInput = document.getElementById('sensationalSearch');
+      if (searchInput) searchInput.value = '';
+      document.querySelectorAll('.case-cat-pill').forEach(b => {
+        if (b.dataset.cat === 'all') {
+          b.className = 'case-cat-pill px-4 py-2 rounded-xl bg-crimson text-white font-bold transition shadow-lg shadow-crimson/20';
+        } else {
+          b.className = 'case-cat-pill px-4 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white transition';
+        }
+      });
+      activeCaseIndex = 0;
+      renderSensationalCases();
+    }
+
+    // Photo Lightbox Modal Controls
+    function openPhotoLightbox(caseId) {
       const item = SENSATIONAL_CASES_DATA.find(c => c.id === caseId) || SENSATIONAL_CASES_DATA[0];
-      const modal = document.getElementById('caseMediaModal');
+      const modal = document.getElementById('casePhotoLightboxModal');
       if (!modal) return;
 
-      document.getElementById('caseModalCode').innerText = item.code;
-      document.getElementById('caseModalTitle').innerText = item.title;
-      document.getElementById('caseModalDistrict').innerText = `${item.district} // ${item.date}`;
-      document.getElementById('caseModalImage').src = item.image;
-      document.getElementById('caseModalMediaType').innerText = `${item.tag} // VERIFIED EXHIBIT`;
-      document.getElementById('caseModalMediaNotice').innerText = item.videoNotice;
-      document.getElementById('caseModalTag').innerText = `${item.tag} // CRITICAL CASE FILE`;
-      document.getElementById('caseModalHeading').innerText = item.title;
-      document.getElementById('caseModalPunjabi').innerText = item.punjabi;
-      document.getElementById('caseModalSummary').innerText = item.summary;
-      document.getElementById('caseModalQuote').innerText = item.quote;
-      document.getElementById('caseModalFIR').innerText = item.fir;
+      const imgEl = document.getElementById('casePhotoModalImg');
+      if (imgEl) imgEl.src = item.image;
+      
+      const titleEl = document.getElementById('casePhotoModalTitle');
+      if (titleEl) titleEl.innerText = item.title;
 
-      // Set direct YouTube link
-      const ytLink = document.getElementById('caseModalDirectYoutube');
-      if (ytLink) {
-        ytLink.href = `https://www.youtube.com/watch?v=${item.youtubeId}`;
-      }
+      const gurmukhiEl = document.getElementById('casePhotoModalGurmukhi');
+      if (gurmukhiEl) gurmukhiEl.innerText = item.punjabi;
 
-      // Populate Video Embed Iframe
-      const videoContainer = document.getElementById('caseModalVideoContainer');
-      if (videoContainer) {
-        videoContainer.innerHTML = `
-          <iframe src="https://www.youtube-nocookie.com/embed/${item.youtubeId}?autoplay=1&rel=0" class="w-full h-full border-0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        `;
-      }
+      const captionEl = document.getElementById('casePhotoModalCaption');
+      if (captionEl) captionEl.innerText = item.photoCaption;
 
-      const metricsContainer = document.getElementById('caseModalMetrics');
-      if (metricsContainer) {
-        metricsContainer.innerHTML = item.metrics.map(m => `
-          <div class="flex justify-between items-center text-slate-300">
-            <span class="text-slate-400">${m.label}:</span>
-            <span class="text-white font-bold">${m.val}</span>
-          </div>
-        `).join('');
-      }
+      const sourceEl = document.getElementById('casePhotoModalSource');
+      if (sourceEl) sourceEl.innerText = item.photoSource;
 
-      switchCaseModalMediaTab(defaultTab);
+      const codeEl = document.getElementById('casePhotoModalCode');
+      if (codeEl) codeEl.innerText = item.code;
+
+      const districtEl = document.getElementById('casePhotoModalDistrict');
+      if (districtEl) districtEl.innerText = `${item.district} // ${item.date}`;
 
       modal.classList.remove('hidden');
       modal.classList.add('flex');
       lucide.createIcons();
     }
 
-    function switchCaseModalMediaTab(tab) {
-      const videoContainer = document.getElementById('caseModalVideoContainer');
-      const photoContainer = document.getElementById('caseModalPhotoContainer');
-      const videoBtn = document.getElementById('modalTabVideoBtn');
-      const photoBtn = document.getElementById('modalTabPhotoBtn');
-
-      if (tab === 'video') {
-        if (videoContainer) videoContainer.classList.remove('hidden');
-        if (photoContainer) photoContainer.classList.add('hidden');
-        if (videoBtn) videoBtn.className = 'px-3 py-1.5 rounded-lg bg-crimson text-white font-mono text-xs font-bold transition flex items-center gap-1.5 shadow';
-        if (photoBtn) photoBtn.className = 'px-3 py-1.5 rounded-lg bg-slateDark text-slate-300 hover:text-white font-mono text-xs font-bold transition flex items-center gap-1.5';
-      } else {
-        if (videoContainer) videoContainer.classList.add('hidden');
-        if (photoContainer) {
-          photoContainer.classList.remove('hidden');
-          photoContainer.classList.add('flex');
-        }
-        if (videoBtn) videoBtn.className = 'px-3 py-1.5 rounded-lg bg-slateDark text-slate-300 hover:text-white font-mono text-xs font-bold transition flex items-center gap-1.5';
-        if (photoBtn) photoBtn.className = 'px-3 py-1.5 rounded-lg bg-crimson text-white font-mono text-xs font-bold transition flex items-center gap-1.5 shadow';
-      }
-    }
-
-    function closeCaseMediaModal() {
-      const modal = document.getElementById('caseMediaModal');
+    function closePhotoLightbox() {
+      const modal = document.getElementById('casePhotoLightboxModal');
       if (modal) {
         modal.classList.add('hidden');
         modal.classList.remove('flex');
       }
-      // Stop video playback immediately
-      const videoContainer = document.getElementById('caseModalVideoContainer');
-      if (videoContainer) {
-        videoContainer.innerHTML = '';
+    }
+
+    function shareCaseIncident(caseId) {
+      const item = SENSATIONAL_CASES_DATA.find(c => c.id === caseId);
+      const url = `${window.location.origin}${window.location.pathname}#cases-that-shook-punjab`;
+      const text = item ? `${item.title} - Cases That Shook Punjab: ${url}` : url;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+          alert('Case link copied to clipboard!');
+        });
       }
     }
 
@@ -4327,112 +4337,79 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
     });
 
     // Keyboard ESC closes modals
+    // Keyboard ESC closes modals & arrow keys navigate cases
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeDossierModal();
         closeEvidenceModal();
         closeLightbox();
         closeSuccessModal();
-        closeCaseMediaModal();
+        closePhotoLightbox();
+      } else if (e.key === 'ArrowLeft') {
+        if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+          navigateSensationalCase(-1);
+        }
+      } else if (e.key === 'ArrowRight') {
+        if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+          navigateSensationalCase(1);
+        }
+      }
+    });
+
+    // Touch swipe listener on stage container
+    window.addEventListener('DOMContentLoaded', () => {
+      const stageContainer = document.getElementById('caseStageContainer');
+      if (stageContainer) {
+        let touchStartX = 0;
+        let touchEndX = 0;
+        stageContainer.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        stageContainer.addEventListener('touchend', (e) => {
+          touchEndX = e.changedTouches[0].screenX;
+          const diff = touchEndX - touchStartX;
+          if (Math.abs(diff) > 40) {
+            if (diff < 0) navigateSensationalCase(1);
+            else navigateSensationalCase(-1);
+          }
+        }, { passive: true });
       }
     });
   </script>
-  <!-- FORENSIC CASE MEDIA LIGHTBOX & VIDEO MODAL -->
-  <div id="caseMediaModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 overflow-y-auto">
-    <div class="relative w-full max-w-5xl bg-charcoal border-2 border-crimson/60 rounded-3xl shadow-2xl overflow-hidden flex flex-col my-auto max-h-[92vh]">
+
+  <!-- HIGH-RESOLUTION INVESTIGATIVE PHOTO LIGHTBOX MODAL -->
+  <div id="casePhotoLightboxModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md hidden items-center justify-center p-3 sm:p-6 overflow-y-auto" onclick="if(event.target===this) closePhotoLightbox()">
+    <div class="relative w-full max-w-5xl bg-charcoal border-2 border-crimson/70 rounded-3xl shadow-2xl overflow-hidden flex flex-col my-auto max-h-[94vh]">
       
-      <!-- Modal Header Bar -->
+      <!-- Lightbox Header -->
       <div class="p-4 sm:p-5 bg-obsidian border-b border-panelBorder flex items-center justify-between gap-4">
         <div class="flex items-center gap-2.5 min-w-0">
-          <span class="px-2.5 py-1 bg-crimson/20 border border-crimson text-crimson rounded-md font-mono text-xs font-bold shrink-0" id="caseModalCode">CASE-01</span>
+          <span class="px-2.5 py-1 bg-crimson/20 border border-crimson text-crimson rounded-md font-mono text-xs font-bold shrink-0" id="casePhotoModalCode">CASE-01</span>
           <div class="min-w-0">
-            <h3 class="font-display font-bold text-white text-base sm:text-lg truncate" id="caseModalTitle">Case Evidence Exhibit</h3>
-            <p class="font-mono text-[11px] text-slate-400 truncate" id="caseModalDistrict">District Evidence File</p>
+            <h3 class="font-display font-bold text-white text-sm sm:text-base truncate" id="casePhotoModalTitle">Investigative Exhibit</h3>
+            <p class="font-mono text-[11px] text-slate-400 truncate" id="casePhotoModalDistrict">District Evidence</p>
           </div>
         </div>
-        <button onclick="closeCaseMediaModal()" class="p-2 rounded-xl bg-slateDark hover:bg-crimson text-slate-400 hover:text-white transition shrink-0" title="Close (ESC)">
+        <button onclick="closePhotoLightbox()" class="p-2 rounded-xl bg-slateDark hover:bg-crimson text-slate-400 hover:text-white transition shrink-0" title="Close (ESC)">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
-      <!-- Modal Body (Media Stage + Forensic Dossier Sidebar) -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 flex-1 overflow-y-auto">
-        
-        <!-- Media Canvas (7 Cols) -->
-        <div class="lg:col-span-7 bg-black flex flex-col items-center justify-between relative p-4 min-h-[340px] sm:min-h-[460px] border-b lg:border-b-0 lg:border-r border-panelBorder">
-          
-          <!-- Media Mode Selector -->
-          <div class="w-full flex items-center justify-between pb-3 border-b border-panelBorder/60 mb-2">
-            <div class="flex items-center gap-2">
-              <button id="modalTabVideoBtn" onclick="switchCaseModalMediaTab('video')" class="px-3 py-1.5 rounded-lg bg-crimson text-white font-mono text-xs font-bold transition flex items-center gap-1.5 shadow">
-                <i data-lucide="play" class="w-3.5 h-3.5"></i>
-                <span>Documentary Video</span>
-              </button>
-              <button id="modalTabPhotoBtn" onclick="switchCaseModalMediaTab('photo')" class="px-3 py-1.5 rounded-lg bg-slateDark text-slate-300 hover:text-white font-mono text-xs font-bold transition flex items-center gap-1.5">
-                <i data-lucide="image" class="w-3.5 h-3.5"></i>
-                <span>Crime Scene Photo</span>
-              </button>
-            </div>
-            <span class="text-[10px] font-mono text-slate-400 uppercase tracking-widest hidden sm:inline" id="caseModalMediaType">VERIFIED MEDIA</span>
-          </div>
+      <!-- Lightbox Image Canvas -->
+      <div class="relative bg-black flex items-center justify-center p-2 sm:p-4 overflow-hidden min-h-[300px] sm:min-h-[480px]">
+        <img id="casePhotoModalImg" src="" alt="Case Real Photo" class="max-w-full max-h-[70vh] object-contain rounded-xl shadow-2xl" />
+      </div>
 
-          <!-- Video Stream Container -->
-          <div id="caseModalVideoContainer" class="w-full aspect-[16/9] bg-obsidian rounded-xl overflow-hidden shadow-2xl relative flex items-center justify-center">
-            <!-- Video iframe inserted here dynamically -->
-          </div>
-
-          <!-- Photo Container -->
-          <div id="caseModalPhotoContainer" class="w-full aspect-[16/9] bg-obsidian rounded-xl overflow-hidden shadow-2xl relative hidden items-center justify-center">
-            <img id="caseModalImage" src="" alt="Case Evidence" class="w-full h-full object-contain filter contrast-105" />
-          </div>
-
-          <!-- Video Notice & Source Link -->
-          <div class="w-full pt-3 mt-2 border-t border-panelBorder/60 flex items-center justify-between text-xs font-mono text-slate-300">
-            <div class="flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-crimson animate-ping"></span>
-              <span id="caseModalMediaNotice" class="truncate max-w-[240px] sm:max-w-md">BROADCAST / LIVE STREAM RECORDING</span>
-            </div>
-            <a id="caseModalDirectYoutube" href="#" target="_blank" rel="noopener noreferrer" class="text-crimson hover:underline flex items-center gap-1 font-bold text-[11px] shrink-0">
-              <span>Source Broadcast</span>
-              <i data-lucide="external-link" class="w-3 h-3"></i>
-            </a>
-          </div>
+      <!-- Lightbox Caption Footer -->
+      <div class="p-4 bg-obsidian border-t border-panelBorder flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 font-mono text-xs text-slate-300">
+        <div class="space-y-1 min-w-0">
+          <p class="font-gurmukhi text-amberAlert font-bold text-sm" id="casePhotoModalGurmukhi"></p>
+          <p class="text-slate-200" id="casePhotoModalCaption"></p>
         </div>
-
-        <!-- Evidence Breakdown Sidebar (5 Cols) -->
-        <div class="lg:col-span-5 p-6 space-y-5 bg-charcoal/95 flex flex-col justify-between overflow-y-auto">
-          <div class="space-y-4">
-            <div>
-              <span class="text-crimson font-mono text-xs font-bold uppercase tracking-wider block mb-1" id="caseModalTag">INCIDENT PROFILE</span>
-              <h4 class="font-display font-extrabold text-white text-lg sm:text-xl leading-tight" id="caseModalHeading">Title</h4>
-              <p class="font-gurmukhi text-sm text-amberAlert font-bold mt-1" id="caseModalPunjabi">ਪੰਜਾਬੀ ਸਿਰਲੇਖ</p>
-            </div>
-
-            <p class="text-slate-300 text-xs sm:text-sm leading-relaxed" id="caseModalSummary">
-              Detailed investigative narrative.
-            </p>
-
-            <!-- Metrics Matrix -->
-            <div class="p-3.5 rounded-xl bg-obsidian border border-panelBorder font-mono text-xs space-y-2" id="caseModalMetrics">
-              <!-- Dynamically populated -->
-            </div>
-
-            <!-- Quotes & Transcripts -->
-            <div class="p-3.5 rounded-xl bg-slateDark/60 border-l-4 border-crimson font-serif italic text-xs text-slate-200" id="caseModalQuote">
-              Quote or verified citation.
-            </div>
-          </div>
-
-          <!-- Legal FIR Citation -->
-          <div class="pt-4 border-t border-panelBorder/80 flex items-center justify-between text-[11px] font-mono text-slate-400">
-            <span id="caseModalFIR">FIR #PB-INVESTIGATION</span>
-            <button onclick="shareChargesheet()" class="text-crimson hover:text-white font-bold flex items-center gap-1 transition">
-              <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
-              <span>Share Case</span>
-            </button>
-          </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <span class="px-2.5 py-1 rounded bg-black border border-white/20 text-slate-400 font-bold uppercase" id="casePhotoModalSource">The Tribune</span>
+          <button onclick="closePhotoLightbox()" class="px-3.5 py-1.5 rounded-lg bg-crimson text-white font-bold hover:bg-crimsonBright transition">Close</button>
         </div>
-
       </div>
 
     </div>
