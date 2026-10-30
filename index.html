@@ -802,6 +802,158 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
+  
+    /* --- WOW SECTION 2: CASES THAT SHOOK PUNJAB ENHANCEMENTS --- */
+    
+    /* 1. Dynamic Ambient Backlight Reactor */
+    .case-stage-relative {
+      position: relative;
+      isolation: isolate;
+    }
+    .case-ambient-reactor {
+      position: absolute;
+      inset: -20px;
+      border-radius: 2.5rem;
+      background: radial-gradient(circle at 35% 50%, rgba(225, 29, 72, 0.35) 0%, rgba(225, 29, 72, 0.08) 50%, transparent 75%);
+      filter: blur(40px);
+      opacity: 0.85;
+      z-index: -1;
+      pointer-events: none;
+      transition: background 0.8s ease, opacity 0.8s ease;
+      will-change: background, opacity;
+    }
+    
+    /* 2. Auto-Briefing Laser Progress Bar */
+    .briefing-laser-bar-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      z-index: 40;
+      border-top-left-radius: 1.5rem;
+      border-top-right-radius: 1.5rem;
+    }
+    .briefing-laser-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ff1a40, #ff4d6d, #ffffff);
+      box-shadow: 0 0 14px #ff1a40, 0 0 4px #ffffff;
+      transition: width 0.1s linear;
+      will-change: width;
+    }
+
+    /* 3. High-Tech Optical Corner HUD Brackets */
+    .hud-corner-bracket {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-color: rgba(225, 29, 72, 0.85);
+      pointer-events: none;
+      z-index: 20;
+    }
+    .hud-tl { top: 10px; left: 10px; border-top: 2px solid; border-left: 2px solid; }
+    .hud-tr { top: 10px; right: 10px; border-top: 2px solid; border-right: 2px solid; }
+    .hud-bl { bottom: 10px; left: 10px; border-bottom: 2px solid; border-left: 2px solid; }
+    .hud-br { bottom: 10px; right: 10px; border-bottom: 2px solid; border-right: 2px solid; }
+
+    /* 4. Chronological Mini-Timeline Ribbon */
+    .case-timeline-ribbon {
+      position: relative;
+      background: rgba(10, 12, 16, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1.25rem;
+      padding: 0.75rem 1.25rem;
+      overflow-x: auto;
+    }
+    .timeline-track-line {
+      position: absolute;
+      top: 50%;
+      left: 2rem;
+      right: 2rem;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(225,29,72,0.6) 0%, rgba(6,182,212,0.4) 50%, rgba(245,158,11,0.5) 100%);
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+    .timeline-milestone-node {
+      position: relative;
+      z-index: 2;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .timeline-milestone-node:hover {
+      transform: translateY(-2px) scale(1.08);
+    }
+    .timeline-node-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #334155;
+      border: 2px solid #0f172a;
+      transition: all 0.3s ease;
+      margin: 0 auto;
+    }
+    .timeline-node-active .timeline-node-dot {
+      background: #e11d48;
+      box-shadow: 0 0 12px #e11d48, 0 0 4px #ffffff;
+      transform: scale(1.4);
+      border-color: #ffffff;
+    }
+
+    /* 5. Sub-Tab Interactive Switcher */
+    .case-subtab-btn {
+      transition: all 0.2s ease;
+    }
+    .case-subtab-btn.active {
+      background: rgba(225, 29, 72, 0.2);
+      border-color: rgba(225, 29, 72, 0.6);
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: 0 0 15px rgba(225, 29, 72, 0.25);
+    }
+
+    /* 6. Telemetry Metric Tile */
+    .telemetry-tile {
+      background: rgba(13, 17, 23, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 0.875rem;
+      padding: 0.875rem 1rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+    .telemetry-tile:hover {
+      border-color: rgba(225, 29, 72, 0.5);
+      transform: translateY(-1px);
+    }
+    .telemetry-tile::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: #e11d48;
+    }
+
+    /* 7. Auto-Briefing Button Glow */
+    .briefing-pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #e11d48;
+      box-shadow: 0 0 10px #e11d48;
+      animation: briefingPulse 1.2s ease-in-out infinite;
+    }
+    @keyframes briefingPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.6); opacity: 0.4; }
+    }
+
   </style>
 </head>
 <body class="bg-obsidian text-slate-100 antialiased selection:bg-crimson selection:text-white bg-forensic-grid relative w-full overflow-x-hidden">
@@ -1087,66 +1239,85 @@
     <!-- ==============================================
          SECTION 2: CASES THAT SHOOK PUNJAB (14 SENSATIONAL CASES)
          ============================================== -->
-    <section id="cases-that-shook-punjab" class="space-y-8 scroll-mt-24">
+    <section id="cases-that-shook-punjab" class="space-y-6 scroll-mt-24">
       <span id="issues-detail" class="hidden"></span>
       
-      <!-- Section Header & Filter Controls -->
+      <!-- Section Header & Investigative Briefing Banner -->
       <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-panelBorder pb-6">
         <div>
           <div class="flex items-center gap-2 mb-2">
-            <span class="evidence-stamp text-xs">CRITICAL INCIDENT DOSSIER</span>
+            <span class="evidence-stamp text-xs">CRITICAL INCIDENT ARCHIVE</span>
             <span class="text-xs font-mono text-crimson font-bold uppercase tracking-wider">14 SENSATIONAL INCIDENTS // AAP REGIME (2022–2026)</span>
           </div>
           <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-white tracking-tight">
             Cases That Shook Punjab
           </h2>
           <p class="text-slate-400 text-sm sm:text-base mt-1.5 max-w-3xl leading-relaxed">
-            Verified investigative archives, authentic news photojournalism, and forensic crime records of the landmark assassinations, rocket strikes, and crusader crackdowns that altered Punjab.
+            Verified investigative archives, authentic news photojournalism, and official forensic records of the landmark assassinations, rocket attacks, and custodial crackdowns under the AAP government.
           </p>
         </div>
 
-        <!-- Real-Time Search Bar -->
-        <div class="relative w-full lg:w-80 shrink-0">
-          <input type="text" id="sensationalSearch" oninput="onSensationalSearchInput(this.value)" placeholder="Search Jhota, Moosewala, RPG, Singla..." class="w-full bg-charcoal border border-panelBorder focus:border-crimson rounded-xl px-4 py-3 text-xs font-mono text-white placeholder-slate-500 outline-none transition shadow-inner" />
-          <i data-lucide="search" class="w-4 h-4 text-slate-500 absolute right-3.5 top-3.5"></i>
+        <!-- Controls: Search & Live Auto-Briefing Reel Button -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 shrink-0">
+          
+          <!-- Auto-Briefing Reel Toggle Button -->
+          <button onclick="toggleAutoBriefing()" id="autoBriefingBtn" class="px-4 py-2.5 rounded-xl bg-charcoal hover:bg-slateDark border border-panelBorder hover:border-crimson text-slate-200 hover:text-white font-mono text-xs font-bold transition flex items-center justify-center gap-2.5 shadow-lg active:scale-95 group" title="Toggle 6-Second Automated Incident Briefing Reel">
+            <span class="briefing-pulse-dot" id="briefingPulseDot" style="display: none;"></span>
+            <i data-lucide="play" id="briefingBtnIcon" class="w-3.5 h-3.5 text-crimson"></i>
+            <span id="briefingBtnText">Play Auto-Briefing</span>
+          </button>
+
+          <!-- Real-Time Search Bar -->
+          <div class="relative w-full sm:w-64">
+            <input type="text" id="sensationalSearch" oninput="onSensationalSearchInput(this.value)" placeholder="Search Jhota, Moosewala, RPG..." class="w-full bg-charcoal border border-panelBorder focus:border-crimson rounded-xl px-3.5 py-2.5 text-xs font-mono text-white placeholder-slate-500 outline-none transition shadow-inner" />
+            <i data-lucide="search" class="w-3.5 h-3.5 text-slate-500 absolute right-3 top-3"></i>
+          </div>
+
         </div>
       </div>
 
       <!-- Quick Category Filter Pills -->
-      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-panelBorder/70 pb-4 text-xs font-mono">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-panelBorder/70 pb-3 text-xs font-mono">
         <div class="flex flex-wrap items-center gap-2" id="caseCategoryFilters">
-          <button onclick="filterSensationalCategory('all')" class="case-cat-pill px-4 py-2 rounded-xl bg-crimson text-white font-bold transition shadow-lg shadow-crimson/20" data-cat="all">ALL INCIDENTS (14)</button>
-          <button onclick="filterSensationalCategory('drugs')" class="case-cat-pill px-4 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white transition" data-cat="drugs">NARCOTICS (3)</button>
-          <button onclick="filterSensationalCategory('murders')" class="case-cat-pill px-4 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white transition" data-cat="murders">SENSATIONAL MURDERS (5)</button>
-          <button onclick="filterSensationalCategory('terror')" class="case-cat-pill px-4 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white transition" data-cat="terror">TERROR &amp; RPG (3)</button>
-          <button onclick="filterSensationalCategory('scandals')" class="case-cat-pill px-4 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white transition" data-cat="scandals">PRISON &amp; SCANDALS (3)</button>
+          <button onclick="filterSensationalCategory('all')" class="case-cat-pill px-3.5 py-1.5 rounded-xl bg-crimson text-white font-bold transition shadow-lg shadow-crimson/20" data-cat="all">ALL INCIDENTS (14)</button>
+          <button onclick="filterSensationalCategory('drugs')" class="case-cat-pill px-3.5 py-1.5 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white transition" data-cat="drugs">NARCOTICS (3)</button>
+          <button onclick="filterSensationalCategory('murders')" class="case-cat-pill px-3.5 py-1.5 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white transition" data-cat="murders">SENSATIONAL MURDERS (5)</button>
+          <button onclick="filterSensationalCategory('terror')" class="case-cat-pill px-3.5 py-1.5 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white transition" data-cat="terror">TERROR &amp; RPG (3)</button>
+          <button onclick="filterSensationalCategory('scandals')" class="case-cat-pill px-3.5 py-1.5 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white transition" data-cat="scandals">PRISON &amp; SCANDALS (3)</button>
         </div>
 
         <!-- Keyboard Navigation Hint -->
         <div class="hidden sm:flex items-center gap-2 text-[11px] font-mono text-slate-500">
           <span class="px-2 py-0.5 rounded bg-black/60 border border-panelBorder text-slate-400">←</span>
           <span class="px-2 py-0.5 rounded bg-black/60 border border-panelBorder text-slate-400">→</span>
-          <span>Use keyboard arrows or swipe left / right</span>
+          <span>Arrow keys or swipe left / right</span>
+        </div>
+      </div>
+
+      <!-- CHRONOLOGICAL INCIDENT TIMELINE SCRUBBER (2022 -> 2026) -->
+      <div class="case-timeline-ribbon" id="caseTimelineRibbon">
+        <div class="flex items-center justify-between gap-1 sm:gap-3 text-center min-w-[700px] sm:min-w-0" id="timelineNodesContainer">
+          <!-- Populated dynamically by renderTimelineRibbon() -->
         </div>
       </div>
 
       <!-- PROMINENT TOP NAVIGATION & POSITION BAR -->
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-obsidian/85 backdrop-blur-md p-3 sm:p-4 rounded-2xl border border-panelBorder shadow-xl">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 bg-obsidian/90 backdrop-blur-md p-3 sm:p-3.5 rounded-2xl border border-panelBorder shadow-xl">
         
         <!-- Large Previous Incident Button -->
-        <button onclick="navigateSensationalCase(-1)" class="w-full sm:w-auto px-5 py-3 rounded-xl bg-charcoal hover:bg-crimson border border-panelBorder hover:border-crimson text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2.5 transition shadow-lg active:scale-95 group" title="Previous Incident (Left Arrow)">
+        <button onclick="navigateSensationalCase(-1)" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-charcoal hover:bg-crimson border border-panelBorder hover:border-crimson text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition shadow-lg active:scale-95 group" title="Previous Incident (Left Arrow)">
           <i data-lucide="chevron-left" class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform"></i>
           <span>Previous Case</span>
           <span class="text-[10px] text-slate-400 group-hover:text-white/80 hidden md:inline">[←]</span>
         </button>
 
         <!-- Center: Case Counter & Interactive Position Segment Track -->
-        <div class="flex flex-col items-center gap-2 w-full max-w-md px-2">
-          <div class="flex items-center gap-3 font-mono text-xs">
+        <div class="flex flex-col items-center gap-1.5 w-full max-w-md px-2">
+          <div class="flex items-center gap-2.5 font-mono text-xs">
             <span class="w-2.5 h-2.5 rounded-full bg-crimson animate-pulse"></span>
             <span id="caseTopIndicator" class="font-extrabold text-white text-sm sm:text-base tracking-wider">CASE 01 OF 14</span>
             <span class="text-slate-500">|</span>
-            <span id="caseTopTitleMini" class="text-slate-300 truncate max-w-[180px] sm:max-w-[240px] font-semibold">Parvinder Singh Jhota</span>
+            <span id="caseTopTitleMini" class="text-slate-300 truncate max-w-[160px] sm:max-w-[220px] font-semibold">Parvinder Singh Jhota</span>
           </div>
 
           <!-- 14 Interactive Segment Dots / Pill Track -->
@@ -1156,7 +1327,7 @@
         </div>
 
         <!-- Large Next Incident Button -->
-        <button onclick="navigateSensationalCase(1)" class="w-full sm:w-auto px-5 py-3 rounded-xl bg-crimson hover:bg-crimsonBright border border-crimson text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2.5 transition shadow-xl shadow-crimson/30 active:scale-95 group" title="Next Incident (Right Arrow)">
+        <button onclick="navigateSensationalCase(1)" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-crimson hover:bg-crimsonBright border border-crimson text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition shadow-xl shadow-crimson/30 active:scale-95 group" title="Next Incident (Right Arrow)">
           <span>Next Case</span>
           <span class="text-[10px] text-white/80 hidden md:inline">[→]</span>
           <i data-lucide="chevron-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
@@ -1165,33 +1336,41 @@
       </div>
 
       <!-- MAIN SINGLE-CASE STAGE (ONE CASE VISIBLE AT A TIME) -->
-      <div class="relative group" id="caseStageContainer">
+      <div class="case-stage-relative group" id="caseStageContainer" onmouseenter="pauseAutoBriefing()" onmouseleave="resumeAutoBriefing()">
         
+        <!-- Dynamic Ambient Backlight Reactor Glow -->
+        <div class="case-ambient-reactor" id="caseAmbientGlow"></div>
+
+        <!-- Auto-Briefing Laser Progress Bar -->
+        <div class="briefing-laser-bar-container" id="briefingProgressContainer" style="display: none;">
+          <div class="briefing-laser-bar" id="briefingProgressBar"></div>
+        </div>
+
         <!-- Large Floating Left Navigation Button -->
-        <button onclick="navigateSensationalCase(-1)" class="absolute -left-3 sm:-left-5 lg:-left-7 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/90 hover:bg-crimson border-2 border-white/20 hover:border-white text-white flex items-center justify-center transition-all duration-300 shadow-2xl hover:scale-110 active:scale-95 cursor-pointer backdrop-blur-md" title="Previous Incident (Left)">
+        <button onclick="navigateSensationalCase(-1)" class="absolute -left-3 sm:-left-5 lg:-left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/90 hover:bg-crimson border-2 border-white/20 hover:border-white text-white flex items-center justify-center transition-all duration-300 shadow-2xl hover:scale-110 active:scale-95 cursor-pointer backdrop-blur-md" title="Previous Incident (Left)">
           <i data-lucide="chevron-left" class="w-5 h-5 sm:w-6 sm:h-6"></i>
         </button>
 
         <!-- Large Floating Right Navigation Button -->
-        <button onclick="navigateSensationalCase(1)" class="absolute -right-3 sm:-right-5 lg:-right-7 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/90 hover:bg-crimson border-2 border-white/20 hover:border-white text-white flex items-center justify-center transition-all duration-300 shadow-2xl hover:scale-110 active:scale-95 cursor-pointer backdrop-blur-md" title="Next Incident (Right)">
+        <button onclick="navigateSensationalCase(1)" class="absolute -right-3 sm:-right-5 lg:-right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/90 hover:bg-crimson border-2 border-white/20 hover:border-white text-white flex items-center justify-center transition-all duration-300 shadow-2xl hover:scale-110 active:scale-95 cursor-pointer backdrop-blur-md" title="Next Incident (Right)">
           <i data-lucide="chevron-right" class="w-5 h-5 sm:w-6 sm:h-6"></i>
         </button>
 
         <!-- Stage Card Content Wrapper (Single Case Rendered Dynamically) -->
-        <div id="singleCaseStageCard" class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-charcoal via-slateDark to-obsidian border-2 border-panelBorder hover:border-crimson/50 shadow-2xl p-5 sm:p-7 lg:p-9 transition-all duration-300">
+        <div id="singleCaseStageCard" class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-charcoal via-slateDark to-obsidian border-2 border-panelBorder hover:border-crimson/50 shadow-2xl p-5 sm:p-7 lg:p-8 transition-all duration-300">
           <!-- Rendered dynamically by renderActiveSingleCase() -->
         </div>
 
       </div>
 
       <!-- BOTTOM MINIATURE THUMBNAIL TRACK (QUICK BROWSE ALL 14 CASES) -->
-      <div class="space-y-2 pt-2">
+      <div class="space-y-2 pt-1">
         <div class="flex items-center justify-between text-xs font-mono text-slate-400 px-1">
           <span class="flex items-center gap-1.5 font-bold uppercase tracking-wider text-slate-300">
             <i data-lucide="layers" class="w-3.5 h-3.5 text-crimson"></i>
-            <span>Quick Case Navigator</span>
+            <span>Quick Case Navigator (14 Authentic Press Archives)</span>
           </span>
-          <span class="text-[11px] text-slate-500">Click any incident to inspect</span>
+          <span class="text-[11px] text-slate-500">Click any thumbnail to inspect case file</span>
         </div>
 
         <div id="caseThumbnailsTrack" class="flex flex-nowrap overflow-x-auto gap-3 pb-3 pt-1 scroll-smooth scrollbar-thin scrollbar-thumb-crimson/50 scrollbar-track-charcoal/40 px-1">
@@ -4576,7 +4755,9 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         id: "jhota",
         code: "CASE-01 // MANSA",
         tag: "ANTI-DRUG CRUSADER",
-        badgeColor: "crimson",
+        badgeColor: "cyan",
+        timelineDate: "July 2023 / Oct 2026",
+        timelineYear: "2023–26",
         title: "Anti-Drug Crusader Parvinder Singh Jhota Murder & Mansa Morcha",
         punjabi: "ਪਰਵਿੰਦਰ ਸਿੰਘ ਝੋਟਾ ਦਾ ਲਾਈਵ ਕੈਮਰੇ 'ਤੇ ਕਤਲ ਅਤੇ ਮਾਨਸਾ ਨਸ਼ਾ ਮੋਰਚਾ",
         date: "October 2026 / July 2023",
@@ -4585,22 +4766,122 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         summary: "Parvinder Singh Jhota, a recovered addict turned folk hero who caught Chitta peddlers and chemist cartels on Facebook Live, was shot dead inside a medical store while streaming live. In 2023, Punjab Police booked Jhota under non-bailable NDPS sections while peddlers operated with impunity, sparking the statewide 'Jhota Rihai Morcha'. Following his daylight murder, mass protests erupted across Malwa; his family refused cremation for weeks, forcing the probe to be transferred to the CBI.",
         metrics: [
           { label: "Target", val: "Crusader Parvinder Singh Jhota" },
-          { label: "Modus Operandi", val: "Shot Dead Live on Video" },
+          { label: "Modus Operandi", val: "Shot Dead Live on Facebook Video" },
           { label: "Public Fallout", val: "Statewide Morcha / Cremation Refusal" },
-          { label: "Investigation", val: "Transferred to CBI" }
+          { label: "Investigation", val: "Transferred to CBI Under Public Outcry" }
         ],
+        legal: {
+          fir: "FIR #204/23 & FIR #189/26, Mansa City Police Station",
+          sections: "IPC 302, 120-B, NDPS Act (Fabricated Initial FIR against Jhota)",
+          agency: "Central Bureau of Investigation (CBI) Special Crime Branch",
+          status: "Transferred to CBI after Malwa-wide dharna; key conspirators protected under local political patronage."
+        },
         image: "img/jhota_mansa_case.jpg",
         fallbackImage: "img/jhota_mansa_case.jpg",
         photoSource: "The Tribune Archive",
-        photoCaption: "Anti-drug activist Parvinder Singh Jhota addressing public gathering in Mansa",
-        quote: "“The police arrested the man who was catching drug peddlers, while the suppliers walk free with political patronage.” — Mansa Morcha Public Memorandum",
-        fir: "FIR #204/23 & FIR #189/26, Mansa City Police Station"
+        photoCaption: "Anti-drug activist Parvinder Singh Jhota addressing massive public gathering in Mansa",
+        quote: "“The police arrested the man who was catching drug peddlers, while the suppliers walk free with political patronage.” — Mansa Morcha Public Memorandum"
+      },
+      {
+        id: "sandeep",
+        code: "CASE-02 // JALANDHAR",
+        tag: "LIVE TOURNAMENT EXECUTION",
+        badgeColor: "crimson",
+        timelineDate: "March 14, 2022",
+        timelineYear: "Mar 2022",
+        title: "World Kabaddi Star Sandeep Nangal Ambia Shot Dead Live on Camera",
+        punjabi: "ਕਬੱਡੀ ਸਟਾਰ ਸੰਦੀਪ ਨੰਗਲ ਅੰਬੀਆਂ ਦਾ ਟੂਰਨਾਮੈਂਟ ਦੌਰਾਨ ਦਿਨ-ਦਿਹਾੜੇ ਕਤਲ",
+        date: "March 14, 2022",
+        district: "Jalandhar (ਜਲੰਧਰ)",
+        category: "murders",
+        summary: "International kabaddi superstar Sandeep Nangal Ambia was shot dead during an ongoing match in Mallian Kalan in front of thousands of spectators and live broadcast cameras. Multiple contract killers pumped 10+ bullets into him to forcibly seize kabaddi federation commercial rights and player rosters.",
+        metrics: [
+          { label: "Witnesses", val: "Thousands of Live Tournament Spectators" },
+          { label: "Bullets Fired", val: "10+ Direct Gunshot Wounds" },
+          { label: "Motive", val: "Extortion & League Commercial Takeover" },
+          { label: "Syndicate", val: "Cross-Border Gangland Handlers" }
+        ],
+        legal: {
+          fir: "FIR #27/22, Sadar Nakodar Police Station, Jalandhar",
+          sections: "IPC 302, 307, 148, 149, 120-B, Arms Act 25/27",
+          agency: "Anti-Gangster Task Force (AGTF) & Jalandhar Rural SIT",
+          status: "Cross-border conspiracy; 4 shooters identified; overseas masterminds in Canada/UK wanted under Red Corner Notices."
+        },
+        image: "img/sandeep_nangal_ambia.jpg",
+        fallbackImage: "img/sandeep_nangal_ambia.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "International Kabaddi legend Sandeep Nangal Ambia slain during a live match",
+        quote: "“Sports grounds where Punjab's youth competed were turned into gang execution arenas in broad daylight.”"
+      },
+      {
+        id: "rpg-mohali",
+        code: "CASE-03 // MOHALI",
+        tag: "TERROR ATTACK ON INTEL HQ",
+        badgeColor: "red",
+        timelineDate: "May 9, 2022",
+        timelineYear: "May 2022",
+        title: "Rocket-Propelled Grenade (RPG) Strike on State Intelligence HQ",
+        punjabi: "ਪੰਜਾਬ ਪੁਲਿਸ ਇੰਟੈਲੀਜੈਂਸ ਹੈੱਡਕੁਆਰਟਰ 'ਤੇ ਆਰਪੀਜੀ ਰਾਕੇਟ ਹਮਲਾ",
+        date: "May 9, 2022",
+        district: "SAS Nagar / Mohali",
+        category: "terror",
+        summary: "Assailants fired a Russian RPG-22 rocket warhead directly into the 3rd floor of the Punjab Police State Intelligence Headquarters in Sector 77, Mohali. Shattered windows and reinforced concrete penetrations exposed a catastrophic collapse of security at the nerve center of Punjab's counter-terror apparatus.",
+        metrics: [
+          { label: "Ordnance Used", val: "Russian RPG-22 Rocket Warhead" },
+          { label: "Target Struck", val: "State Intelligence HQ Command Floor" },
+          { label: "Perimeter Alert", val: "Unprecedented Warhead Strike on Police HQ" },
+          { label: "Systemic Outposts", val: "Part of 22 Police Station Blast Attacks" }
+        ],
+        legal: {
+          fir: "FIR #41/22, Sohana Police Station, Mohali",
+          sections: "UAPA Sec 16, 18, 20, Explosive Substances Act, IPC 307, 120-B",
+          agency: "National Investigation Agency (NIA) & State Special Operation Cell (SSOC)",
+          status: "Charge-sheeted by NIA; cross-border mastermind Lakhbir Singh Landa declared designated terrorist."
+        },
+        image: "img/rpg_mohali_headquarters.jpg",
+        fallbackImage: "img/rpg_mohali_headquarters.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "Punjab Police Intelligence HQ in Mohali and recovered RPG launcher ordnance",
+        quote: "“If the highest intelligence command center of Punjab Police is not safe from rocket fire, what protection can citizens expect?”"
+      },
+      {
+        id: "vijay-singla",
+        code: "CASE-04 // CHANDIGARH",
+        tag: "CABINET 1% COMMISSION",
+        badgeColor: "amber",
+        timelineDate: "May 24, 2022",
+        timelineYear: "May 2022",
+        title: "Sitting Health Minister Dr. Vijay Singla Arrested for 1% Kickback Demand",
+        punjabi: "ਸਿਹਤ ਮੰਤਰੀ ਵਿਜੇ ਸਿੰਗਲਾ 1% ਕਮਿਸ਼ਨ ਮੰਗਣ ਦੇ ਦੋਸ਼ ਹੇਠ ਗ੍ਰਿਫ਼ਤਾਰ",
+        date: "May 24, 2022",
+        district: "Mohali & Chandigarh",
+        category: "scandals",
+        summary: "Barely two months after forming the government, AAP's flagship Health Minister Dr. Vijay Singla was arrested by the Anti-Corruption Bureau after audio recordings surfaced showing him and his nephew demanding a 1% commission on all departmental purchase tenders and ₹58 crore medicine contracts.",
+        metrics: [
+          { label: "Accused", val: "Sitting Health Minister Vijay Singla" },
+          { label: "Kickback Demand", val: "1% Commission on All Tenders" },
+          { label: "Contract Value", val: "₹58 Cr Department Procurement" },
+          { label: "Subsequent Scandals", val: "Fauja Singh Sarari Tape & OSD Raids" }
+        ],
+        legal: {
+          fir: "FIR #03/22, Vigilance Bureau Flying Squad, Mohali",
+          sections: "Prevention of Corruption Act 7, 8 & IPC 120-B",
+          agency: "Punjab Vigilance Bureau",
+          status: "Arrested in high-profile PR spectacle, later quietly granted regular bail; judicial proceedings remain stalled."
+        },
+        image: "img/vijay_singla_arrest.jpg",
+        fallbackImage: "img/vijay_singla_arrest.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "Former Health Minister Dr. Vijay Singla arrested by Punjab Police Vigilance Bureau",
+        quote: "“The promise was zero corruption in 20 days; within 60 days the Health Minister was arrested demanding 1% kickbacks on medicines.”"
       },
       {
         id: "moosewala",
-        code: "CASE-02 // JAWAHARKE",
+        code: "CASE-05 // JAWAHARKE",
         tag: "DAYLIGHT GANG AMBUSH",
         badgeColor: "crimson",
+        timelineDate: "May 29, 2022",
+        timelineYear: "May 2022",
         title: "Sidhu Moosewala Assassination in Jawaharke Village",
         punjabi: "ਸਿੱਧੂ ਮੂਸੇਵਾਲਾ ਦਾ ਦਿਨ-ਦਿਹਾੜੇ ਏਐਨ-94 ਰਾਈਫਲਾਂ ਨਾਲ ਬੇਰਹਿਮੀ ਨਾਲ ਕਤਲ",
         date: "May 29, 2022",
@@ -4613,162 +4894,25 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
           { label: "Contract Killers", val: "6 Shooters Across 2 Modules" },
           { label: "Gang Syndicate", val: "Lawrence Bishnoi / Goldy Brar Syndicate" }
         ],
+        legal: {
+          fir: "FIR #103/22, Mansa Sadar Police Station",
+          sections: "IPC 302, 307, 148, 149, 120-B, Arms Act 25/27",
+          agency: "Anti-Gangster Task Force (AGTF) & Punjab Police SIT",
+          status: "34 accused chargesheeted; masterminds Goldy Brar & Anmol Bishnoi evading extradition; father Balkaur Singh protesting justice delays."
+        },
         image: "img/moosewala_ambush_scene.jpg",
         fallbackImage: "img/moosewala_ambush_scene.jpg",
         photoSource: "The Tribune / PTI Archive",
         photoCaption: "Forensic teams and Punjab Police cordoning off Moosewala's bullet-riddled Thar in Jawaharke",
-        quote: "“The state government's premature PR boast of pruning security leaked vital operational intelligence directly to assassins.”",
-        fir: "FIR #103/22, Mansa Sadar Police Station"
-      },
-      {
-        id: "rpg-mohali",
-        code: "CASE-03 // MOHALI",
-        tag: "TERROR ATTACK ON INTEL HQ",
-        badgeColor: "red",
-        title: "Rocket-Propelled Grenade (RPG) Strike on State Intelligence HQ",
-        punjabi: "ਪੰਜਾਬ ਪੁਲਿਸ ਇੰਟੈਲੀਜੈਂਸ ਹੈੱਡਕੁਆਰਟਰ 'ਤੇ ਆਰਪੀਜੀ ਰਾਕੇਟ ਹਮਲਾ",
-        date: "May 9, 2022",
-        district: "SAS Nagar / Mohali",
-        category: "terror",
-        summary: "Assailants fired a Russian RPG-22 rocket warhead directly into the 3rd floor of the Punjab Police State Intelligence Headquarters in Sector 77, Mohali. Shattered windows and reinforced concrete penetrations exposed a catastrophic collapse of security at the nerve center of Punjab's counter-terror apparatus.",
-        metrics: [
-          { label: "Ordnance Used", val: "Russian RPG-22 Rocket Warhead" },
-          { label: "Target Struck", val: "State Intelligence HQ Command Floor" },
-          { label: "Perimeter Alert", val: "Unprecedented Warhead Strike on Police HQ" },
-          { label: "Systemic Outposts", val: "Part of 22 Police Station Explosive Attacks" }
-        ],
-        image: "img/rpg_mohali_headquarters.jpg",
-        fallbackImage: "img/rpg_mohali_headquarters.jpg",
-        photoSource: "The Tribune Archive",
-        photoCaption: "Punjab Police Intelligence HQ in Mohali and recovered RPG launcher ordnance",
-        quote: "“If the highest intelligence command center of Punjab Police is not safe from rocket fire, what protection can citizens expect?”",
-        fir: "FIR #41/22, Sohana Police Station, Mohali"
-      },
-      {
-        id: "ajnala",
-        code: "CASE-04 // AJNALA",
-        tag: "POLICE STATION SIEGE",
-        badgeColor: "amber",
-        title: "Ajnala Police Station Stormed & Capitulation Under Fire",
-        punjabi: "ਅਜਨਾਲਾ ਥਾਣੇ 'ਤੇ ਹਥਿਆਰਬੰਦ ਕਬਜ਼ਾ — ਪੁਲਿਸ ਨੇ ਦਬਾਅ ਹੇਠ ਮੁਲਜ਼ਮ ਛੱਡਿਆ",
-        date: "February 23, 2023",
-        district: "Amritsar Rural (ਅੰਮ੍ਰਿਤਸਰ)",
-        category: "scandals",
-        summary: "Hundreds of armed supporters brandishing swords, assault weapons, and lathis stormed Ajnala Police Station, broke security barricades, and clashed with police, injuring 6 cops. In an unprecedented capitulation, Punjab Police relented to the mob and discharged kidnapping accused Lovepreet Toofan within 24 hours.",
-        metrics: [
-          { label: "Police Casualties", val: "6 Police Officers Injured" },
-          { label: "Facility Breached", val: "Ajnala Main Police Station" },
-          { label: "State Capitulation", val: "Accused Released in 24 Hours Under Duress" },
-          { label: "Subsequent Action", val: "Statewide NSA Operation Following Backlash" }
-        ],
-        image: "img/ajnala_station_siege.jpg",
-        fallbackImage: "img/ajnala_station_siege.jpg",
-        photoSource: "The Tribune Archive",
-        photoCaption: "Armed crowd storming barricades outside Thana Ajnala carrying traditional weapons",
-        quote: "“The state police surrendered their own station to an armed mob, destroying public faith in rule of law.”",
-        fir: "FIR #39/23, Ajnala Police Station"
-      },
-      {
-        id: "sandeep",
-        code: "CASE-05 // JALANDHAR",
-        tag: "LIVE TOURNAMENT EXECUTION",
-        badgeColor: "crimson",
-        title: "World Kabaddi Star Sandeep Nangal Ambia Shot Dead Live on Camera",
-        punjabi: "ਕਬੱਡੀ ਸਟਾਰ ਸੰਦੀਪ ਨੰਗਲ ਅੰਬੀਆਂ ਦਾ ਟੂਰਨਾਮੈਂਟ ਦੌਰਾਨ ਦਿਨ-ਦਿਹਾੜੇ ਕਤਲ",
-        date: "March 14, 2022",
-        district: "Jalandhar (ਜਲੰਧਰ)",
-        category: "murders",
-        summary: "International kabaddi superstar Sandeep Nangal Ambia was shot dead during an ongoing match in Mallian Kalan in front of thousands of spectators and live broadcast cameras. Multiple shooters pumped 10+ bullets into him to forcibly control kabaddi federation revenues and player rosters.",
-        metrics: [
-          { label: "Witnesses", val: "Thousands of Live Tournament Spectators" },
-          { label: "Bullets Fired", val: "10+ Direct Gunshot Wounds" },
-          { label: "Motive", val: "Extortion & League Revenue Takeover" },
-          { label: "Syndicate", val: "Cross-Border Gangland Handlers" }
-        ],
-        image: "img/sandeep_nangal_ambia.jpg",
-        fallbackImage: "img/sandeep_nangal_ambia.jpg",
-        photoSource: "The Tribune Archive",
-        photoCaption: "International Kabaddi legend Sandeep Nangal Ambia slain during a live match",
-        quote: "“Sports grounds where Punjab's youth competed were turned into gang execution arenas in broad daylight.”",
-        fir: "FIR #27/22, Sadar Nakodar Police Station"
-      },
-      {
-        id: "bishnoi",
-        code: "CASE-06 // KHARAR",
-        tag: "POLICE CUSTODY TV STUDIO",
-        badgeColor: "yellow",
-        title: "Lawrence Bishnoi Jailed Gangster Prime-Time TV Studio Interview",
-        punjabi: "ਲਾਰੈਂਸ ਬਿਸ਼ਨੋਈ ਦਾ ਪੁਲਿਸ ਹਿਰਾਸਤ 'ਚੋਂ ਟੀਵੀ ਇੰਟਰਵਿਊ — ਹਾਈਕੋਰਟ ਦੀ ਸਖ਼ਤ ਫਟਕਾਰ",
-        date: "March 2023",
-        district: "CIA Kharar / High Court Probe",
-        category: "scandals",
-        summary: "Notorious gangster Lawrence Bishnoi broadcast an exclusive hour-long television interview on ABP News while in custody of Punjab Police. The High Court initiated suo motu proceedings, finding that police premises (CIA Kharar) had essentially been turned into a high-tech studio with Wi-Fi to glorify extortion rackets.",
-        metrics: [
-          { label: "Broadcast Reach", val: "National Prime-Time Television" },
-          { label: "Location Traced", val: "Punjab Police CIA Staff Kharar Office" },
-          { label: "High Court Finding", val: "Active Police Facilitation & Wi-Fi" },
-          { label: "Judicial Action", val: "High Court Ordered DGP SIT Probe" }
-        ],
-        image: "img/lawrence_bishnoi_interview.jpg",
-        fallbackImage: "img/lawrence_bishnoi_interview.jpg",
-        photoSource: "The Tribune Archive",
-        photoCaption: "Gangster Lawrence Bishnoi in custody of Punjab Police during court proceedings",
-        quote: "“Police premises were facilitated as a studio for a hardened gangster to conduct extortion and issue death threats.” — High Court Bench",
-        fir: "High Court Suo Motu WP(C) 7622/2023 & SIT FIR #01/24"
-      },
-      {
-        id: "goindwal",
-        code: "CASE-07 // TARN TARAN",
-        tag: "PRISON GANG BLOODBATH",
-        badgeColor: "crimson",
-        title: "Goindwal Sahib Central Jail Gang Slaughter & Celebratory Reels",
-        punjabi: "ਗੋਇੰਦਵਾਲ ਸਾਹਿਬ ਕੇਂਦਰੀ ਜੇਲ੍ਹ ਵਿੱਚ ਖ਼ੂਨੀ ਗੈਂਗਵਾਰ — ਮੂਸੇਵਾਲਾ ਦੇ ਦੋਸ਼ੀਆਂ ਦਾ ਕਤਲ",
-        date: "February 26, 2023",
-        district: "Tarn Taran (ਤਰਨ ਤਾਰਨ)",
-        category: "scandals",
-        summary: "Inside high-security Goindwal Sahib Central Jail, Moosewala murder accused Mandeep Singh Toofan and Manmohan Singh Mohna were brutally slaughtered by rival Bishnoi gang inmates with iron bars. Inmates recorded and uploaded celebratory video reels from inside the jail cells, exposing systemic contraband smuggling.",
-        metrics: [
-          { label: "Fatalities Inside Jail", val: "2 Gangsters Slaughtered" },
-          { label: "Cell-Block Media", val: "Viral Video Uploads from Inmates" },
-          { label: "Prison Security", val: "7 Jail Officials Suspended/Arrested" },
-          { label: "Inquiry", val: "Magisterial Judicial Probe" }
-        ],
-        image: "img/goindwal_jail_clash.jpg",
-        fallbackImage: "img/goindwal_jail_clash.jpg",
-        photoSource: "The Tribune Archive",
-        photoCaption: "High-security cells of Goindwal Sahib Central Jail where rival gang warfare erupted",
-        quote: "“High-security prisons in Punjab became execution arenas where inmates freely wield iron bars and upload celebration reels.”",
-        fir: "FIR #21/23, Goindwal Sahib Police Station"
-      },
-      {
-        id: "sirhali",
-        code: "CASE-08 // TARN TARAN",
-        tag: "SECOND RPG ROCKET ATTACK",
-        badgeColor: "red",
-        title: "Second Rocket Strike: Sarhali Police Station RPG Attack",
-        punjabi: "ਸਰਹਾਲੀ ਥਾਣੇ 'ਤੇ ਦੂਜਾ ਆਰਪੀਜੀ ਰਾਕੇਟ ਹਮਲਾ — ਸਰਹੱਦੀ ਸੁਰੱਖਿਆ ਤਹਿਸ-ਨਹਿਸ",
-        date: "December 9, 2022",
-        district: "Tarn Taran (ਤਰਨ ਤਾਰਨ)",
-        category: "terror",
-        summary: "Within 7 months of the Mohali strike, another RPG was fired into the Saanjh Kendra of Sarhali Police Station on the Amritsar-Bathinda highway. The rocket damaged the iron gate and pillar, proving terror elements possessed military-grade rockets inside Punjab with zero detection.",
-        metrics: [
-          { label: "Target", val: "Sarhali Police Station Saanjh Kendra" },
-          { label: "Ordnance", val: "Military RPG Warhead" },
-          { label: "Interval", val: "7 Months After Mohali HQ Strike" },
-          { label: "Perimeter", val: "Border District Vulnerability" }
-        ],
-        image: "img/sarhali_rpg_attack.jpg",
-        fallbackImage: "img/sarhali_rpg_attack.jpg",
-        photoSource: "The Tribune Archive",
-        photoCaption: "Sarhali Saanjh Kendra police facility in Tarn Taran inspected following RPG hit",
-        quote: "“A second military rocket strike on a police station exposed total paralysis of border intelligence surveillance.”",
-        fir: "FIR #187/22, Sirhali Police Station"
+        quote: "“The state government's premature PR boast of pruning security leaked vital operational intelligence directly to assassins.”"
       },
       {
         id: "sudhir-suri",
-        code: "CASE-09 // AMRITSAR",
+        code: "CASE-06 // AMRITSAR",
         tag: "MURDER IN POLICE ESCORT",
         badgeColor: "amber",
+        timelineDate: "November 4, 2022",
+        timelineYear: "Nov 2022",
         title: "Sudhir Suri Assassinated Point-Blank Under 12-Cop Security Guard",
         punjabi: "ਅੰਮ੍ਰਿਤਸਰ ਵਿੱਚ 12 ਪੁਲਿਸ ਗੰਨਮੈਨਾਂ ਦੀ ਮੌਜੂਦਗੀ 'ਚ ਸੁਧੀਰ ਸੂਰੀ ਦਾ ਕਤਲ",
         date: "November 4, 2022",
@@ -4778,117 +4922,28 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         metrics: [
           { label: "Security Detail", val: "12 Armed Punjab Police Guards" },
           { label: "Firing Range", val: "Point-Blank (Under 3 Feet)" },
-          { label: "Location", val: "Majitha Road Commercial Area" },
-          { label: "Public Panic", val: "Curfew & Mass Market Shutdown" }
+          { label: "Location", val: "Gopal Mandir Majitha Road, Amritsar" },
+          { label: "Security Lapses", val: "Zero Deterrence by Protection Escort" }
         ],
+        legal: {
+          fir: "FIR #150/22, Sadar Police Station, Amritsar Urban",
+          sections: "IPC 302, 120-B, Arms Act 25/27",
+          agency: "National Investigation Agency (NIA) Special Court",
+          status: "Shooter Sandeep Singh alias Sunny arrested on spot; NIA chargesheeted accused under anti-terror provisions."
+        },
         image: "img/sudhir_suri_murder.jpg",
         fallbackImage: "img/sudhir_suri_murder.jpg",
-        photoSource: "The Hindu / PTI Archive",
-        photoCaption: "Sudhir Suri escorted by armed Punjab Police personnel in Amritsar prior to murder",
-        quote: "“Twelve armed policemen stood watching while an assassin stepped out of a car and fired five rounds into the protectee.”",
-        fir: "FIR #156/22, Sadar Amritsar Police Station"
-      },
-      {
-        id: "sangrur-hooch",
-        code: "CASE-10 // SANGRUR",
-        tag: "POISON LIQUOR MASSACRE",
-        badgeColor: "red",
-        title: "21+ Dead in Spurious Methanol Liquor Tragedy in CM's Home District",
-        punjabi: "ਮੁੱਖ ਮੰਤਰੀ ਦੇ ਗ੍ਰਹਿ ਜ਼ਿਲ੍ਹੇ ਸੰਗਰੂਰ ਵਿੱਚ ਜ਼ਹਿਰੀਲੀ ਸ਼ਰਾਬ ਨਾਲ 21 ਮੌਤਾਂ",
-        date: "March 2024",
-        district: "Sangrur (ਸੰਗਰੂਰ)",
-        category: "drugs",
-        summary: "Over 21 daily-wage earners died and dozens suffered permanent blindness after drinking toxic spurious liquor brewed with industrial methanol in Gujran and Dirba villages in CM Bhagwant Mann's home district of Sangrur, while official excise oversight completely failed.",
-        metrics: [
-          { label: "Death Toll", val: "21+ Confirmed Fatalities" },
-          { label: "Location", val: "CM's Home Constituency Sangrur" },
-          { label: "Toxin Used", val: "Industrial Chemical Methanol" },
-          { label: "Excise Failure", val: "Unregulated Spurious Distillation" }
-        ],
-        image: "img/sangrur_hooch_tragedy.jpg",
-        fallbackImage: "img/sangrur_hooch_tragedy.jpg",
         photoSource: "The Tribune Archive",
-        photoCaption: "Grieving villagers and women in Gujran block road demanding justice for 21 hooch deaths",
-        quote: "“The poorest laborers were poisoned in the Chief Minister's own home district while government leaders were campaigning in other states.”",
-        fir: "FIR #34/24, Dirba Police Station, Sangrur"
-      },
-      {
-        id: "nakodar-abohar",
-        code: "CASE-11 // NAKODAR & ABOHAR",
-        tag: "TRADER EXTORTION SLAYINGS",
-        badgeColor: "yellow",
-        title: "Nakodar & Abohar Business Extortion Murders: Capital Flight of Traders",
-        punjabi: "ਨਕੋਦਰ ਤੇ ਅਬੋਹਰ ਵਿੱਚ ਵਪਾਰੀਆਂ ਦੇ ਕਤਲ — ਰੰਗਦਾਰੀ ਨਾ ਦੇਣ 'ਤੇ ਦਹਿਸ਼ਤ",
-        date: "December 2022 / 2023",
-        district: "Jalandhar & Fazilka",
-        category: "murders",
-        summary: "Cloth merchant Bhupinder Singh Chawla and his police gunman Constable Mandeep Singh were gunned down in Nakodar after refusing to pay a ₹25 lakh extortion ransom. Merchant Sanjay Verma was murdered in Abohar over protection money, prompting 40+ prominent business houses to announce capital flight out of Punjab.",
-        metrics: [
-          { label: "Ransom Demanded", val: "₹25 Lakh Protection Money" },
-          { label: "Victims", val: "Merchant & Police Gunman Killed" },
-          { label: "Business Impact", val: "Capital Flight & Market Closure" },
-          { label: "Threat Registrations", val: "560+ Commercial Extortion FIRs" }
-        ],
-        image: "img/nakodar_merchant_murder.jpg",
-        fallbackImage: "img/nakodar_merchant_murder.jpg",
-        photoSource: "The Tribune Archive",
-        photoCaption: "Cloth merchant Bhupinder Singh (Timmy Chawla) and Constable Mandeep Singh martyred on duty",
-        quote: "“Traders have received ransom demands from gangsters sitting in jails; those who refuse are murdered along with their police guards.” — Punjab Beopar Mandal",
-        fir: "FIR #109/22, City Nakodar Police Station"
-      },
-      {
-        id: "village-sale",
-        code: "CASE-12 // BATHINDA & KOTKAPURA",
-        tag: "CIVIC CHITTA UPRISING",
-        badgeColor: "crimson",
-        title: "Kotkapura & Bhai Bhakhtaur: 'Our Houses are for Sale' (ਇਹ ਘਰ ਵਿਕਾਊ ਹੈ)",
-        punjabi: "'ਇਹ ਘਰ ਵਿਕਾਊ ਹੈ' — ਨਸ਼ਿਆਂ ਅਤੇ ਪੁਲਿਸ ਮਿਲੀਭੁਗਤ ਖ਼ਿਲਾਫ਼ ਲੋਕਾਂ ਦਾ ਦਰਦ",
-        date: "2023 – 2024",
-        district: "Kotkapura & Bathinda",
-        category: "drugs",
-        summary: "Desperate residents in Ram Basti (Kotkapura) and Bhai Bhakhtaur (Bathinda) put up yellow posters declaring 'ਇਹ ਘਰ ਵਿਕਾਊ ਹੈ' ('This House is for Sale') after drug peddlers operated openly on residential streets and police took zero action against cartels, forcing citizens to sell their homes at half price.",
-        metrics: [
-          { label: "Civic Action", val: "'House For Sale' Posters on Doors" },
-          { label: "Malwa Epidemic", val: "Open Chitta Peddling in Mohallas" },
-          { label: "Police Collusion", val: "Peddlers Protected, Informants Harassed" },
-          { label: "Official Admission", val: "Speaker Kultar Sandhwan Acknowledged Failure" }
-        ],
-        image: "img/village_for_sale.jpg",
-        fallbackImage: "img/village_for_sale.jpg",
-        photoSource: "The Tribune Archive",
-        photoCaption: "Kotkapura residents standing outside homes with 'ਇਹ ਘਰ ਵਿਕਾਊ ਹੈ' posters against drug trade",
-        quote: "“When the state will not protect our sons from Chitta, we have no choice but to put our homes on sale and leave Punjab.”",
-        fir: "Public Grievance Memorandum to SSP Faridkot & Bathinda"
-      },
-      {
-        id: "vijay-singla",
-        code: "CASE-13 // CHANDIGARH",
-        tag: "CABINET 1% COMMISSION",
-        badgeColor: "yellow",
-        title: "Sitting Health Minister Dr. Vijay Singla Arrested for 1% Kickback Demand",
-        punjabi: "ਸਿਹਤ ਮੰਤਰੀ ਵਿਜੇ ਸਿੰਗਲਾ 1% ਕਮਿਸ਼ਨ ਮੰਗਣ ਦੇ ਦੋਸ਼ ਹੇਠ ਗ੍ਰਿਫ਼ਤਾਰ",
-        date: "May 24, 2022",
-        district: "Mohali & Chandigarh",
-        category: "scandals",
-        summary: "Barely two months after forming the government, AAP's flagship Health Minister Dr. Vijay Singla was arrested by the Anti-Corruption Bureau after audio recordings surfaced showing him and his nephew demanding a 1% commission on all departmental purchase tenders and ₹58 crore medicine contracts.",
-        metrics: [
-          { label: "Accused", val: "Sitting Health Minister Vijay Singla" },
-          { label: "Kickback Demand", val: "1% Commission on All Tenders" },
-          { label: "Contract Value", val: "₹58 Cr Department Procurement" },
-          { label: "Subsequent Scandals", val: "Fauja Singh Sarari Tape & OSD CBI Raids" }
-        ],
-        image: "img/vijay_singla_arrest.jpg",
-        fallbackImage: "img/vijay_singla_arrest.jpg",
-        photoSource: "The Tribune Archive",
-        photoCaption: "Former Health Minister Dr. Vijay Singla arrested by Punjab Police Vigilance Bureau",
-        quote: "“The promise was zero corruption in 20 days; within 60 days the Health Minister was arrested demanding 1% kickbacks on medicines.”",
-        fir: "FIR #03/22, Vigilance Bureau Flying Squad, Mohali"
+        photoCaption: "Police personnel cordoning off Majitha Road crime scene following Sudhir Suri assassination",
+        quote: "“Twelve armed policemen could not stop a lone gunman from walking up and pumping bullets into a protected leader.”"
       },
       {
         id: "pardeep-singh",
-        code: "CASE-14 // KOTKAPURA",
+        code: "CASE-07 // KOTKAPURA",
         tag: "MURDER UNDER POLICE GUARD",
         badgeColor: "amber",
+        timelineDate: "November 10, 2022",
+        timelineYear: "Nov 2022",
         title: "Sacrilege Accused Pardeep Singh Executed by 6 Shooters Under Police Guard",
         punjabi: "ਕੋਟਕਪੂਰਾ ਵਿੱਚ ਪੁਲਿਸ ਗੰਨਮੈਨ ਦੀ ਮੌਜੂਦਗੀ 'ਚ ਡੇਰਾ ਪ੍ਰੇਮੀ ਪ੍ਰਦੀਪ ਸਿੰਘ ਦਾ ਕਤਲ",
         date: "November 10, 2022",
@@ -4901,22 +4956,253 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
           { label: "Police Guard", val: "Security Gunman Shot & Injured" },
           { label: "Sensitive Case", val: "Sacrilege Accused Under Trial" }
         ],
+        legal: {
+          fir: "FIR #203/22, City Kotkapura Police Station, Faridkot",
+          sections: "IPC 302, 307, 148, 149, Arms Act 25/27",
+          agency: "Faridkot District SIT & Delhi Police Special Cell",
+          status: "Shooters linked to Goldy Brar syndicate chargesheeted; repeated failure of state witness security."
+        },
         image: "img/pardeep_singh_kotkapura.jpg",
         fallbackImage: "img/pardeep_singh_kotkapura.jpg",
         photoSource: "The Tribune Archive",
         photoCaption: "Pardeep Singh (Raju Dhodi) shot dead inside his Kotkapura dairy despite police protection",
-        quote: "“Broad daylight market executions despite dedicated state security guards exposed the total collapse of deterrence.”",
-        fir: "FIR #203/22, City Kotkapura Police Station"
+        quote: "“Broad daylight market executions despite dedicated state security guards exposed the total collapse of deterrence.”"
+      },
+      {
+        id: "sirhali",
+        code: "CASE-08 // TARN TARAN",
+        tag: "SECOND RPG ROCKET ATTACK",
+        badgeColor: "red",
+        timelineDate: "December 9, 2022",
+        timelineYear: "Dec 2022",
+        title: "Second Rocket Strike: Sarhali Police Station RPG Attack",
+        punjabi: "ਸਰਹਾਲੀ ਥਾਣੇ 'ਤੇ ਦੂਜਾ ਆਰਪੀਜੀ ਰਾਕੇਟ ਹਮਲਾ — ਸਰਹੱਦੀ ਸੁਰੱਖਿਆ ਤਹਿਸ-ਨਹਿਸ",
+        date: "December 9, 2022",
+        district: "Tarn Taran (ਤਰਨ ਤਾਰਨ)",
+        category: "terror",
+        summary: "Within 7 months of the Mohali strike, another RPG was fired into the Saanjh Kendra of Sarhali Police Station on the Amritsar-Bathinda highway. The rocket damaged the iron gate and pillar, proving terror elements possessed military-grade rockets inside Punjab with zero detection.",
+        metrics: [
+          { label: "Target", val: "Sarhali Police Station Saanjh Kendra" },
+          { label: "Ordnance", val: "Military RPG Warhead" },
+          { label: "Interval", val: "7 Months After Mohali HQ Strike" },
+          { label: "Perimeter", val: "Border District Vulnerability" }
+        ],
+        legal: {
+          fir: "FIR #187/22, Sirhali Police Station, Tarn Taran",
+          sections: "UAPA, Explosive Substances Act 3/4, IPC 307, 120-B",
+          agency: "National Investigation Agency (NIA) & Punjab AGTF",
+          status: "Juvenile modules apprehended; cross-border drone supply chain identified; terror operatives operating unimpeded."
+        },
+        image: "img/sarhali_rpg_attack.jpg",
+        fallbackImage: "img/sarhali_rpg_attack.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "Sarhali Saanjh Kendra police facility in Tarn Taran inspected following RPG hit",
+        quote: "“A second military rocket strike on a police station exposed total paralysis of border intelligence surveillance.”"
+      },
+      {
+        id: "nakodar-abohar",
+        code: "CASE-09 // NAKODAR & ABOHAR",
+        tag: "TRADER EXTORTION SLAYINGS",
+        badgeColor: "amber",
+        timelineDate: "December 2022 / 2023",
+        timelineYear: "Dec 2022",
+        title: "Nakodar & Abohar Business Extortion Murders: Capital Flight of Traders",
+        punjabi: "ਨਕੋਦਰ ਤੇ ਅਬੋਹਰ ਵਿੱਚ ਵਪਾਰੀਆਂ ਦੇ ਕਤਲ — ਰੰਗਦਾਰੀ ਨਾ ਦੇਣ 'ਤੇ ਦਹਿਸ਼ਤ",
+        date: "December 2022 / 2023",
+        district: "Jalandhar & Fazilka",
+        category: "murders",
+        summary: "Cloth merchant Bhupinder Singh Chawla and his police gunman Constable Mandeep Singh were gunned down in Nakodar after refusing to pay a ₹25 lakh extortion ransom. Merchant Sanjay Verma was murdered in Abohar over protection money, prompting 40+ prominent business houses to announce capital flight out of Punjab.",
+        metrics: [
+          { label: "Ransom Demanded", val: "₹25 Lakh Protection Money" },
+          { label: "Victims", val: "Merchant & Police Gunman Killed" },
+          { label: "Business Impact", val: "Capital Flight & Market Closure" },
+          { label: "Threat Registrations", val: "560+ Commercial Extortion FIRs" }
+        ],
+        legal: {
+          fir: "FIR #109/22, City Nakodar Police Station & Abohar City FIR",
+          sections: "IPC 302, 386, 387, 120-B, Arms Act",
+          agency: "Punjab AGTF & Counter-Intelligence Wing",
+          status: "Gangster extortion syndicates operating from within jails; traders union announced mass relocation of capital."
+        },
+        image: "img/nakodar_merchant_murder.jpg",
+        fallbackImage: "img/nakodar_merchant_murder.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "Cloth merchant Bhupinder Singh (Timmy Chawla) and Constable Mandeep Singh martyred on duty",
+        quote: "“Traders have received ransom demands from gangsters sitting in jails; those who refuse are murdered along with their police guards.” — Punjab Beopar Mandal"
+      },
+      {
+        id: "ajnala",
+        code: "CASE-10 // AJNALA",
+        tag: "POLICE STATION SIEGE",
+        badgeColor: "amber",
+        timelineDate: "February 23, 2023",
+        timelineYear: "Feb 2023",
+        title: "Ajnala Police Station Stormed & Capitulation Under Fire",
+        punjabi: "ਅਜਨਾਲਾ ਥਾਣੇ 'ਤੇ ਹਥਿਆਰਬੰਦ ਕਬਜ਼ਾ — ਪੁਲਿਸ ਨੇ ਦਬਾਅ ਹੇਠ ਮੁਲਜ਼ਮ ਛੱਡਿਆ",
+        date: "February 23, 2023",
+        district: "Amritsar Rural (ਅੰਮ੍ਰਿਤਸਰ)",
+        category: "scandals",
+        summary: "Hundreds of armed supporters brandishing swords, assault weapons, and lathis stormed Ajnala Police Station, broke security barricades, and clashed with police, injuring 6 cops. In an unprecedented capitulation, Punjab Police relented to the mob and discharged kidnapping accused Lovepreet Toofan within 24 hours.",
+        metrics: [
+          { label: "Police Casualties", val: "6 Police Officers Injured" },
+          { label: "Facility Breached", val: "Ajnala Main Police Station" },
+          { label: "State Capitulation", val: "Accused Released in 24 Hours Under Duress" },
+          { label: "Subsequent Action", val: "Statewide NSA Operation Following Backlash" }
+        ],
+        legal: {
+          fir: "FIR #39/23, Ajnala Police Station",
+          sections: "IPC 307, 353, 186, 332, 148, 149, Arms Act",
+          agency: "Amritsar Rural Police & Central Intelligence",
+          status: "Initial capitulation where accused was discharged by police; subsequent central pressure led to NSA invocation."
+        },
+        image: "img/ajnala_station_siege.jpg",
+        fallbackImage: "img/ajnala_station_siege.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "Armed crowd storming barricades outside Thana Ajnala carrying traditional weapons",
+        quote: "“The state police surrendered their own station to an armed mob, destroying public faith in rule of law.”"
+      },
+      {
+        id: "goindwal",
+        code: "CASE-11 // TARN TARAN",
+        tag: "PRISON GANG BLOODBATH",
+        badgeColor: "crimson",
+        timelineDate: "February 26, 2023",
+        timelineYear: "Feb 2023",
+        title: "Goindwal Sahib Central Jail Gang Slaughter & Celebratory Reels",
+        punjabi: "ਗੋਇੰਦਵਾਲ ਸਾਹਿਬ ਕੇਂਦਰੀ ਜੇਲ੍ਹ ਵਿੱਚ ਖ਼ੂਨੀ ਗੈਂਗਵਾਰ — ਮੂਸੇਵਾਲਾ ਦੇ ਦੋਸ਼ੀਆਂ ਦਾ ਕਤਲ",
+        date: "February 26, 2023",
+        district: "Tarn Taran (ਤਰਨ ਤਾਰਨ)",
+        category: "scandals",
+        summary: "Inside high-security Goindwal Sahib Central Jail, Moosewala murder accused Mandeep Singh Toofan and Manmohan Singh Mohna were brutally slaughtered by rival Bishnoi gang inmates with iron bars. Inmates recorded and uploaded celebratory video reels from inside the jail cells, exposing systemic contraband smuggling.",
+        metrics: [
+          { label: "Fatalities Inside Jail", val: "2 Gangsters Slaughtered" },
+          { label: "Cell-Block Media", val: "Viral Video Uploads from Inmates" },
+          { label: "Prison Security", val: "7 Jail Officials Suspended/Arrested" },
+          { label: "Inquiry", val: "Magisterial Judicial Probe" }
+        ],
+        legal: {
+          fir: "FIR #21/23, Goindwal Sahib Police Station",
+          sections: "IPC 302, 307, 148, 149, 120-B, Prisons Act 52-A",
+          agency: "Judicial Magisterial Inquiry & Tarn Taran Police SIT",
+          status: "7 prison staff arrested for complicity and smuggling smartphones; trial ongoing under strict camera surveillance."
+        },
+        image: "img/goindwal_jail_clash.jpg",
+        fallbackImage: "img/goindwal_jail_clash.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "High-security cells of Goindwal Sahib Central Jail where rival gang warfare erupted",
+        quote: "“High-security prisons in Punjab became execution arenas where inmates freely wield iron bars and upload celebration reels.”"
+      },
+      {
+        id: "bishnoi",
+        code: "CASE-12 // KHARAR",
+        tag: "POLICE CUSTODY TV STUDIO",
+        badgeColor: "yellow",
+        timelineDate: "March 2023",
+        timelineYear: "Mar 2023",
+        title: "Lawrence Bishnoi Jailed Gangster Prime-Time TV Studio Interview",
+        punjabi: "ਲਾਰੈਂਸ ਬਿਸ਼ਨੋਈ ਦਾ ਪੁਲਿਸ ਹਿਰਾਸਤ 'ਚੋਂ ਟੀਵੀ ਇੰਟਰਵਿਊ — ਹਾਈਕੋਰਟ ਦੀ ਸਖ਼ਤ ਫਟਕਾਰ",
+        date: "March 2023",
+        district: "CIA Kharar / High Court Probe",
+        category: "scandals",
+        summary: "Notorious gangster Lawrence Bishnoi broadcast an exclusive hour-long television interview on ABP News while in custody of Punjab Police. The High Court initiated suo motu proceedings, finding that police premises (CIA Kharar) had essentially been turned into a high-tech studio with Wi-Fi to glorify extortion rackets.",
+        metrics: [
+          { label: "Broadcast Reach", val: "National Prime-Time Television" },
+          { label: "Location Traced", val: "Punjab Police CIA Staff Kharar Office" },
+          { label: "High Court Finding", val: "Active Police Facilitation & Wi-Fi" },
+          { label: "Judicial Action", val: "High Court Ordered DGP SIT Probe" }
+        ],
+        legal: {
+          fir: "High Court Suo Motu WP(C) 7622/2023 & SIT FIR #01/24 (State Crime Branch)",
+          sections: "Prisons Act, IPC 384, 120-B, Prevention of Corruption Act",
+          agency: "High Court Monitored SIT headed by ADGP S.P.S. Parmar",
+          status: "High Court directed criminal proceedings against responsible supervisory police officers for institutional collusion."
+        },
+        image: "img/lawrence_bishnoi_interview.jpg",
+        fallbackImage: "img/lawrence_bishnoi_interview.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "Gangster Lawrence Bishnoi in custody of Punjab Police during court proceedings",
+        quote: "“Police premises were facilitated as a studio for a hardened gangster to conduct extortion and issue death threats.” — High Court Bench"
+      },
+      {
+        id: "sangrur-hooch",
+        code: "CASE-13 // SANGRUR",
+        tag: "21 DEAD IN CM HOME TURF",
+        badgeColor: "cyan",
+        timelineDate: "March 2024",
+        timelineYear: "Mar 2024",
+        title: "Sangrur Toxic Hooch Tragedy: 21+ Dead in CM's Home District",
+        punjabi: "ਮੁੱਖ ਮੰਤਰੀ ਦੇ ਗ੍ਰਹਿ ਜ਼ਿਲ੍ਹੇ ਸੰਗਰੂਰ ਵਿੱਚ ਜ਼ਹਿਰੀਲੀ ਸ਼ਰਾਬ ਨਾਲ 21 ਮੌਤਾਂ",
+        date: "March 2024",
+        district: "Sangrur (ਸੰਗਰੂਰ)",
+        category: "drugs",
+        summary: "Over 21 daily-wage earners died and dozens suffered permanent blindness after drinking toxic spurious liquor brewed with industrial methanol in Gujran and Dirba villages in CM Bhagwant Mann's home district of Sangrur, while official excise oversight completely failed.",
+        metrics: [
+          { label: "Death Toll", val: "21+ Confirmed Fatalities" },
+          { label: "Location", val: "CM's Home Constituency Sangrur" },
+          { label: "Toxin Used", val: "Industrial Chemical Methanol" },
+          { label: "Excise Failure", val: "Unregulated Spurious Distillation" }
+        ],
+        legal: {
+          fir: "FIR #34/24, Dirba Police Station, Sangrur",
+          sections: "IPC 302, 307, 120-B, Punjab Excise Act 61/1/14",
+          agency: "Punjab Police Special SIT headed by ADGP Law & Order",
+          status: "Local bootleggers arrested; families demand independent judicial probe into excise department patronage."
+        },
+        image: "img/sangrur_hooch_tragedy.jpg",
+        fallbackImage: "img/sangrur_hooch_tragedy.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "Grieving villagers and women in Gujran block road demanding justice for 21 hooch deaths",
+        quote: "“The poorest laborers were poisoned in the Chief Minister's own home district while government leaders were campaigning in other states.”"
+      },
+      {
+        id: "village-sale",
+        code: "CASE-14 // BATHINDA & KOTKAPURA",
+        tag: "CIVIC CHITTA UPRISING",
+        badgeColor: "crimson",
+        timelineDate: "2023 – 2024",
+        timelineYear: "2024",
+        title: "Kotkapura & Bhai Bhakhtaur: 'Our Houses are for Sale' (ਇਹ ਘਰ ਵਿਕਾਊ ਹੈ)",
+        punjabi: "'ਇਹ ਘਰ ਵਿਕਾਊ ਹੈ' — ਨਸ਼ਿਆਂ ਅਤੇ ਪੁਲਿਸ ਮਿਲੀਭੁਗਤ ਖ਼ਿਲਾਫ਼ ਲੋਕਾਂ ਦਾ ਦਰਦ",
+        date: "2023 – 2024",
+        district: "Kotkapura & Bathinda",
+        category: "drugs",
+        summary: "Desperate residents in Ram Basti (Kotkapura) and Bhai Bhakhtaur (Bathinda) put up yellow posters declaring 'ਇਹ ਘਰ ਵਿਕਾਊ ਹੈ' ('This House is for Sale') after drug peddlers operated openly on residential streets and police took zero action against cartels, forcing citizens to sell their homes at half price.",
+        metrics: [
+          { label: "Civic Action", val: "'House For Sale' Posters on Doors" },
+          { label: "Malwa Epidemic", val: "Open Chitta Peddling in Mohallas" },
+          { label: "Police Collusion", val: "Peddlers Protected, Informants Harassed" },
+          { label: "Official Admission", val: "Speaker Kultar Sandhwan Acknowledged Failure" }
+        ],
+        legal: {
+          fir: "Public Grievance Memorandums / Kotkapura City & Bathinda Police Records",
+          sections: "NDPS Act 18, 21, 29 & Public Safety Protocols",
+          agency: "Faridkot & Bathinda District Vigilance Teams",
+          status: "Assembly Speaker Kultar Singh Sandhwan publicly admitted government failure to eradicate Chitta in his constituency."
+        },
+        image: "img/village_for_sale.jpg",
+        fallbackImage: "img/village_for_sale.jpg",
+        photoSource: "The Tribune Archive",
+        photoCaption: "Kotkapura residents standing outside homes with 'ਇਹ ਘਰ ਵਿਕਾਊ ਹੈ' posters against drug trade",
+        quote: "“When the state will not protect our sons from Chitta, we have no choice but to put our homes on sale and leave Punjab.”"
       }
     ];
 
     // =======================================================
-    // SINGLE-CASE PROMINENT SLIDESHOW CONTROLLER
+    // SINGLE-CASE PROMINENT SLIDESHOW & AUTO-BRIEFING CONTROLLER
     // =======================================================
     let currentSensationalCategory = 'all';
     let currentSensationalSearch = '';
     let activeCaseIndex = 0;
     let activeFilteredCases = [...SENSATIONAL_CASES_DATA];
+    let activeCaseSubTab = 'narrative'; // 'narrative' | 'metrics' | 'legal'
+
+    // Auto-Briefing State
+    let isAutoBriefing = false;
+    let briefingProgress = 0;
+    let briefingTimer = null;
+    let briefingIsPaused = false;
+    const BRIEFING_DURATION_MS = 6500;
+    const BRIEFING_TICK_MS = 50;
 
     function getFilteredSensationalCases() {
       return SENSATIONAL_CASES_DATA.filter(item => {
@@ -4932,16 +5218,145 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       });
     }
 
+    // Acoustic Shutter / Slide Advance Sound
+    function playCaseSwitchSound() {
+      if (!soundEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const t = audioCtx.currentTime;
+        
+        // Pulse 1: Mechanical shutter body
+        const osc1 = audioCtx.createOscillator();
+        const gain1 = audioCtx.createGain();
+        osc1.type = 'triangle';
+        osc1.frequency.setValueAtTime(320, t);
+        osc1.frequency.exponentialRampToValueAtTime(80, t + 0.04);
+        gain1.gain.setValueAtTime(0.08, t);
+        gain1.gain.linearRampToValueAtTime(0.001, t + 0.04);
+        osc1.connect(gain1);
+        gain1.connect(audioCtx.destination);
+        osc1.start(t);
+        osc1.stop(t + 0.04);
+
+        // Pulse 2: Metallic optical snap
+        const osc2 = audioCtx.createOscillator();
+        const gain2 = audioCtx.createGain();
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(850, t + 0.03);
+        osc2.frequency.exponentialRampToValueAtTime(240, t + 0.08);
+        gain2.gain.setValueAtTime(0.06, t + 0.03);
+        gain2.gain.linearRampToValueAtTime(0.001, t + 0.08);
+        osc2.connect(gain2);
+        gain2.connect(audioCtx.destination);
+        osc2.start(t + 0.03);
+        osc2.stop(t + 0.08);
+      } catch (e) {}
+    }
+
+    function toggleAutoBriefing() {
+      isAutoBriefing = !isAutoBriefing;
+      const btn = document.getElementById('autoBriefingBtn');
+      const dot = document.getElementById('briefingPulseDot');
+      const icon = document.getElementById('briefingBtnIcon');
+      const text = document.getElementById('briefingBtnText');
+      const barContainer = document.getElementById('briefingProgressContainer');
+
+      if (isAutoBriefing) {
+        if (btn) btn.className = 'px-4 py-2.5 rounded-xl bg-crimson text-white font-mono text-xs font-bold transition flex items-center justify-center gap-2.5 shadow-xl shadow-crimson/30 active:scale-95 group';
+        if (dot) dot.style.display = 'inline-block';
+        if (icon) { icon.setAttribute('data-lucide', 'pause'); }
+        if (text) text.innerText = 'Pause Briefing';
+        if (barContainer) barContainer.style.display = 'block';
+        startBriefingTimer();
+      } else {
+        if (btn) btn.className = 'px-4 py-2.5 rounded-xl bg-charcoal hover:bg-slateDark border border-panelBorder hover:border-crimson text-slate-200 hover:text-white font-mono text-xs font-bold transition flex items-center justify-center gap-2.5 shadow-lg active:scale-95 group';
+        if (dot) dot.style.display = 'none';
+        if (icon) { icon.setAttribute('data-lucide', 'play'); }
+        if (text) text.innerText = 'Play Auto-Briefing';
+        if (barContainer) barContainer.style.display = 'none';
+        stopBriefingTimer();
+      }
+      lucide.createIcons();
+      playClickSound();
+    }
+
+    function startBriefingTimer() {
+      stopBriefingTimer();
+      briefingProgress = 0;
+      briefingTimer = setInterval(() => {
+        if (briefingIsPaused) return;
+        briefingProgress += (BRIEFING_TICK_MS / BRIEFING_DURATION_MS) * 100;
+        const bar = document.getElementById('briefingProgressBar');
+        if (bar) bar.style.width = `${Math.min(100, briefingProgress)}%`;
+
+        if (briefingProgress >= 100) {
+          briefingProgress = 0;
+          navigateSensationalCase(1, false);
+        }
+      }, BRIEFING_TICK_MS);
+    }
+
+    function stopBriefingTimer() {
+      if (briefingTimer) {
+        clearInterval(briefingTimer);
+        briefingTimer = null;
+      }
+      briefingProgress = 0;
+      const bar = document.getElementById('briefingProgressBar');
+      if (bar) bar.style.width = '0%';
+    }
+
+    function pauseAutoBriefing() {
+      if (isAutoBriefing) {
+        briefingIsPaused = true;
+      }
+    }
+
+    function resumeAutoBriefing() {
+      if (isAutoBriefing) {
+        briefingIsPaused = false;
+      }
+    }
+
+    function setCaseSubTab(tab) {
+      activeCaseSubTab = tab;
+      const tabNarrative = document.getElementById('caseTabBtn-narrative');
+      const tabMetrics = document.getElementById('caseTabBtn-metrics');
+      const tabLegal = document.getElementById('caseTabBtn-legal');
+
+      const contentNarrative = document.getElementById('caseTabContent-narrative');
+      const contentMetrics = document.getElementById('caseTabContent-metrics');
+      const contentLegal = document.getElementById('caseTabContent-legal');
+
+      if (tabNarrative && tabMetrics && tabLegal && contentNarrative && contentMetrics && contentLegal) {
+        [tabNarrative, tabMetrics, tabLegal].forEach(b => b.classList.remove('active'));
+        [contentNarrative, contentMetrics, contentLegal].forEach(c => c.classList.add('hidden'));
+
+        if (tab === 'narrative') {
+          tabNarrative.classList.add('active');
+          contentNarrative.classList.remove('hidden');
+        } else if (tab === 'metrics') {
+          tabMetrics.classList.add('active');
+          contentMetrics.classList.remove('hidden');
+        } else if (tab === 'legal') {
+          tabLegal.classList.add('active');
+          contentLegal.classList.remove('hidden');
+        }
+      }
+      playClickSound();
+    }
+
     function renderSensationalCases(direction = 0, userInitiated = true) {
       activeFilteredCases = getFilteredSensationalCases();
       if (activeFilteredCases.length === 0) {
         const card = document.getElementById('singleCaseStageCard');
         if (card) {
           card.innerHTML = `
-            <div class="p-12 text-center rounded-2xl bg-charcoal border border-panelBorder space-y-4 font-mono text-xs">
-              <i data-lucide="alert-circle" class="w-10 h-10 text-crimson mx-auto"></i>
-              <p class="text-slate-200 text-sm font-bold">No sensational cases matched your search query or filter.</p>
-              <button onclick="resetSensationalFilter()" class="px-4 py-2 rounded-xl bg-crimson text-white font-bold transition">Reset Filter &amp; Search</button>
+            <div class="py-16 text-center space-y-3">
+              <i data-lucide="shield-alert" class="w-12 h-12 text-crimson mx-auto"></i>
+              <h3 class="text-xl font-display font-bold text-white">No Matching Incidents</h3>
+              <p class="text-slate-400 text-xs font-mono">No verified chargesheet incidents match '${currentSensationalSearch}'. Try searching Jhota, Moosewala, RPG, or Singla.</p>
+              <button onclick="currentSensationalSearch=''; document.getElementById('sensationalSearch').value=''; renderSensationalCases(0);" class="px-4 py-2 rounded-xl bg-crimson text-white font-mono text-xs font-bold">Clear Filters</button>
             </div>
           `;
           lucide.createIcons();
@@ -4949,39 +5364,97 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         return;
       }
 
-      if (activeCaseIndex >= activeFilteredCases.length) activeCaseIndex = 0;
-      if (activeCaseIndex < 0) activeCaseIndex = activeFilteredCases.length - 1;
+      if (activeCaseIndex >= activeFilteredCases.length) {
+        activeCaseIndex = 0;
+      } else if (activeCaseIndex < 0) {
+        activeCaseIndex = activeFilteredCases.length - 1;
+      }
 
-      renderActiveSingleCase(direction);
       renderTopIndicatorAndPills();
+      renderTimelineRibbon();
+      renderActiveSingleCase(direction);
       renderBottomThumbnailStrip(userInitiated);
-    }
-
-    function navigateSensationalCase(step) {
-      activeFilteredCases = getFilteredSensationalCases();
-      if (!activeFilteredCases.length) return;
-      
-      activeCaseIndex = (activeCaseIndex + step + activeFilteredCases.length) % activeFilteredCases.length;
-      renderSensationalCases(step, true);
-    }
-
-    function jumpToCaseByIndex(index) {
-      activeFilteredCases = getFilteredSensationalCases();
-      if (index < 0 || index >= activeFilteredCases.length) return;
-      const step = index >= activeCaseIndex ? 1 : -1;
-      activeCaseIndex = index;
-      renderSensationalCases(step, true);
-    }
-
-    function jumpToCaseById(id) {
-      activeFilteredCases = getFilteredSensationalCases();
-      const idx = activeFilteredCases.findIndex(c => c.id === id);
-      if (idx !== -1) {
-        jumpToCaseByIndex(idx);
+      updateAmbientGlow();
+      if (userInitiated) {
+        playCaseSwitchSound();
+        if (isAutoBriefing) {
+          briefingProgress = 0;
+        }
       }
     }
 
-    // Alias for backward compatibility
+    function updateAmbientGlow() {
+      const glow = document.getElementById('caseAmbientGlow');
+      const item = activeFilteredCases[activeCaseIndex];
+      if (!glow || !item) return;
+
+      if (item.category === 'murders') {
+        glow.style.background = 'radial-gradient(circle at 40% 50%, rgba(225, 29, 72, 0.45) 0%, rgba(225, 29, 72, 0.12) 55%, transparent 75%)';
+      } else if (item.category === 'drugs') {
+        glow.style.background = 'radial-gradient(circle at 40% 50%, rgba(6, 182, 212, 0.42) 0%, rgba(6, 182, 212, 0.1) 55%, transparent 75%)';
+      } else if (item.category === 'terror') {
+        glow.style.background = 'radial-gradient(circle at 40% 50%, rgba(239, 68, 68, 0.5) 0%, rgba(239, 68, 68, 0.12) 55%, transparent 75%)';
+      } else if (item.category === 'scandals') {
+        glow.style.background = 'radial-gradient(circle at 40% 50%, rgba(245, 158, 11, 0.42) 0%, rgba(245, 158, 11, 0.1) 55%, transparent 75%)';
+      } else {
+        glow.style.background = 'radial-gradient(circle at 40% 50%, rgba(225, 29, 72, 0.35) 0%, rgba(225, 29, 72, 0.08) 50%, transparent 75%)';
+      }
+    }
+
+    function renderTimelineRibbon() {
+      const container = document.getElementById('timelineNodesContainer');
+      if (!container) return;
+
+      const currentItem = activeFilteredCases[activeCaseIndex];
+
+      container.innerHTML = SENSATIONAL_CASES_DATA.map((c, idx) => {
+        const isActive = currentItem && currentItem.id === c.id;
+        return `
+          <div onclick="jumpToCaseById('${c.id}')" class="timeline-milestone-node flex flex-col items-center gap-1 flex-1 py-1 px-1.5 rounded-lg ${isActive ? 'timeline-node-active' : ''}" title="${c.title} (${c.timelineDate})">
+            <span class="text-[10px] font-mono ${isActive ? 'text-crimson font-bold' : 'text-slate-400'} whitespace-nowrap">${c.timelineYear}</span>
+            <div class="timeline-node-dot"></div>
+            <span class="text-[9px] font-mono truncate max-w-[70px] sm:max-w-[85px] ${isActive ? 'text-white font-bold' : 'text-slate-500'}">${c.district.split('(')[0].trim()}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function navigateSensationalCase(direction, userInitiated = true) {
+      activeCaseIndex += direction;
+      renderSensationalCases(direction, userInitiated);
+    }
+
+    function jumpToCaseByIndex(index) {
+      activeCaseIndex = index;
+      renderSensationalCases(0, true);
+    }
+
+    function jumpToCaseById(id) {
+      const idx = activeFilteredCases.findIndex(c => c.id === id);
+      if (idx !== -1) {
+        jumpToCaseByIndex(idx);
+      } else {
+        currentSensationalCategory = 'all';
+        currentSensationalSearch = '';
+        const searchInput = document.getElementById('sensationalSearch');
+        if (searchInput) searchInput.value = '';
+        document.querySelectorAll('.case-cat-pill').forEach(b => {
+          if (b.dataset.cat === 'all') {
+            b.className = 'case-cat-pill px-3.5 py-1.5 rounded-xl bg-crimson text-white font-bold transition shadow-lg shadow-crimson/20';
+          } else {
+            b.className = 'case-cat-pill px-3.5 py-1.5 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white transition';
+          }
+        });
+        activeFilteredCases = [...SENSATIONAL_CASES_DATA];
+        const newIdx = activeFilteredCases.findIndex(c => c.id === id);
+        if (newIdx !== -1) {
+          activeCaseIndex = newIdx;
+          renderSensationalCases(0, true);
+        }
+      }
+    }
+
+    // Alias for map pin linking
     const selectSpotlightCase = jumpToCaseById;
 
     function renderActiveSingleCase(direction = 0) {
@@ -4991,90 +5464,170 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       const item = activeFilteredCases[activeCaseIndex];
       if (!item) return;
 
-      const initialTransform = direction > 0 ? 'translateX(24px)' : direction < 0 ? 'translateX(-24px)' : 'scale(0.98)';
+      // 3D Directional Tilt Slide
+      const outTransform = direction > 0 
+        ? 'perspective(1000px) rotateY(-6deg) translateX(-35px)' 
+        : direction < 0 
+          ? 'perspective(1000px) rotateY(6deg) translateX(35px)' 
+          : 'scale(0.98)';
+      
       card.style.opacity = '0';
-      card.style.transform = initialTransform;
+      card.style.transform = outTransform;
+      card.style.filter = 'blur(2px)';
 
       setTimeout(() => {
         card.innerHTML = `
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-9 items-center">
+          <!-- Top Dossier Watermark Bar -->
+          <div class="flex items-center justify-between border-b border-panelBorder pb-3 mb-5 text-[11px] font-mono">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded bg-crimson/20 border border-crimson/40 text-crimson font-bold">
+                ${item.code}
+              </span>
+              <span class="text-slate-400 font-bold hidden sm:inline">•</span>
+              <span class="text-slate-400 font-bold hidden sm:inline uppercase">${item.tag}</span>
+            </div>
+            <div class="flex items-center gap-2 text-slate-400">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5 text-amberAlert"></i>
+              <span class="text-slate-300 font-bold">VERIFIED INVESTIGATIVE EXHIBIT</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-8 items-start">
             
             <!-- Left Column: HD Real Authentic Photo with Forensic Zoom Loupe (7 Cols) -->
-            <div class="lg:col-span-7 relative rounded-2xl overflow-hidden border border-panelBorder bg-black shadow-2xl forensic-photo-wrapper" id="forensicWrapper" onmousemove="handleForensicLoupe(event)" onmouseleave="hideForensicLoupe()">
+            <div class="lg:col-span-7 relative rounded-2xl overflow-hidden border border-panelBorder bg-black shadow-2xl forensic-photo-wrapper group/photo" id="forensicWrapper" onmousemove="handleForensicLoupe(event)" onmouseleave="hideForensicLoupe()">
+              
+              <!-- High-Tech Optical Corner HUD Brackets -->
+              <div class="hud-corner-bracket hud-tl"></div>
+              <div class="hud-corner-bracket hud-tr"></div>
+              <div class="hud-corner-bracket hud-bl"></div>
+              <div class="hud-corner-bracket hud-br"></div>
+
               <!-- Forensic Magnifier Loupe -->
               <div class="forensic-loupe" id="forensicLoupe"></div>
+              
               <div class="aspect-[16/10] w-full overflow-hidden relative" id="forensicPhotoTarget">
-                <img src="${item.image}" alt="${item.title}" onerror="this.src='${item.fallbackImage}'" class="w-full h-full object-cover object-center" />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/30 pointer-events-none"></div>
+                <img src="${item.image}" alt="${item.title}" onerror="this.src='${item.fallbackImage}'" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover/photo:scale-102" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/35 pointer-events-none"></div>
                 
-                <!-- Top Badge Overlay: District & Counter -->
-                <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2 z-10">
-                  <span class="px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur border border-white/20 text-white font-mono text-[11px] font-bold uppercase tracking-wider">
-                    ${item.district.split('(')[0].trim()}
+                <!-- Top Badge Overlay: District & Case Number -->
+                <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2 z-10 pointer-events-none">
+                  <span class="px-3 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-white/20 text-white font-mono text-[11px] font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-lg">
+                    <i data-lucide="map-pin" class="w-3 h-3 text-crimson"></i>
+                    <span>${item.district.split('(')[0].trim()}</span>
                   </span>
-                  <span class="px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur border border-white/20 text-slate-300 font-mono text-[11px] font-bold">
+                  <span class="px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md border border-white/20 text-amberAlert font-mono text-[11px] font-bold shadow-lg">
                     ${activeCaseIndex + 1} / ${activeFilteredCases.length}
                   </span>
                 </div>
 
-                <!-- Bottom Photo Caption Bar -->
-                <div class="absolute bottom-3 inset-x-3 p-3 rounded-xl bg-black/85 backdrop-blur-md border border-white/15 flex items-center justify-between text-xs font-mono text-white gap-2">
+                <!-- Bottom Photo Caption & Verified Press Credit -->
+                <div class="absolute bottom-3 inset-x-3 p-3 rounded-xl bg-black/85 backdrop-blur-md border border-white/15 flex items-center justify-between text-xs font-mono text-white gap-2 shadow-xl">
                   <div class="flex items-center gap-2 truncate">
                     <i data-lucide="camera" class="w-4 h-4 text-crimson shrink-0"></i>
                     <span class="truncate text-slate-200 text-[11px] sm:text-xs font-medium">${item.photoCaption}</span>
                   </div>
-                  <span class="text-slate-400 text-[10px] shrink-0 font-bold uppercase tracking-wider">${item.photoSource}</span>
+                  <span class="text-slate-400 text-[10px] shrink-0 font-bold uppercase tracking-wider bg-white/10 px-2 py-0.5 rounded">${item.photoSource}</span>
                 </div>
               </div>
             </div>
 
-            <!-- Right Column: Case Narrative & Facts (5 Cols) -->
+            <!-- Right Column: Interactive Dossier Tabs (5 Cols) -->
             <div class="lg:col-span-5 space-y-4">
               
-              <!-- Badges & Location -->
-              <div class="flex items-center justify-between gap-2 text-xs font-mono text-slate-400 border-b border-panelBorder pb-2.5">
-                <span class="px-2.5 py-1 rounded-lg bg-crimson/20 border border-crimson/50 text-crimson font-bold uppercase tracking-wider">${item.tag}</span>
-                <span class="flex items-center gap-1 text-slate-300 truncate"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-crimson shrink-0"></i> ${item.district}</span>
-                <span class="text-slate-400 font-bold shrink-0">${item.date.split('/')[0].trim()}</span>
+              <!-- 3 Interactive Case Dossier Tabs -->
+              <div class="flex items-center gap-1 bg-obsidian p-1 rounded-xl border border-panelBorder text-xs font-mono">
+                <button onclick="setCaseSubTab('narrative')" id="caseTabBtn-narrative" class="case-subtab-btn flex-1 py-1.5 px-2 rounded-lg text-slate-300 hover:text-white text-center flex items-center justify-center gap-1.5 ${activeCaseSubTab === 'narrative' ? 'active' : ''}">
+                  <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                  <span>Brief</span>
+                </button>
+                <button onclick="setCaseSubTab('metrics')" id="caseTabBtn-metrics" class="case-subtab-btn flex-1 py-1.5 px-2 rounded-lg text-slate-300 hover:text-white text-center flex items-center justify-center gap-1.5 ${activeCaseSubTab === 'metrics' ? 'active' : ''}">
+                  <i data-lucide="activity" class="w-3.5 h-3.5"></i>
+                  <span>Telemetry</span>
+                </button>
+                <button onclick="setCaseSubTab('legal')" id="caseTabBtn-legal" class="case-subtab-btn flex-1 py-1.5 px-2 rounded-lg text-slate-300 hover:text-white text-center flex items-center justify-center gap-1.5 ${activeCaseSubTab === 'legal' ? 'active' : ''}">
+                  <i data-lucide="scale" class="w-3.5 h-3.5"></i>
+                  <span>Legal/FIR</span>
+                </button>
               </div>
 
-              <!-- Headlines -->
-              <div class="space-y-1.5">
-                <p class="font-gurmukhi text-lg sm:text-xl text-amberAlert font-bold leading-snug">${item.punjabi}</p>
-                <h3 class="text-xl sm:text-2xl font-display font-black text-white leading-tight">
-                  ${item.title}
-                </h3>
-              </div>
-
-              <!-- Narrative Summary -->
-              <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                ${item.summary}
-              </p>
-
-              <!-- Quote Block -->
-              <div class="p-3.5 rounded-xl bg-charcoal border-l-4 border-crimson font-serif italic text-xs sm:text-sm text-slate-200 leading-relaxed">
-                ${item.quote}
-              </div>
-
-              <!-- Official FIR Jurisdictional Record -->
-              <div class="p-2.5 rounded-xl bg-obsidian border border-panelBorder/70 flex items-center justify-between text-[11px] font-mono text-slate-400">
-                <div class="flex items-center gap-1.5 truncate">
-                  <i data-lucide="file-check" class="w-3.5 h-3.5 text-amberAlert shrink-0"></i>
-                  <span class="text-slate-300 font-bold truncate">${item.fir}</span>
+              <!-- TAB CONTENT 1: INVESTIGATIVE BRIEF -->
+              <div id="caseTabContent-narrative" class="${activeCaseSubTab === 'narrative' ? '' : 'hidden'} space-y-3.5">
+                <!-- Location & Date Micro-Header -->
+                <div class="flex items-center justify-between text-xs font-mono text-slate-400 border-b border-panelBorder pb-2">
+                  <span class="flex items-center gap-1 text-slate-300 font-bold"><i data-lucide="map-pin" class="w-3 h-3 text-crimson"></i> ${item.district}</span>
+                  <span class="text-crimson font-bold">${item.date}</span>
                 </div>
-                <button onclick="shareCaseIncident('${item.id}')" class="text-crimson hover:text-white transition flex items-center gap-1 shrink-0 ml-2 font-bold" title="Share Incident">
-                  <i data-lucide="share-2" class="w-3 h-3"></i>
-                  <span>Share</span>
+
+                <!-- Punjabi & English Headline -->
+                <div class="space-y-1">
+                  <p class="font-gurmukhi text-base sm:text-lg text-amberAlert font-bold leading-snug">${item.punjabi}</p>
+                  <h3 class="text-lg sm:text-xl font-display font-black text-white leading-tight">
+                    ${item.title}
+                  </h3>
+                </div>
+
+                <!-- Narrative Summary -->
+                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  ${item.summary}
+                </p>
+
+                <!-- Official Quote Block -->
+                <div class="p-3 rounded-xl bg-charcoal/90 border-l-4 border-crimson font-serif italic text-xs text-slate-200 leading-relaxed shadow-inner">
+                  ${item.quote}
+                </div>
+              </div>
+
+              <!-- TAB CONTENT 2: FORENSIC TELEMETRY & METRICS -->
+              <div id="caseTabContent-metrics" class="${activeCaseSubTab === 'metrics' ? '' : 'hidden'} space-y-2.5">
+                <div class="text-[11px] font-mono text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                  <i data-lucide="crosshair" class="w-3.5 h-3.5 text-crimson"></i>
+                  <span>VERIFIED FORENSIC DATA METRICS (4)</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  ${item.metrics.map(m => `
+                    <div class="telemetry-tile">
+                      <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider block mb-1 font-bold">${m.label}</span>
+                      <p class="text-xs font-display font-bold text-white leading-tight">${m.val}</p>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- TAB CONTENT 3: LEGAL & CHARGESHEET RECORD -->
+              <div id="caseTabContent-legal" class="${activeCaseSubTab === 'legal' ? '' : 'hidden'} space-y-3">
+                <div class="p-3 rounded-xl bg-charcoal/90 border border-panelBorder space-y-2 text-xs font-mono">
+                  <div>
+                    <span class="text-slate-500 uppercase tracking-wider text-[10px] block font-bold">PRIMARY POLICE FIR:</span>
+                    <span class="text-amberAlert font-bold">${item.legal.fir}</span>
+                  </div>
+                  <div>
+                    <span class="text-slate-500 uppercase tracking-wider text-[10px] block font-bold">CHARGES & SECTIONS:</span>
+                    <span class="text-slate-200">${item.legal.sections}</span>
+                  </div>
+                  <div>
+                    <span class="text-slate-500 uppercase tracking-wider text-[10px] block font-bold">INVESTIGATING BODY:</span>
+                    <span class="text-cyan-400 font-bold">${item.legal.agency}</span>
+                  </div>
+                  <div>
+                    <span class="text-slate-500 uppercase tracking-wider text-[10px] block font-bold">JUDICIAL PROCEEDINGS STATUS:</span>
+                    <p class="text-slate-300 font-sans text-xs leading-relaxed mt-0.5">${item.legal.status}</p>
+                  </div>
+                </div>
+
+                <button onclick="shareCaseIncident('${item.id}')" class="w-full py-2.5 px-3 rounded-xl bg-charcoal hover:bg-slateDark border border-panelBorder hover:border-crimson text-slate-200 hover:text-white transition flex items-center justify-center gap-2 text-xs font-mono font-bold shadow">
+                  <i data-lucide="share-2" class="w-3.5 h-3.5 text-crimson"></i>
+                  <span>Share Case Dossier Link</span>
                 </button>
               </div>
 
-              <!-- Side-to-Side Navigation Controls -->
-              <div class="pt-2 flex items-center gap-3">
-                <button onclick="navigateSensationalCase(-1)" class="flex-1 py-3 px-4 rounded-xl bg-charcoal hover:bg-crimson border border-panelBorder hover:border-crimson text-slate-200 hover:text-white transition flex items-center justify-center gap-2 text-xs font-mono font-bold active:scale-95 shadow group" title="Previous Incident">
+              <!-- Side-to-Side Bottom Stepper Controls -->
+              <div class="pt-2 flex items-center gap-2.5 border-t border-panelBorder/70">
+                <button onclick="navigateSensationalCase(-1)" class="flex-1 py-2.5 px-3 rounded-xl bg-charcoal hover:bg-crimson border border-panelBorder hover:border-crimson text-slate-200 hover:text-white transition flex items-center justify-center gap-2 text-xs font-mono font-bold active:scale-95 shadow group" title="Previous Incident">
                   <i data-lucide="chevron-left" class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform"></i>
-                  <span>Previous Case</span>
+                  <span>Prev Case</span>
                 </button>
-                <button onclick="navigateSensationalCase(1)" class="flex-1 py-3 px-4 rounded-xl bg-crimson hover:bg-crimsonBright border border-crimson text-white transition flex items-center justify-center gap-2 text-xs font-mono font-bold shadow-lg shadow-crimson/30 active:scale-95 group" title="Next Incident">
+                <button onclick="navigateSensationalCase(1)" class="flex-1 py-2.5 px-3 rounded-xl bg-crimson hover:bg-crimsonBright border border-crimson text-white transition flex items-center justify-center gap-2 text-xs font-mono font-bold shadow-lg shadow-crimson/30 active:scale-95 group" title="Next Incident">
                   <span>Next Case</span>
                   <i data-lucide="chevron-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
                 </button>
@@ -5086,10 +5639,11 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         `;
 
         lucide.createIcons();
-        card.style.transition = 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease';
+        card.style.transition = 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, filter 0.35s ease';
         card.style.opacity = '1';
-        card.style.transform = 'translateX(0) scale(1)';
-      }, 70);
+        card.style.transform = 'perspective(1000px) rotateY(0deg) translateX(0) scale(1)';
+        card.style.filter = 'blur(0)';
+      }, 60);
     }
 
     function renderTopIndicatorAndPills() {
@@ -5124,7 +5678,7 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       track.innerHTML = activeFilteredCases.map((c, idx) => {
         const isActive = idx === activeCaseIndex;
         return `
-          <div onclick="jumpToCaseByIndex(${idx})" class="flex-none snap-start w-28 sm:w-36 rounded-xl overflow-hidden cursor-pointer border-2 transition-all duration-300 ${isActive ? 'border-crimson shadow-lg shadow-crimson/30 scale-105 ring-1 ring-crimson' : 'border-panelBorder hover:border-slate-500 opacity-70 hover:opacity-100'} bg-charcoal group" id="thumb-case-${c.id}">
+          <div onclick="jumpToCaseByIndex(${idx})" class="flex-none snap-start w-28 sm:w-36 rounded-xl overflow-hidden cursor-pointer border-2 transition-all duration-300 ${isActive ? 'border-crimson shadow-lg shadow-crimson/40 scale-105 ring-1 ring-crimson' : 'border-panelBorder hover:border-slate-500 opacity-70 hover:opacity-100'} bg-charcoal group" id="thumb-case-${c.id}">
             <div class="h-16 sm:h-20 w-full relative overflow-hidden bg-black">
               <img src="${c.image}" alt="${c.title}" onerror="this.src='${c.fallbackImage}'" class="w-full h-full object-cover filter brightness-90 group-hover:scale-105 transition-transform" />
               <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
@@ -5140,7 +5694,6 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         `;
       }).join('');
 
-      // Auto scroll active thumbnail inside its horizontal track only, WITHOUT scrolling main page window
       if (userInitiated) {
         const activeThumb = document.getElementById(`thumb-case-${activeFilteredCases[activeCaseIndex]?.id}`);
         if (activeThumb && track) {
@@ -5154,9 +5707,9 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       currentSensationalCategory = cat;
       document.querySelectorAll('.case-cat-pill').forEach(b => {
         if (b.dataset.cat === cat) {
-          b.className = 'case-cat-pill px-4 py-2 rounded-xl bg-crimson text-white font-bold transition shadow-lg shadow-crimson/20';
+          b.className = 'case-cat-pill px-3.5 py-1.5 rounded-xl bg-crimson text-white font-bold transition shadow-lg shadow-crimson/20';
         } else {
-          b.className = 'case-cat-pill px-4 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white transition';
+          b.className = 'case-cat-pill px-3.5 py-1.5 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white transition';
         }
       });
       activeCaseIndex = 0;
@@ -5164,37 +5717,21 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
     }
 
     function onSensationalSearchInput(val) {
-      currentSensationalSearch = val || '';
+      currentSensationalSearch = val;
       activeCaseIndex = 0;
       renderSensationalCases(0, true);
     }
 
-    function resetSensationalFilter() {
-      currentSensationalSearch = '';
-      currentSensationalCategory = 'all';
-      const searchInput = document.getElementById('sensationalSearch');
-      if (searchInput) searchInput.value = '';
-      document.querySelectorAll('.case-cat-pill').forEach(b => {
-        if (b.dataset.cat === 'all') {
-          b.className = 'case-cat-pill px-4 py-2 rounded-xl bg-crimson text-white font-bold transition shadow-lg shadow-crimson/20';
-        } else {
-          b.className = 'case-cat-pill px-4 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white transition';
-        }
-      });
-      activeCaseIndex = 0;
-      renderSensationalCases(0, true);
-    }
-
-    function shareCaseIncident(caseId) {
-      const item = SENSATIONAL_CASES_DATA.find(c => c.id === caseId);
-      const url = `${window.location.origin}${window.location.pathname}#cases-that-shook-punjab`;
-      const text = item ? `${item.title} - Cases That Shook Punjab: ${url}` : url;
+    function shareCaseIncident(id) {
+      const item = SENSATIONAL_CASES_DATA.find(c => c.id === id);
+      const text = item ? `${item.title} — AAP Da Paap Patra: ${window.location.origin}${window.location.pathname}#cases-that-shook-punjab` : window.location.href;
       if (navigator.clipboard) {
         navigator.clipboard.writeText(text).then(() => {
-          alert('Case link copied to clipboard!');
+          alert('Verified case file link copied to clipboard!');
         });
       }
     }
+
 
     window.addEventListener('DOMContentLoaded', () => {
       // Guarantee website opens at the very top (Hero Section #home)
