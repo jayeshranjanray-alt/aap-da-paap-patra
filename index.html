@@ -3939,7 +3939,7 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       });
     }
 
-    function renderSensationalCases(direction = 0) {
+    function renderSensationalCases(direction = 0, userInitiated = true) {
       activeFilteredCases = getFilteredSensationalCases();
       if (activeFilteredCases.length === 0) {
         const card = document.getElementById('singleCaseStageCard');
@@ -3961,7 +3961,7 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
 
       renderActiveSingleCase(direction);
       renderTopIndicatorAndPills();
-      renderBottomThumbnailStrip();
+      renderBottomThumbnailStrip(userInitiated);
     }
 
     function navigateSensationalCase(step) {
@@ -3969,7 +3969,7 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       if (!activeFilteredCases.length) return;
       
       activeCaseIndex = (activeCaseIndex + step + activeFilteredCases.length) % activeFilteredCases.length;
-      renderSensationalCases(step);
+      renderSensationalCases(step, true);
     }
 
     function jumpToCaseByIndex(index) {
@@ -3977,7 +3977,7 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       if (index < 0 || index >= activeFilteredCases.length) return;
       const step = index >= activeCaseIndex ? 1 : -1;
       activeCaseIndex = index;
-      renderSensationalCases(step);
+      renderSensationalCases(step, true);
     }
 
     function jumpToCaseById(id) {
@@ -3998,7 +3998,7 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       const item = activeFilteredCases[activeCaseIndex];
       if (!item) return;
 
-      const initialTransform = direction > 0 ? 'translateX(28px)' : direction < 0 ? 'translateX(-28px)' : 'scale(0.98)';
+      const initialTransform = direction > 0 ? 'translateX(24px)' : direction < 0 ? 'translateX(-24px)' : 'scale(0.98)';
       card.style.opacity = '0';
       card.style.transform = initialTransform;
 
@@ -4006,46 +4006,34 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         card.innerHTML = `
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-9 items-center">
             
-            <!-- Left Column: Large Real Editorial News Photo (7 Cols) -->
-            <div class="lg:col-span-7 relative rounded-2xl overflow-hidden border border-panelBorder bg-black shadow-2xl group cursor-pointer" onclick="openPhotoLightbox('${item.id}')">
+            <!-- Left Column: HD Real Authentic Photo (7 Cols) -->
+            <div class="lg:col-span-7 relative rounded-2xl overflow-hidden border border-panelBorder bg-black shadow-2xl">
               <div class="aspect-[16/10] w-full overflow-hidden relative">
-                <img src="${item.image}" alt="${item.title}" onerror="this.src='${item.fallbackImage}'" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 filter brightness-95 contrast-105" />
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60 pointer-events-none"></div>
+                <img src="${item.image}" alt="${item.title}" onerror="this.src='${item.fallbackImage}'" class="w-full h-full object-cover object-center" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/30 pointer-events-none"></div>
                 
-                <!-- Top Badges Overlay -->
+                <!-- Top Badge Overlay: District & Counter -->
                 <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2 z-10">
-                  <div class="flex items-center gap-1.5 flex-wrap">
-                    <span class="evidence-stamp text-[11px]">${item.code}</span>
-                    <span class="px-2.5 py-0.5 rounded bg-crimson font-mono text-[10px] font-black uppercase text-white shadow-md flex items-center gap-1">
-                      <i data-lucide="check-circle" class="w-3 h-3"></i>
-                      <span>100% REAL PRESS PHOTO</span>
-                    </span>
-                  </div>
-                  <span class="px-2.5 py-1 rounded-lg bg-black/85 backdrop-blur border border-white/20 text-white font-mono text-[11px] font-bold">
+                  <span class="px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur border border-white/20 text-white font-mono text-[11px] font-bold uppercase tracking-wider">
+                    ${item.district.split('(')[0].trim()}
+                  </span>
+                  <span class="px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur border border-white/20 text-slate-300 font-mono text-[11px] font-bold">
                     ${activeCaseIndex + 1} / ${activeFilteredCases.length}
                   </span>
                 </div>
 
-                <!-- Center Enlarge Prompt Hover Overlay -->
-                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px]">
-                  <div class="px-4 py-2.5 rounded-xl bg-crimson text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-2xl transform scale-95 group-hover:scale-100 transition-transform">
-                    <i data-lucide="maximize-2" class="w-4 h-4"></i>
-                    <span>Enlarge Real Photo</span>
-                  </div>
-                </div>
-
-                <!-- Bottom Photo Caption Strip -->
+                <!-- Bottom Photo Caption Bar -->
                 <div class="absolute bottom-3 inset-x-3 p-3 rounded-xl bg-black/85 backdrop-blur-md border border-white/15 flex items-center justify-between text-xs font-mono text-white gap-2">
                   <div class="flex items-center gap-2 truncate">
                     <i data-lucide="camera" class="w-4 h-4 text-crimson shrink-0"></i>
                     <span class="truncate text-slate-200 text-[11px] sm:text-xs font-medium">${item.photoCaption}</span>
                   </div>
-                  <span class="text-slate-400 text-[10px] shrink-0 font-bold uppercase">${item.photoSource}</span>
+                  <span class="text-slate-400 text-[10px] shrink-0 font-bold uppercase tracking-wider">${item.photoSource}</span>
                 </div>
               </div>
             </div>
 
-            <!-- Right Column: Forensic Dossier Record (5 Cols) -->
+            <!-- Right Column: Case Narrative & Facts (5 Cols) -->
             <div class="lg:col-span-5 space-y-4">
               
               <!-- Badges & Location -->
@@ -4057,7 +4045,7 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
 
               <!-- Headlines -->
               <div class="space-y-1.5">
-                <p class="font-gurmukhi text-base sm:text-lg text-amberAlert font-bold leading-snug">${item.punjabi}</p>
+                <p class="font-gurmukhi text-lg sm:text-xl text-amberAlert font-bold leading-snug">${item.punjabi}</p>
                 <h3 class="text-xl sm:text-2xl font-display font-black text-white leading-tight">
                   ${item.title}
                 </h3>
@@ -4068,49 +4056,33 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
                 ${item.summary}
               </p>
 
-              <!-- 4 Key Metrics Matrix -->
-              <div class="grid grid-cols-2 gap-2 pt-1 font-mono text-xs">
-                ${item.metrics.map(m => `
-                  <div class="p-2.5 rounded-xl bg-obsidian/90 border border-panelBorder/80 hover:border-slate-600 transition">
-                    <span class="text-[10px] text-slate-400 uppercase block font-semibold">${m.label}</span>
-                    <span class="text-white font-bold text-xs truncate block mt-0.5">${m.val}</span>
-                  </div>
-                `).join('')}
-              </div>
-
               <!-- Quote Block -->
-              <div class="p-3 rounded-xl bg-charcoal border-l-4 border-crimson font-serif italic text-xs text-slate-200">
+              <div class="p-3.5 rounded-xl bg-charcoal border-l-4 border-crimson font-serif italic text-xs sm:text-sm text-slate-200 leading-relaxed">
                 ${item.quote}
               </div>
 
-              <!-- Official FIR Jurisdictional Badge -->
+              <!-- Official FIR Jurisdictional Record -->
               <div class="p-2.5 rounded-xl bg-obsidian border border-panelBorder/70 flex items-center justify-between text-[11px] font-mono text-slate-400">
                 <div class="flex items-center gap-1.5 truncate">
                   <i data-lucide="file-check" class="w-3.5 h-3.5 text-amberAlert shrink-0"></i>
                   <span class="text-slate-300 font-bold truncate">${item.fir}</span>
                 </div>
-                <button onclick="shareCaseIncident('${item.id}')" class="text-crimson hover:text-white transition flex items-center gap-1 shrink-0 ml-2 font-bold">
+                <button onclick="shareCaseIncident('${item.id}')" class="text-crimson hover:text-white transition flex items-center gap-1 shrink-0 ml-2 font-bold" title="Share Incident">
                   <i data-lucide="share-2" class="w-3 h-3"></i>
                   <span>Share</span>
                 </button>
               </div>
 
-              <!-- Side-to-Side Navigation Controls & Action Buttons -->
-              <div class="pt-2 flex items-center justify-between gap-3">
-                <button onclick="openPhotoLightbox('${item.id}')" class="px-4 py-2.5 rounded-xl bg-slateDark hover:bg-slate-700 border border-panelBorder text-white font-mono text-xs font-bold transition flex items-center gap-2 shadow">
-                  <i data-lucide="zoom-in" class="w-3.5 h-3.5 text-crimson"></i>
-                  <span>View Full Photo</span>
+              <!-- Side-to-Side Navigation Controls -->
+              <div class="pt-2 flex items-center gap-3">
+                <button onclick="navigateSensationalCase(-1)" class="flex-1 py-3 px-4 rounded-xl bg-charcoal hover:bg-crimson border border-panelBorder hover:border-crimson text-slate-200 hover:text-white transition flex items-center justify-center gap-2 text-xs font-mono font-bold active:scale-95 shadow group" title="Previous Incident">
+                  <i data-lucide="chevron-left" class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform"></i>
+                  <span>Previous Case</span>
                 </button>
-                <div class="flex items-center gap-2">
-                  <button onclick="navigateSensationalCase(-1)" class="px-3.5 py-2.5 rounded-xl bg-charcoal hover:bg-crimson border border-panelBorder text-slate-300 hover:text-white transition flex items-center gap-1.5 text-xs font-mono font-bold active:scale-95 shadow" title="Previous Incident">
-                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
-                    <span>Prev</span>
-                  </button>
-                  <button onclick="navigateSensationalCase(1)" class="px-4 py-2.5 rounded-xl bg-crimson hover:bg-crimsonBright text-white transition flex items-center gap-1.5 text-xs font-mono font-bold shadow-lg shadow-crimson/30 active:scale-95" title="Next Incident">
-                    <span>Next</span>
-                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                  </button>
-                </div>
+                <button onclick="navigateSensationalCase(1)" class="flex-1 py-3 px-4 rounded-xl bg-crimson hover:bg-crimsonBright border border-crimson text-white transition flex items-center justify-center gap-2 text-xs font-mono font-bold shadow-lg shadow-crimson/30 active:scale-95 group" title="Next Incident">
+                  <span>Next Case</span>
+                  <i data-lucide="chevron-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+                </button>
               </div>
 
             </div>
@@ -4150,7 +4122,7 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       }
     }
 
-    function renderBottomThumbnailStrip() {
+    function renderBottomThumbnailStrip(userInitiated = false) {
       const track = document.getElementById('caseThumbnailsTrack');
       if (!track) return;
 
@@ -4173,10 +4145,13 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         `;
       }).join('');
 
-      // Auto scroll active thumbnail into view
-      const activeThumb = document.getElementById(`thumb-case-${activeFilteredCases[activeCaseIndex]?.id}`);
-      if (activeThumb) {
-        activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      // Auto scroll active thumbnail inside its horizontal track only, WITHOUT scrolling main page window
+      if (userInitiated) {
+        const activeThumb = document.getElementById(`thumb-case-${activeFilteredCases[activeCaseIndex]?.id}`);
+        if (activeThumb && track) {
+          const scrollLeft = activeThumb.offsetLeft - (track.clientWidth / 2) + (activeThumb.clientWidth / 2);
+          track.scrollTo({ left: Math.max(0, scrollLeft), behavior: 'smooth' });
+        }
       }
     }
 
@@ -4190,13 +4165,13 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         }
       });
       activeCaseIndex = 0;
-      renderSensationalCases();
+      renderSensationalCases(0, true);
     }
 
     function onSensationalSearchInput(val) {
       currentSensationalSearch = val || '';
       activeCaseIndex = 0;
-      renderSensationalCases();
+      renderSensationalCases(0, true);
     }
 
     function resetSensationalFilter() {
@@ -4212,47 +4187,7 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         }
       });
       activeCaseIndex = 0;
-      renderSensationalCases();
-    }
-
-    // Photo Lightbox Modal Controls
-    function openPhotoLightbox(caseId) {
-      const item = SENSATIONAL_CASES_DATA.find(c => c.id === caseId) || SENSATIONAL_CASES_DATA[0];
-      const modal = document.getElementById('casePhotoLightboxModal');
-      if (!modal) return;
-
-      const imgEl = document.getElementById('casePhotoModalImg');
-      if (imgEl) imgEl.src = item.image;
-      
-      const titleEl = document.getElementById('casePhotoModalTitle');
-      if (titleEl) titleEl.innerText = item.title;
-
-      const gurmukhiEl = document.getElementById('casePhotoModalGurmukhi');
-      if (gurmukhiEl) gurmukhiEl.innerText = item.punjabi;
-
-      const captionEl = document.getElementById('casePhotoModalCaption');
-      if (captionEl) captionEl.innerText = item.photoCaption;
-
-      const sourceEl = document.getElementById('casePhotoModalSource');
-      if (sourceEl) sourceEl.innerText = item.photoSource;
-
-      const codeEl = document.getElementById('casePhotoModalCode');
-      if (codeEl) codeEl.innerText = item.code;
-
-      const districtEl = document.getElementById('casePhotoModalDistrict');
-      if (districtEl) districtEl.innerText = `${item.district} // ${item.date}`;
-
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      lucide.createIcons();
-    }
-
-    function closePhotoLightbox() {
-      const modal = document.getElementById('casePhotoLightboxModal');
-      if (modal) {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-      }
+      renderSensationalCases(0, true);
     }
 
     function shareCaseIncident(caseId) {
@@ -4267,13 +4202,30 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      // Guarantee website opens at the very top (Hero Section #home)
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+      if (window.location.hash && window.location.hash !== '#home') {
+        history.replaceState(null, null, window.location.pathname + window.location.search);
+      }
+
       lucide.createIcons();
       renderChargesheetList();
-      selectSpotlightCase('jhota');
-      renderSensationalCases();
+      activeCaseIndex = 0;
+      renderSensationalCases(0, false);
       selectIncident('mohali');
       selectHeroAct(0, false);
       initHeroStorylineLoop();
+
+      setTimeout(() => {
+        if (window.lenis) {
+          window.lenis.scrollTo(0, { immediate: true });
+        } else {
+          window.scrollTo(0, 0);
+        }
+      }, 50);
 
       if (typeof gsap !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
@@ -4336,7 +4288,6 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       }
     });
 
-    // Keyboard ESC closes modals
     // Keyboard ESC closes modals & arrow keys navigate cases
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
@@ -4344,7 +4295,6 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         closeEvidenceModal();
         closeLightbox();
         closeSuccessModal();
-        closePhotoLightbox();
       } else if (e.key === 'ArrowLeft') {
         if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
           navigateSensationalCase(-1);
@@ -4376,44 +4326,6 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       }
     });
   </script>
-
-  <!-- HIGH-RESOLUTION INVESTIGATIVE PHOTO LIGHTBOX MODAL -->
-  <div id="casePhotoLightboxModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md hidden items-center justify-center p-3 sm:p-6 overflow-y-auto" onclick="if(event.target===this) closePhotoLightbox()">
-    <div class="relative w-full max-w-5xl bg-charcoal border-2 border-crimson/70 rounded-3xl shadow-2xl overflow-hidden flex flex-col my-auto max-h-[94vh]">
-      
-      <!-- Lightbox Header -->
-      <div class="p-4 sm:p-5 bg-obsidian border-b border-panelBorder flex items-center justify-between gap-4">
-        <div class="flex items-center gap-2.5 min-w-0">
-          <span class="px-2.5 py-1 bg-crimson/20 border border-crimson text-crimson rounded-md font-mono text-xs font-bold shrink-0" id="casePhotoModalCode">CASE-01</span>
-          <div class="min-w-0">
-            <h3 class="font-display font-bold text-white text-sm sm:text-base truncate" id="casePhotoModalTitle">Investigative Exhibit</h3>
-            <p class="font-mono text-[11px] text-slate-400 truncate" id="casePhotoModalDistrict">District Evidence</p>
-          </div>
-        </div>
-        <button onclick="closePhotoLightbox()" class="p-2 rounded-xl bg-slateDark hover:bg-crimson text-slate-400 hover:text-white transition shrink-0" title="Close (ESC)">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-      </div>
-
-      <!-- Lightbox Image Canvas -->
-      <div class="relative bg-black flex items-center justify-center p-2 sm:p-4 overflow-hidden min-h-[300px] sm:min-h-[480px]">
-        <img id="casePhotoModalImg" src="" alt="Case Real Photo" class="max-w-full max-h-[70vh] object-contain rounded-xl shadow-2xl" />
-      </div>
-
-      <!-- Lightbox Caption Footer -->
-      <div class="p-4 bg-obsidian border-t border-panelBorder flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 font-mono text-xs text-slate-300">
-        <div class="space-y-1 min-w-0">
-          <p class="font-gurmukhi text-amberAlert font-bold text-sm" id="casePhotoModalGurmukhi"></p>
-          <p class="text-slate-200" id="casePhotoModalCaption"></p>
-        </div>
-        <div class="flex items-center gap-3 shrink-0">
-          <span class="px-2.5 py-1 rounded bg-black border border-white/20 text-slate-400 font-bold uppercase" id="casePhotoModalSource">The Tribune</span>
-          <button onclick="closePhotoLightbox()" class="px-3.5 py-1.5 rounded-lg bg-crimson text-white font-bold hover:bg-crimsonBright transition">Close</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
 
 </body>
 </html>
