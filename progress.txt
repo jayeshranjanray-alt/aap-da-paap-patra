@@ -65,3 +65,16 @@
   4. Real-time pitch-modulated audio feedback while sliding between Promise and Reality.
   5. Live dynamic equalizer micro-bars in header audio button.
 - Verified in Playwright with 0 console errors. Commit b5f6c86 landed.
+
+### [x] Task 12: Upgrade Section 2 (Cases That Shook Punjab) to WOW Experience
+- Dynamic Ambient Backlight Reactor (.case-ambient-reactor) with color shifts per category.
+- Automated 6.5s Auto-Briefing Documentary Reel with real-time laser progress bar and pause-on-hover.
+- 3-Tab Interactive Case Dossier:
+  - Tab 1: Investigative Brief (Gurmukhi headline, English headline, narrative, quote)
+  - Tab 2: Forensic Telemetry & Metrics (4 high-contrast tactical telemetry cards)
+  - Tab 3: Official Legal & FIR Record (FIR #, Sections, Investigating Agency, Judicial Status, 1-click share)
+- Chronological Incident Mini-Timeline Ribbon (2022 -> 2026) with pulsing active radar beacon.
+- High-Tech Corner HUD Reticles on Photo Stage.
+- Tactile Acoustic Feedback (playCaseSwitchSound) on slide advance.
+- Fluid 3D Perspective Slide Animation.
+- Verified in Playwright with 0 console errors. Commit 600271c landed.
