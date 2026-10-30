@@ -1,0 +1,54 @@
+# Ralph Loop Progress Log
+**Project:** AAP Da Paap Patra — New-Age Investigative Web Dossier
+**Updated:** 2026-10-30T14:04:00+05:30
+**Methodology:** Ralph Loop + GSD Executor + CodeRabbit Validation
+
+---
+## Progress & Completed Tasks
+
+### [x] Task 1: Eliminate Particle Dots & Establish New-Age Dark Editorial Aesthetic
+- Completely removed `#particleCanvas` DOM element and floating particle simulation loop.
+- Removed all multicolored dots from hero and across the website, keeping the mother's face crystal clear.
+- Added smooth mouse follower with lerping radial cursor glow and subtle cinematic film grain.
+- Added custom luxury scrollbar and dark glassmorphic card styling.
+
+### [x] Task 2: Cinematic Full-Bleed Hero Section with Minimalist Impact & Web Audio
+- Full viewport cinematic hero with `Mother_lifting_gaze_in_scene_f10e3758_1080p.mp4` playing with seamless edge vignettes.
+- Minimalist typography with Syne headline, Gurmukhi script, and Instrument Serif subtitle.
+- Integrated Web Audio ambient drone synthesizer (55Hz sub-bass warm drone with lowpass sweep) toggleable via Sound button.
+- Guaranteed initial load at scroll position (0, 0) with zero premature jumping.
+
+### [x] Task 3: Cases That Shook Punjab — Premium Horizontal 3D Slider & Scrubber
+- Prominent single-case view with 3D card tilt & slide animation.
+- Full swipe gesture support on touchscreens/trackpads and keyboard ArrowLeft/ArrowRight shortcuts.
+- Prominent Previous and Next navigation buttons with glowing states.
+- Clean factual metadata without fake labels (clean location, date, press attribution, and memorandum quote).
+- Interactive 14-incident thumbnail scrubber below for instant jump access.
+
+### [x] Task 4: Interactive Crime Map of Punjab & Deep Case Linking
+- 3D tactical radar plane with pulsating hotspot rings on critical districts (Mohali, Mansa, Amritsar, Jalandhar, etc.).
+- Integrated "View in Cases That Shook Punjab" direct action button that smoothly scrolls up to Section 2 and loads that incident.
+
+### [x] Task 5: 4 Chargesheet Pillars Interactive Forensic Dashboard
+- 4 foundational investigative pillars organized with deep factual pointers.
+
+### [x] Task 6: Newspaper Clippings Archive with Zoom Lightbox
+- High-resolution clipping wall with authentic newspaper styling and full-screen zoom preview.
+
+### [x] Task 7: Citizen Tip-Off & Whistleblower Secure Portal
+- Cryptographic whistleblowing portal with client-side SHA-256 evidence hashing simulation.
+
+### [x] Task 8: Electoral Promises vs Reality Interactive Split Wipe Slider
+- State-of-the-art draggable split-screen comparison slider positioned at the very end of the page as requested.
+- Dynamic Truth-Meter indicator updating delivery index (e.g. 2.45% jobs, 0.00% drug eradication, 8.95% clinics).
+- Interactive topic switcher for 4 core promises.
+
+### [x] Task 9: Top-Tier Micro-Interactions & Keyboard Navigation
+- ArrowLeft/ArrowRight to cycle cases.
+- Space to pause/play video.
+- M to toggle ambient audio.
+- Smooth Lenis momentum scrolling.
+
+### [x] Task 10: Empirical Verification & Code Review
+- Verified with Playwright headless browser at http://localhost:8080.
+- Zero console errors, clean visual rendering, smooth interactive animations.
