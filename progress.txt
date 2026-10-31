@@ -78,3 +78,19 @@
 - Tactile Acoustic Feedback (playCaseSwitchSound) on slide advance.
 - Fluid 3D Perspective Slide Animation.
 - Verified in Playwright with 0 console errors. Commit 600271c landed.
+### [x] Task 13: Whole-Section Tactical Motion Graphic & 3D Coverflow Deck for Section 2
+- Implemented whole-section HTML5 Tactical Canvas motion graphic (#casesMotionCanvas) with:
+  - Cyan / Crimson coordinate surveillance grid with tactical crosshairs '+' at every 2nd intersection.
+  - Sweeping laser scan beam with soft ambient gradient trail and real-time color shifts matching the active incident category (drugs, murders, terror, scandals).
+  - Concentric tactical radar range rings centered behind the active incident card.
+  - 32 ambient sine-drifting floating particles.
+  - Real-time GPS coordinate telemetry readout in canvas corner.
+  - IntersectionObserver auto-pause for 60fps hardware acceleration when scrolled offscreen.
+- Added Continuous Forensic Evidence Ticker Tape Marquee (.evidence-marquee-wrap) streaming declassified bulletins across the entire section width.
+- Upgraded stage to a 3D Spatial Coverflow Deck (.case-3d-deck-stage):
+  - Left Wing Card (#caseWingPrev) tilted in 3D perspective space (rotateY(24deg) scale(0.85)) previewing the previous incident.
+  - Right Wing Card (#caseWingNext) tilted in 3D perspective space (rotateY(-24deg) scale(0.85)) previewing the next incident.
+  - Center Spotlight Card (#caseCenterCardWrap) with interactive 3D mouse parallax tilt physics and specular glare reflection.
+- High-definition Red Ink Forensic Rubber Stamp (#caseStampBadge) stamped directly onto the upper corner of the evidence photo with authentic stamp-slam-active physics keyframes and recoil.
+- Verified in Playwright: 0 console errors, 60fps smooth animations, verified case-to-case transitions and wing card updates.
+- Commit 2b82798 landed.
