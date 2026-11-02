@@ -1026,6 +1026,350 @@
       opacity: 1;
     }
 
+    /* ===================================================
+       3D CONFIDENTIAL DOSSIER FOLDER SYSTEM (SECTION 4 WOW)
+       =================================================== */
+    
+    /* 1. Closed Dossier Folder Cards in Section 4 Grid */
+    .dossier-folder-card {
+      position: relative;
+      background: linear-gradient(145deg, #181d26 0%, #0f131a 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1.25rem;
+      border-top-left-radius: 0.35rem;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      overflow: hidden;
+      box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.04);
+    }
+    .dossier-folder-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 12px;
+      height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(225, 29, 72, 0.25) 0px,
+        rgba(225, 29, 72, 0.25) 8px,
+        transparent 8px,
+        transparent 16px
+      );
+      border-right: 2px solid rgba(225, 29, 72, 0.4);
+      z-index: 5;
+    }
+    .dossier-folder-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      border-color: rgba(225, 29, 72, 0.5);
+      box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.85), 0 0 35px rgba(225, 29, 72, 0.2);
+    }
+    .dossier-folder-card:hover .folder-tab-badge {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(225, 29, 72, 0.4);
+    }
+    
+    /* Filing Folder Top Tab */
+    .folder-top-tab {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem 0.35rem 0.75rem;
+      background: #232936;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-bottom: none;
+      border-top-left-radius: 0.6rem;
+      border-top-right-radius: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.4);
+      margin-left: 1.25rem;
+      transition: all 0.3s ease;
+    }
+    
+    /* Classified Diagonal Security Ribbon */
+    .folder-security-ribbon {
+      position: absolute;
+      top: 18px;
+      right: -42px;
+      transform: rotate(45deg);
+      background: linear-gradient(90deg, #991b1b, #dc2626, #991b1b);
+      color: #ffffff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      padding: 3px 45px;
+      text-transform: uppercase;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+      pointer-events: none;
+      z-index: 15;
+    }
+
+    /* Clasp & String Tie Fastener Graphic */
+    .folder-clasp-cord {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(225, 29, 72, 0.4);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #f43f5e;
+      transition: all 0.3s ease;
+    }
+    .dossier-folder-card:hover .folder-clasp-cord {
+      border-color: #f43f5e;
+      background: rgba(225, 29, 72, 0.2);
+      color: #ffffff;
+      box-shadow: 0 0 15px rgba(225, 29, 72, 0.4);
+    }
+
+    /* 2. Fullscreen Animated 3D Confidential Folder Modal */
+    .dossier-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: radial-gradient(circle at center, rgba(15, 23, 42, 0.94) 0%, rgba(3, 7, 18, 0.99) 100%);
+      backdrop-filter: blur(18px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .dossier-modal-backdrop.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    /* 3D Perspective Stage */
+    .dossier-3d-stage {
+      position: relative;
+      width: 100%;
+      max-width: 980px;
+      max-height: 90vh;
+      perspective: 2000px;
+      transform-style: preserve-3d;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* The Main Folder Binder */
+    .dossier-binder-3d {
+      position: relative;
+      width: 100%;
+      height: 85vh;
+      max-height: 850px;
+      background: #141923;
+      border-radius: 1.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 35px 80px -15px rgba(0, 0, 0, 0.95), 0 0 40px rgba(225, 29, 72, 0.15);
+      display: flex;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Left Heavy Spine & Metal Prongs */
+    .dossier-spine-bar {
+      width: 44px;
+      flex-shrink: 0;
+      background: linear-gradient(90deg, #1e2533 0%, #151a24 70%, #0d1117 100%);
+      border-right: 2px solid rgba(225, 29, 72, 0.3);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      padding: 2rem 0;
+      z-index: 25;
+    }
+    .binder-ring {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #e2e8f0 0%, #94a3b8 40%, #334155 100%);
+      box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.6), 0 2px 6px rgba(0, 0, 0, 0.8);
+      position: relative;
+    }
+    .binder-ring::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #0f131a;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.9);
+    }
+    .spine-vertical-text {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      color: rgba(225, 29, 72, 0.8);
+      text-transform: uppercase;
+      user-select: none;
+    }
+
+    /* 3D Swiveling Front Cover */
+    .dossier-front-flap {
+      position: absolute;
+      top: 0;
+      left: 44px;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, #202735 0%, #131822 60%, #0e1219 100%);
+      border-top-right-radius: 1.25rem;
+      border-bottom-right-radius: 1.25rem;
+      transform-origin: left center;
+      transform-style: preserve-3d;
+      transition: transform 0.85s cubic-bezier(0.2, 0.85, 0.25, 1);
+      z-index: 30;
+      box-shadow: 10px 0 35px rgba(0, 0, 0, 0.85);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.5rem;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-left: none;
+    }
+    .dossier-front-flap::before {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border: 2px dashed rgba(255, 255, 255, 0.07);
+      border-radius: 0.75rem;
+      pointer-events: none;
+    }
+    /* When opened, cover swings open to the left in 3D */
+    .dossier-binder-3d.folder-open .dossier-front-flap {
+      transform: rotateY(-118deg);
+      pointer-events: none;
+      opacity: 0.15;
+    }
+    @media (max-width: 1024px) {
+      .dossier-binder-3d.folder-open .dossier-front-flap {
+        transform: rotateY(-95deg);
+        opacity: 0.1;
+      }
+    }
+    @media (max-width: 640px) {
+      .dossier-binder-3d.folder-open .dossier-front-flap {
+        display: none;
+      }
+      .dossier-spine-bar {
+        width: 18px;
+        padding: 1rem 0;
+      }
+      .spine-vertical-text {
+        display: none;
+      }
+      .binder-ring {
+        width: 10px;
+        height: 10px;
+      }
+      .binder-ring::after {
+        width: 6px;
+        height: 6px;
+      }
+    }
+
+    /* Inner Classified Case Paper Stack */
+    .dossier-paper-container {
+      flex: 1;
+      height: 100%;
+      background: #0f131c;
+      background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(180deg, #141924 0%, #0c0f17 100%);
+      background-size: 20px 20px, 100% 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      border-top-right-radius: 1.25rem;
+      border-bottom-right-radius: 1.25rem;
+      z-index: 10;
+    }
+
+    /* Diagonal Classified Watermark across the paper */
+    .dossier-watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-30deg);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(2rem, 5vw, 4.5rem);
+      font-weight: 900;
+      color: rgba(225, 29, 72, 0.04);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      z-index: 1;
+    }
+
+    /* Red Rubber Ink Slam Stamp */
+    .dossier-ink-stamp {
+      position: absolute;
+      top: 4.5rem;
+      right: 1.5rem;
+      border: 3px solid #e11d48;
+      border-radius: 8px;
+      padding: 0.35rem 0.85rem;
+      color: #ff3366;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transform: rotate(-7deg);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 25;
+      background: rgba(225, 29, 72, 0.06);
+      box-shadow: 0 0 25px rgba(225, 29, 72, 0.35), inset 0 0 12px rgba(225, 29, 72, 0.2);
+    }
+    .dossier-ink-stamp.stamp-animated {
+      animation: stampSlamKeyframes 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s forwards;
+    }
+
+    /* Secret Tape Redaction Effect */
+    .redacted-tape {
+      display: inline-block;
+      background: #1e2430;
+      color: transparent;
+      padding: 2px 8px;
+      border-radius: 3px;
+      border-bottom: 2px solid #e11d48;
+      font-family: 'JetBrains Mono', monospace;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .redacted-tape:hover, .redacted-tape.revealed {
+      background: rgba(234, 179, 8, 0.18);
+      color: #fef08a;
+      border-bottom-color: #eab308;
+      box-shadow: 0 0 12px rgba(234, 179, 8, 0.3);
+      user-select: text;
+    }
   </style>
 </head>
 <body class="bg-obsidian text-slate-100 antialiased selection:bg-crimson selection:text-white bg-forensic-grid relative w-full overflow-x-hidden">
@@ -1248,33 +1592,6 @@
           </a>
         </div>
       </div>
-    </div>
-
-    <!-- Bottom Controls & Navigation Strip -->
-    <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 pb-6 flex items-center justify-center">
-      
-      <!-- Minimalist 4-Crisis Navigator Pills (Without any dots on the video) -->
-      <div class="flex flex-nowrap items-center justify-center gap-1 sm:gap-2 bg-black/70 backdrop-blur-xl p-1.5 rounded-2xl border border-white/10 shadow-2xl">
-        <button onclick="selectHeroAct(0)" id="heroTab-0" class="crisis-tab-active px-2.5 sm:px-3.5 py-1.5 rounded-xl text-[11px] sm:text-xs font-mono font-bold transition flex items-center gap-1.5 whitespace-nowrap">
-          <span class="text-crimson font-black">01</span>
-          <span>Gunfire</span>
-        </button>
-        <button onclick="selectHeroAct(1)" id="heroTab-1" class="px-2.5 sm:px-3.5 py-1.5 rounded-xl text-[11px] sm:text-xs font-mono font-bold text-slate-400 hover:text-white transition flex items-center gap-1.5 whitespace-nowrap">
-          <span class="text-crimson font-black">02</span>
-          <span>Corruption</span>
-        </button>
-        <button onclick="selectHeroAct(2)" id="heroTab-2" class="px-2.5 sm:px-3.5 py-1.5 rounded-xl text-[11px] sm:text-xs font-mono font-bold text-slate-400 hover:text-white transition flex items-center gap-1.5 whitespace-nowrap">
-          <span class="text-crimson font-black">03</span>
-          <span>Drugs</span>
-        </button>
-        <button onclick="selectHeroAct(3)" id="heroTab-3" class="px-2.5 sm:px-3.5 py-1.5 rounded-xl text-[11px] sm:text-xs font-mono font-bold text-slate-400 hover:text-white transition flex items-center gap-1.5 whitespace-nowrap">
-          <span class="text-crimson font-black">04</span>
-          <span>Vadakhilafi</span>
-        </button>
-      </div>
-
-
-
     </div>
 
   </section>
@@ -1621,45 +1938,60 @@
     <!-- ==============================================
          SECTION 4: 4 CHARGESHEETS ALONG WITH POINTERS
          ============================================== -->
-    <section id="chargesheets" class="space-y-12 scroll-mt-24">
+    <section id="chargesheets" class="space-y-10 scroll-mt-24">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <div class="flex items-center gap-2 mb-1">
             <span class="text-xs font-mono text-crimson font-bold uppercase tracking-wider">4 Core Issues</span>
+            <span class="text-slate-600">|</span>
+            <span class="text-xs font-mono text-slate-400">Classified Dossiers</span>
           </div>
           <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
             4 Core Issue Chargesheets
           </h2>
           <p class="text-slate-400 text-sm mt-1">
-            Key issues compiled from judicial records and CAG audits.
+            Tap any confidential dossier file below to unseal and review verified evidence points.
           </p>
         </div>
       </div>
 
-      <!-- 4 Dossier Cards Grid (with 3D Tilt & Parallax Imagery) -->
+      <!-- 4 Tactile Dossier Folder Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-        <!-- CARD 1: DRUGS (ਨਸ਼ਾ) -->
-        <div class="group relative rounded-2xl bg-charcoal border border-panelBorder hover:border-crimson/80 p-7 transition-all duration-300 hover:shadow-2xl hover:shadow-crimson/10 flex flex-col justify-between overflow-hidden">
+        <!-- DOSSIER FOLDER 01: DRUGS (ਨਸ਼ਾ) -->
+        <div class="dossier-folder-card group p-7 flex flex-col justify-between" onclick="openDossierModal('drugs')">
+          <div class="folder-security-ribbon">RESTRICTED</div>
+          
           <div class="absolute inset-0 opacity-15 pointer-events-none group-hover:opacity-25 transition-opacity">
             <img src="img/drug_crisis_punjab.jpg" alt="Drugs Crisis" class="w-full h-full object-cover" />
           </div>
-          <div class="absolute top-0 right-0 p-5">
-            <span class="font-mono text-xs px-2.5 py-1 bg-crimson/15 border border-crimson/40 text-crimson rounded-md font-bold">01</span>
-          </div>
+
           <div class="relative z-10 space-y-4">
-            <div class="w-12 h-12 rounded-xl bg-crimson/15 border border-crimson/30 flex items-center justify-center text-crimson">
-              <i data-lucide="skull" class="w-6 h-6"></i>
+            <!-- Protruding Filing Tab -->
+            <div class="-mt-4 -ml-2 mb-2">
+              <span class="folder-top-tab text-crimson folder-tab-badge">
+                <i data-lucide="folder" class="w-3.5 h-3.5"></i>
+                <span>FILE 01 // NARCOTICS CRISIS</span>
+              </span>
             </div>
-            <div>
-              <span class="text-xs font-mono text-red-400 uppercase tracking-wider">NARCOTICS CRISIS & STATE COLLUSION</span>
-              <h3 class="text-2xl font-display font-extrabold text-white mt-1">Drugs & The Chitta Epidemic</h3>
-              <p class="text-xs font-mono text-slate-400 mt-0.5">ਚਿੱਟਾ ਅਤੇ ਨਸ਼ਿਆਂ ਦੀ ਮਹਾਂਮਾਰੀ — ਜੇਲ੍ਹ ਰੈਕੇਟ ਤੇ ਅਧਿਕਾਰਤ ਮਿਲੀਭੁਗਤ</p>
+
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-crimson/15 border border-crimson/30 flex items-center justify-center text-crimson shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="skull" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <span class="text-xs font-mono text-red-400 uppercase tracking-wider font-bold">STATE COLLUSION &amp; CHITTA</span>
+                <h3 class="text-2xl font-display font-extrabold text-white group-hover:text-crimson transition-colors">Drugs &amp; The Chitta Epidemic</h3>
+              </div>
             </div>
+
+            <p class="text-xs font-mono text-slate-400">ਚਿੱਟਾ ਅਤੇ ਨਸ਼ਿਆਂ ਦੀ ਮਹਾਂਮਾਰੀ — ਜੇਲ੍ਹ ਰੈਕੇਟ ਤੇ ਅਧਿਕਾਰਤ ਮਿਲੀਭੁਗਤ</p>
+
             <p class="text-slate-300 text-sm leading-relaxed">
               Highest drug overdose deaths in India for two consecutive years. An estimated 7 lakh children aged 10 to 17 trapped. Major rackets operated directly inside Sangrur, Kapurthala, and Faridkot central prisons with police collusion.
             </p>
-            <div class="p-3.5 rounded-xl bg-obsidian/90 border border-panelBorder/80 font-mono text-xs space-y-1.5">
+
+            <div class="p-3.5 rounded-xl bg-obsidian/90 border border-panelBorder/80 font-mono text-xs space-y-1.5 shadow-inner">
               <div class="flex justify-between text-slate-300">
                 <span>NDPS Cases (2024):</span>
                 <span class="text-crimson font-bold">29 per lakh (2nd highest in India)</span>
@@ -1670,36 +2002,54 @@
               </div>
             </div>
           </div>
-          <div class="relative z-10 pt-6 mt-6 border-t border-panelBorder flex items-center justify-between">
-            <span class="text-xs font-mono text-slate-500">9 Documented Findings</span>
-            <button onclick="openDossierModal('drugs')" class="px-4 py-2.5 rounded-lg bg-crimson/20 hover:bg-crimson border border-crimson text-crimson hover:text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition shadow-md">
-              <i data-lucide="folder-open" class="w-4 h-4"></i>
-              <span>View Evidence Dossier</span>
+
+          <!-- Folder Clasp Action Strip -->
+          <div class="relative z-10 pt-6 mt-6 border-t border-panelBorder/80 flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-400 flex items-center gap-1.5">
+              <i data-lucide="file-text" class="w-3.5 h-3.5 text-crimson"></i>
+              <span>9 Documented Findings</span>
+            </span>
+            <button onclick="event.stopPropagation(); openDossierModal('drugs')" class="folder-clasp-cord group-hover:border-crimson">
+              <i data-lucide="folder-open" class="w-3.5 h-3.5 text-crimson"></i>
+              <span class="font-bold">UNSEAL &amp; OPEN FILE</span>
             </button>
           </div>
         </div>
 
-        <!-- CARD 2: LAW & ORDER (ਕਾਨੂੰਨ ਵਿਵਸਥਾ) -->
-        <div class="group relative rounded-2xl bg-charcoal border border-panelBorder hover:border-amber-500/80 p-7 transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/10 flex flex-col justify-between overflow-hidden">
+        <!-- DOSSIER FOLDER 02: LAW & ORDER (ਕਾਨੂੰਨ ਵਿਵਸਥਾ) -->
+        <div class="dossier-folder-card group p-7 flex flex-col justify-between" onclick="openDossierModal('law')">
+          <div class="folder-security-ribbon">RESTRICTED</div>
+          
           <div class="absolute inset-0 opacity-15 pointer-events-none group-hover:opacity-25 transition-opacity">
             <img src="img/law_order_collapse.jpg" alt="Law and Order Collapse" class="w-full h-full object-cover" />
           </div>
-          <div class="absolute top-0 right-0 p-5">
-            <span class="font-mono text-xs px-2.5 py-1 bg-amber-500/15 border border-amber-500/40 text-amberAlert rounded-md font-bold">02</span>
-          </div>
+
           <div class="relative z-10 space-y-4">
-            <div class="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amberAlert">
-              <i data-lucide="flame" class="w-6 h-6"></i>
+            <!-- Protruding Filing Tab -->
+            <div class="-mt-4 -ml-2 mb-2">
+              <span class="folder-top-tab text-amberAlert folder-tab-badge">
+                <i data-lucide="folder" class="w-3.5 h-3.5"></i>
+                <span>FILE 02 // LAW &amp; ORDER</span>
+              </span>
             </div>
-            <div>
-              <span class="text-xs font-mono text-amber-400 uppercase tracking-wider">EXTORTION & SYSTEMIC VIOLENCE</span>
-              <h3 class="text-2xl font-display font-extrabold text-white mt-1">Law & Order Collapse</h3>
-              <p class="text-xs font-mono text-slate-400 mt-0.5">ਕਾਨੂੰਨ ਵਿਵਸਥਾ ਦਾ ਸੰਕਟ — ਗੈਂਗਸਟਰ ਰਾਜ, ਆਰਪੀਜੀ ਹਮਲੇ ਤੇ ਫਿਰੌਤੀਆਂ</p>
+
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amberAlert shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="flame" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <span class="text-xs font-mono text-amber-400 uppercase tracking-wider font-bold">EXTORTION &amp; GANGSTERS</span>
+                <h3 class="text-2xl font-display font-extrabold text-white group-hover:text-amberAlert transition-colors">Law &amp; Order Collapse</h3>
+              </div>
             </div>
+
+            <p class="text-xs font-mono text-slate-400">ਕਾਨੂੰਨ ਵਿਵਸਥਾ ਦਾ ਸੰਕਟ — ਗੈਂਗਸਟਰ ਰਾਜ, ਆਰਪੀਜੀ ਹਮਲੇ ਤੇ ਫਿਰੌਤੀਆਂ</p>
+
             <p class="text-slate-300 text-sm leading-relaxed">
               Surge from 43,000+ to 47,000+ crimes annually (1.40L+ total). RPG rocket attack on Punjab Police Intelligence HQ in Mohali. 22 police stations attacked. Unchecked extortion syndicates forcing capital flight of traders.
             </p>
-            <div class="p-3.5 rounded-xl bg-obsidian/90 border border-panelBorder/80 font-mono text-xs space-y-1.5">
+
+            <div class="p-3.5 rounded-xl bg-obsidian/90 border border-panelBorder/80 font-mono text-xs space-y-1.5 shadow-inner">
               <div class="flex justify-between text-slate-300">
                 <span>Crimes Against Women:</span>
                 <span class="text-crimson font-bold">16,000+ Cases (2022–2024)</span>
@@ -1710,36 +2060,54 @@
               </div>
             </div>
           </div>
-          <div class="relative z-10 pt-6 mt-6 border-t border-panelBorder flex items-center justify-between">
-            <span class="text-xs font-mono text-slate-500">18 Documented Findings</span>
-            <button onclick="openDossierModal('law')" class="px-4 py-2.5 rounded-lg bg-amber-500/20 hover:bg-amber-600 border border-amber-500 text-amberAlert hover:text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition shadow-md">
-              <i data-lucide="folder-open" class="w-4 h-4"></i>
-              <span>View Evidence Dossier</span>
+
+          <!-- Folder Clasp Action Strip -->
+          <div class="relative z-10 pt-6 mt-6 border-t border-panelBorder/80 flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-400 flex items-center gap-1.5">
+              <i data-lucide="file-text" class="w-3.5 h-3.5 text-amberAlert"></i>
+              <span>18 Documented Findings</span>
+            </span>
+            <button onclick="event.stopPropagation(); openDossierModal('law')" class="folder-clasp-cord group-hover:border-amber-500">
+              <i data-lucide="folder-open" class="w-3.5 h-3.5 text-amberAlert"></i>
+              <span class="font-bold">UNSEAL &amp; OPEN FILE</span>
             </button>
           </div>
         </div>
 
-        <!-- CARD 3: VADAKHILAFI (ਵਾਅਦਾਖਿਲਾਫ਼ੀ) -->
-        <div class="group relative rounded-2xl bg-charcoal border border-panelBorder hover:border-red-500/80 p-7 transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/10 flex flex-col justify-between overflow-hidden">
+        <!-- DOSSIER FOLDER 03: VADAKHILAFI (ਵਾਅਦਾਖਿਲਾਫ਼ੀ) -->
+        <div class="dossier-folder-card group p-7 flex flex-col justify-between" onclick="openDossierModal('vadakhilafi')">
+          <div class="folder-security-ribbon">RESTRICTED</div>
+          
           <div class="absolute inset-0 opacity-15 pointer-events-none group-hover:opacity-25 transition-opacity">
             <img src="img/broken_promises.jpg" alt="Broken Promises" class="w-full h-full object-cover" />
           </div>
-          <div class="absolute top-0 right-0 p-5">
-            <span class="font-mono text-xs px-2.5 py-1 bg-red-500/15 border border-red-500/40 text-red-400 rounded-md font-bold">03</span>
-          </div>
+
           <div class="relative z-10 space-y-4">
-            <div class="w-12 h-12 rounded-xl bg-red-600/15 border border-red-500/30 flex items-center justify-center text-red-400">
-              <i data-lucide="file-x-2" class="w-6 h-6"></i>
+            <!-- Protruding Filing Tab -->
+            <div class="-mt-4 -ml-2 mb-2">
+              <span class="folder-top-tab text-red-400 folder-tab-badge">
+                <i data-lucide="folder" class="w-3.5 h-3.5"></i>
+                <span>FILE 03 // VADAKHILAFI</span>
+              </span>
             </div>
-            <div>
-              <span class="text-xs font-mono text-red-400 uppercase tracking-wider">FAILED PROMISES & PUBLIC BETRAYAL</span>
-              <h3 class="text-2xl font-display font-extrabold text-white mt-1">Vadakhilafi (Broken Guarantees)</h3>
-              <p class="text-xs font-mono text-slate-400 mt-0.5">ਵਾਅਦਾਖਿਲਾਫ਼ੀ — 25 ਲੱਖ ਨੌਕਰੀਆਂ ਦਾ ਭਰਮ ਅਤੇ ਕਿਸਾਨਾਂ ਨਾਲ ਧੋਖਾ</p>
+
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-red-600/15 border border-red-500/30 flex items-center justify-center text-red-400 shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="file-x-2" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <span class="text-xs font-mono text-red-400 uppercase tracking-wider font-bold">FAILED GUARANTEES &amp; DEBT</span>
+                <h3 class="text-2xl font-display font-extrabold text-white group-hover:text-red-400 transition-colors">Vadakhilafi (Broken Guarantees)</h3>
+              </div>
             </div>
+
+            <p class="text-xs font-mono text-slate-400">ਵਾਅਦਾਖਿਲਾਫ਼ੀ — 25 ਲੱਖ ਨੌਕਰੀਆਂ ਦਾ ਭਰਮ ਅਤੇ ਕਿਸਾਨਾਂ ਨਾਲ ਧੋਖਾ</p>
+
             <p class="text-slate-300 text-sm leading-relaxed">
               25 lakh jobs promised, only 61,281 delivered (2.45%). Mohalla clinics scaled down 91% from 16,000 to 1,432. Zero of 16 promised medical colleges operational. 0 MT moong procured at MSP causing ₹20 Cr losses to farmers.
             </p>
-            <div class="p-3.5 rounded-xl bg-obsidian/90 border border-panelBorder/80 font-mono text-xs space-y-1.5">
+
+            <div class="p-3.5 rounded-xl bg-obsidian/90 border border-panelBorder/80 font-mono text-xs space-y-1.5 shadow-inner">
               <div class="flex justify-between text-slate-300">
                 <span>State Debt Surge:</span>
                 <span class="text-crimson font-bold">₹2.83L Cr → ₹4.47L Cr (2027)</span>
@@ -1750,36 +2118,54 @@
               </div>
             </div>
           </div>
-          <div class="relative z-10 pt-6 mt-6 border-t border-panelBorder flex items-center justify-between">
-            <span class="text-xs font-mono text-slate-500">11 Documented Findings</span>
-            <button onclick="openDossierModal('vadakhilafi')" class="px-4 py-2.5 rounded-lg bg-red-600/20 hover:bg-red-600 border border-red-500 text-red-400 hover:text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition shadow-md">
-              <i data-lucide="folder-open" class="w-4 h-4"></i>
-              <span>View Evidence Dossier</span>
+
+          <!-- Folder Clasp Action Strip -->
+          <div class="relative z-10 pt-6 mt-6 border-t border-panelBorder/80 flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-400 flex items-center gap-1.5">
+              <i data-lucide="file-text" class="w-3.5 h-3.5 text-red-400"></i>
+              <span>11 Documented Findings</span>
+            </span>
+            <button onclick="event.stopPropagation(); openDossierModal('vadakhilafi')" class="folder-clasp-cord group-hover:border-red-500">
+              <i data-lucide="folder-open" class="w-3.5 h-3.5 text-red-400"></i>
+              <span class="font-bold">UNSEAL &amp; OPEN FILE</span>
             </button>
           </div>
         </div>
 
-        <!-- CARD 4: SCAMS & CORRUPTION (ਘੁਟਾਲੇ) -->
-        <div class="group relative rounded-2xl bg-charcoal border border-panelBorder hover:border-yellow-500/80 p-7 transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-500/10 flex flex-col justify-between overflow-hidden">
+        <!-- DOSSIER FOLDER 04: SCAMS & CORRUPTION (ਘੁਟਾਲੇ) -->
+        <div class="dossier-folder-card group p-7 flex flex-col justify-between" onclick="openDossierModal('corruption')">
+          <div class="folder-security-ribbon">RESTRICTED</div>
+          
           <div class="absolute inset-0 opacity-15 pointer-events-none group-hover:opacity-25 transition-opacity">
             <img src="img/corruption_scams.jpg" alt="Corruption Scams" class="w-full h-full object-cover" />
           </div>
-          <div class="absolute top-0 right-0 p-5">
-            <span class="font-mono text-xs px-2.5 py-1 bg-yellow-500/15 border border-yellow-500/40 text-yellow-400 rounded-md font-bold">04</span>
-          </div>
+
           <div class="relative z-10 space-y-4">
-            <div class="w-12 h-12 rounded-xl bg-yellow-500/15 border border-yellow-500/30 flex items-center justify-center text-yellow-400">
-              <i data-lucide="scale" class="w-6 h-6"></i>
+            <!-- Protruding Filing Tab -->
+            <div class="-mt-4 -ml-2 mb-2">
+              <span class="folder-top-tab text-yellow-400 folder-tab-badge">
+                <i data-lucide="folder" class="w-3.5 h-3.5"></i>
+                <span>FILE 04 // CORRUPTION &amp; SCAMS</span>
+              </span>
             </div>
-            <div>
-              <span class="text-xs font-mono text-yellow-400 uppercase tracking-wider">INSTITUTIONAL CORRUPTION & RAIDS</span>
-              <h3 class="text-2xl font-display font-extrabold text-white mt-1">Scams & Systematic Loot</h3>
-              <p class="text-xs font-mono text-slate-400 mt-0.5">ਘੁਟਾਲੇ ਅਤੇ ਭ੍ਰਿਸ਼ਟਾਚਾਰ — ਸੀਬੀਆਈ ਛਾਪੇ, ਗਮਾਡਾ ਤੇ ਸੰਨਟੈਕ ਸਿਟੀ ਜਾਂਚ</p>
+
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-yellow-500/15 border border-yellow-500/30 flex items-center justify-center text-yellow-400 shrink-0 group-hover:scale-105 transition-transform">
+                <i data-lucide="scale" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <span class="text-xs font-mono text-yellow-400 uppercase tracking-wider font-bold">CBI RAIDS &amp; GMADA SCAM</span>
+                <h3 class="text-2xl font-display font-extrabold text-white group-hover:text-yellow-400 transition-colors">Scams &amp; Systematic Loot</h3>
+              </div>
             </div>
+
+            <p class="text-xs font-mono text-slate-400">ਘੁਟਾਲੇ ਅਤੇ ਭ੍ਰਿਸ਼ਟਾਚਾਰ — ਸੀਬੀਆਈ ਛਾਪੇ, ਗਮਾਡਾ ਤੇ ਸੰਨਟੈਕ ਸਿਟੀ ਜਾਂਚ</p>
+
             <p class="text-slate-300 text-sm leading-relaxed">
               CBI raid on CM Camp Office regarding OSD Rajbir Ghuman in cash-for-postings. ₹10,000 Cr GMADA land auction rigging. ₹348 Cr Suntec City crime proceeds. ₹155 Cr bank fraud arrest of AAP leader Deepak Singla.
             </p>
-            <div class="p-3.5 rounded-xl bg-obsidian/90 border border-panelBorder/80 font-mono text-xs space-y-1.5">
+
+            <div class="p-3.5 rounded-xl bg-obsidian/90 border border-panelBorder/80 font-mono text-xs space-y-1.5 shadow-inner">
               <div class="flex justify-between text-slate-300">
                 <span>Liquor L-1 Cartelization:</span>
                 <span class="text-crimson font-bold">Licence ₹25L → ₹5 Cr; ₹200 Cr Scam</span>
@@ -1790,14 +2176,20 @@
               </div>
             </div>
           </div>
-          <div class="relative z-10 pt-6 mt-6 border-t border-panelBorder flex items-center justify-between">
-            <span class="text-xs font-mono text-slate-500">16 Documented Findings</span>
-            <button onclick="openDossierModal('corruption')" class="px-4 py-2.5 rounded-lg bg-yellow-500/20 hover:bg-yellow-600 border border-yellow-500 text-yellow-400 hover:text-white font-mono text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition shadow-md">
-              <i data-lucide="folder-open" class="w-4 h-4"></i>
-              <span>View Evidence Dossier</span>
+
+          <!-- Folder Clasp Action Strip -->
+          <div class="relative z-10 pt-6 mt-6 border-t border-panelBorder/80 flex items-center justify-between">
+            <span class="text-xs font-mono text-slate-400 flex items-center gap-1.5">
+              <i data-lucide="file-text" class="w-3.5 h-3.5 text-yellow-400"></i>
+              <span>16 Documented Findings</span>
+            </span>
+            <button onclick="event.stopPropagation(); openDossierModal('corruption')" class="folder-clasp-cord group-hover:border-yellow-500">
+              <i data-lucide="folder-open" class="w-3.5 h-3.5 text-yellow-400"></i>
+              <span class="font-bold">UNSEAL &amp; OPEN FILE</span>
             </button>
           </div>
         </div>
+
       </div>
     </section>
 
@@ -2535,63 +2927,169 @@
     </div>
   </footer>
 
-  <!-- 3D DOSSIER FOLDER MODAL -->
-  <div id="dossierModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="relative w-full max-w-4xl max-h-[90vh] bg-charcoal border-2 border-panelBorder rounded-2xl shadow-2xl overflow-hidden flex flex-col">
-      <!-- Modal Header -->
-      <div class="p-4 sm:p-5 border-b border-panelBorder bg-obsidian flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <span class="text-xs font-mono text-crimson font-bold uppercase tracking-wider" id="modalDossierTag">Issue Overview</span>
-          <div>
-            <h3 id="modalTitle" class="text-xl sm:text-2xl font-display font-black text-white">Investigative Dossier</h3>
-            <p id="modalSubtitle" class="text-xs font-mono text-slate-400">REFERENCE: PB-CASE-FILE</p>
-          </div>
+  <!-- 3D CONFIDENTIAL DOSSIER FOLDER MODAL (WOW SECTION) -->
+  <div id="dossierModal" class="dossier-modal-backdrop" onclick="handleDossierBackdropClick(event)">
+    <div class="dossier-3d-stage">
+      
+      <!-- Top Stage Floating Controls -->
+      <div class="flex items-center justify-between mb-3 px-2 z-40">
+        <div class="flex items-center gap-2 text-xs font-mono">
+          <span class="w-2.5 h-2.5 rounded-full bg-crimson animate-pulse"></span>
+          <span class="text-white font-bold tracking-wider">CONFIDENTIAL CASE FILE // DECLASSIFIED RECORD</span>
         </div>
-        <button onclick="closeDossierModal()" class="w-8 h-8 rounded-lg bg-slateDark border border-slate-700 hover:border-crimson text-slate-400 hover:text-white flex items-center justify-center transition">
-          <i data-lucide="x" class="w-4 h-4"></i>
-        </button>
-      </div>
-
-      <!-- Modal Body (Folder Paper Interior) -->
-      <div class="p-6 overflow-y-auto space-y-6 flex-1 text-slate-200">
-        <!-- Stamp & Metrics -->
-        <div class="p-4 rounded-xl bg-obsidian border border-panelBorder flex flex-wrap items-center justify-between gap-4 font-mono text-xs">
-          <div>
-            <span class="text-slate-400 block">STATUS</span>
-            <span class="text-crimson font-bold">CHARGED &amp; EVIDENCE CATALOGUED</span>
-          </div>
-          <div>
-            <span class="text-slate-400 block">JURISDICTION</span>
-            <span class="text-white">PUNJAB STATE</span>
-          </div>
-          <div>
-            <span class="text-slate-400 block">PRIMARY STATISTIC</span>
-            <span id="modalStat" class="text-amberAlert font-bold">51,516 NDPS FIRs</span>
-          </div>
-          <button onclick="window.print()" class="px-3 py-1.5 rounded-lg bg-slateDark hover:bg-crimson text-white border border-slate-700 transition">
-            Print Exhibit
+        <div class="flex items-center gap-3">
+          <button onclick="toggleDossierAudio()" id="dossierAudioToggle" class="px-2.5 py-1 rounded-lg bg-black/60 border border-white/10 hover:border-crimson text-slate-400 hover:text-white text-xs font-mono transition flex items-center gap-1.5" title="Toggle Sound FX">
+            <i data-lucide="volume-2" id="dossierAudioIcon" class="w-3.5 h-3.5 text-crimson"></i>
+            <span id="dossierAudioText" class="hidden sm:inline">Audio Active</span>
+          </button>
+          <button onclick="closeDossierModal()" class="px-3 py-1 rounded-lg bg-charcoal hover:bg-crimson border border-white/10 hover:border-crimson text-slate-300 hover:text-white text-xs font-mono font-bold transition flex items-center gap-1.5 shadow-lg active:scale-95" title="Reseal Folder (ESC)">
+            <i data-lucide="x" class="w-4 h-4"></i>
+            <span>Reseal File</span>
+            <span class="text-[10px] text-slate-400 hidden sm:inline">[ESC]</span>
           </button>
         </div>
+      </div>
 
-        <!-- Dossier Content Points -->
-        <div class="space-y-4">
-          <h4 class="font-mono text-xs uppercase tracking-wider text-crimson font-bold flex items-center gap-1.5">
-            <i data-lucide="file-warning" class="w-4 h-4"></i>
-            <span>Key Points</span>
-          </h4>
-          <div id="modalEntries" class="space-y-3 font-sans text-sm">
-            <!-- Dynamically populated -->
+      <!-- The Main 3D Dossier Binder -->
+      <div class="dossier-binder-3d" id="dossierBinder3d">
+        
+        <!-- Left Heavy Spine & Metal Rings -->
+        <div class="dossier-spine-bar">
+          <div class="binder-ring"></div>
+          <div class="binder-ring"></div>
+          <div class="spine-vertical-text">GOVT OF PUNJAB // FORENSIC ARCHIVE</div>
+          <div class="binder-ring"></div>
+          <div class="binder-ring"></div>
+        </div>
+
+        <!-- 3D Swiveling Front Cover Flap (Flips open to the left!) -->
+        <div class="dossier-front-flap" id="dossierFrontFlap" onclick="unsealAndOpenDossierFlap()">
+          <div class="flex items-start justify-between">
+            <div class="space-y-1">
+              <span class="px-2.5 py-1 rounded bg-crimson/20 border border-crimson/50 text-crimson font-mono text-[10px] font-bold uppercase tracking-widest">STRICTLY CONFIDENTIAL</span>
+              <h3 class="text-xl sm:text-2xl font-display font-black text-white tracking-tight">PUNJAB GOVERNANCE AUDIT</h3>
+              <p class="font-mono text-xs text-slate-400">STATE ARCHIVE FILE #PB-2022-2026</p>
+            </div>
+            <div class="evidence-stamp text-xs text-crimson">TOP SECRET</div>
+          </div>
+
+          <div class="p-6 rounded-xl bg-black/50 border border-white/10 space-y-3 text-center my-auto">
+            <div class="w-14 h-14 mx-auto rounded-full bg-crimson/10 border-2 border-crimson/40 flex items-center justify-center text-crimson">
+              <i data-lucide="lock" class="w-7 h-7"></i>
+            </div>
+            <h4 class="font-display font-extrabold text-white text-lg sm:text-xl">FORENSIC CHARGESHEET FOLDER</h4>
+            <p class="text-xs text-slate-300 max-w-sm mx-auto">This official binder contains verified criminal charges, CAG audit disclosures, and judicial evidence catalogued between 2022 and 2026.</p>
+            <div class="pt-2">
+              <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-crimson hover:bg-crimsonBright text-white font-mono text-xs font-bold uppercase tracking-wider shadow-lg shadow-crimson/30 animate-pulse">
+                <i data-lucide="unlock" class="w-4 h-4"></i>
+                <span>Click Cover to Unseal Dossier</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 border-t border-white/10 pt-3">
+            <span>OFFICIAL PUBLIC EVIDENCE RECORD</span>
+            <span class="text-amberAlert font-bold">AAP DA PAAP PATRA</span>
           </div>
         </div>
+
+        <!-- Inner Case Paper Stack (The Actual Chargesheet Inside!) -->
+        <div class="dossier-paper-container" id="dossierPaperContainer">
+          
+          <!-- Diagonal Background Watermark -->
+          <div class="dossier-watermark">DECLASSIFIED DOSSIER</div>
+
+          <!-- Distressed Rubber Ink Stamp Slam (Animates when opened) -->
+          <div class="dossier-ink-stamp" id="dossierInkStamp">
+            DECLASSIFIED // AAP AUDIT
+          </div>
+
+          <!-- Top Filing Tabs Bar (Switch between 01, 02, 03, 04 right inside the file!) -->
+          <div class="p-3 sm:p-4 bg-obsidian/95 border-b border-panelBorder flex flex-wrap items-center justify-between gap-3 z-20">
+            <!-- 4 Quick Dossier Selector Tabs -->
+            <div class="flex flex-wrap items-center gap-1.5" id="dossierTabButtons">
+              <button onclick="switchDossierFolder('drugs')" id="dossierTab-drugs" class="px-3 py-1.5 rounded-lg font-mono text-xs font-bold transition flex items-center gap-1.5 bg-crimson text-white shadow-md">
+                <span>01</span>
+                <span>Drugs Crisis</span>
+              </button>
+              <button onclick="switchDossierFolder('law')" id="dossierTab-law" class="px-3 py-1.5 rounded-lg font-mono text-xs font-bold transition flex items-center gap-1.5 bg-charcoal border border-panelBorder text-slate-300 hover:text-white">
+                <span>02</span>
+                <span>Law &amp; Order</span>
+              </button>
+              <button onclick="switchDossierFolder('vadakhilafi')" id="dossierTab-vadakhilafi" class="px-3 py-1.5 rounded-lg font-mono text-xs font-bold transition flex items-center gap-1.5 bg-charcoal border border-panelBorder text-slate-300 hover:text-white">
+                <span>03</span>
+                <span>Broken Promises</span>
+              </button>
+              <button onclick="switchDossierFolder('corruption')" id="dossierTab-corruption" class="px-3 py-1.5 rounded-lg font-mono text-xs font-bold transition flex items-center gap-1.5 bg-charcoal border border-panelBorder text-slate-300 hover:text-white">
+                <span>04</span>
+                <span>Graft &amp; Scams</span>
+              </button>
+            </div>
+
+            <!-- In-Dossier Keyword Search -->
+            <div class="relative w-full sm:w-52">
+              <input type="text" id="dossierFilterInput" oninput="filterDossierEntries(this.value)" placeholder="Filter counts..." class="w-full bg-charcoal/90 border border-panelBorder focus:border-crimson rounded-lg px-3 py-1.5 text-xs font-mono text-white placeholder-slate-500 outline-none transition" />
+              <i data-lucide="search" class="w-3.5 h-3.5 text-slate-500 absolute right-2.5 top-2"></i>
+            </div>
+          </div>
+
+          <!-- Document Header Inside Folder -->
+          <div class="px-5 py-4 bg-charcoal/60 border-b border-panelBorder flex flex-col sm:flex-row sm:items-center justify-between gap-3 z-15">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-mono text-crimson font-bold uppercase tracking-wider" id="modalDossierTag">Issue 01: Narcotics</span>
+                <span class="text-slate-600">|</span>
+                <span class="text-[11px] font-mono text-slate-400" id="modalCountIndicator">9 Counts Catalogued</span>
+              </div>
+              <h3 id="modalTitle" class="text-xl sm:text-2xl font-display font-black text-white mt-0.5">The Chitta Epidemic &amp; Official Collusion</h3>
+              <p id="modalSubtitle" class="text-xs font-mono text-slate-400 mt-0.5">CASE REF: PB-NDPS-2022-26 // 51,516 REGISTERED FIRS</p>
+            </div>
+
+            <div class="flex sm:flex-col items-center sm:items-end justify-between gap-2 shrink-0">
+              <div class="p-2 sm:p-2.5 rounded-lg bg-obsidian border border-panelBorder font-mono text-xs text-right">
+                <span class="text-[10px] text-slate-400 block uppercase">Primary Forensic Stat</span>
+                <span id="modalStat" class="text-amberAlert font-extrabold text-sm">58% of India Heroin in Punjab</span>
+              </div>
+              <button onclick="window.print()" class="px-2.5 py-1 rounded bg-slateDark hover:bg-crimson border border-panelBorder text-slate-300 hover:text-white text-[11px] font-mono transition flex items-center gap-1.5">
+                <i data-lucide="printer" class="w-3 h-3"></i>
+                <span>Print Exhibit</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Documented Indictment Counts (Scrollable Inside Paper) -->
+          <div class="p-5 sm:p-6 overflow-y-auto space-y-4 flex-1 z-10 custom-scroll" id="modalEntriesScroll">
+            <div id="modalEntries" class="space-y-4 font-sans text-sm">
+              <!-- Dynamically populated counts -->
+            </div>
+          </div>
+
+          <!-- Dossier Footer Bar -->
+          <div class="p-3 sm:p-3.5 border-t border-panelBorder bg-obsidian/95 flex items-center justify-between text-xs font-mono z-20">
+            <div class="flex items-center gap-2 text-slate-400">
+              <i data-lucide="shield-alert" class="w-4 h-4 text-crimson"></i>
+              <span class="hidden sm:inline">Tap any redacted bar to reveal classified note</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <button onclick="navigateDossierCategory(-1)" class="px-2.5 py-1.5 rounded-lg bg-charcoal hover:bg-slateDark border border-panelBorder text-slate-300 hover:text-white flex items-center gap-1 transition" title="Previous Dossier">
+                <i data-lucide="chevron-left" class="w-3.5 h-3.5"></i>
+                <span class="hidden sm:inline">Prev File</span>
+              </button>
+              <button onclick="navigateDossierCategory(1)" class="px-2.5 py-1.5 rounded-lg bg-charcoal hover:bg-slateDark border border-panelBorder text-slate-300 hover:text-white flex items-center gap-1 transition" title="Next Dossier">
+                <span class="hidden sm:inline">Next File</span>
+                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+              </button>
+              <button onclick="closeDossierModal()" class="px-4 py-1.5 rounded-lg bg-crimson hover:bg-crimsonBright text-white font-bold transition flex items-center gap-1.5 shadow-md">
+                <i data-lucide="archive" class="w-3.5 h-3.5"></i>
+                <span>Reseal File</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
-      <!-- Modal Footer -->
-      <div class="p-4 border-t border-panelBorder bg-obsidian flex justify-between items-center text-xs font-mono">
-        <span class="text-slate-400">PRESS ESC TO CLOSE</span>
-        <button onclick="closeDossierModal()" class="px-4 py-2 rounded-lg bg-crimson text-white font-bold hover:bg-crimsonBright transition">
-          Done Reviewing
-        </button>
-      </div>
     </div>
   </div>
 
@@ -3803,62 +4301,312 @@
       renderChargesheetList();
     }
 
-    // --- 5. 3D DOSSIER MODAL WITH FOLDER EFFECT ---
+    // --- 5. 3D CONFIDENTIAL DOSSIER SYSTEM & AUDIO SYNTHESIS ---
+    const dossierCategories = ['drugs', 'law', 'vadakhilafi', 'corruption'];
+    let currentDossierCategory = 'drugs';
+    let dossierAudioEnabled = true;
+    let dossierAudioCtx = null;
+
+    function getDossierAudioCtx() {
+      if (!dossierAudioCtx && (window.AudioContext || window.webkitAudioContext)) {
+        dossierAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (dossierAudioCtx && dossierAudioCtx.state === 'suspended') {
+        dossierAudioCtx.resume();
+      }
+      return dossierAudioCtx;
+    }
+
+    function toggleDossierAudio() {
+      dossierAudioEnabled = !dossierAudioEnabled;
+      const text = document.getElementById('dossierAudioText');
+      const icon = document.getElementById('dossierAudioIcon');
+      if (text) text.innerText = dossierAudioEnabled ? 'Audio Active' : 'Audio Muted';
+      if (icon) {
+        icon.className = dossierAudioEnabled ? 'w-3.5 h-3.5 text-crimson' : 'w-3.5 h-3.5 text-slate-500';
+      }
+      if (dossierAudioEnabled) {
+        playDossierSwooshSound();
+      }
+    }
+
+    function playDossierSwooshSound() {
+      if (!dossierAudioEnabled) return;
+      try {
+        const ctx = getDossierAudioCtx();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(160, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(45, ctx.currentTime + 0.3);
+        gain.gain.setValueAtTime(0.18, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.3);
+      } catch (e) {}
+    }
+
+    function playStampSlamSound() {
+      if (!dossierAudioEnabled) return;
+      try {
+        const ctx = getDossierAudioCtx();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(90, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(30, ctx.currentTime + 0.22);
+        gain.gain.setValueAtTime(0.3, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.22);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.22);
+      } catch (e) {}
+    }
+
+    function playPageFlipSound() {
+      if (!dossierAudioEnabled) return;
+      try {
+        const ctx = getDossierAudioCtx();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(300, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(110, ctx.currentTime + 0.14);
+        gain.gain.setValueAtTime(0.12, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.14);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.14);
+      } catch (e) {}
+    }
+
+    function playDossierCloseSound() {
+      if (!dossierAudioEnabled) return;
+      try {
+        const ctx = getDossierAudioCtx();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(90, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(180, ctx.currentTime + 0.18);
+        gain.gain.setValueAtTime(0.15, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.18);
+      } catch (e) {}
+    }
+
     function openDossierModal(category) {
+      currentDossierCategory = category || 'drugs';
       const modal = document.getElementById('dossierModal');
+      const binder = document.getElementById('dossierBinder3d');
+      const filterInput = document.getElementById('dossierFilterInput');
+      if (filterInput) filterInput.value = '';
+
+      renderDossierFolderContent(currentDossierCategory);
+
+      // Start modal display
+      modal.classList.add('active');
+      if (binder) {
+        binder.classList.remove('folder-open');
+      }
+
+      // Smooth unseal animation: cover flips open after 80ms
+      setTimeout(() => {
+        if (binder) {
+          binder.classList.add('folder-open');
+          playDossierSwooshSound();
+        }
+      }, 80);
+
+      // Distressed rubber stamp slam animation
+      const stamp = document.getElementById('dossierInkStamp');
+      if (stamp) {
+        stamp.classList.remove('stamp-animated');
+        void stamp.offsetWidth; // Force CSS reflow
+        stamp.classList.add('stamp-animated');
+        setTimeout(() => {
+          playStampSlamSound();
+        }, 320);
+      }
+
+      const scrollContainer = document.getElementById('modalEntriesScroll');
+      if (scrollContainer) scrollContainer.scrollTop = 0;
+      lucide.createIcons();
+    }
+
+    function unsealAndOpenDossierFlap() {
+      const binder = document.getElementById('dossierBinder3d');
+      if (binder) {
+        binder.classList.add('folder-open');
+        playDossierSwooshSound();
+      }
+    }
+
+    function switchDossierFolder(category) {
+      if (currentDossierCategory === category) return;
+      currentDossierCategory = category;
+      playPageFlipSound();
+      renderDossierFolderContent(category);
+
+      const stamp = document.getElementById('dossierInkStamp');
+      if (stamp) {
+        stamp.classList.remove('stamp-animated');
+        void stamp.offsetWidth;
+        stamp.classList.add('stamp-animated');
+        setTimeout(() => {
+          playStampSlamSound();
+        }, 300);
+      }
+
+      const scrollContainer = document.getElementById('modalEntriesScroll');
+      if (scrollContainer) scrollContainer.scrollTop = 0;
+      lucide.createIcons();
+    }
+
+    function navigateDossierCategory(direction) {
+      const idx = dossierCategories.indexOf(currentDossierCategory);
+      let nextIdx = (idx + direction + dossierCategories.length) % dossierCategories.length;
+      switchDossierFolder(dossierCategories[nextIdx]);
+    }
+
+    function renderDossierFolderContent(category, filterQuery = '') {
       const tag = document.getElementById('modalDossierTag');
       const title = document.getElementById('modalTitle');
       const sub = document.getElementById('modalSubtitle');
       const stat = document.getElementById('modalStat');
+      const countIndicator = document.getElementById('modalCountIndicator');
       const entries = document.getElementById('modalEntries');
+      const stamp = document.getElementById('dossierInkStamp');
 
       const data = chargesheetData[category] || chargesheetData.drugs;
 
       if (category === 'drugs') {
-        tag.innerText = 'Issue 01: Narcotics';
-        title.innerText = 'The Chitta Epidemic & Official Collusion';
-        sub.innerText = 'CASE REF: PB-NDPS-2022-26 // 51,516 REGISTERED FIRS';
-        stat.innerText = '58% of India Heroin in Punjab';
+        if (tag) tag.innerText = 'Issue 01: Narcotics';
+        if (title) title.innerText = 'The Chitta Epidemic & Official Collusion';
+        if (sub) sub.innerText = 'CASE REF: PB-NDPS-2022-26 // 51,516 REGISTERED FIRS';
+        if (stat) stat.innerText = '58% of India Heroin in Punjab';
+        if (stamp) stamp.innerText = 'DECLASSIFIED // NARCOTICS AUDIT';
       } else if (category === 'law') {
-        tag.innerText = 'Issue 02: Law & Order';
-        title.innerText = 'Organised Gangsters & Extortion Syndicates';
-        sub.innerText = 'CASE REF: PB-LAW-2022-26 // 1,40,000+ TOTAL CRIMES';
-        stat.innerText = '22 Police Stations Attacked';
+        if (tag) tag.innerText = 'Issue 02: Law & Order';
+        if (title) title.innerText = 'Organised Gangsters & Extortion Syndicates';
+        if (sub) sub.innerText = 'CASE REF: PB-LAW-2022-26 // 1,40,000+ TOTAL CRIMES';
+        if (stat) stat.innerText = '22 Police Stations Attacked';
+        if (stamp) stamp.innerText = 'DECLASSIFIED // LAW & ORDER';
       } else if (category === 'vadakhilafi') {
-        tag.innerText = 'Issue 03: Electoral Promises';
-        title.innerText = 'Guarantees Betrayed: The 25 Lakh Jobs Myth';
-        sub.innerText = 'CASE REF: PB-PROMISE-FAIL // 2.45% ACTUAL DELIVERY';
-        stat.innerText = 'Debt Reaching ₹4.47 Lakh Cr';
+        if (tag) tag.innerText = 'Issue 03: Electoral Promises';
+        if (title) title.innerText = 'Guarantees Betrayed: The 25 Lakh Jobs Myth';
+        if (sub) sub.innerText = 'CASE REF: PB-PROMISE-FAIL // 2.45% ACTUAL DELIVERY';
+        if (stat) stat.innerText = 'Debt Reaching ₹4.47 Lakh Cr';
+        if (stamp) stamp.innerText = 'DECLASSIFIED // PROMISES AUDIT';
       } else if (category === 'corruption') {
-        tag.innerText = 'Issue 04: Governance & Scams';
-        title.innerText = 'Institutional Graft & Central Agency Probes';
-        sub.innerText = 'CASE REF: PB-SCAM-ED-CBI // ₹10,000 CR LAND AUCTION';
-        stat.innerText = 'CM Camp Office CBI Search';
+        if (tag) tag.innerText = 'Issue 04: Governance & Scams';
+        if (title) title.innerText = 'Institutional Graft & Central Agency Probes';
+        if (sub) sub.innerText = 'CASE REF: PB-SCAM-ED-CBI // ₹10,000 CR LAND AUCTION';
+        if (stat) stat.innerText = 'CM Camp Office CBI Search';
+        if (stamp) stamp.innerText = 'DECLASSIFIED // CORRUPTION AUDIT';
       }
 
-      entries.innerHTML = data.map((item, idx) => `
-        <div class="p-4 rounded-xl bg-obsidian border border-panelBorder space-y-2">
-          <div class="flex items-center justify-between text-xs font-mono">
-            <span class="text-crimson font-bold">${item.id} — COUNT #${idx + 1}</span>
-            <span class="text-slate-400 font-semibold">${item.stat}</span>
-          </div>
-          <h5 class="text-base font-bold text-white">${item.title}</h5>
-          <p class="text-xs text-slate-300 leading-relaxed">${item.desc}</p>
-          <div class="text-[11px] font-mono text-slate-400 border-l border-crimson pl-2">
-            <span class="text-slate-500">Note:</span> ${item.redacted}
-          </div>
-        </div>
-      `).join('');
+      // Update Top Tabs Styling
+      dossierCategories.forEach(cat => {
+        const tabBtn = document.getElementById(`dossierTab-${cat}`);
+        if (tabBtn) {
+          if (cat === category) {
+            tabBtn.className = 'px-3 py-1.5 rounded-lg font-mono text-xs font-bold transition flex items-center gap-1.5 bg-crimson text-white shadow-md shadow-crimson/30';
+          } else {
+            tabBtn.className = 'px-3 py-1.5 rounded-lg font-mono text-xs font-bold transition flex items-center gap-1.5 bg-charcoal border border-panelBorder text-slate-300 hover:text-white';
+          }
+        }
+      });
 
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
+      // Filter entries if search query exists
+      const query = filterQuery.trim().toLowerCase();
+      const filtered = query
+        ? data.filter(item => 
+            (item.title && item.title.toLowerCase().includes(query)) ||
+            (item.desc && item.desc.toLowerCase().includes(query)) ||
+            (item.stat && item.stat.toLowerCase().includes(query)) ||
+            (item.punjabi && item.punjabi.toLowerCase().includes(query)) ||
+            (item.redacted && item.redacted.toLowerCase().includes(query))
+          )
+        : data;
+
+      if (countIndicator) {
+        countIndicator.innerText = `${filtered.length} of ${data.length} Counts Catalogued`;
+      }
+
+      if (filtered.length === 0) {
+        entries.innerHTML = `
+          <div class="p-8 text-center space-y-2 rounded-xl bg-obsidian border border-panelBorder">
+            <i data-lucide="search-x" class="w-8 h-8 text-slate-500 mx-auto"></i>
+            <p class="text-sm font-mono text-slate-400">No charges match the filter: "${filterQuery}"</p>
+          </div>
+        `;
+      } else {
+        entries.innerHTML = filtered.map((item, idx) => `
+          <div class="p-4 sm:p-5 rounded-xl bg-obsidian/90 border border-panelBorder hover:border-crimson/50 space-y-2.5 transition shadow-lg group">
+            <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+              <span class="text-crimson font-extrabold uppercase tracking-wider">${item.id} // COUNT #${idx + 1}</span>
+              <span class="px-2.5 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-amberAlert font-bold">${item.stat}</span>
+            </div>
+            <div>
+              <h5 class="text-base sm:text-lg font-bold text-white group-hover:text-crimson transition-colors">${item.title}</h5>
+              ${item.punjabi ? `<p class="text-xs font-mono text-slate-400 mt-0.5">${item.punjabi}</p>` : ''}
+            </div>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">${item.desc}</p>
+            <div class="pt-2 flex flex-wrap items-center gap-2 text-xs font-mono border-t border-panelBorder/70">
+              <span class="text-slate-500 font-bold uppercase tracking-wider flex items-center gap-1">
+                <i data-lucide="file-key" class="w-3.5 h-3.5 text-crimson"></i>
+                <span>Classified Audit Note:</span>
+              </span>
+              <span class="redacted-tape" onclick="toggleRedactedTape(this)" title="Tap to reveal secret evidence note">${item.redacted}</span>
+            </div>
+          </div>
+        `).join('');
+      }
+
       lucide.createIcons();
+    }
+
+    function filterDossierEntries(query) {
+      renderDossierFolderContent(currentDossierCategory, query);
+    }
+
+    function toggleRedactedTape(el) {
+      if (el) {
+        el.classList.toggle('revealed');
+        playPageFlipSound();
+      }
+    }
+
+    function handleDossierBackdropClick(event) {
+      if (event.target && event.target.id === 'dossierModal') {
+        closeDossierModal();
+      }
     }
 
     function closeDossierModal() {
       const modal = document.getElementById('dossierModal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
+      const binder = document.getElementById('dossierBinder3d');
+      if (binder) {
+        binder.classList.remove('folder-open');
+        playDossierCloseSound();
+      }
+      setTimeout(() => {
+        if (modal) {
+          modal.classList.remove('active');
+        }
+      }, 350);
     }
 
     // --- 6. TACTICAL MAP INCIDENTS DATA ---
@@ -6069,7 +6817,7 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       }
     });
 
-    // Keyboard ESC closes modals & arrow keys navigate cases
+    // Keyboard ESC closes modals & arrow keys navigate cases or open dossier
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeDossierModal();
@@ -6078,11 +6826,21 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         closeSuccessModal();
       } else if (e.key === 'ArrowLeft') {
         if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
-          navigateSensationalCase(-1);
+          const dossier = document.getElementById('dossierModal');
+          if (dossier && dossier.classList.contains('active')) {
+            navigateDossierCategory(-1);
+          } else {
+            navigateSensationalCase(-1);
+          }
         }
       } else if (e.key === 'ArrowRight') {
         if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
-          navigateSensationalCase(1);
+          const dossier = document.getElementById('dossierModal');
+          if (dossier && dossier.classList.contains('active')) {
+            navigateDossierCategory(1);
+          } else {
+            navigateSensationalCase(1);
+          }
         }
       }
     });
