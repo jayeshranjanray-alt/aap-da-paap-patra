@@ -112,3 +112,13 @@
   - Top ticker: "CHARGESHEET ARCHIVE" -> "LIVE UPDATES".
   - Removed canvas corner coordinate text overlay for a clean, distraction-free motion visual.
 - Verified in Playwright with 0 console errors.
+### [x] Task 15: Additional Clutter Removal & Section Streamlining
+- Deleted "Citizen Report 2022-2026" under logo in top nav.
+- Deleted Hero storyline act bar & sound/play block; centered 4-crisis navigation pills.
+- Deleted continuous evidence marquee ticker tape in Section 2.
+- Deleted timeline scrubber ribbon (caseTimelineRibbon) in Section 2.
+- Deleted Telemetry and Legal/FIR tabs in Section 2; streamlined to a clean, direct narrative card with stepper controls.
+- Deleted Location/Type/Impact table in Map incident terminal (guarded selectIncident DOM updates).
+- Deleted "Documented Description & Facts" section from Whistleblower form.
+- Deleted "DISPATCH #PB-SUBMIT" badge from Whistleblower form header.
+- Verified in Playwright with 0 console errors.

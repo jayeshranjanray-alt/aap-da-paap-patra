@@ -1208,7 +1208,7 @@
             <span>AAP DA PAAP PATRA</span>
             <span class="hidden lg:inline text-[10px] font-mono text-crimson px-2 py-0.5 bg-crimson/10 border border-crimson/30 rounded-full font-bold">ਆਪ ਦਾ ਪਾਪ ਪੱਤਰ</span>
           </div>
-          <p class="text-[9px] sm:text-[10px] font-mono text-slate-400 tracking-wider truncate">Citizen Report 2022–2026</p>
+          
         </div>
       </a>
 
@@ -1356,7 +1356,7 @@
     </div>
 
     <!-- Bottom Controls & Navigation Strip -->
-    <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 pb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 pb-6 flex items-center justify-center">
       
       <!-- Minimalist 4-Crisis Navigator Pills (Without any dots on the video) -->
       <div class="flex flex-nowrap items-center justify-center gap-1 sm:gap-2 bg-black/70 backdrop-blur-xl p-1.5 rounded-2xl border border-white/10 shadow-2xl">
@@ -1378,33 +1378,7 @@
         </button>
       </div>
 
-      <!-- Right Side: Act Title & Audio / Playback Controls -->
-      <div class="flex items-center gap-3">
-        <div class="hidden lg:flex items-center gap-2 bg-black/70 backdrop-blur-xl px-3.5 py-1.5 rounded-full border border-white/10 text-xs font-mono">
-          <span id="actBadgeTag" class="text-crimson font-bold uppercase text-[10px]">
-            ACT 01 // GUNFIRE
-          </span>
-          <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
-          <span id="actTitleText" class="text-slate-300 font-semibold truncate max-w-[200px]">
-            Gangster Gunfire
-          </span>
-          <div class="w-16 h-1 bg-slate-800 rounded-full overflow-hidden ml-1">
-            <div id="heroActProgressBar" class="h-full bg-crimson w-0 transition-all duration-100 ease-linear"></div>
-          </div>
-        </div>
 
-        <!-- Cinema Audio & Playback Toggle Pill -->
-        <div class="flex items-center gap-2 bg-black/70 backdrop-blur-xl px-3.5 py-1.5 rounded-full border border-white/15 text-white text-xs font-mono shadow-2xl">
-          <button onclick="toggleHeroVideoMute()" id="videoAudioBtn" class="hover:text-crimson transition flex items-center gap-1.5" title="Toggle Sound">
-            <i data-lucide="volume-x" id="videoAudioIcon" class="w-4 h-4"></i>
-            <span id="videoAudioText" class="text-[11px] font-bold">Sound</span>
-          </button>
-          <span class="w-px h-3.5 bg-white/20"></span>
-          <button onclick="toggleHeroVideoPlay()" id="videoPlayPauseBtn" class="hover:text-crimson transition p-0.5" title="Play/Pause">
-            <i data-lucide="pause" id="videoPlayPauseIcon" class="w-4 h-4"></i>
-          </button>
-        </div>
-      </div>
 
     </div>
 
@@ -1459,32 +1433,6 @@
           </div>
         </div>
 
-        <!-- CONTINUOUS FORENSIC EVIDENCE TICKER TAPE -->
-        <div class="evidence-marquee-wrap">
-          <div class="evidence-marquee-content">
-            <span class="text-crimson font-black mr-3">⚠️ CRITICAL INCIDENT REPORT:</span>
-            <span class="text-slate-200 mr-8">14 UNPRECEDENTED CRISES RECORDED UNDER AAP GOVERNANCE (2022–2026)</span>
-            <span class="text-amberAlert mr-8">⚡ AN-94 ASSAULT RIFLES IN JAWAHARKE</span>
-            <span class="text-cyan-400 mr-8">📡 RPG-22 STRIKE ON POLICE INTEL HQ</span>
-            <span class="text-crimson mr-8">⚖️ SITTING HEALTH MINISTER 1% KICKBACK ARREST</span>
-            <span class="text-amberAlert mr-8">🏛️ THANA AJNALA CLASH & CAPITULATION</span>
-            <span class="text-cyan-400 mr-8">☠️ 21 DEAD IN SANGRUR TOXIC HOOCH EPIDEMIC</span>
-            <span class="text-crimson mr-8">📺 JAILED GANGSTER PRIME-TIME TV STUDIO BROADCAST</span>
-            <span class="text-slate-300 mr-12">DESTRUCTION OF DETERRENCE & CAPITAL FLIGHT</span>
-
-            <!-- Duplicate for seamless infinite loop -->
-            <span class="text-crimson font-black mr-3">⚠️ CRITICAL INCIDENT REPORT:</span>
-            <span class="text-slate-200 mr-8">14 UNPRECEDENTED CRISES RECORDED UNDER AAP GOVERNANCE (2022–2026)</span>
-            <span class="text-amberAlert mr-8">⚡ AN-94 ASSAULT RIFLES IN JAWAHARKE</span>
-            <span class="text-cyan-400 mr-8">📡 RPG-22 STRIKE ON POLICE INTEL HQ</span>
-            <span class="text-crimson mr-8">⚖️ SITTING HEALTH MINISTER 1% KICKBACK ARREST</span>
-            <span class="text-amberAlert mr-8">🏛️ THANA AJNALA CLASH & CAPITULATION</span>
-            <span class="text-cyan-400 mr-8">☠️ 21 DEAD IN SANGRUR TOXIC HOOCH EPIDEMIC</span>
-            <span class="text-crimson mr-8">📺 JAILED GANGSTER PRIME-TIME TV STUDIO BROADCAST</span>
-            <span class="text-slate-300 mr-12">DESTRUCTION OF DETERRENCE & CAPITAL FLIGHT</span>
-          </div>
-        </div>
-
         <!-- Quick Category Filter Pills -->
         <div class="flex flex-wrap items-center justify-between gap-3 border-b border-panelBorder/70 pb-3 text-xs font-mono">
           <div class="flex flex-wrap items-center gap-2" id="caseCategoryFilters">
@@ -1500,13 +1448,6 @@
             <span class="px-2 py-0.5 rounded bg-black/60 border border-panelBorder text-slate-400">←</span>
             <span class="px-2 py-0.5 rounded bg-black/60 border border-panelBorder text-slate-400">→</span>
             <span>Arrow keys or swipe left / right</span>
-          </div>
-        </div>
-
-        <!-- CHRONOLOGICAL INCIDENT TIMELINE SCRUBBER (2022 -> 2026) -->
-        <div class="case-timeline-ribbon" id="caseTimelineRibbon">
-          <div class="flex items-center justify-between gap-1 sm:gap-3 text-center min-w-[700px] sm:min-w-0" id="timelineNodesContainer">
-            <!-- Populated dynamically by renderTimelineRibbon() -->
           </div>
         </div>
 
@@ -1758,21 +1699,7 @@
                 </h3>
               </div>
 
-              <!-- Metrics Readout Table -->
-              <div class="p-4 rounded-xl bg-obsidian border border-panelBorder/90 font-mono text-xs space-y-2">
-                <div class="flex justify-between">
-                  <span class="text-slate-400">Location:</span>
-                  <span id="incidentTarget" class="text-white font-semibold">State Intelligence Headquarters, Sector 77</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-slate-400">Type:</span>
-                  <span id="incidentWeapon" class="text-crimson font-bold">Rocket-Propelled Grenade (RPG)</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="text-slate-400">Impact:</span>
-                  <span id="incidentSeverity" class="text-amberAlert">Unprecedented State Intelligence Breach</span>
-                </div>
-              </div>
+
 
               <p id="incidentDesc" class="text-slate-300 text-sm leading-relaxed">
                 Attackers fired a Rocket-Propelled Grenade directly at the high-security Punjab Police Intelligence Headquarters in Mohali. This attack is part of an alarming trend where 22 police stations and establishments have suffered grenade and blast attacks under the current government.
@@ -2193,9 +2120,8 @@
 
         <!-- Right: Interactive Upload & Story Form -->
         <div class="w-full lg:w-[460px] xl:w-[500px] shrink-0 p-6 rounded-2xl bg-charcoal border border-panelBorder shadow-2xl space-y-4">
-          <div class="flex items-center justify-between border-b border-panelBorder pb-3">
+          <div class="border-b border-panelBorder pb-3">
             <h4 class="font-display font-bold text-white text-lg">Whistleblower Dispatch Form</h4>
-            <span class="text-[11px] font-mono text-slate-400">DISPATCH #PB-SUBMIT</span>
           </div>
 
           <form onsubmit="handleCitizenSubmission(event)" class="space-y-4 font-mono text-xs">
@@ -2260,10 +2186,7 @@
               <input type="text" id="citizenTitle" required placeholder="E.g., Open drug sales near rural stadium" class="w-full bg-obsidian border border-panelBorder focus:border-cyan-500 rounded-lg p-2.5 text-white outline-none" />
             </div>
 
-            <div>
-              <label class="text-slate-400 block mb-1">Documented Description & Facts:</label>
-              <textarea id="citizenStory" rows="3" required placeholder="Provide dates, location, officials informed, and what happened..." class="w-full bg-obsidian border border-panelBorder focus:border-cyan-500 rounded-lg p-2.5 text-white outline-none resize-none"></textarea>
-            </div>
+
 
             <!-- Drag & Drop Upload Dropzone -->
             <div>
@@ -4170,15 +4093,24 @@
       const data = mapIncidents[id];
       if (!data) return;
 
-      document.getElementById('incidentBadge').innerText = data.badge;
-      document.getElementById('incidentDate').innerText = data.date;
-      document.getElementById('incidentDistrict').innerText = data.district;
-      document.getElementById('incidentTitle').innerText = data.title;
-      document.getElementById('incidentTarget').innerText = data.target;
-      document.getElementById('incidentWeapon').innerText = data.weapon;
-      document.getElementById('incidentSeverity').innerText = data.severity;
-      document.getElementById('incidentDesc').innerText = data.desc;
-      document.getElementById('incidentQuote').innerText = `"${data.quote}"`;
+      const badgeEl = document.getElementById('incidentBadge');
+      if (badgeEl) badgeEl.innerText = data.badge;
+      const dateEl = document.getElementById('incidentDate');
+      if (dateEl) dateEl.innerText = data.date;
+      const distEl = document.getElementById('incidentDistrict');
+      if (distEl) distEl.innerText = data.district;
+      const titleEl = document.getElementById('incidentTitle');
+      if (titleEl) titleEl.innerText = data.title;
+      const targetEl = document.getElementById('incidentTarget');
+      if (targetEl) targetEl.innerText = data.target;
+      const weaponEl = document.getElementById('incidentWeapon');
+      if (weaponEl) weaponEl.innerText = data.weapon;
+      const severityEl = document.getElementById('incidentSeverity');
+      if (severityEl) severityEl.innerText = data.severity;
+      const descEl = document.getElementById('incidentDesc');
+      if (descEl) descEl.innerText = data.desc;
+      const quoteEl = document.getElementById('incidentQuote');
+      if (quoteEl) quoteEl.innerText = `"${data.quote}"`;
 
       const inspectBtn = document.getElementById('mapInspectCaseBtn');
       if (inspectBtn) {
@@ -5763,35 +5695,18 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
               </div>
             </div>
 
-            <!-- Right Column: Interactive Dossier Tabs (5 Cols) -->
-            <div class="lg:col-span-5 space-y-4">
+            <!-- Right Column: Clean Case Story & Details (5 Cols) -->
+            <div class="lg:col-span-5 space-y-4 flex flex-col justify-between">
               
-              <!-- 3 Interactive Case Dossier Tabs -->
-              <div class="flex items-center gap-1 bg-obsidian p-1 rounded-xl border border-panelBorder text-xs font-mono">
-                <button onclick="setCaseSubTab('narrative')" id="caseTabBtn-narrative" class="case-subtab-btn flex-1 py-1.5 px-2 rounded-lg text-slate-300 hover:text-white text-center flex items-center justify-center gap-1.5 ${activeCaseSubTab === 'narrative' ? 'active' : ''}">
-                  <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
-                  <span>Brief</span>
-                </button>
-                <button onclick="setCaseSubTab('metrics')" id="caseTabBtn-metrics" class="case-subtab-btn flex-1 py-1.5 px-2 rounded-lg text-slate-300 hover:text-white text-center flex items-center justify-center gap-1.5 ${activeCaseSubTab === 'metrics' ? 'active' : ''}">
-                  <i data-lucide="activity" class="w-3.5 h-3.5"></i>
-                  <span>Telemetry</span>
-                </button>
-                <button onclick="setCaseSubTab('legal')" id="caseTabBtn-legal" class="case-subtab-btn flex-1 py-1.5 px-2 rounded-lg text-slate-300 hover:text-white text-center flex items-center justify-center gap-1.5 ${activeCaseSubTab === 'legal' ? 'active' : ''}">
-                  <i data-lucide="scale" class="w-3.5 h-3.5"></i>
-                  <span>Legal/FIR</span>
-                </button>
-              </div>
-
-              <!-- TAB CONTENT 1: INVESTIGATIVE BRIEF -->
-              <div id="caseTabContent-narrative" class="${activeCaseSubTab === 'narrative' ? '' : 'hidden'} space-y-3.5">
-                <!-- Location & Date Micro-Header -->
-                <div class="flex items-center justify-between text-xs font-mono text-slate-400 border-b border-panelBorder pb-2">
-                  <span class="flex items-center gap-1 text-slate-300 font-bold"><i data-lucide="map-pin" class="w-3 h-3 text-crimson"></i> ${item.district}</span>
+              <div class="space-y-4">
+                <!-- Location & Date Header -->
+                <div class="flex items-center justify-between text-xs font-mono text-slate-400 border-b border-panelBorder pb-2.5">
+                  <span class="flex items-center gap-1.5 text-slate-300 font-bold"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-crimson"></i> ${item.district}</span>
                   <span class="text-crimson font-bold">${item.date}</span>
                 </div>
 
                 <!-- Punjabi & English Headline -->
-                <div class="space-y-1">
+                <div class="space-y-1.5">
                   <p class="font-gurmukhi text-base sm:text-lg text-amberAlert font-bold leading-snug">${item.punjabi}</p>
                   <h3 class="text-lg sm:text-xl font-display font-black text-white leading-tight">
                     ${item.title}
@@ -5803,57 +5718,14 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
                   ${item.summary}
                 </p>
 
-                <!-- Official Quote Block -->
-                <div class="p-3 rounded-xl bg-charcoal/90 border-l-4 border-crimson font-serif italic text-xs text-slate-200 leading-relaxed shadow-inner">
+                <!-- Quote Block -->
+                <div class="p-3.5 rounded-xl bg-charcoal/90 border-l-4 border-crimson font-serif italic text-xs text-slate-200 leading-relaxed shadow-inner">
                   ${item.quote}
                 </div>
               </div>
 
-              <!-- TAB CONTENT 2: FORENSIC TELEMETRY & METRICS -->
-              <div id="caseTabContent-metrics" class="${activeCaseSubTab === 'metrics' ? '' : 'hidden'} space-y-2.5">
-                <div class="text-[11px] font-mono text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                  <i data-lucide="crosshair" class="w-3.5 h-3.5 text-crimson"></i>
-                  <span>Key Metrics</span>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                  ${item.metrics.map(m => `
-                    <div class="telemetry-tile">
-                      <span class="text-[10px] font-mono text-slate-400 uppercase tracking-wider block mb-1 font-bold">${m.label}</span>
-                      <p class="text-xs font-display font-bold text-white leading-tight">${m.val}</p>
-                    </div>
-                  `).join('')}
-                </div>
-              </div>
-
-              <!-- TAB CONTENT 3: LEGAL & CHARGESHEET RECORD -->
-              <div id="caseTabContent-legal" class="${activeCaseSubTab === 'legal' ? '' : 'hidden'} space-y-3">
-                <div class="p-3 rounded-xl bg-charcoal/90 border border-panelBorder space-y-2 text-xs font-mono">
-                  <div>
-                    <span class="text-slate-500 uppercase tracking-wider text-[10px] block font-bold">PRIMARY POLICE FIR:</span>
-                    <span class="text-amberAlert font-bold">${item.legal.fir}</span>
-                  </div>
-                  <div>
-                    <span class="text-slate-500 uppercase tracking-wider text-[10px] block font-bold">CHARGES & SECTIONS:</span>
-                    <span class="text-slate-200">${item.legal.sections}</span>
-                  </div>
-                  <div>
-                    <span class="text-slate-500 uppercase tracking-wider text-[10px] block font-bold">INVESTIGATING BODY:</span>
-                    <span class="text-cyan-400 font-bold">${item.legal.agency}</span>
-                  </div>
-                  <div>
-                    <span class="text-slate-500 uppercase tracking-wider text-[10px] block font-bold">JUDICIAL PROCEEDINGS STATUS:</span>
-                    <p class="text-slate-300 font-sans text-xs leading-relaxed mt-0.5">${item.legal.status}</p>
-                  </div>
-                </div>
-
-                <button onclick="shareCaseIncident('${item.id}')" class="w-full py-2.5 px-3 rounded-xl bg-charcoal hover:bg-slateDark border border-panelBorder hover:border-crimson text-slate-200 hover:text-white transition flex items-center justify-center gap-2 text-xs font-mono font-bold shadow">
-                  <i data-lucide="share-2" class="w-3.5 h-3.5 text-crimson"></i>
-                  <span>Share Case</span>
-                </button>
-              </div>
-
-              <!-- Side-to-Side Bottom Stepper Controls -->
-              <div class="pt-2 flex items-center gap-2.5 border-t border-panelBorder/70">
+              <!-- Side-to-Side Stepper Controls -->
+              <div class="pt-3 flex items-center gap-3 border-t border-panelBorder/70">
                 <button onclick="navigateSensationalCase(-1)" class="flex-1 py-2.5 px-3 rounded-xl bg-charcoal hover:bg-crimson border border-panelBorder hover:border-crimson text-slate-200 hover:text-white transition flex items-center justify-center gap-2 text-xs font-mono font-bold active:scale-95 shadow group" title="Previous Incident">
                   <i data-lucide="chevron-left" class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform"></i>
                   <span>Prev Case</span>
