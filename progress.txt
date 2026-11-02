@@ -94,3 +94,21 @@
 - High-definition Red Ink Forensic Rubber Stamp (#caseStampBadge) stamped directly onto the upper corner of the evidence photo with authentic stamp-slam-active physics keyframes and recoil.
 - Verified in Playwright: 0 console errors, 60fps smooth animations, verified case-to-case transitions and wing card updates.
 - Commit 2b82798 landed.
+### [x] Task 14: Site-Wide Unnecessary Text Removal & Map Section Theme Update
+- Updated Section 3 (Map) theme and heading:
+  - Main heading: "View the Cases That Shook Punjab This Week"
+  - Subtitle: "Track recent incidents across Punjab's 23 districts."
+  - Replaced "TACTICAL RADAR: 31.1471° N, 75.3412° E (PUNJAB ZONE)" with "Live Incident Map".
+  - Cleaned terminal fields: "Target, Weaponry, Security Impact" -> "Location, Type, Impact".
+  - Cleaned incident data: replaced "TACTICAL WARHEAD STRIKE" and militarized badge labels with clean dates and clear incident types.
+- Removed unnecessary pseudo-forensic and military clutter across all sections:
+  - Removed "VERIFIED FORENSIC RECORD" from active case card header.
+  - Simplified rubber stamp: "VERIFIED CRIME FILE // EXHIBIT #XX" -> "CASE #XX".
+  - Telemetry tab: "VERIFIED FORENSIC DATA METRICS (4)" -> "Key Metrics".
+  - Loupe overlay: "FORENSIC 2.5X" -> "2.5X ZOOM".
+  - Section 4: "FORENSIC INDICTMENTS / 4 CORE DOSSIERS" -> "4 Core Issues", "DOSSIER-01..04" -> "01..04".
+  - Section 5: "MASTER EVIDENCE BOARD // 85+ CLIPPINGS" -> "85+ Media Reports", "Inspect High-Res Board" -> "View Full Archive", "JOURNALISTIC ARCHIVE / VERIFIED HEADLINES" -> "Press Coverage".
+  - Section 6: "COMMUNITY REPOSITORY" -> "Community Reports", removed "VERIFIED BY EDITORIAL DESK".
+  - Top ticker: "CHARGESHEET ARCHIVE" -> "LIVE UPDATES".
+  - Removed canvas corner coordinate text overlay for a clean, distraction-free motion visual.
+- Verified in Playwright with 0 console errors.

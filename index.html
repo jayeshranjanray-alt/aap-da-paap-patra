@@ -702,7 +702,7 @@
       backdrop-filter: brightness(1.1) contrast(1.15);
     }
     .forensic-loupe::after {
-      content: "FORENSIC 2.5X";
+      content: "2.5X ZOOM";
       position: absolute;
       bottom: -22px;
       left: 50%;
@@ -1162,7 +1162,7 @@
     <div class="flex items-center">
       <div class="flex items-center gap-2 pr-3 bg-red-950/90 font-bold tracking-wider uppercase text-[11px] sm:text-xs z-10 shrink-0 border-r border-red-400/40">
         <span class="inline-block w-2 h-2 rounded-full bg-white animate-ping"></span>
-        <span data-i18n="tickerLabel">CHARGESHEET ARCHIVE</span>
+        <span data-i18n="tickerLabel">LIVE UPDATES</span>
       </div>
       <div class="overflow-hidden whitespace-nowrap w-full">
         <div class="animate-marquee flex items-center gap-8 text-[11px] font-medium tracking-wide">
@@ -1208,7 +1208,7 @@
             <span>AAP DA PAAP PATRA</span>
             <span class="hidden lg:inline text-[10px] font-mono text-crimson px-2 py-0.5 bg-crimson/10 border border-crimson/30 rounded-full font-bold">ਆਪ ਦਾ ਪਾਪ ਪੱਤਰ</span>
           </div>
-          <p class="text-[9px] sm:text-[10px] font-mono text-slate-400 tracking-wider truncate">DIGITAL INVESTIGATIVE CHARGESHEET</p>
+          <p class="text-[9px] sm:text-[10px] font-mono text-slate-400 tracking-wider truncate">Citizen Report 2022–2026</p>
         </div>
       </a>
 
@@ -1333,7 +1333,7 @@
         
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-crimson/20 border border-crimson/40 backdrop-blur-md">
           <span class="w-2 h-2 rounded-full bg-crimson animate-ping"></span>
-          <span class="text-[11px] sm:text-xs font-mono font-bold tracking-widest text-red-300 uppercase">DIGITAL INVESTIGATIVE CHARGESHEET</span>
+          <span class="text-[11px] sm:text-xs font-mono font-bold tracking-widest text-red-300 uppercase">4-Year Governance Report</span>
         </div>
 
         <h1 class="text-4xl sm:text-6xl lg:text-7xl font-display font-black tracking-tight text-white leading-none drop-shadow-2xl">
@@ -1430,14 +1430,13 @@
         <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-panelBorder pb-6">
           <div>
             <div class="flex items-center gap-2 mb-2">
-              <span class="evidence-stamp text-xs">CRITICAL INCIDENT ARCHIVE</span>
-              <span class="text-xs font-mono text-crimson font-bold uppercase tracking-wider">14 SENSATIONAL INCIDENTS // AAP REGIME (2022–2026)</span>
+              <span class="text-xs font-mono text-crimson font-bold uppercase tracking-wider">14 Incidents · 2022–2026</span>
             </div>
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-white tracking-tight">
               Cases That Shook Punjab
             </h2>
             <p class="text-slate-400 text-sm sm:text-base mt-1.5 max-w-3xl leading-relaxed">
-              Verified investigative archives, authentic news photojournalism, and official forensic records of the landmark assassinations, rocket attacks, and custodial crackdowns under the AAP government.
+              Landmark assassinations, rocket attacks, and crackdowns documented under the AAP government.
             </p>
           </div>
 
@@ -1617,10 +1616,10 @@
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
-            Punjab Crime &amp; Incident Tracker
+            View the Cases That Shook Punjab This Week
           </h2>
           <p class="text-slate-400 text-sm mt-1">
-            Geospatial tracking of verified crimes, seizures, and administrative breaches across all 23 districts.
+            Track recent incidents across Punjab's 23 districts.
           </p>
         </div>
       </div>
@@ -1633,7 +1632,7 @@
           <div class="flex items-center justify-between border-b border-panelBorder/70 pb-3 mb-4">
             <div class="flex items-center gap-2 font-mono text-xs text-slate-400">
               <span class="w-2.5 h-2.5 rounded-full bg-crimson animate-ping"></span>
-              <span>TACTICAL RADAR: 31.1471° N, 75.3412° E (PUNJAB ZONE)</span>
+              <span>Live Incident Map</span>
             </div>
             <div class="flex items-center gap-2 text-xs font-mono">
               <button onclick="filterMapHotspots('all')" class="map-filter-btn px-2.5 py-1 rounded bg-crimson text-white font-bold" data-cat="all">ALL</button>
@@ -1746,9 +1745,9 @@
             <div class="flex items-center justify-between border-b border-panelBorder pb-3">
               <span class="text-xs font-mono text-crimson font-bold uppercase tracking-wider flex items-center gap-1.5">
                 <i data-lucide="shield-alert" class="w-4 h-4"></i>
-                <span id="incidentBadge">INCIDENT DOSSIER</span>
+                <span id="incidentBadge">Incident Details</span>
               </span>
-              <span id="incidentDate" class="font-mono text-xs text-slate-400">TACTICAL WARHEAD STRIKE</span>
+              <span id="incidentDate" class="font-mono text-xs text-slate-400"></span>
             </div>
 
             <div class="mt-4 space-y-4">
@@ -1762,15 +1761,15 @@
               <!-- Metrics Readout Table -->
               <div class="p-4 rounded-xl bg-obsidian border border-panelBorder/90 font-mono text-xs space-y-2">
                 <div class="flex justify-between">
-                  <span class="text-slate-400">Target:</span>
+                  <span class="text-slate-400">Location:</span>
                   <span id="incidentTarget" class="text-white font-semibold">State Intelligence Headquarters, Sector 77</span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-slate-400">Weaponry:</span>
+                  <span class="text-slate-400">Type:</span>
                   <span id="incidentWeapon" class="text-crimson font-bold">Rocket-Propelled Grenade (RPG)</span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-slate-400">Security Impact:</span>
+                  <span class="text-slate-400">Impact:</span>
                   <span id="incidentSeverity" class="text-amberAlert">Unprecedented State Intelligence Breach</span>
                 </div>
               </div>
@@ -1786,7 +1785,7 @@
           </div>
 
           <div class="pt-4 border-t border-panelBorder flex flex-col sm:flex-row items-center justify-between gap-3">
-            <span class="text-xs font-mono text-slate-500">Select any radar pin to examine</span>
+            <span class="text-xs font-mono text-slate-500">Select a pin on the map</span>
             <button id="mapInspectCaseBtn" onclick="openCaseFromMap('rpg-mohali')" class="w-full sm:w-auto py-2.5 px-4 rounded-xl bg-crimson hover:bg-crimsonBright text-white text-xs font-mono font-bold flex items-center justify-center gap-2 transition shadow-lg shadow-crimson/30 active:scale-95">
               <span>View in Cases That Shook Punjab</span>
               <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
@@ -1804,14 +1803,13 @@
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <div class="flex items-center gap-2 mb-1">
-            <span class="evidence-stamp text-xs">FORENSIC INDICTMENTS</span>
-            <span class="text-xs font-mono text-crimson font-bold">4 CORE DOSSIERS</span>
+            <span class="text-xs font-mono text-crimson font-bold uppercase tracking-wider">4 Core Issues</span>
           </div>
           <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
             4 Core Issue Chargesheets
           </h2>
           <p class="text-slate-400 text-sm mt-1">
-            Four comprehensive forensic dossiers compiled from investigative inquiries, judicial records, and CAG audits.
+            Key issues compiled from judicial records and CAG audits.
           </p>
         </div>
       </div>
@@ -1825,7 +1823,7 @@
             <img src="img/drug_crisis_punjab.jpg" alt="Drugs Crisis" class="w-full h-full object-cover" />
           </div>
           <div class="absolute top-0 right-0 p-5">
-            <span class="font-mono text-xs px-2.5 py-1 bg-crimson/15 border border-crimson/40 text-crimson rounded-md font-bold">DOSSIER-01</span>
+            <span class="font-mono text-xs px-2.5 py-1 bg-crimson/15 border border-crimson/40 text-crimson rounded-md font-bold">01</span>
           </div>
           <div class="relative z-10 space-y-4">
             <div class="w-12 h-12 rounded-xl bg-crimson/15 border border-crimson/30 flex items-center justify-center text-crimson">
@@ -1865,7 +1863,7 @@
             <img src="img/law_order_collapse.jpg" alt="Law and Order Collapse" class="w-full h-full object-cover" />
           </div>
           <div class="absolute top-0 right-0 p-5">
-            <span class="font-mono text-xs px-2.5 py-1 bg-amber-500/15 border border-amber-500/40 text-amberAlert rounded-md font-bold">DOSSIER-02</span>
+            <span class="font-mono text-xs px-2.5 py-1 bg-amber-500/15 border border-amber-500/40 text-amberAlert rounded-md font-bold">02</span>
           </div>
           <div class="relative z-10 space-y-4">
             <div class="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amberAlert">
@@ -1905,7 +1903,7 @@
             <img src="img/broken_promises.jpg" alt="Broken Promises" class="w-full h-full object-cover" />
           </div>
           <div class="absolute top-0 right-0 p-5">
-            <span class="font-mono text-xs px-2.5 py-1 bg-red-500/15 border border-red-500/40 text-red-400 rounded-md font-bold">DOSSIER-03</span>
+            <span class="font-mono text-xs px-2.5 py-1 bg-red-500/15 border border-red-500/40 text-red-400 rounded-md font-bold">03</span>
           </div>
           <div class="relative z-10 space-y-4">
             <div class="w-12 h-12 rounded-xl bg-red-600/15 border border-red-500/30 flex items-center justify-center text-red-400">
@@ -1945,7 +1943,7 @@
             <img src="img/corruption_scams.jpg" alt="Corruption Scams" class="w-full h-full object-cover" />
           </div>
           <div class="absolute top-0 right-0 p-5">
-            <span class="font-mono text-xs px-2.5 py-1 bg-yellow-500/15 border border-yellow-500/40 text-yellow-400 rounded-md font-bold">DOSSIER-04</span>
+            <span class="font-mono text-xs px-2.5 py-1 bg-yellow-500/15 border border-yellow-500/40 text-yellow-400 rounded-md font-bold">04</span>
           </div>
           <div class="relative z-10 space-y-4">
             <div class="w-12 h-12 rounded-xl bg-yellow-500/15 border border-yellow-500/30 flex items-center justify-center text-yellow-400">
@@ -1989,14 +1987,13 @@
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <div class="flex items-center gap-2 mb-1">
-            <span class="evidence-stamp text-xs">JOURNALISTIC ARCHIVE</span>
-            <span class="text-xs font-mono text-slate-400">VERIFIED HEADLINES</span>
+            <span class="text-xs font-mono text-crimson font-bold uppercase tracking-wider">Press Coverage</span>
           </div>
           <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
             Newspaper Clippings
           </h2>
           <p class="text-slate-400 text-sm mt-1">
-            Published investigative reporting, front-page news, and editorial coverage from leading dailies.
+            Front-page news and editorial coverage from leading dailies.
           </p>
         </div>
 
@@ -2016,7 +2013,7 @@
         </div>
 
         <div class="relative z-10 max-w-2xl space-y-3">
-          <span class="evidence-stamp text-xs">MASTER EVIDENCE BOARD // 85+ CLIPPINGS</span>
+          <span class="text-xs font-mono text-crimson font-bold uppercase tracking-wider">85+ Media Reports</span>
           <h3 class="text-2xl sm:text-3xl font-display font-black text-white">
             Newspaper Headlines That Shook Punjab
           </h3>
@@ -2025,7 +2022,7 @@
           </p>
           <div class="pt-2 flex items-center gap-3">
             <span class="px-3 py-1.5 rounded-lg bg-crimson/20 border border-crimson text-crimson font-mono text-xs font-bold flex items-center gap-1.5">
-              <i data-lucide="zoom-in" class="w-3.5 h-3.5"></i> Inspect High-Res Board
+              <i data-lucide="zoom-in" class="w-3.5 h-3.5"></i> View Full Archive
             </span>
           </div>
         </div>
@@ -2299,10 +2296,10 @@
       <div class="pt-8 border-t border-panelBorder space-y-4">
         <div class="flex items-center justify-between">
           <div>
-            <span class="citizen-stamp text-xs">COMMUNITY REPOSITORY</span>
+            <span class="text-xs font-mono text-cyan-400 font-bold uppercase tracking-wider">Community Reports</span>
             <h3 class="text-xl font-display font-bold text-white mt-1">Recently Approved Citizen Submissions</h3>
           </div>
-          <span class="text-xs font-mono text-slate-400">VERIFIED BY EDITORIAL DESK</span>
+          <span class="text-xs font-mono text-slate-400"></span>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -2726,7 +2723,7 @@
       <!-- Modal Header -->
       <div class="p-4 sm:p-5 border-b border-panelBorder bg-obsidian flex items-center justify-between">
         <div class="flex items-center gap-3">
-          <span class="evidence-stamp text-xs" id="modalDossierTag">CLASSIFIED DOSSIER</span>
+          <span class="text-xs font-mono text-crimson font-bold uppercase tracking-wider" id="modalDossierTag">Issue Overview</span>
           <div>
             <h3 id="modalTitle" class="text-xl sm:text-2xl font-display font-black text-white">Investigative Dossier</h3>
             <p id="modalSubtitle" class="text-xs font-mono text-slate-400">REFERENCE: PB-CASE-FILE</p>
@@ -2762,7 +2759,7 @@
         <div class="space-y-4">
           <h4 class="font-mono text-xs uppercase tracking-wider text-crimson font-bold flex items-center gap-1.5">
             <i data-lucide="file-warning" class="w-4 h-4"></i>
-            <span>DOCUMENTED CHARGES & EXHIBITS</span>
+            <span>Key Points</span>
           </h4>
           <div id="modalEntries" class="space-y-3 font-sans text-sm">
             <!-- Dynamically populated -->
@@ -2784,7 +2781,7 @@
   <div id="evidenceModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
     <div class="relative w-full max-w-2xl bg-charcoal border-2 border-panelBorder rounded-2xl shadow-2xl p-6 space-y-4">
       <div class="flex items-center justify-between border-b border-panelBorder pb-3">
-        <span class="evidence-stamp text-xs" id="evDocTag">EXHIBIT RECORD</span>
+        <span class="text-xs font-mono text-crimson font-bold uppercase tracking-wider" id="evDocTag">Document Details</span>
         <button onclick="closeEvidenceModal()" class="text-slate-400 hover:text-white">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
@@ -3918,7 +3915,7 @@
                 <span class="font-mono text-xs px-2 py-0.5 rounded border ${badgeColor} font-bold">${item.id}</span>
                 <span class="text-xs font-mono text-slate-400 uppercase">${item.cat}</span>
               </div>
-              <span class="text-xs font-mono text-slate-500">EXHIBIT DOCUMENTED</span>
+              
             </div>
 
             <div>
@@ -3930,7 +3927,7 @@
 
             <!-- Redacted Line (Click to reveal) -->
             <div class="p-2.5 rounded-lg bg-obsidian border border-panelBorder/70 text-xs font-mono flex items-start gap-2">
-              <span class="text-crimson font-bold shrink-0">CONFIDENTIAL INTEL:</span>
+              <span class="text-crimson font-bold shrink-0">Finding:</span>
               <span class="redacted" onclick="this.classList.toggle('revealed')" title="Click to reveal redacted classified information">
                 ${item.redacted}
               </span>
@@ -4000,22 +3997,22 @@
       const data = chargesheetData[category] || chargesheetData.drugs;
 
       if (category === 'drugs') {
-        tag.innerText = 'DOSSIER 01: NARCOTICS REPOSITORY';
+        tag.innerText = 'Issue 01: Narcotics';
         title.innerText = 'The Chitta Epidemic & Official Collusion';
         sub.innerText = 'CASE REF: PB-NDPS-2022-26 // 51,516 REGISTERED FIRS';
         stat.innerText = '58% of India Heroin in Punjab';
       } else if (category === 'law') {
-        tag.innerText = 'DOSSIER 02: LAW & ORDER AUDIT';
+        tag.innerText = 'Issue 02: Law & Order';
         title.innerText = 'Organised Gangsters & Extortion Syndicates';
         sub.innerText = 'CASE REF: PB-LAW-2022-26 // 1,40,000+ TOTAL CRIMES';
         stat.innerText = '22 Police Stations Attacked';
       } else if (category === 'vadakhilafi') {
-        tag.innerText = 'DOSSIER 03: VADAKHILAFI AUDIT';
+        tag.innerText = 'Issue 03: Electoral Promises';
         title.innerText = 'Guarantees Betrayed: The 25 Lakh Jobs Myth';
         sub.innerText = 'CASE REF: PB-PROMISE-FAIL // 2.45% ACTUAL DELIVERY';
         stat.innerText = 'Debt Reaching ₹4.47 Lakh Cr';
       } else if (category === 'corruption') {
-        tag.innerText = 'DOSSIER 04: SCAMS & RAIDS';
+        tag.innerText = 'Issue 04: Governance & Scams';
         title.innerText = 'Institutional Graft & Central Agency Probes';
         sub.innerText = 'CASE REF: PB-SCAM-ED-CBI // ₹10,000 CR LAND AUCTION';
         stat.innerText = 'CM Camp Office CBI Search';
@@ -4030,7 +4027,7 @@
           <h5 class="text-base font-bold text-white">${item.title}</h5>
           <p class="text-xs text-slate-300 leading-relaxed">${item.desc}</p>
           <div class="text-[11px] font-mono text-slate-400 border-l border-crimson pl-2">
-            <span class="text-slate-500">DEPUTY INQUIRY EXHIBIT:</span> ${item.redacted}
+            <span class="text-slate-500">Note:</span> ${item.redacted}
           </div>
         </div>
       `).join('');
@@ -4051,106 +4048,106 @@
       mohali: {
         district: "SAS Nagar / Mohali",
         caseId: "rpg-mohali",
-        date: "TACTICAL WARHEAD STRIKE",
-        badge: "TERROR & SECURITY COLLAPSE",
+        date: "May 2022",
+        badge: "Security Breach",
         title: "RPG Attack on Punjab Police Intelligence HQ",
         target: "State Intelligence Headquarters, Sector 77",
         weapon: "Rocket-Propelled Grenade (RPG)",
-        severity: "Unprecedented State Intelligence Breach",
-        desc: "Assailants fired a Rocket-Propelled Grenade directly at the high-security Punjab Police Intelligence Headquarters in Mohali. This attack is part of an alarming trend where 22 police stations and establishments have suffered grenade and blast attacks under the current government.",
-        quote: "Direct hit on the very brain of state police intelligence operations while senior officials were on site."
+        severity: "State Intelligence Facility",
+        desc: "Assailants fired a Rocket-Propelled Grenade directly at the Punjab Police Intelligence Headquarters in Mohali. This attack is part of a pattern where police stations and establishments have suffered grenade and blast attacks under the current government.",
+        quote: "Direct hit on state police intelligence headquarters while senior officials were on site."
       },
       amritsar: {
-        district: "Amritsar Police Commissionerate",
+        district: "Amritsar",
         caseId: "suri",
-        date: "OCTOBER 2026",
-        badge: "ON-DUTY ASSASSINATION",
-        title: "Police ASI Sukhchain Singh Gunned Down",
-        target: "Punjab Police On-Duty Personnel",
-        weapon: "Pistol Firearms (Close Range)",
-        severity: "Lethal Danger to Uniformed Officers",
-        desc: "Motorcycle-borne assailants executed ASI Sukhchain Singh while he was returning home after duty. When the state cannot even guarantee the safety of its own uniformed police personnel, common citizens are left entirely helpless.",
-        quote: "A government that cannot protect its own police cannot protect Punjab."
+        date: "October 2024",
+        badge: "Police Officer Killed",
+        title: "Police ASI Sukhchain Singh Shot on Duty",
+        target: "On-Duty Police Officer",
+        weapon: "Firearms",
+        severity: "Attack on Law Enforcement",
+        desc: "Assailants shot ASI Sukhchain Singh while he was returning home after duty, raising serious concerns over officer safety across the state.",
+        quote: "When law enforcement officers are targeted on duty, citizen security is compromised."
       },
       ludhiana: {
-        district: "Ludhiana Industrial Hub",
+        district: "Ludhiana",
         caseId: "timmy",
-        date: "2026 REPEATED ATTACKS",
-        badge: "TRIPLE HOMICIDE IN 48 HOURS",
-        title: "Three Brazen Daylight Murders in 48 Hours",
-        target: "Civic Leaders, Former Sarpanches, Businessmen",
-        weapon: "Unregulated Firearms & Sharp Weapons",
-        severity: "Total Breakdown in Street Deterrence",
-        desc: "Ludhiana witnessed three broad daylight homicides in a mere 48-hour span, including the fatal shooting of a former village sarpanch. Gang rivalries and contract killers operated in open commercial corridors without police intervention.",
+        date: "2024",
+        badge: "Multiple Homicides",
+        title: "Three Broad Daylight Murders in 48 Hours",
+        target: "Civic Leaders and Business Owners",
+        weapon: "Firearms",
+        severity: "Public Safety Breakdown",
+        desc: "Ludhiana recorded three daylight homicides in a 48-hour span, including the fatal shooting of a former village sarpanch in active commercial areas.",
         quote: "Over 2,100 murders logged across Punjab between 2022 and 2024."
       },
       bathinda: {
-        district: "Bathinda (Malwa Region)",
+        district: "Bathinda",
         caseId: "village",
-        date: "PUBLIC PROTEST ACTION",
-        badge: "VILLAGE DISTRESS SIGNAL",
+        date: "July 2024",
+        badge: "Village Protest",
         title: "Bhai Bhakhtaur: 'Our Village is for Sale'",
-        target: "Rural Community Youth & Families",
-        weapon: "Chitta (Heroin) & Synthetic Opioids",
-        severity: "Community Rebellion Against Police Inaction",
-        desc: "Frustrated by openly operating drug dens and unresponsive police precincts, residents of Bhai Bhakhtaur village put up banners reading 'Our village is for sale' as a desperate cry for government accountability.",
-        quote: "Villagers chose to put their homes up for sale rather than bury more sons."
+        target: "Village Community",
+        weapon: "Illicit Narcotics",
+        severity: "Citizen Grievance",
+        desc: "Residents of Bhai Bhakhtaur village put up banners reading 'Our village is for sale' as a public protest against unchecked illicit drug peddling.",
+        quote: "Villagers highlighted the crisis after repeated appeals yielded no sustained enforcement."
       },
       faridkot: {
-        district: "Faridkot & Kotkapura",
+        district: "Faridkot",
         caseId: "pardeep",
-        date: "PRISON & CIVIC CRISIS",
-        badge: "JAIL DRUG RING & RESIDENCE BANNERS",
-        title: "Faridkot Jail Ring & 'Houses for Sale' in Kotkapura",
-        target: "High Court Monitored Penitentiary Facility",
-        weapon: "Smuggled Narcotics, Mobile Phones & Contraband",
-        severity: "Bribery & Official Corruption in Detention",
-        desc: "Faridkot Central Jail was identified by the High Court as an operational nerve center for cross-state narcotics syndicates. Concurrently, Kotkapura families put up signs declaring their houses for sale to escape street gangs.",
-        quote: "High Court: 'Nothing can be more serious than drug rings run from within state prisons.'"
+        date: "November 2022",
+        badge: "Prison Incident",
+        title: "Faridkot Jail Contraband Network",
+        target: "Correctional Facility",
+        weapon: "Contraband & Mobile Phones",
+        severity: "Prison Security Breach",
+        desc: "Faridkot Central Jail was placed under High Court scrutiny following reports of illicit mobile networks and contraband operations within the facility.",
+        quote: "High Court noted the seriousness of unauthorized networks operating from inside state prisons."
       },
       fazilka: {
-        district: "Fazilka & Jalalabad",
-        date: "SEPTEMBER 2026",
-        badge: "POLICE STATION BLAST & ₹62 CR SYNDICATE",
-        title: "Jalalabad Police Station Explosion & ₹62 Cr Drug Inspector",
-        target: "Jalalabad Police Station & Border Supply Lines",
-        weapon: "Improvised Explosive Device (IED) & Heroin Pipeline",
-        severity: "Subversion of Border District Law Enforcement",
-        desc: "A blast inside the Jalalabad police station exposed deep operational vulnerability. Concurrently, a local drug inspector in Fazilka was indicted for facilitating an illicit ₹62 crore narcotics network across border conduits.",
-        quote: "Blast inside the police station proves terrorists strike with absolute impunity."
+        district: "Fazilka / Jalalabad",
+        date: "September 2024",
+        badge: "Station Explosion",
+        title: "Jalalabad Police Station Blast",
+        target: "Local Police Station",
+        weapon: "Explosive Device",
+        severity: "Station Security",
+        desc: "An explosion inside the Jalalabad police station raised alarms over facility security, alongside wider cross-border drug seizures in the district.",
+        quote: "The incident exposed operational vulnerabilities in border district stations."
       },
       sangrur: {
-        district: "Sangrur Central Jail",
-        date: "JUDICIAL PROBE",
-        badge: "SENIOR POLICE COLLUSION",
-        title: "DSP Running Smuggling Racket from Sangrur Jail",
-        target: "Sangrur Central Jail Confinement Ward",
-        weapon: "Heroin Supply Network & Smart Terminals",
-        severity: "High-Ranking Departmental Treachery",
-        desc: "Investigations revealed a serving Deputy Superintendent of Police (DSP) operating an active smuggling and extortion racket directly from Sangrur Central Jail, supplying illicit drugs to prisoners.",
-        quote: "When guardians of law become syndicate bosses, public safety is abolished."
+        district: "Sangrur",
+        date: "March 2024",
+        badge: "Prison Inquiry",
+        title: "Smuggling Inquiries at Sangrur Jail",
+        target: "Central Jail Premises",
+        weapon: "Illicit Contraband",
+        severity: "Official Misconduct Inquiry",
+        desc: "Investigations were initiated into allegations of unauthorized contraband distribution operating inside Sangrur Central Jail.",
+        quote: "Inquiries were ordered to determine departmental accountability inside the jail."
       },
       jalandhar: {
-        district: "Jalandhar & Nakodar",
-        date: "TARGETED EXTORTION KILLINGS",
-        badge: "MURDER OF AAP LEADER & MERCHANTS",
-        title: "Lucky Oberoi Murder & Nakodar Double Slaying",
-        target: "Traders, Political Workers & Bodyguards",
-        weapon: "Point-Blank Pistol Shootings",
-        severity: "Widespread Capital Flight of Traders",
-        desc: "AAP leader Lucky Oberoi executed outside a gurdwara in Jalandhar. Nakodar cloth merchant and his police bodyguard gunned down over refusal to pay extortion ransom, forcing traders to shift investments to UP.",
-        quote: "Businessmen pay monthly protection money to save their children's lives."
+        district: "Jalandhar",
+        date: "March 2022",
+        badge: "Targeted Shooting",
+        title: "Lucky Oberoi & Nakodar Shootings",
+        target: "Traders and Political Workers",
+        weapon: "Firearms",
+        severity: "Business Community Distress",
+        desc: "Targeted shootings in Jalandhar and Nakodar led to widespread protests among business owners regarding safety and extortion threats.",
+        quote: "Local business associations raised concerns over rising extortion calls."
       },
       mansa: {
-        district: "Mansa / Jawaharke Village",
-        date: "MAY 2022",
-        badge: "INTERNATIONAL GANG EXECUTION",
+        district: "Mansa",
+        date: "May 2022",
+        badge: "High-Profile Ambush",
         title: "Assassination of Sidhu Moosewala",
-        target: "Shubhdeep Singh Sidhu (Global Icon)",
-        weapon: "AN-94 & Automatic Assault Rifles",
-        severity: "State Leaked Pruned Security Detail 24h Prior",
-        desc: "Sidhu Moosewala was ambushed and killed with over 30 bullets in Jawaharke. Just hours earlier, the AAP administration publicly bragged on social media about trimming his security cover, handing assassins the exact window they needed.",
-        quote: "Publicity-obsessed governance cost Punjab its most renowned cultural icon."
+        target: "Shubhdeep Singh Sidhu",
+        weapon: "Automatic Rifles",
+        severity: "Major Law & Order Failure",
+        desc: "Sidhu Moosewala was ambushed and killed in Jawaharke village shortly after his security detail was publicly pruned by the state administration.",
+        quote: "Public disclosure of trimmed security details preceded the ambush."
       }
     };
 
@@ -4509,7 +4506,7 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
     }
 
     function downloadChargesheetPDF() {
-      alert("[CHARGESHEET ARCHIVE DOWNLOAD READY]\n\nDocument: Complete_AAP_Paap_Patra_Chargesheet.pdf\nStatus: Official Verified Legal Indictment\n\nClicking OK will launch the print / PDF save dialog.");
+      alert("Report Download Ready\n\nDocument: Complete_AAP_Paap_Patra_Report.pdf\n\nClicking OK will launch the print / PDF dialog.");
       window.print();
     }
 
@@ -4545,7 +4542,7 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
     // --- 11. MULTILINGUAL SUPPORT ---
     const langStrings = {
       en: {
-        tickerLabel: 'CHARGESHEET ARCHIVE',
+        tickerLabel: 'LIVE UPDATES',
         heroTagline: '“ਵਾਅਦਿਆਂ ਤੋਂ ਹਕੀਕਤ ਤੱਕ” — From Promises to Reality',
         heroDesc: '',
         exploreBtn: 'Explore Dossiers',
@@ -5719,12 +5716,8 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
             </div>
             <div class="flex items-center gap-3">
               <span class="px-2.5 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 text-amberAlert font-bold">
-                EXHIBIT ${activeCaseIndex + 1} / ${activeFilteredCases.length}
+                ${activeCaseIndex + 1} / ${activeFilteredCases.length}
               </span>
-              <div class="flex items-center gap-1.5 text-slate-400">
-                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i>
-                <span class="text-slate-300 font-bold hidden md:inline">VERIFIED FORENSIC RECORD</span>
-              </div>
             </div>
           </div>
 
@@ -5741,7 +5734,7 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
 
               <!-- Animated Red Ink Forensic Rubber Stamp Placed Directly on Photo -->
               <div class="case-forensic-stamp stamp-slam-active" id="caseStampBadge">
-                VERIFIED CRIME FILE // EXHIBIT #${item.code.split('//')[0].replace('CASE-', '').trim()}
+                CASE #${item.code.split('//')[0].replace('CASE-', '').trim()}
               </div>
 
               <!-- Forensic Magnifier Loupe -->
@@ -5820,7 +5813,7 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
               <div id="caseTabContent-metrics" class="${activeCaseSubTab === 'metrics' ? '' : 'hidden'} space-y-2.5">
                 <div class="text-[11px] font-mono text-slate-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
                   <i data-lucide="crosshair" class="w-3.5 h-3.5 text-crimson"></i>
-                  <span>VERIFIED FORENSIC DATA METRICS (4)</span>
+                  <span>Key Metrics</span>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   ${item.metrics.map(m => `
@@ -5855,7 +5848,7 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
 
                 <button onclick="shareCaseIncident('${item.id}')" class="w-full py-2.5 px-3 rounded-xl bg-charcoal hover:bg-slateDark border border-panelBorder hover:border-crimson text-slate-200 hover:text-white transition flex items-center justify-center gap-2 text-xs font-mono font-bold shadow">
                   <i data-lucide="share-2" class="w-3.5 h-3.5 text-crimson"></i>
-                  <span>Share Case Dossier Link</span>
+                  <span>Share Case</span>
                 </button>
               </div>
 
@@ -6178,12 +6171,7 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         ctx.lineTo(width, laserY);
         ctx.stroke();
 
-        // Subtle tactical telemetry text in bottom-right corner of canvas
-        ctx.font = '10px "JetBrains Mono", monospace';
-        ctx.fillStyle = `rgba(${col.r}, ${col.g}, ${col.b}, 0.22)`;
-        ctx.textAlign = 'right';
-        ctx.fillText('PUNJAB THREAT MATRIX // GPS: 30.7333° N, 76.7794° E // VERIFIED ARCHIVES', width - 24, height - 20);
-        ctx.textAlign = 'left';
+        // Clean canvas without distracting text overlays
 
         // 3. Draw ambient floating particles
         for (let i = 0; i < particles.length; i++) {
