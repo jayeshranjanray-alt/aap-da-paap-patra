@@ -1027,329 +1027,139 @@
     }
 
     /* ===================================================
-       3D CONFIDENTIAL DOSSIER FOLDER SYSTEM (SECTION 4 WOW)
+       SECTION 4: 190-FRAME SCROLL-SCRUB CONFIDENTIAL DOSSIER
        =================================================== */
-    
-    /* 1. Closed Dossier Folder Cards in Section 4 Grid */
-    .dossier-folder-card {
+
+    #chargesheets {
       position: relative;
-      background: linear-gradient(145deg, #181d26 0%, #0f131a 100%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 1.25rem;
-      border-top-left-radius: 0.35rem;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: pointer;
-      overflow: hidden;
-      box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.04);
+      background: #020307;
     }
-    .dossier-folder-card::before {
-      content: '';
+
+    /* Fullscreen Sticky Stage */
+    .chargesheet-sticky-stage {
       position: absolute;
       top: 0;
       left: 0;
-      width: 12px;
-      height: 100%;
-      background: repeating-linear-gradient(
-        0deg,
-        rgba(225, 29, 72, 0.25) 0px,
-        rgba(225, 29, 72, 0.25) 8px,
-        transparent 8px,
-        transparent 16px
-      );
-      border-right: 2px solid rgba(225, 29, 72, 0.4);
-      z-index: 5;
-    }
-    .dossier-folder-card:hover {
-      transform: translateY(-8px) scale(1.01);
-      border-color: rgba(225, 29, 72, 0.5);
-      box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.85), 0 0 35px rgba(225, 29, 72, 0.2);
-    }
-    .dossier-folder-card:hover .folder-tab-badge {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(225, 29, 72, 0.4);
-    }
-    
-    /* Filing Folder Top Tab */
-    .folder-top-tab {
-      position: relative;
-      display: inline-flex;
+      height: 100vh;
+      width: 100%;
+      display: flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.35rem 1rem 0.35rem 0.75rem;
-      background: #232936;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-bottom: none;
-      border-top-left-radius: 0.6rem;
-      border-top-right-radius: 0.8rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.4);
-      margin-left: 1.25rem;
-      transition: all 0.3s ease;
+      justify-content: center;
+      overflow: hidden;
+      background: #020307;
+      z-index: 20;
     }
-    
-    /* Classified Diagonal Security Ribbon */
-    .folder-security-ribbon {
+
+    /* Video Canvas */
+    #chargesheetCanvas {
       position: absolute;
-      top: 18px;
-      right: -42px;
-      transform: rotate(45deg);
-      background: linear-gradient(90deg, #991b1b, #dc2626, #991b1b);
-      color: #ffffff;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      font-weight: 900;
-      letter-spacing: 0.15em;
-      padding: 3px 45px;
-      text-transform: uppercase;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.95));
+      transition: opacity 0.3s ease;
+    }
+
+    /* Cinematic Radial Vignette */
+    .chargesheet-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, transparent 35%, rgba(2, 3, 7, 0.85) 85%, #020307 100%);
       pointer-events: none;
       z-index: 15;
     }
 
-    /* Clasp & String Tie Fastener Graphic */
-    .folder-clasp-cord {
+    /* Floating Modern Tactical Dark Glass Overlay */
+    .chargesheet-glass-panel {
       position: relative;
+      width: 100%;
+      max-width: 1040px;
+      max-height: 86vh;
+      background: rgba(13, 17, 26, 0.94);
+      backdrop-filter: blur(28px) saturate(140%);
+      -webkit-backdrop-filter: blur(28px) saturate(140%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 1.5rem;
+      box-shadow: 
+        0 40px 100px -20px rgba(0, 0, 0, 0.98),
+        0 0 50px rgba(225, 29, 72, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 30;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+    }
+
+    /* Glass Panel Category Tabs */
+    .cs-tab-btn {
+      padding: 0.45rem 0.9rem;
+      border-radius: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      transition: all 0.25s ease;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 5px 12px;
-      border-radius: 9999px;
-      background: rgba(0, 0, 0, 0.6);
-      border: 1px solid rgba(225, 29, 72, 0.4);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: #f43f5e;
-      transition: all 0.3s ease;
-    }
-    .dossier-folder-card:hover .folder-clasp-cord {
-      border-color: #f43f5e;
-      background: rgba(225, 29, 72, 0.2);
-      color: #ffffff;
-      box-shadow: 0 0 15px rgba(225, 29, 72, 0.4);
-    }
-
-    /* 2. Fullscreen Animated 3D Confidential Folder Modal */
-    .dossier-modal-backdrop {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: radial-gradient(circle at center, rgba(15, 23, 42, 0.94) 0%, rgba(3, 7, 18, 0.99) 100%);
-      backdrop-filter: blur(18px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      opacity: 0;
-      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .dossier-modal-backdrop.active {
-      display: flex;
-      opacity: 1;
-    }
-
-    /* 3D Perspective Stage */
-    .dossier-3d-stage {
-      position: relative;
-      width: 100%;
-      max-width: 980px;
-      max-height: 90vh;
-      perspective: 2000px;
-      transform-style: preserve-3d;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* The Main Folder Binder */
-    .dossier-binder-3d {
-      position: relative;
-      width: 100%;
-      height: 85vh;
-      max-height: 850px;
-      background: #141923;
-      border-radius: 1.25rem;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 35px 80px -15px rgba(0, 0, 0, 0.95), 0 0 40px rgba(225, 29, 72, 0.15);
-      display: flex;
-      overflow: hidden;
-      transform-style: preserve-3d;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    /* Left Heavy Spine & Metal Prongs */
-    .dossier-spine-bar {
-      width: 44px;
-      flex-shrink: 0;
-      background: linear-gradient(90deg, #1e2533 0%, #151a24 70%, #0d1117 100%);
-      border-right: 2px solid rgba(225, 29, 72, 0.3);
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-around;
-      padding: 2rem 0;
-      z-index: 25;
-    }
-    .binder-ring {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #e2e8f0 0%, #94a3b8 40%, #334155 100%);
-      box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.6), 0 2px 6px rgba(0, 0, 0, 0.8);
-      position: relative;
-    }
-    .binder-ring::after {
-      content: '';
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #0f131a;
-      box-shadow: inset 0 1px 3px rgba(0,0,0,0.9);
-    }
-    .spine-vertical-text {
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 0.2em;
-      color: rgba(225, 29, 72, 0.8);
-      text-transform: uppercase;
+      gap: 0.4rem;
+      white-space: nowrap;
+      border: 1px solid transparent;
       user-select: none;
+      cursor: pointer;
+    }
+    .cs-tab-btn.active {
+      background: #e11d48;
+      color: #ffffff;
+      border-color: #f43f5e;
+      box-shadow: 0 4px 18px rgba(225, 29, 72, 0.4);
+    }
+    .cs-tab-btn:not(.active) {
+      background: rgba(255, 255, 255, 0.04);
+      color: #94a3b8;
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+    .cs-tab-btn:not(.active):hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      border-color: rgba(225, 29, 72, 0.4);
     }
 
-    /* 3D Swiveling Front Cover */
-    .dossier-front-flap {
+    /* Floating Charge Count Cards */
+    .cs-charge-card {
+      background: rgba(9, 13, 20, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1rem;
+      padding: 1.15rem 1.4rem;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-charge-card:hover {
+      border-color: rgba(225, 29, 72, 0.45);
+      background: rgba(14, 19, 30, 0.95);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+    }
+    .cs-charge-card::before {
+      content: '';
       position: absolute;
       top: 0;
-      left: 44px;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, #202735 0%, #131822 60%, #0e1219 100%);
-      border-top-right-radius: 1.25rem;
-      border-bottom-right-radius: 1.25rem;
-      transform-origin: left center;
-      transform-style: preserve-3d;
-      transition: transform 0.85s cubic-bezier(0.2, 0.85, 0.25, 1);
-      z-index: 30;
-      box-shadow: 10px 0 35px rgba(0, 0, 0, 0.85);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 2.5rem;
-      cursor: pointer;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-left: none;
-    }
-    .dossier-front-flap::before {
-      content: '';
-      position: absolute;
-      inset: 12px;
-      border: 2px dashed rgba(255, 255, 255, 0.07);
-      border-radius: 0.75rem;
-      pointer-events: none;
-    }
-    /* When opened, cover swings open to the left in 3D */
-    .dossier-binder-3d.folder-open .dossier-front-flap {
-      transform: rotateY(-118deg);
-      pointer-events: none;
-      opacity: 0.15;
-    }
-    @media (max-width: 1024px) {
-      .dossier-binder-3d.folder-open .dossier-front-flap {
-        transform: rotateY(-95deg);
-        opacity: 0.1;
-      }
-    }
-    @media (max-width: 640px) {
-      .dossier-binder-3d.folder-open .dossier-front-flap {
-        display: none;
-      }
-      .dossier-spine-bar {
-        width: 18px;
-        padding: 1rem 0;
-      }
-      .spine-vertical-text {
-        display: none;
-      }
-      .binder-ring {
-        width: 10px;
-        height: 10px;
-      }
-      .binder-ring::after {
-        width: 6px;
-        height: 6px;
-      }
-    }
-
-    /* Inner Classified Case Paper Stack */
-    .dossier-paper-container {
-      flex: 1;
+      left: 0;
+      width: 4px;
       height: 100%;
-      background: #0f131c;
-      background-image: 
-        radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(180deg, #141924 0%, #0c0f17 100%);
-      background-size: 20px 20px, 100% 100%;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-      border-top-right-radius: 1.25rem;
-      border-bottom-right-radius: 1.25rem;
-      z-index: 10;
+      background: #e11d48;
+      opacity: 0.6;
+      transition: opacity 0.2s ease;
+    }
+    .cs-charge-card:hover::before {
+      opacity: 1;
+      box-shadow: 0 0 12px #e11d48;
     }
 
-    /* Diagonal Classified Watermark across the paper */
-    .dossier-watermark {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(-30deg);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: clamp(2rem, 5vw, 4.5rem);
-      font-weight: 900;
-      color: rgba(225, 29, 72, 0.04);
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      white-space: nowrap;
-      pointer-events: none;
-      user-select: none;
-      z-index: 1;
-    }
-
-    /* Red Rubber Ink Slam Stamp */
-    .dossier-ink-stamp {
-      position: absolute;
-      top: 4.5rem;
-      right: 1.5rem;
-      border: 3px solid #e11d48;
-      border-radius: 8px;
-      padding: 0.35rem 0.85rem;
-      color: #ff3366;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      font-weight: 900;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      transform: rotate(-7deg);
-      opacity: 0;
-      pointer-events: none;
-      z-index: 25;
-      background: rgba(225, 29, 72, 0.06);
-      box-shadow: 0 0 25px rgba(225, 29, 72, 0.35), inset 0 0 12px rgba(225, 29, 72, 0.2);
-    }
-    .dossier-ink-stamp.stamp-animated {
-      animation: stampSlamKeyframes 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s forwards;
-    }
-
-    /* Secret Tape Redaction Effect */
+    /* Redacted Tape Effect */
     .redacted-tape {
       display: inline-block;
       background: #1e2430;
@@ -1364,10 +1174,10 @@
       position: relative;
     }
     .redacted-tape:hover, .redacted-tape.revealed {
-      background: rgba(234, 179, 8, 0.18);
+      background: rgba(234, 179, 8, 0.2);
       color: #fef08a;
       border-bottom-color: #eab308;
-      box-shadow: 0 0 12px rgba(234, 179, 8, 0.3);
+      box-shadow: 0 0 12px rgba(234, 179, 8, 0.35);
       user-select: text;
     }
   </style>
@@ -1936,260 +1746,139 @@
     </section>
 
     <!-- ==============================================
-         SECTION 4: 4 CHARGESHEETS ALONG WITH POINTERS
+         SECTION 4: 190-FRAME SCROLL-SCRUB CONFIDENTIAL DOSSIER
          ============================================== -->
-    <section id="chargesheets" class="space-y-10 scroll-mt-24">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div>
-          <div class="flex items-center gap-2 mb-1">
-            <span class="text-xs font-mono text-crimson font-bold uppercase tracking-wider">4 Core Issues</span>
-            <span class="text-slate-600">|</span>
-            <span class="text-xs font-mono text-slate-400">Classified Dossiers</span>
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
-            4 Core Issue Chargesheets
-          </h2>
-          <p class="text-slate-400 text-sm mt-1">
-            Tap any confidential dossier file below to unseal and review verified evidence points.
-          </p>
-        </div>
-      </div>
-
-      <!-- 4 Tactile Dossier Folder Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-        <!-- DOSSIER FOLDER 01: DRUGS (ਨਸ਼ਾ) -->
-        <div class="dossier-folder-card group p-7 flex flex-col justify-between" onclick="openDossierModal('drugs')">
-          <div class="folder-security-ribbon">RESTRICTED</div>
+    <section id="chargesheets" class="relative scroll-mt-24 w-full">
+      
+      <!-- Scroll Track: 380vh for ultra-smooth 190-frame scrub -->
+      <div id="chargesheetScrollTrack" class="relative w-full" style="height: 380vh;">
+        
+        <!-- Sticky 100vh Viewport Stage -->
+        <div class="chargesheet-sticky-stage" id="chargesheetStickyStage">
           
-          <div class="absolute inset-0 opacity-15 pointer-events-none group-hover:opacity-25 transition-opacity">
-            <img src="img/drug_crisis_punjab.jpg" alt="Drugs Crisis" class="w-full h-full object-cover" />
-          </div>
+          <!-- 1. The 1920x1080 Interactive Canvas (Scrubbed across 190 frames) -->
+          <canvas id="chargesheetCanvas" width="1920" height="1080"></canvas>
 
-          <div class="relative z-10 space-y-4">
-            <!-- Protruding Filing Tab -->
-            <div class="-mt-4 -ml-2 mb-2">
-              <span class="folder-top-tab text-crimson folder-tab-badge">
-                <i data-lucide="folder" class="w-3.5 h-3.5"></i>
-                <span>FILE 01 // NARCOTICS CRISIS</span>
-              </span>
+          <!-- 2. Cinematic Vignette Backdrop -->
+          <div class="chargesheet-vignette"></div>
+
+          <!-- 3. Pre-Open Section Indicator & Instructions (Visible during frames 0 - 65) -->
+          <div id="chargesheetIntroOverlay" class="absolute top-20 sm:top-24 left-1/2 -translate-x-1/2 text-center z-25 transition-all duration-500 max-w-2xl px-4 pointer-events-none">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-crimson/15 border border-crimson/40 text-crimson font-mono text-xs font-bold uppercase tracking-wider mb-3">
+              <span class="w-2 h-2 rounded-full bg-crimson animate-ping"></span>
+              <span>CONFIDENTIAL INQUIRY // 2022–2026</span>
             </div>
-
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-xl bg-crimson/15 border border-crimson/30 flex items-center justify-center text-crimson shrink-0 group-hover:scale-105 transition-transform">
-                <i data-lucide="skull" class="w-6 h-6"></i>
-              </div>
-              <div>
-                <span class="text-xs font-mono text-red-400 uppercase tracking-wider font-bold">STATE COLLUSION &amp; CHITTA</span>
-                <h3 class="text-2xl font-display font-extrabold text-white group-hover:text-crimson transition-colors">Drugs &amp; The Chitta Epidemic</h3>
-              </div>
-            </div>
-
-            <p class="text-xs font-mono text-slate-400">ਚਿੱਟਾ ਅਤੇ ਨਸ਼ਿਆਂ ਦੀ ਮਹਾਂਮਾਰੀ — ਜੇਲ੍ਹ ਰੈਕੇਟ ਤੇ ਅਧਿਕਾਰਤ ਮਿਲੀਭੁਗਤ</p>
-
-            <p class="text-slate-300 text-sm leading-relaxed">
-              Highest drug overdose deaths in India for two consecutive years. An estimated 7 lakh children aged 10 to 17 trapped. Major rackets operated directly inside Sangrur, Kapurthala, and Faridkot central prisons with police collusion.
+            <h2 class="text-3xl sm:text-5xl font-display font-black text-white tracking-tight drop-shadow-2xl">
+              4 Core Issue Chargesheets
+            </h2>
+            <p class="text-slate-300 text-xs sm:text-base mt-2 max-w-xl mx-auto drop-shadow-md">
+              Scroll down to physically unseal the confidential state file and inspect the documented evidence.
             </p>
-
-            <div class="p-3.5 rounded-xl bg-obsidian/90 border border-panelBorder/80 font-mono text-xs space-y-1.5 shadow-inner">
-              <div class="flex justify-between text-slate-300">
-                <span>NDPS Cases (2024):</span>
-                <span class="text-crimson font-bold">29 per lakh (2nd highest in India)</span>
-              </div>
-              <div class="flex justify-between text-slate-300">
-                <span>National Heroin Seizures:</span>
-                <span class="text-amberAlert font-bold">58% traced to Punjab (2025)</span>
-              </div>
+            <div class="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-black/60 border border-white/10 text-xs font-mono text-slate-300 backdrop-blur-md animate-bounce">
+              <i data-lucide="chevron-down" class="w-4 h-4 text-crimson"></i>
+              <span>Scroll down to open folder</span>
             </div>
           </div>
 
-          <!-- Folder Clasp Action Strip -->
-          <div class="relative z-10 pt-6 mt-6 border-t border-panelBorder/80 flex items-center justify-between">
-            <span class="text-xs font-mono text-slate-400 flex items-center gap-1.5">
-              <i data-lucide="file-text" class="w-3.5 h-3.5 text-crimson"></i>
-              <span>9 Documented Findings</span>
-            </span>
-            <button onclick="event.stopPropagation(); openDossierModal('drugs')" class="folder-clasp-cord group-hover:border-crimson">
-              <i data-lucide="folder-open" class="w-3.5 h-3.5 text-crimson"></i>
-              <span class="font-bold">UNSEAL &amp; OPEN FILE</span>
+          <!-- 4. Bottom Floating Scrubber & Skip Button -->
+          <div id="chargesheetScrubBar" class="absolute bottom-5 sm:bottom-7 left-1/2 -translate-x-1/2 z-25 flex items-center gap-2.5 sm:gap-3 bg-black/85 backdrop-blur-xl px-4 py-2 rounded-2xl border border-white/10 shadow-2xl text-xs font-mono">
+            <span class="text-crimson font-extrabold text-[11px] sm:text-xs">FILE STATUS:</span>
+            <div class="w-24 sm:w-44 h-1.5 bg-white/10 rounded-full overflow-hidden">
+              <div id="chargesheetScrubProgress" class="h-full bg-gradient-to-r from-crimson to-amberAlert transition-all duration-75" style="width: 0%;"></div>
+            </div>
+            <span id="chargesheetFrameIndicator" class="text-slate-300 text-[10px] sm:text-[11px] font-bold min-w-[70px]">SEALED</span>
+            <button onclick="jumpToChargesheetOpen()" class="px-2.5 sm:px-3 py-1 rounded-lg bg-charcoal hover:bg-crimson border border-white/10 hover:border-crimson text-white text-[10px] sm:text-[11px] font-bold uppercase transition flex items-center gap-1 active:scale-95" title="Skip animation and inspect evidence">
+              <span>View Evidence</span>
+              <i data-lucide="arrow-right" class="w-3 h-3"></i>
             </button>
           </div>
+
+          <!-- 5. Floating Modern Tactical Dark Glass Overlay (Reveals real points over the open folder at progress > 0.65) -->
+          <div id="chargesheetGlassOverlay" class="absolute inset-0 z-30 flex items-center justify-center p-3 sm:p-6 opacity-0 pointer-events-none transition-all duration-300">
+            <div class="chargesheet-glass-panel" id="chargesheetGlassPanel">
+              
+              <!-- Top Category Tabs & Search Bar -->
+              <div class="p-3 sm:p-4 bg-obsidian/95 border-b border-panelBorder flex flex-wrap items-center justify-between gap-3 shrink-0">
+                <!-- 4 Interactive Dossier Tabs -->
+                <div class="flex flex-wrap items-center gap-1.5" id="csStageTabs">
+                  <button onclick="selectStageDossier('drugs')" id="csStageTab-drugs" class="cs-tab-btn active">
+                    <span class="text-crimson font-black">01</span>
+                    <span>Drugs &amp; Chitta</span>
+                  </button>
+                  <button onclick="selectStageDossier('law')" id="csStageTab-law" class="cs-tab-btn">
+                    <span class="text-amberAlert font-black">02</span>
+                    <span>Law &amp; Order</span>
+                  </button>
+                  <button onclick="selectStageDossier('vadakhilafi')" id="csStageTab-vadakhilafi" class="cs-tab-btn">
+                    <span class="text-red-400 font-black">03</span>
+                    <span>Broken Guarantees</span>
+                  </button>
+                  <button onclick="selectStageDossier('corruption')" id="csStageTab-corruption" class="cs-tab-btn">
+                    <span class="text-yellow-400 font-black">04</span>
+                    <span>Graft &amp; Scams</span>
+                  </button>
+                </div>
+
+                <!-- Live Search & Print -->
+                <div class="flex items-center gap-2">
+                  <div class="relative w-40 sm:w-56">
+                    <input type="text" id="csStageSearch" oninput="filterStageDossier(this.value)" placeholder="Search charges..." class="w-full bg-charcoal/90 border border-panelBorder focus:border-crimson rounded-xl px-3 py-1.5 text-xs font-mono text-white placeholder-slate-500 outline-none transition" />
+                    <i data-lucide="search" class="w-3.5 h-3.5 text-slate-500 absolute right-2.5 top-2"></i>
+                  </div>
+                  <button onclick="window.print()" class="px-2.5 py-1.5 rounded-xl bg-charcoal hover:bg-crimson border border-panelBorder text-slate-300 hover:text-white text-xs font-mono transition flex items-center gap-1" title="Print this exhibit">
+                    <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+                    <span class="hidden md:inline">Print</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Active Dossier Metadata Row -->
+              <div class="px-5 py-3.5 bg-obsidian/75 border-b border-panelBorder flex flex-col sm:flex-row sm:items-center justify-between gap-3 shrink-0">
+                <div>
+                  <div class="flex items-center gap-2 text-xs font-mono">
+                    <span class="text-crimson font-extrabold uppercase tracking-wider" id="csStageTag">Issue 01: Narcotics Crisis</span>
+                    <span class="text-slate-600">|</span>
+                    <span class="text-slate-400" id="csStageCount">9 Documented Findings</span>
+                  </div>
+                  <h3 class="text-lg sm:text-2xl font-display font-black text-white mt-0.5 tracking-tight" id="csStageTitle">
+                    Drugs &amp; The Chitta Epidemic
+                  </h3>
+                  <p class="text-xs font-mono text-slate-400 mt-0.5" id="csStagePunjabi">
+                    ਚਿੱਟਾ ਅਤੇ ਨਸ਼ਿਆਂ ਦੀ ਮਹਾਂਮਾਰੀ — ਜੇਲ੍ਹ ਰੈਕੇਟ ਤੇ ਅਧਿਕਾਰਤ ਮਿਲੀਭੁਗਤ
+                  </p>
+                </div>
+
+                <div class="p-2 sm:p-2.5 rounded-xl bg-black/70 border border-panelBorder font-mono text-xs text-right shrink-0">
+                  <span class="text-[10px] text-slate-400 block uppercase font-bold">Key Forensic Metric</span>
+                  <span id="csStageStat" class="text-amberAlert font-black text-xs sm:text-sm">58% traced to Punjab (2025)</span>
+                </div>
+              </div>
+
+              <!-- Scrollable Charge Points Cards Container (Inside the Glass Panel) -->
+              <div class="p-4 sm:p-6 overflow-y-auto space-y-3.5 flex-1 custom-scroll" id="csStageEntriesContainer">
+                <!-- Dynamically populated floating chargesheet points -->
+              </div>
+
+              <!-- Glass Panel Footer -->
+              <div class="p-3 sm:p-3.5 bg-obsidian/95 border-t border-panelBorder flex items-center justify-between text-xs font-mono shrink-0">
+                <span class="text-slate-400 flex items-center gap-1.5 text-[11px] sm:text-xs">
+                  <i data-lucide="key-round" class="w-3.5 h-3.5 text-crimson"></i>
+                  <span>Hover or tap black redacted bars to uncover classified notes</span>
+                </span>
+                <div class="flex items-center gap-2">
+                  <button onclick="navigateStageCategory(-1)" class="px-2 py-1 rounded bg-charcoal hover:bg-slateDark border border-panelBorder text-slate-300 text-[11px] transition">
+                    ← Prev
+                  </button>
+                  <button onclick="navigateStageCategory(1)" class="px-2 py-1 rounded bg-charcoal hover:bg-slateDark border border-panelBorder text-slate-300 text-[11px] transition">
+                    Next →
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
         </div>
-
-        <!-- DOSSIER FOLDER 02: LAW & ORDER (ਕਾਨੂੰਨ ਵਿਵਸਥਾ) -->
-        <div class="dossier-folder-card group p-7 flex flex-col justify-between" onclick="openDossierModal('law')">
-          <div class="folder-security-ribbon">RESTRICTED</div>
-          
-          <div class="absolute inset-0 opacity-15 pointer-events-none group-hover:opacity-25 transition-opacity">
-            <img src="img/law_order_collapse.jpg" alt="Law and Order Collapse" class="w-full h-full object-cover" />
-          </div>
-
-          <div class="relative z-10 space-y-4">
-            <!-- Protruding Filing Tab -->
-            <div class="-mt-4 -ml-2 mb-2">
-              <span class="folder-top-tab text-amberAlert folder-tab-badge">
-                <i data-lucide="folder" class="w-3.5 h-3.5"></i>
-                <span>FILE 02 // LAW &amp; ORDER</span>
-              </span>
-            </div>
-
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amberAlert shrink-0 group-hover:scale-105 transition-transform">
-                <i data-lucide="flame" class="w-6 h-6"></i>
-              </div>
-              <div>
-                <span class="text-xs font-mono text-amber-400 uppercase tracking-wider font-bold">EXTORTION &amp; GANGSTERS</span>
-                <h3 class="text-2xl font-display font-extrabold text-white group-hover:text-amberAlert transition-colors">Law &amp; Order Collapse</h3>
-              </div>
-            </div>
-
-            <p class="text-xs font-mono text-slate-400">ਕਾਨੂੰਨ ਵਿਵਸਥਾ ਦਾ ਸੰਕਟ — ਗੈਂਗਸਟਰ ਰਾਜ, ਆਰਪੀਜੀ ਹਮਲੇ ਤੇ ਫਿਰੌਤੀਆਂ</p>
-
-            <p class="text-slate-300 text-sm leading-relaxed">
-              Surge from 43,000+ to 47,000+ crimes annually (1.40L+ total). RPG rocket attack on Punjab Police Intelligence HQ in Mohali. 22 police stations attacked. Unchecked extortion syndicates forcing capital flight of traders.
-            </p>
-
-            <div class="p-3.5 rounded-xl bg-obsidian/90 border border-panelBorder/80 font-mono text-xs space-y-1.5 shadow-inner">
-              <div class="flex justify-between text-slate-300">
-                <span>Crimes Against Women:</span>
-                <span class="text-crimson font-bold">16,000+ Cases (2022–2024)</span>
-              </div>
-              <div class="flex justify-between text-slate-300">
-                <span>Gangster Threats Registered:</span>
-                <span class="text-amberAlert font-bold">560+ FIRs Logged</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Folder Clasp Action Strip -->
-          <div class="relative z-10 pt-6 mt-6 border-t border-panelBorder/80 flex items-center justify-between">
-            <span class="text-xs font-mono text-slate-400 flex items-center gap-1.5">
-              <i data-lucide="file-text" class="w-3.5 h-3.5 text-amberAlert"></i>
-              <span>18 Documented Findings</span>
-            </span>
-            <button onclick="event.stopPropagation(); openDossierModal('law')" class="folder-clasp-cord group-hover:border-amber-500">
-              <i data-lucide="folder-open" class="w-3.5 h-3.5 text-amberAlert"></i>
-              <span class="font-bold">UNSEAL &amp; OPEN FILE</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- DOSSIER FOLDER 03: VADAKHILAFI (ਵਾਅਦਾਖਿਲਾਫ਼ੀ) -->
-        <div class="dossier-folder-card group p-7 flex flex-col justify-between" onclick="openDossierModal('vadakhilafi')">
-          <div class="folder-security-ribbon">RESTRICTED</div>
-          
-          <div class="absolute inset-0 opacity-15 pointer-events-none group-hover:opacity-25 transition-opacity">
-            <img src="img/broken_promises.jpg" alt="Broken Promises" class="w-full h-full object-cover" />
-          </div>
-
-          <div class="relative z-10 space-y-4">
-            <!-- Protruding Filing Tab -->
-            <div class="-mt-4 -ml-2 mb-2">
-              <span class="folder-top-tab text-red-400 folder-tab-badge">
-                <i data-lucide="folder" class="w-3.5 h-3.5"></i>
-                <span>FILE 03 // VADAKHILAFI</span>
-              </span>
-            </div>
-
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-xl bg-red-600/15 border border-red-500/30 flex items-center justify-center text-red-400 shrink-0 group-hover:scale-105 transition-transform">
-                <i data-lucide="file-x-2" class="w-6 h-6"></i>
-              </div>
-              <div>
-                <span class="text-xs font-mono text-red-400 uppercase tracking-wider font-bold">FAILED GUARANTEES &amp; DEBT</span>
-                <h3 class="text-2xl font-display font-extrabold text-white group-hover:text-red-400 transition-colors">Vadakhilafi (Broken Guarantees)</h3>
-              </div>
-            </div>
-
-            <p class="text-xs font-mono text-slate-400">ਵਾਅਦਾਖਿਲਾਫ਼ੀ — 25 ਲੱਖ ਨੌਕਰੀਆਂ ਦਾ ਭਰਮ ਅਤੇ ਕਿਸਾਨਾਂ ਨਾਲ ਧੋਖਾ</p>
-
-            <p class="text-slate-300 text-sm leading-relaxed">
-              25 lakh jobs promised, only 61,281 delivered (2.45%). Mohalla clinics scaled down 91% from 16,000 to 1,432. Zero of 16 promised medical colleges operational. 0 MT moong procured at MSP causing ₹20 Cr losses to farmers.
-            </p>
-
-            <div class="p-3.5 rounded-xl bg-obsidian/90 border border-panelBorder/80 font-mono text-xs space-y-1.5 shadow-inner">
-              <div class="flex justify-between text-slate-300">
-                <span>State Debt Surge:</span>
-                <span class="text-crimson font-bold">₹2.83L Cr → ₹4.47L Cr (2027)</span>
-              </div>
-              <div class="flex justify-between text-slate-300">
-                <span>Youth Unemployment:</span>
-                <span class="text-amberAlert font-bold">20.2% (National Avg: 4.8%)</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Folder Clasp Action Strip -->
-          <div class="relative z-10 pt-6 mt-6 border-t border-panelBorder/80 flex items-center justify-between">
-            <span class="text-xs font-mono text-slate-400 flex items-center gap-1.5">
-              <i data-lucide="file-text" class="w-3.5 h-3.5 text-red-400"></i>
-              <span>11 Documented Findings</span>
-            </span>
-            <button onclick="event.stopPropagation(); openDossierModal('vadakhilafi')" class="folder-clasp-cord group-hover:border-red-500">
-              <i data-lucide="folder-open" class="w-3.5 h-3.5 text-red-400"></i>
-              <span class="font-bold">UNSEAL &amp; OPEN FILE</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- DOSSIER FOLDER 04: SCAMS & CORRUPTION (ਘੁਟਾਲੇ) -->
-        <div class="dossier-folder-card group p-7 flex flex-col justify-between" onclick="openDossierModal('corruption')">
-          <div class="folder-security-ribbon">RESTRICTED</div>
-          
-          <div class="absolute inset-0 opacity-15 pointer-events-none group-hover:opacity-25 transition-opacity">
-            <img src="img/corruption_scams.jpg" alt="Corruption Scams" class="w-full h-full object-cover" />
-          </div>
-
-          <div class="relative z-10 space-y-4">
-            <!-- Protruding Filing Tab -->
-            <div class="-mt-4 -ml-2 mb-2">
-              <span class="folder-top-tab text-yellow-400 folder-tab-badge">
-                <i data-lucide="folder" class="w-3.5 h-3.5"></i>
-                <span>FILE 04 // CORRUPTION &amp; SCAMS</span>
-              </span>
-            </div>
-
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-xl bg-yellow-500/15 border border-yellow-500/30 flex items-center justify-center text-yellow-400 shrink-0 group-hover:scale-105 transition-transform">
-                <i data-lucide="scale" class="w-6 h-6"></i>
-              </div>
-              <div>
-                <span class="text-xs font-mono text-yellow-400 uppercase tracking-wider font-bold">CBI RAIDS &amp; GMADA SCAM</span>
-                <h3 class="text-2xl font-display font-extrabold text-white group-hover:text-yellow-400 transition-colors">Scams &amp; Systematic Loot</h3>
-              </div>
-            </div>
-
-            <p class="text-xs font-mono text-slate-400">ਘੁਟਾਲੇ ਅਤੇ ਭ੍ਰਿਸ਼ਟਾਚਾਰ — ਸੀਬੀਆਈ ਛਾਪੇ, ਗਮਾਡਾ ਤੇ ਸੰਨਟੈਕ ਸਿਟੀ ਜਾਂਚ</p>
-
-            <p class="text-slate-300 text-sm leading-relaxed">
-              CBI raid on CM Camp Office regarding OSD Rajbir Ghuman in cash-for-postings. ₹10,000 Cr GMADA land auction rigging. ₹348 Cr Suntec City crime proceeds. ₹155 Cr bank fraud arrest of AAP leader Deepak Singla.
-            </p>
-
-            <div class="p-3.5 rounded-xl bg-obsidian/90 border border-panelBorder/80 font-mono text-xs space-y-1.5 shadow-inner">
-              <div class="flex justify-between text-slate-300">
-                <span>Liquor L-1 Cartelization:</span>
-                <span class="text-crimson font-bold">Licence ₹25L → ₹5 Cr; ₹200 Cr Scam</span>
-              </div>
-              <div class="flex justify-between text-slate-300">
-                <span>Ghost Pension Beneficiaries:</span>
-                <span class="text-amberAlert font-bold">90,248 Deceased on Rolls</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Folder Clasp Action Strip -->
-          <div class="relative z-10 pt-6 mt-6 border-t border-panelBorder/80 flex items-center justify-between">
-            <span class="text-xs font-mono text-slate-400 flex items-center gap-1.5">
-              <i data-lucide="file-text" class="w-3.5 h-3.5 text-yellow-400"></i>
-              <span>16 Documented Findings</span>
-            </span>
-            <button onclick="event.stopPropagation(); openDossierModal('corruption')" class="folder-clasp-cord group-hover:border-yellow-500">
-              <i data-lucide="folder-open" class="w-3.5 h-3.5 text-yellow-400"></i>
-              <span class="font-bold">UNSEAL &amp; OPEN FILE</span>
-            </button>
-          </div>
-        </div>
-
       </div>
     </section>
 
@@ -2926,172 +2615,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- 3D CONFIDENTIAL DOSSIER FOLDER MODAL (WOW SECTION) -->
-  <div id="dossierModal" class="dossier-modal-backdrop" onclick="handleDossierBackdropClick(event)">
-    <div class="dossier-3d-stage">
-      
-      <!-- Top Stage Floating Controls -->
-      <div class="flex items-center justify-between mb-3 px-2 z-40">
-        <div class="flex items-center gap-2 text-xs font-mono">
-          <span class="w-2.5 h-2.5 rounded-full bg-crimson animate-pulse"></span>
-          <span class="text-white font-bold tracking-wider">CONFIDENTIAL CASE FILE // DECLASSIFIED RECORD</span>
-        </div>
-        <div class="flex items-center gap-3">
-          <button onclick="toggleDossierAudio()" id="dossierAudioToggle" class="px-2.5 py-1 rounded-lg bg-black/60 border border-white/10 hover:border-crimson text-slate-400 hover:text-white text-xs font-mono transition flex items-center gap-1.5" title="Toggle Sound FX">
-            <i data-lucide="volume-2" id="dossierAudioIcon" class="w-3.5 h-3.5 text-crimson"></i>
-            <span id="dossierAudioText" class="hidden sm:inline">Audio Active</span>
-          </button>
-          <button onclick="closeDossierModal()" class="px-3 py-1 rounded-lg bg-charcoal hover:bg-crimson border border-white/10 hover:border-crimson text-slate-300 hover:text-white text-xs font-mono font-bold transition flex items-center gap-1.5 shadow-lg active:scale-95" title="Reseal Folder (ESC)">
-            <i data-lucide="x" class="w-4 h-4"></i>
-            <span>Reseal File</span>
-            <span class="text-[10px] text-slate-400 hidden sm:inline">[ESC]</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- The Main 3D Dossier Binder -->
-      <div class="dossier-binder-3d" id="dossierBinder3d">
-        
-        <!-- Left Heavy Spine & Metal Rings -->
-        <div class="dossier-spine-bar">
-          <div class="binder-ring"></div>
-          <div class="binder-ring"></div>
-          <div class="spine-vertical-text">GOVT OF PUNJAB // FORENSIC ARCHIVE</div>
-          <div class="binder-ring"></div>
-          <div class="binder-ring"></div>
-        </div>
-
-        <!-- 3D Swiveling Front Cover Flap (Flips open to the left!) -->
-        <div class="dossier-front-flap" id="dossierFrontFlap" onclick="unsealAndOpenDossierFlap()">
-          <div class="flex items-start justify-between">
-            <div class="space-y-1">
-              <span class="px-2.5 py-1 rounded bg-crimson/20 border border-crimson/50 text-crimson font-mono text-[10px] font-bold uppercase tracking-widest">STRICTLY CONFIDENTIAL</span>
-              <h3 class="text-xl sm:text-2xl font-display font-black text-white tracking-tight">PUNJAB GOVERNANCE AUDIT</h3>
-              <p class="font-mono text-xs text-slate-400">STATE ARCHIVE FILE #PB-2022-2026</p>
-            </div>
-            <div class="evidence-stamp text-xs text-crimson">TOP SECRET</div>
-          </div>
-
-          <div class="p-6 rounded-xl bg-black/50 border border-white/10 space-y-3 text-center my-auto">
-            <div class="w-14 h-14 mx-auto rounded-full bg-crimson/10 border-2 border-crimson/40 flex items-center justify-center text-crimson">
-              <i data-lucide="lock" class="w-7 h-7"></i>
-            </div>
-            <h4 class="font-display font-extrabold text-white text-lg sm:text-xl">FORENSIC CHARGESHEET FOLDER</h4>
-            <p class="text-xs text-slate-300 max-w-sm mx-auto">This official binder contains verified criminal charges, CAG audit disclosures, and judicial evidence catalogued between 2022 and 2026.</p>
-            <div class="pt-2">
-              <span class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-crimson hover:bg-crimsonBright text-white font-mono text-xs font-bold uppercase tracking-wider shadow-lg shadow-crimson/30 animate-pulse">
-                <i data-lucide="unlock" class="w-4 h-4"></i>
-                <span>Click Cover to Unseal Dossier</span>
-              </span>
-            </div>
-          </div>
-
-          <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 border-t border-white/10 pt-3">
-            <span>OFFICIAL PUBLIC EVIDENCE RECORD</span>
-            <span class="text-amberAlert font-bold">AAP DA PAAP PATRA</span>
-          </div>
-        </div>
-
-        <!-- Inner Case Paper Stack (The Actual Chargesheet Inside!) -->
-        <div class="dossier-paper-container" id="dossierPaperContainer">
-          
-          <!-- Diagonal Background Watermark -->
-          <div class="dossier-watermark">DECLASSIFIED DOSSIER</div>
-
-          <!-- Distressed Rubber Ink Stamp Slam (Animates when opened) -->
-          <div class="dossier-ink-stamp" id="dossierInkStamp">
-            DECLASSIFIED // AAP AUDIT
-          </div>
-
-          <!-- Top Filing Tabs Bar (Switch between 01, 02, 03, 04 right inside the file!) -->
-          <div class="p-3 sm:p-4 bg-obsidian/95 border-b border-panelBorder flex flex-wrap items-center justify-between gap-3 z-20">
-            <!-- 4 Quick Dossier Selector Tabs -->
-            <div class="flex flex-wrap items-center gap-1.5" id="dossierTabButtons">
-              <button onclick="switchDossierFolder('drugs')" id="dossierTab-drugs" class="px-3 py-1.5 rounded-lg font-mono text-xs font-bold transition flex items-center gap-1.5 bg-crimson text-white shadow-md">
-                <span>01</span>
-                <span>Drugs Crisis</span>
-              </button>
-              <button onclick="switchDossierFolder('law')" id="dossierTab-law" class="px-3 py-1.5 rounded-lg font-mono text-xs font-bold transition flex items-center gap-1.5 bg-charcoal border border-panelBorder text-slate-300 hover:text-white">
-                <span>02</span>
-                <span>Law &amp; Order</span>
-              </button>
-              <button onclick="switchDossierFolder('vadakhilafi')" id="dossierTab-vadakhilafi" class="px-3 py-1.5 rounded-lg font-mono text-xs font-bold transition flex items-center gap-1.5 bg-charcoal border border-panelBorder text-slate-300 hover:text-white">
-                <span>03</span>
-                <span>Broken Promises</span>
-              </button>
-              <button onclick="switchDossierFolder('corruption')" id="dossierTab-corruption" class="px-3 py-1.5 rounded-lg font-mono text-xs font-bold transition flex items-center gap-1.5 bg-charcoal border border-panelBorder text-slate-300 hover:text-white">
-                <span>04</span>
-                <span>Graft &amp; Scams</span>
-              </button>
-            </div>
-
-            <!-- In-Dossier Keyword Search -->
-            <div class="relative w-full sm:w-52">
-              <input type="text" id="dossierFilterInput" oninput="filterDossierEntries(this.value)" placeholder="Filter counts..." class="w-full bg-charcoal/90 border border-panelBorder focus:border-crimson rounded-lg px-3 py-1.5 text-xs font-mono text-white placeholder-slate-500 outline-none transition" />
-              <i data-lucide="search" class="w-3.5 h-3.5 text-slate-500 absolute right-2.5 top-2"></i>
-            </div>
-          </div>
-
-          <!-- Document Header Inside Folder -->
-          <div class="px-5 py-4 bg-charcoal/60 border-b border-panelBorder flex flex-col sm:flex-row sm:items-center justify-between gap-3 z-15">
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="text-xs font-mono text-crimson font-bold uppercase tracking-wider" id="modalDossierTag">Issue 01: Narcotics</span>
-                <span class="text-slate-600">|</span>
-                <span class="text-[11px] font-mono text-slate-400" id="modalCountIndicator">9 Counts Catalogued</span>
-              </div>
-              <h3 id="modalTitle" class="text-xl sm:text-2xl font-display font-black text-white mt-0.5">The Chitta Epidemic &amp; Official Collusion</h3>
-              <p id="modalSubtitle" class="text-xs font-mono text-slate-400 mt-0.5">CASE REF: PB-NDPS-2022-26 // 51,516 REGISTERED FIRS</p>
-            </div>
-
-            <div class="flex sm:flex-col items-center sm:items-end justify-between gap-2 shrink-0">
-              <div class="p-2 sm:p-2.5 rounded-lg bg-obsidian border border-panelBorder font-mono text-xs text-right">
-                <span class="text-[10px] text-slate-400 block uppercase">Primary Forensic Stat</span>
-                <span id="modalStat" class="text-amberAlert font-extrabold text-sm">58% of India Heroin in Punjab</span>
-              </div>
-              <button onclick="window.print()" class="px-2.5 py-1 rounded bg-slateDark hover:bg-crimson border border-panelBorder text-slate-300 hover:text-white text-[11px] font-mono transition flex items-center gap-1.5">
-                <i data-lucide="printer" class="w-3 h-3"></i>
-                <span>Print Exhibit</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Documented Indictment Counts (Scrollable Inside Paper) -->
-          <div class="p-5 sm:p-6 overflow-y-auto space-y-4 flex-1 z-10 custom-scroll" id="modalEntriesScroll">
-            <div id="modalEntries" class="space-y-4 font-sans text-sm">
-              <!-- Dynamically populated counts -->
-            </div>
-          </div>
-
-          <!-- Dossier Footer Bar -->
-          <div class="p-3 sm:p-3.5 border-t border-panelBorder bg-obsidian/95 flex items-center justify-between text-xs font-mono z-20">
-            <div class="flex items-center gap-2 text-slate-400">
-              <i data-lucide="shield-alert" class="w-4 h-4 text-crimson"></i>
-              <span class="hidden sm:inline">Tap any redacted bar to reveal classified note</span>
-            </div>
-            <div class="flex items-center gap-3">
-              <button onclick="navigateDossierCategory(-1)" class="px-2.5 py-1.5 rounded-lg bg-charcoal hover:bg-slateDark border border-panelBorder text-slate-300 hover:text-white flex items-center gap-1 transition" title="Previous Dossier">
-                <i data-lucide="chevron-left" class="w-3.5 h-3.5"></i>
-                <span class="hidden sm:inline">Prev File</span>
-              </button>
-              <button onclick="navigateDossierCategory(1)" class="px-2.5 py-1.5 rounded-lg bg-charcoal hover:bg-slateDark border border-panelBorder text-slate-300 hover:text-white flex items-center gap-1 transition" title="Next Dossier">
-                <span class="hidden sm:inline">Next File</span>
-                <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
-              </button>
-              <button onclick="closeDossierModal()" class="px-4 py-1.5 rounded-lg bg-crimson hover:bg-crimsonBright text-white font-bold transition flex items-center gap-1.5 shadow-md">
-                <i data-lucide="archive" class="w-3.5 h-3.5"></i>
-                <span>Reseal File</span>
-              </button>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-  </div>
 
   <!-- EVIDENCE EXHIBIT INSPECTOR MODAL -->
   <div id="evidenceModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
@@ -4301,11 +3824,18 @@
       renderChargesheetList();
     }
 
-    // --- 5. 3D CONFIDENTIAL DOSSIER SYSTEM & AUDIO SYNTHESIS ---
-    const dossierCategories = ['drugs', 'law', 'vadakhilafi', 'corruption'];
-    let currentDossierCategory = 'drugs';
+    // --- 5. SECTION 4: 190-FRAME SCROLL-SCRUB CONFIDENTIAL DOSSIER ENGINE ---
+    const CS_FRAME_COUNT = 190;
+    const chargesheetImages = new Array(CS_FRAME_COUNT);
+    let chargesheetImagesLoadedCount = 0;
+    let lastRenderedFrameIdx = -1;
+    let currentChargesheetCategory = 'drugs';
+    const stageDossierCategories = ['drugs', 'law', 'vadakhilafi', 'corruption'];
+    let chargesheetHasRevealedAudioPlayed = false;
+    let chargesheetScrollTicking = false;
     let dossierAudioEnabled = true;
     let dossierAudioCtx = null;
+    let chargesheetRevealAudioEl = null;
 
     function getDossierAudioCtx() {
       if (!dossierAudioCtx && (window.AudioContext || window.webkitAudioContext)) {
@@ -4387,152 +3917,322 @@
       } catch (e) {}
     }
 
-    function playDossierCloseSound() {
+    function playChargesheetRevealAudio() {
       if (!dossierAudioEnabled) return;
       try {
-        const ctx = getDossierAudioCtx();
-        if (!ctx) return;
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(90, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(180, ctx.currentTime + 0.18);
-        gain.gain.setValueAtTime(0.15, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.18);
-      } catch (e) {}
-    }
-
-    function openDossierModal(category) {
-      currentDossierCategory = category || 'drugs';
-      const modal = document.getElementById('dossierModal');
-      const binder = document.getElementById('dossierBinder3d');
-      const filterInput = document.getElementById('dossierFilterInput');
-      if (filterInput) filterInput.value = '';
-
-      renderDossierFolderContent(currentDossierCategory);
-
-      // Start modal display
-      modal.classList.add('active');
-      if (binder) {
-        binder.classList.remove('folder-open');
-      }
-
-      // Smooth unseal animation: cover flips open after 80ms
-      setTimeout(() => {
-        if (binder) {
-          binder.classList.add('folder-open');
-          playDossierSwooshSound();
+        if (!chargesheetRevealAudioEl) {
+          chargesheetRevealAudioEl = new Audio('audio/chargesheet_reveal.mp3');
+          chargesheetRevealAudioEl.volume = 0.55;
         }
-      }, 80);
-
-      // Distressed rubber stamp slam animation
-      const stamp = document.getElementById('dossierInkStamp');
-      if (stamp) {
-        stamp.classList.remove('stamp-animated');
-        void stamp.offsetWidth; // Force CSS reflow
-        stamp.classList.add('stamp-animated');
-        setTimeout(() => {
-          playStampSlamSound();
-        }, 320);
-      }
-
-      const scrollContainer = document.getElementById('modalEntriesScroll');
-      if (scrollContainer) scrollContainer.scrollTop = 0;
-      lucide.createIcons();
-    }
-
-    function unsealAndOpenDossierFlap() {
-      const binder = document.getElementById('dossierBinder3d');
-      if (binder) {
-        binder.classList.add('folder-open');
+        chargesheetRevealAudioEl.currentTime = 0;
+        const playPromise = chargesheetRevealAudioEl.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            playDossierSwooshSound();
+            setTimeout(playStampSlamSound, 220);
+          });
+        }
+      } catch (e) {
         playDossierSwooshSound();
+        setTimeout(playStampSlamSound, 220);
       }
     }
 
-    function switchDossierFolder(category) {
-      if (currentDossierCategory === category) return;
-      currentDossierCategory = category;
-      playPageFlipSound();
-      renderDossierFolderContent(category);
-
-      const stamp = document.getElementById('dossierInkStamp');
-      if (stamp) {
-        stamp.classList.remove('stamp-animated');
-        void stamp.offsetWidth;
-        stamp.classList.add('stamp-animated');
-        setTimeout(() => {
-          playStampSlamSound();
-        }, 300);
-      }
-
-      const scrollContainer = document.getElementById('modalEntriesScroll');
-      if (scrollContainer) scrollContainer.scrollTop = 0;
-      lucide.createIcons();
+    function getChargesheetFramePath(i) {
+      const numStr = String(i + 1).padStart(4, '0');
+      return `img/chargesheet_frames/frame_${numStr}.jpg`;
     }
 
-    function navigateDossierCategory(direction) {
-      const idx = dossierCategories.indexOf(currentDossierCategory);
-      let nextIdx = (idx + direction + dossierCategories.length) % dossierCategories.length;
-      switchDossierFolder(dossierCategories[nextIdx]);
+    function getClosestLoadedChargesheetFrame(targetIdx) {
+      if (chargesheetImages[targetIdx] && chargesheetImages[targetIdx].complete && chargesheetImages[targetIdx].naturalWidth > 0) {
+        return chargesheetImages[targetIdx];
+      }
+      for (let offset = 1; offset < CS_FRAME_COUNT; offset++) {
+        const prev = targetIdx - offset;
+        if (prev >= 0 && chargesheetImages[prev] && chargesheetImages[prev].complete && chargesheetImages[prev].naturalWidth > 0) {
+          return chargesheetImages[prev];
+        }
+        const next = targetIdx + offset;
+        if (next < CS_FRAME_COUNT && chargesheetImages[next] && chargesheetImages[next].complete && chargesheetImages[next].naturalWidth > 0) {
+          return chargesheetImages[next];
+        }
+      }
+      return null;
     }
 
-    function renderDossierFolderContent(category, filterQuery = '') {
-      const tag = document.getElementById('modalDossierTag');
-      const title = document.getElementById('modalTitle');
-      const sub = document.getElementById('modalSubtitle');
-      const stat = document.getElementById('modalStat');
-      const countIndicator = document.getElementById('modalCountIndicator');
-      const entries = document.getElementById('modalEntries');
-      const stamp = document.getElementById('dossierInkStamp');
+    function renderChargesheetCanvasFrame(idx) {
+      const canvas = document.getElementById('chargesheetCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const img = getClosestLoadedChargesheetFrame(idx);
+      if (!img) return;
 
-      const data = chargesheetData[category] || chargesheetData.drugs;
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      lastRenderedFrameIdx = idx;
+    }
 
-      if (category === 'drugs') {
-        if (tag) tag.innerText = 'Issue 01: Narcotics';
-        if (title) title.innerText = 'The Chitta Epidemic & Official Collusion';
-        if (sub) sub.innerText = 'CASE REF: PB-NDPS-2022-26 // 51,516 REGISTERED FIRS';
-        if (stat) stat.innerText = '58% of India Heroin in Punjab';
-        if (stamp) stamp.innerText = 'DECLASSIFIED // NARCOTICS AUDIT';
-      } else if (category === 'law') {
-        if (tag) tag.innerText = 'Issue 02: Law & Order';
-        if (title) title.innerText = 'Organised Gangsters & Extortion Syndicates';
-        if (sub) sub.innerText = 'CASE REF: PB-LAW-2022-26 // 1,40,000+ TOTAL CRIMES';
-        if (stat) stat.innerText = '22 Police Stations Attacked';
-        if (stamp) stamp.innerText = 'DECLASSIFIED // LAW & ORDER';
-      } else if (category === 'vadakhilafi') {
-        if (tag) tag.innerText = 'Issue 03: Electoral Promises';
-        if (title) title.innerText = 'Guarantees Betrayed: The 25 Lakh Jobs Myth';
-        if (sub) sub.innerText = 'CASE REF: PB-PROMISE-FAIL // 2.45% ACTUAL DELIVERY';
-        if (stat) stat.innerText = 'Debt Reaching ₹4.47 Lakh Cr';
-        if (stamp) stamp.innerText = 'DECLASSIFIED // PROMISES AUDIT';
-      } else if (category === 'corruption') {
-        if (tag) tag.innerText = 'Issue 04: Governance & Scams';
-        if (title) title.innerText = 'Institutional Graft & Central Agency Probes';
-        if (sub) sub.innerText = 'CASE REF: PB-SCAM-ED-CBI // ₹10,000 CR LAND AUCTION';
-        if (stat) stat.innerText = 'CM Camp Office CBI Search';
-        if (stamp) stamp.innerText = 'DECLASSIFIED // CORRUPTION AUDIT';
+    function preloadChargesheetFrames() {
+      const canvas = document.getElementById('chargesheetCanvas');
+      if (!canvas) return;
+
+      // Load Frame 0 right away so stage is never black
+      const firstImg = new Image();
+      firstImg.src = getChargesheetFramePath(0);
+      firstImg.onload = () => {
+        chargesheetImages[0] = firstImg;
+        chargesheetImagesLoadedCount++;
+        renderChargesheetCanvasFrame(0);
+      };
+
+      // Load key intermediate frame (file unsealing) and final frame (open) early
+      const keyFrames = [35, 75, 120, 150, 189];
+      keyFrames.forEach(idx => {
+        const kImg = new Image();
+        kImg.src = getChargesheetFramePath(idx);
+        kImg.onload = () => {
+          chargesheetImages[idx] = kImg;
+          chargesheetImagesLoadedCount++;
+        };
+      });
+
+      // Staged progressive loading of remaining frames
+      const remainingIndices = [];
+      for (let i = 1; i < CS_FRAME_COUNT; i++) {
+        if (!keyFrames.includes(i)) remainingIndices.push(i);
       }
 
-      // Update Top Tabs Styling
-      dossierCategories.forEach(cat => {
-        const tabBtn = document.getElementById(`dossierTab-${cat}`);
+      let qIdx = 0;
+      function loadNextFrameBatch() {
+        const BATCH_SIZE = 8;
+        for (let k = 0; k < BATCH_SIZE && qIdx < remainingIndices.length; k++) {
+          const idx = remainingIndices[qIdx++];
+          const img = new Image();
+          img.src = getChargesheetFramePath(idx);
+          img.onload = () => {
+            chargesheetImages[idx] = img;
+            chargesheetImagesLoadedCount++;
+            const currentReqIdx = getCurrentChargesheetFrameIndex();
+            if (currentReqIdx === idx && lastRenderedFrameIdx !== idx) {
+              renderChargesheetCanvasFrame(idx);
+            }
+          };
+        }
+        if (qIdx < remainingIndices.length) {
+          setTimeout(loadNextFrameBatch, 25);
+        }
+      }
+
+      setTimeout(loadNextFrameBatch, 100);
+    }
+
+    function getCurrentChargesheetFrameIndex() {
+      const track = document.getElementById('chargesheetScrollTrack');
+      if (!track) return 0;
+      const rect = track.getBoundingClientRect();
+      const maxScroll = rect.height - window.innerHeight;
+      if (maxScroll <= 0) return 0;
+      const progress = Math.max(0, Math.min(1, -rect.top / maxScroll));
+      return Math.min(CS_FRAME_COUNT - 1, Math.floor(progress * CS_FRAME_COUNT));
+    }
+
+    function updateChargesheetScroll() {
+      const track = document.getElementById('chargesheetScrollTrack');
+      const canvas = document.getElementById('chargesheetCanvas');
+      const introOverlay = document.getElementById('chargesheetIntroOverlay');
+      const scrubProgress = document.getElementById('chargesheetScrubProgress');
+      const frameIndicator = document.getElementById('chargesheetFrameIndicator');
+      const glassOverlay = document.getElementById('chargesheetGlassOverlay');
+      const glassPanel = document.getElementById('chargesheetGlassPanel');
+
+      if (!track || !canvas) return;
+
+      const rect = track.getBoundingClientRect();
+      const maxScroll = rect.height - window.innerHeight;
+      if (maxScroll <= 0) return;
+
+      // Bulletproof dynamic viewport pinning
+      const stage = document.getElementById('chargesheetStickyStage');
+      if (stage) {
+        if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
+          stage.style.position = 'fixed';
+          stage.style.top = '0px';
+          stage.style.bottom = 'auto';
+          stage.style.left = '0px';
+          stage.style.width = '100vw';
+          stage.style.height = '100vh';
+        } else if (rect.top > 0) {
+          stage.style.position = 'absolute';
+          stage.style.top = '0px';
+          stage.style.bottom = 'auto';
+          stage.style.left = '0px';
+          stage.style.width = '100%';
+          stage.style.height = '100vh';
+        } else {
+          stage.style.position = 'absolute';
+          stage.style.top = 'auto';
+          stage.style.bottom = '0px';
+          stage.style.left = '0px';
+          stage.style.width = '100%';
+          stage.style.height = '100vh';
+        }
+      }
+
+      const progress = Math.max(0, Math.min(1, -rect.top / maxScroll));
+      const frameIdx = Math.min(CS_FRAME_COUNT - 1, Math.floor(progress * CS_FRAME_COUNT));
+
+      if (frameIdx !== lastRenderedFrameIdx) {
+        renderChargesheetCanvasFrame(frameIdx);
+      }
+
+      // Scrub Bar Progress and Indicator
+      if (scrubProgress) {
+        scrubProgress.style.width = (progress * 100).toFixed(1) + '%';
+      }
+      if (frameIndicator) {
+        if (progress < 0.15) {
+          frameIndicator.innerText = 'SEALED FILE';
+        } else if (progress < 0.65) {
+          frameIndicator.innerText = `UNSEALING (${Math.floor(progress * 100)}%)`;
+        } else {
+          frameIndicator.innerText = 'DECLASSIFIED';
+        }
+      }
+
+      // Title overlay fades out smoothly as scroll progresses
+      if (introOverlay) {
+        const introOpacity = Math.max(0, 1 - progress * 4.2);
+        introOverlay.style.opacity = introOpacity.toFixed(2);
+        introOverlay.style.pointerEvents = introOpacity > 0.15 ? 'auto' : 'none';
+        introOverlay.style.transform = `translate(-50%, -${progress * 45}px)`;
+      }
+
+      // Floating Modern Tactical Glass Overlay (Hides hallucinated placeholder text on paper)
+      if (glassOverlay) {
+        if (progress >= 0.58) {
+          const revealProgress = Math.min(1, (progress - 0.58) / 0.10);
+          glassOverlay.style.opacity = revealProgress.toFixed(2);
+          glassOverlay.style.pointerEvents = revealProgress > 0.75 ? 'auto' : 'none';
+
+          if (glassPanel) {
+            const translateY = (1 - revealProgress) * 28;
+            const scale = 0.94 + 0.06 * revealProgress;
+            glassPanel.style.transform = `translateY(${translateY}px) scale(${scale})`;
+          }
+
+          if (revealProgress > 0.75 && !chargesheetHasRevealedAudioPlayed) {
+            chargesheetHasRevealedAudioPlayed = true;
+            playChargesheetRevealAudio();
+          }
+        } else {
+          glassOverlay.style.opacity = '0';
+          glassOverlay.style.pointerEvents = 'none';
+          if (glassPanel) {
+            glassPanel.style.transform = 'translateY(28px) scale(0.94)';
+          }
+          if (progress < 0.40) {
+            chargesheetHasRevealedAudioPlayed = false;
+          }
+        }
+      }
+    }
+
+    function onChargesheetScroll() {
+      if (!chargesheetScrollTicking) {
+        requestAnimationFrame(() => {
+          updateChargesheetScroll();
+          chargesheetScrollTicking = false;
+        });
+        chargesheetScrollTicking = true;
+      }
+    }
+
+    function jumpToChargesheetOpen() {
+      const track = document.getElementById('chargesheetScrollTrack');
+      if (!track) return;
+      const rect = track.getBoundingClientRect();
+      const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+      const maxScroll = rect.height - window.innerHeight;
+      const targetY = currentScrollY + rect.top + (maxScroll * 0.75);
+
+      if (window.lenis) {
+        window.lenis.scrollTo(targetY, { duration: 1.2 });
+      } else {
+        window.scrollTo({
+          top: targetY,
+          behavior: 'smooth'
+        });
+      }
+      playChargesheetRevealAudio();
+    }
+
+    function selectStageDossier(category) {
+      if (!chargesheetData[category]) category = 'drugs';
+      currentChargesheetCategory = category;
+
+      stageDossierCategories.forEach(cat => {
+        const tabBtn = document.getElementById(`csStageTab-${cat}`);
         if (tabBtn) {
           if (cat === category) {
-            tabBtn.className = 'px-3 py-1.5 rounded-lg font-mono text-xs font-bold transition flex items-center gap-1.5 bg-crimson text-white shadow-md shadow-crimson/30';
+            tabBtn.classList.add('active');
           } else {
-            tabBtn.className = 'px-3 py-1.5 rounded-lg font-mono text-xs font-bold transition flex items-center gap-1.5 bg-charcoal border border-panelBorder text-slate-300 hover:text-white';
+            tabBtn.classList.remove('active');
           }
         }
       });
 
-      // Filter entries if search query exists
-      const query = filterQuery.trim().toLowerCase();
+      const tagEl = document.getElementById('csStageTag');
+      const titleEl = document.getElementById('csStageTitle');
+      const punjabiEl = document.getElementById('csStagePunjabi');
+      const statEl = document.getElementById('csStageStat');
+
+      if (category === 'drugs') {
+        if (tagEl) tagEl.innerText = 'Issue 01: Narcotics Crisis';
+        if (titleEl) titleEl.innerText = 'Drugs & The Chitta Epidemic';
+        if (punjabiEl) punjabiEl.innerText = 'ਚਿੱਟਾ ਅਤੇ ਨਸ਼ਿਆਂ ਦੀ ਮਹਾਂਮਾਰੀ — ਜੇਲ੍ਹ ਰੈਕੇਟ ਤੇ ਅਧਿਕਾਰਤ ਮਿਲੀਭੁਗਤ';
+        if (statEl) statEl.innerText = '58% traced to Punjab (2025)';
+      } else if (category === 'law') {
+        if (tagEl) tagEl.innerText = 'Issue 02: Law & Order Collapse';
+        if (titleEl) titleEl.innerText = 'Gangster Rule & Police Station Attacks';
+        if (punjabiEl) punjabiEl.innerText = 'ਗੈਂਗਸਟਰ ਰਾਜ, ਜਬਰੀ ਵਸੂਲੀ ਅਤੇ ਥਾਣਿਆਂ \'ਤੇ ਹਮਲੇ';
+        if (statEl) statEl.innerText = '22 Police Stations Attacked';
+      } else if (category === 'vadakhilafi') {
+        if (tagEl) tagEl.innerText = 'Issue 03: Broken Guarantees';
+        if (titleEl) titleEl.innerText = 'Vadakhilafi: 25 Lakh Jobs & Women Pension Betrayal';
+        if (punjabiEl) punjabiEl.innerText = 'ਵਾਅਦਾਖਿਲਾਫ਼ੀ: ਨੌਕਰੀਆਂ, ਪੈਨਸ਼ਨ ਅਤੇ ਕਿਸਾਨ ਗਰੰਟੀਆਂ ਤੋੜੀਆਂ';
+        if (statEl) statEl.innerText = '₹4.47 Lakh Cr State Debt';
+      } else if (category === 'corruption') {
+        if (tagEl) tagEl.innerText = 'Issue 04: Corruption & Scams';
+        if (titleEl) titleEl.innerText = 'Institutional Graft & Central Probes';
+        if (punjabiEl) punjabiEl.innerText = 'ਮੰਤਰੀਆਂ ਦੀ ਗ੍ਰਿਫ਼ਤਾਰੀ, ਜ਼ਮੀਨ ਘੁਟਾਲੇ ਅਤੇ ਸੀਬੀਆਈ ਛਾਪੇ';
+        if (statEl) statEl.innerText = 'CM Camp Office CBI Search';
+      }
+
+      const searchInput = document.getElementById('csStageSearch');
+      const query = searchInput ? searchInput.value : '';
+      renderStageDossierEntries(category, query);
+      playPageFlipSound();
+    }
+
+    function filterStageDossier(query) {
+      renderStageDossierEntries(currentChargesheetCategory, query);
+    }
+
+    function navigateStageCategory(dir) {
+      const currentIdx = stageDossierCategories.indexOf(currentChargesheetCategory);
+      const nextIdx = (currentIdx + dir + stageDossierCategories.length) % stageDossierCategories.length;
+      selectStageDossier(stageDossierCategories[nextIdx]);
+    }
+
+    function renderStageDossierEntries(category, filterQuery = '') {
+      const container = document.getElementById('csStageEntriesContainer');
+      const countEl = document.getElementById('csStageCount');
+      if (!container) return;
+
+      const data = chargesheetData[category] || chargesheetData.drugs || [];
+      const query = (filterQuery || '').trim().toLowerCase();
+
       const filtered = query
-        ? data.filter(item => 
+        ? data.filter(item =>
             (item.title && item.title.toLowerCase().includes(query)) ||
             (item.desc && item.desc.toLowerCase().includes(query)) ||
             (item.stat && item.stat.toLowerCase().includes(query)) ||
@@ -4541,45 +4241,48 @@
           )
         : data;
 
-      if (countIndicator) {
-        countIndicator.innerText = `${filtered.length} of ${data.length} Counts Catalogued`;
+      if (countEl) {
+        countEl.innerText = `${filtered.length} Documented Findings`;
       }
 
       if (filtered.length === 0) {
-        entries.innerHTML = `
-          <div class="p-8 text-center space-y-2 rounded-xl bg-obsidian border border-panelBorder">
+        container.innerHTML = `
+          <div class="p-8 text-center space-y-2 rounded-2xl bg-black/50 border border-panelBorder">
             <i data-lucide="search-x" class="w-8 h-8 text-slate-500 mx-auto"></i>
-            <p class="text-sm font-mono text-slate-400">No charges match the filter: "${filterQuery}"</p>
+            <p class="text-xs font-mono text-slate-400">No chargesheet findings matched: "${filterQuery}"</p>
           </div>
         `;
-      } else {
-        entries.innerHTML = filtered.map((item, idx) => `
-          <div class="p-4 sm:p-5 rounded-xl bg-obsidian/90 border border-panelBorder hover:border-crimson/50 space-y-2.5 transition shadow-lg group">
-            <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
-              <span class="text-crimson font-extrabold uppercase tracking-wider">${item.id} // COUNT #${idx + 1}</span>
-              <span class="px-2.5 py-0.5 rounded bg-amber-500/10 border border-amber-500/30 text-amberAlert font-bold">${item.stat}</span>
-            </div>
-            <div>
-              <h5 class="text-base sm:text-lg font-bold text-white group-hover:text-crimson transition-colors">${item.title}</h5>
-              ${item.punjabi ? `<p class="text-xs font-mono text-slate-400 mt-0.5">${item.punjabi}</p>` : ''}
-            </div>
-            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">${item.desc}</p>
-            <div class="pt-2 flex flex-wrap items-center gap-2 text-xs font-mono border-t border-panelBorder/70">
-              <span class="text-slate-500 font-bold uppercase tracking-wider flex items-center gap-1">
-                <i data-lucide="file-key" class="w-3.5 h-3.5 text-crimson"></i>
-                <span>Classified Audit Note:</span>
-              </span>
-              <span class="redacted-tape" onclick="toggleRedactedTape(this)" title="Tap to reveal secret evidence note">${item.redacted}</span>
-            </div>
-          </div>
-        `).join('');
+        lucide.createIcons();
+        return;
       }
 
-      lucide.createIcons();
-    }
+      let badgeColor = 'text-crimson bg-crimson/15 border-crimson/40';
+      if (category === 'law') badgeColor = 'text-amberAlert bg-amber-500/15 border-amber-500/40';
+      if (category === 'vadakhilafi') badgeColor = 'text-red-400 bg-red-500/15 border-red-500/40';
+      if (category === 'corruption') badgeColor = 'text-yellow-400 bg-yellow-500/15 border-yellow-500/40';
 
-    function filterDossierEntries(query) {
-      renderDossierFolderContent(currentDossierCategory, query);
+      container.innerHTML = filtered.map((item, idx) => `
+        <div class="cs-charge-card group">
+          <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+            <span class="font-mono text-xs px-2.5 py-0.5 rounded-md border ${badgeColor} font-bold">${item.id} // COUNT #${idx + 1}</span>
+            <span class="px-2.5 py-0.5 rounded bg-black/60 border border-panelBorder text-amberAlert font-bold text-[11px] sm:text-xs">⚡ ${item.stat}</span>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-display font-bold text-white group-hover:text-crimson transition-colors">${item.title}</h4>
+            ${item.punjabi ? `<p class="text-xs font-mono text-crimson/90 mt-0.5">${item.punjabi}</p>` : ''}
+          </div>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">${item.desc}</p>
+          <div class="pt-2 flex flex-wrap items-center gap-2 text-xs font-mono border-t border-panelBorder/70">
+            <span class="text-slate-400 font-bold uppercase tracking-wider flex items-center gap-1 text-[11px]">
+              <i data-lucide="file-key" class="w-3.5 h-3.5 text-crimson"></i>
+              <span>Classified Finding:</span>
+            </span>
+            <span class="redacted-tape" onclick="toggleRedactedTape(this)" title="Click or tap to uncover classified note">${item.redacted}</span>
+          </div>
+        </div>
+      `).join('');
+
+      lucide.createIcons();
     }
 
     function toggleRedactedTape(el) {
@@ -4589,24 +4292,18 @@
       }
     }
 
-    function handleDossierBackdropClick(event) {
-      if (event.target && event.target.id === 'dossierModal') {
-        closeDossierModal();
-      }
+    // Modal compatibility shims so any external link smoothly redirects to Section 4
+    function openDossierModal(category) {
+      selectStageDossier(category || 'drugs');
+      jumpToChargesheetOpen();
     }
 
     function closeDossierModal() {
-      const modal = document.getElementById('dossierModal');
-      const binder = document.getElementById('dossierBinder3d');
-      if (binder) {
-        binder.classList.remove('folder-open');
-        playDossierCloseSound();
-      }
-      setTimeout(() => {
-        if (modal) {
-          modal.classList.remove('active');
-        }
-      }, 350);
+      // Safe no-op for compatibility
+    }
+
+    function handleDossierBackdropClick(event) {
+      // Safe no-op
     }
 
     // --- 6. TACTICAL MAP INCIDENTS DATA ---
@@ -6747,6 +6444,15 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
 
       lucide.createIcons();
       renderChargesheetList();
+      preloadChargesheetFrames();
+      selectStageDossier('drugs');
+      window.addEventListener('scroll', onChargesheetScroll, { passive: true });
+      window.addEventListener('resize', updateChargesheetScroll);
+      if (window.lenis) {
+        window.lenis.on('scroll', onChargesheetScroll);
+      }
+      setTimeout(updateChargesheetScroll, 120);
+
       activeCaseIndex = 0;
       renderSensationalCases(0, false);
       renderWingCards();
@@ -6826,18 +6532,18 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
         closeSuccessModal();
       } else if (e.key === 'ArrowLeft') {
         if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
-          const dossier = document.getElementById('dossierModal');
-          if (dossier && dossier.classList.contains('active')) {
-            navigateDossierCategory(-1);
+          const glass = document.getElementById('chargesheetGlassOverlay');
+          if (glass && parseFloat(window.getComputedStyle(glass).opacity) > 0.5) {
+            navigateStageCategory(-1);
           } else {
             navigateSensationalCase(-1);
           }
         }
       } else if (e.key === 'ArrowRight') {
         if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
-          const dossier = document.getElementById('dossierModal');
-          if (dossier && dossier.classList.contains('active')) {
-            navigateDossierCategory(1);
+          const glass = document.getElementById('chargesheetGlassOverlay');
+          if (glass && parseFloat(window.getComputedStyle(glass).opacity) > 0.5) {
+            navigateStageCategory(1);
           } else {
             navigateSensationalCase(1);
           }
