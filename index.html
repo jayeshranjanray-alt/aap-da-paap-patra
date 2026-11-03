@@ -3979,17 +3979,44 @@
 
     function synthPageFlip(ctx) {
       const t = ctx.currentTime;
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(480, t);
-      osc.frequency.exponentialRampToValueAtTime(180, t + 0.14);
-      gain.gain.setValueAtTime(0.28, t);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.14);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start(t);
-      osc.stop(t + 0.14);
+      // Layer 1: Textured paper rustle (bandpass filtered noise burst)
+      try {
+        const bufferSize = Math.floor(ctx.sampleRate * 0.16);
+        const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.05));
+        }
+        const noise = ctx.createBufferSource();
+        noise.buffer = noiseBuffer;
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.setValueAtTime(2200, t);
+        filter.frequency.exponentialRampToValueAtTime(700, t + 0.15);
+        filter.Q.value = 2.0;
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.4, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.15);
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+        noise.start(t);
+      } catch (e) {}
+
+      // Layer 2: Soft paper page turn glide tone
+      try {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(360, t);
+        osc.frequency.exponentialRampToValueAtTime(140, t + 0.12);
+        gain.gain.setValueAtTime(0.25, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(t);
+        osc.stop(t + 0.12);
+      } catch (e) {}
     }
 
     // High-Level Audio Triggers (Dual Layer: Dedicated MP3 + Web Audio Synth)
@@ -4012,11 +4039,23 @@
     function playPageFlipSound() {
       if (!dossierAudioEnabled && !soundEnabled) return;
       try {
-        dossierAudioElements.pageFlip.currentTime = 0;
-        dossierAudioElements.pageFlip.volume = 0.9;
-        const p = dossierAudioElements.pageFlip.play();
-        if (p) p.catch(() => {});
-      } catch (e) {}
+        if (dossierAudioElements.pageFlip) {
+          const sound = dossierAudioElements.pageFlip.cloneNode();
+          sound.volume = 1.0;
+          const p = sound.play();
+          if (p) p.catch(() => {
+            dossierAudioElements.pageFlip.currentTime = 0;
+            dossierAudioElements.pageFlip.volume = 1.0;
+            dossierAudioElements.pageFlip.play().catch(() => {});
+          });
+        }
+      } catch (e) {
+        try {
+          dossierAudioElements.pageFlip.currentTime = 0;
+          dossierAudioElements.pageFlip.volume = 1.0;
+          dossierAudioElements.pageFlip.play().catch(() => {});
+        } catch (err) {}
+      }
       withActiveAudioContext(synthPageFlip);
     }
 
@@ -4032,6 +4071,7 @@
 
     function playChargesheetRevealAudio() {
       if (!dossierAudioEnabled && !soundEnabled) return;
+      playPageFlipSound();
       setTimeout(playStampSlamSound, 260);
       setTimeout(playChargesheetAudioTrack, 140);
     }
@@ -4226,8 +4266,10 @@
       }
 
       // Tactile sound effects matching physical document motion during scroll scrub
-      if (progress >= 0.28 && !chargesheetCoverUnsealedSoundPlayed) {
+      // Play authentic page turning sound as the confidential folder opens
+      if (progress >= 0.32 && !chargesheetCoverUnsealedSoundPlayed) {
         chargesheetCoverUnsealedSoundPlayed = true;
+        playPageFlipSound();
       }
       if (progress >= 0.64 && !chargesheetStampSlamSoundPlayed) {
         chargesheetStampSlamSoundPlayed = true;
@@ -4254,6 +4296,7 @@
 
     function jumpToChargesheetOpen() {
       unlockAllAudio();
+      playPageFlipSound();
       const track = document.getElementById('chargesheetScrollTrack');
       if (!track) return;
       const rect = track.getBoundingClientRect();
