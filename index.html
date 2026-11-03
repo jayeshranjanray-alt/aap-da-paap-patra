@@ -696,6 +696,35 @@
       z-index: 6;
     }
 
+    .hotspot-pin {
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+      cursor: pointer;
+    }
+    .hotspot-pin:hover {
+      transform: scale(1.15);
+    }
+    .hotspot-pin .hotspot-ring {
+      animation: hotspotPulse 2.4s infinite ease-out;
+      transform-origin: center;
+    }
+    .hotspot-pin.active .hotspot-core {
+      fill: #ffffff !important;
+      stroke: #ff1d48 !important;
+      stroke-width: 4px;
+      filter: drop-shadow(0 0 12px #ff1d48);
+    }
+    .hotspot-pin.active .hotspot-ring {
+      animation: hotspotPulseActive 1.2s infinite ease-out;
+    }
+    @keyframes hotspotPulse {
+      0% { r: 18px; opacity: 0.9; }
+      100% { r: 55px; opacity: 0; }
+    }
+    @keyframes hotspotPulseActive {
+      0% { r: 20px; opacity: 1; }
+      100% { r: 70px; opacity: 0; }
+    }
+
     /* --- WOW ELEMENT: FORENSIC MAGNIFIER LOUPE --- */
     .forensic-photo-wrapper {
       position: relative;
@@ -1602,157 +1631,165 @@
         </div>
       </div>
 
-      <!-- Tracker Container with 3D Map & Incident Terminal -->
+      <!-- Tracker Container with Satellite Video Map & Interactive Incident Spotlight -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         
-        <!-- Left: 3D Map Plane (7 Cols) -->
-        <div class="lg:col-span-7 bg-charcoal rounded-2xl border border-panelBorder p-5 flex flex-col justify-between">
-          <div class="flex items-center justify-between border-b border-panelBorder/70 pb-3 mb-4">
-            <div class="flex items-center gap-2 font-mono text-xs text-slate-400">
+        <!-- Left: Satellite Night Map Video Stage (7 Cols) -->
+        <div class="lg:col-span-7 bg-[#121318] rounded-2xl border border-slate-800 p-4 sm:p-5 flex flex-col justify-between shadow-2xl">
+          <div class="flex items-center justify-between border-b border-slate-800/80 pb-3 mb-3">
+            <div class="flex items-center gap-2 font-mono text-xs text-slate-300">
               <span class="w-2.5 h-2.5 rounded-full bg-crimson animate-ping"></span>
-              <span>Live Incident Map</span>
+              <span class="font-bold tracking-wide">Live Incident Map</span>
             </div>
             <div class="flex items-center gap-2 text-xs font-mono">
-              <button onclick="filterMapHotspots('all')" class="map-filter-btn px-2.5 py-1 rounded bg-crimson text-white font-bold" data-cat="all">ALL</button>
-              <button onclick="filterMapHotspots('violent')" class="map-filter-btn px-2.5 py-1 rounded bg-slateDark text-slate-300 hover:text-white" data-cat="violent">ATTACKS</button>
-              <button onclick="filterMapHotspots('drugs')" class="map-filter-btn px-2.5 py-1 rounded bg-slateDark text-slate-300 hover:text-white" data-cat="drugs">DRUGS</button>
-              <button onclick="filterMapHotspots('corruption')" class="map-filter-btn px-2.5 py-1 rounded bg-slateDark text-slate-300 hover:text-white" data-cat="corruption">SCAMS</button>
+              <button onclick="filterMapHotspots('all')" class="map-filter-btn px-2.5 py-1 rounded-lg bg-crimson text-white font-bold transition-all" data-cat="all">ALL</button>
+              <button onclick="filterMapHotspots('violent')" class="map-filter-btn px-2.5 py-1 rounded-lg bg-slate-800/80 text-slate-300 hover:text-white transition-all" data-cat="violent">ATTACKS</button>
+              <button onclick="filterMapHotspots('drugs')" class="map-filter-btn px-2.5 py-1 rounded-lg bg-slate-800/80 text-slate-300 hover:text-white transition-all" data-cat="drugs">DRUGS</button>
+              <button onclick="filterMapHotspots('corruption')" class="map-filter-btn px-2.5 py-1 rounded-lg bg-slate-800/80 text-slate-300 hover:text-white transition-all" data-cat="corruption">SCAMS</button>
             </div>
           </div>
 
-          <!-- 3D Perspective Stage -->
-          <div class="map-3d-stage w-full py-4 flex items-center justify-center overflow-hidden">
-            <div class="map-3d-plane relative w-full max-w-[560px] aspect-[4/3] rounded-2xl overflow-hidden border border-slate-700 shadow-2xl bg-obsidian">
-              <!-- Tactical Radar Sweep Beam -->
-              <div class="radar-sweep-beam"></div>
-              <div class="radar-crosshair"></div>
-              
-              <!-- Topographic Render Image -->
-              <img src="img/punjab_crime_map.jpg" alt="Punjab 3D Topographic Crime Map" class="absolute inset-0 w-full h-full object-cover object-center filter saturate-125 opacity-85" />
-              <div class="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-transparent to-black/30"></div>
+          <!-- Video Map Stage -->
+          <div class="relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-xl overflow-hidden border border-slate-800 bg-black shadow-inner">
+            <!-- Satellite Map Video with Smooth Materialization -->
+            <video id="punjabSatelliteVideo" src="video/punjab_satellite_map.mp4" poster="img/punjab_satellite_poster.jpg" playsinline muted autoplay loop class="w-full h-full object-cover select-none pointer-events-none"></video>
+            
+            <!-- Vignette Edge Shading -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none"></div>
 
-              <!-- Interactive Clickable Pins Overlay (SVG layer) -->
-              <svg viewBox="0 0 500 400" class="absolute inset-0 w-full h-full z-10 cursor-pointer overflow-hidden" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <radialGradient id="hotspotGlowCrimson" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stop-color="#ff1d48" stop-opacity="0.95"/>
-                    <stop offset="100%" stop-color="#e11d48" stop-opacity="0"/>
-                  </radialGradient>
-                  <radialGradient id="hotspotGlowAmber" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.95"/>
-                    <stop offset="100%" stop-color="#d97706" stop-opacity="0"/>
-                  </radialGradient>
-                </defs>
+            <!-- Radar Sweep Beam (Retained for Tactical Atmosphere) -->
+            <div class="radar-sweep-beam pointer-events-none"></div>
 
-                <!-- Hotspot 1: Mohali (RPG Attack) -->
-                <g class="hotspot-pin cursor-pointer" onmouseenter="playSonarBlip()" data-cat="violent" onclick="selectIncident('mohali')">
-                  <circle cx="395" cy="210" r="18" fill="url(#hotspotGlowCrimson)" class="hotspot-ring" />
-                  <circle cx="395" cy="210" r="6" fill="#e11d48" stroke="#fff" stroke-width="2" />
-                  <text x="325" y="235" fill="#ffffff" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="bold" filter="drop-shadow(0 2px 4px #000)">Mohali (RPG Attack)</text>
-                </g>
+            <!-- Interactive Clickable Pins Overlay (SVG layer) calibrated to 1920x1080 -->
+            <svg viewBox="0 0 1920 1080" class="absolute inset-0 w-full h-full z-10 cursor-pointer overflow-visible" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="pinGlowCrimson" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#ff1d48" stop-opacity="0.95"/>
+                  <stop offset="100%" stop-color="#e11d48" stop-opacity="0"/>
+                </radialGradient>
+                <radialGradient id="pinGlowAmber" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.95"/>
+                  <stop offset="100%" stop-color="#d97706" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
 
-                <!-- Hotspot 2: Amritsar (ASI Shot) -->
-                <g class="hotspot-pin cursor-pointer" onmouseenter="playSonarBlip()" data-cat="violent" onclick="selectIncident('amritsar')">
-                  <circle cx="150" cy="135" r="16" fill="url(#hotspotGlowCrimson)" class="hotspot-ring" />
-                  <circle cx="150" cy="135" r="5" fill="#e11d48" stroke="#fff" stroke-width="2" />
-                  <text x="90" y="125" fill="#ffffff" font-size="10" font-family="'JetBrains Mono', monospace" font-weight="bold" filter="drop-shadow(0 2px 4px #000)">Amritsar (ASI Shot)</text>
-                </g>
+              <!-- 1. Mohali (RPG Attack) -->
+              <g class="hotspot-pin active cursor-pointer" data-id="mohali" data-cat="violent" onmouseenter="playSonarBlip()" onclick="selectIncident('mohali')">
+                <circle cx="1260" cy="580" r="38" fill="url(#pinGlowCrimson)" class="hotspot-ring" />
+                <circle cx="1260" cy="580" r="14" fill="#e11d48" stroke="#ffffff" stroke-width="3" class="hotspot-core" />
+                <text x="1295" y="588" fill="#ffffff" font-size="26" font-family="'JetBrains Mono', monospace" font-weight="bold" filter="drop-shadow(0 2px 6px #000)">Mohali (RPG Attack)</text>
+              </g>
 
-                <!-- Hotspot 3: Ludhiana (3 Murders in 48h) -->
-                <g class="hotspot-pin cursor-pointer" onmouseenter="playSonarBlip()" data-cat="violent" onclick="selectIncident('ludhiana')">
-                  <circle cx="270" cy="230" r="18" fill="url(#hotspotGlowCrimson)" class="hotspot-ring" />
-                  <circle cx="270" cy="230" r="6" fill="#ff2a4b" stroke="#fff" stroke-width="2" />
-                  <text x="210" y="255" fill="#ffffff" font-size="10" font-family="'JetBrains Mono', monospace" font-weight="bold" filter="drop-shadow(0 2px 4px #000)">Ludhiana (3 Murders / 48h)</text>
-                </g>
+              <!-- 2. Amritsar (Ajnala & ASI Shot) -->
+              <g class="hotspot-pin cursor-pointer" data-id="amritsar" data-cat="violent" onmouseenter="playSonarBlip()" onclick="selectIncident('amritsar')">
+                <circle cx="770" cy="320" r="38" fill="url(#pinGlowCrimson)" class="hotspot-ring" />
+                <circle cx="770" cy="320" r="14" fill="#e11d48" stroke="#ffffff" stroke-width="3" class="hotspot-core" />
+                <text x="560" y="325" fill="#ffffff" font-size="26" font-family="'JetBrains Mono', monospace" font-weight="bold" filter="drop-shadow(0 2px 6px #000)">Amritsar</text>
+              </g>
 
-                <!-- Hotspot 4: Bathinda (Village for Sale) -->
-                <g class="hotspot-pin cursor-pointer" onmouseenter="playSonarBlip()" data-cat="drugs" onclick="selectIncident('bathinda')">
-                  <circle cx="170" cy="305" r="16" fill="url(#hotspotGlowAmber)" class="hotspot-ring" />
-                  <circle cx="170" cy="305" r="5" fill="#f59e0b" stroke="#fff" stroke-width="2" />
-                  <text x="75" y="325" fill="#f59e0b" font-size="10" font-family="'JetBrains Mono', monospace" font-weight="bold" filter="drop-shadow(0 2px 4px #000)">Bathinda (Village on Sale)</text>
-                </g>
+              <!-- 3. Jalandhar (Extortion Slaying) -->
+              <g class="hotspot-pin cursor-pointer" data-id="jalandhar" data-cat="violent" onmouseenter="playSonarBlip()" onclick="selectIncident('jalandhar')">
+                <circle cx="910" cy="360" r="38" fill="url(#pinGlowCrimson)" class="hotspot-ring" />
+                <circle cx="910" cy="360" r="14" fill="#e11d48" stroke="#ffffff" stroke-width="3" class="hotspot-core" />
+                <text x="940" y="350" fill="#ffffff" font-size="26" font-family="'JetBrains Mono', monospace" font-weight="bold" filter="drop-shadow(0 2px 6px #000)">Jalandhar</text>
+              </g>
 
-                <!-- Hotspot 5: Faridkot (Jail Racket) -->
-                <g class="hotspot-pin cursor-pointer" onmouseenter="playSonarBlip()" data-cat="drugs" onclick="selectIncident('faridkot')">
-                  <circle cx="160" cy="240" r="14" fill="url(#hotspotGlowCrimson)" class="hotspot-ring" />
-                  <circle cx="160" cy="240" r="5" fill="#e11d48" stroke="#fff" stroke-width="1.5" />
-                  <text x="105" y="230" fill="#ffffff" font-size="9" font-family="'JetBrains Mono', monospace" font-weight="bold" filter="drop-shadow(0 2px 4px #000)">Faridkot Jail Ring</text>
-                </g>
+              <!-- 4. Ludhiana (3 Murders / 48h) -->
+              <g class="hotspot-pin cursor-pointer" data-id="ludhiana" data-cat="violent" onmouseenter="playSonarBlip()" onclick="selectIncident('ludhiana')">
+                <circle cx="1000" cy="500" r="38" fill="url(#pinGlowCrimson)" class="hotspot-ring" />
+                <circle cx="1000" cy="500" r="14" fill="#ff2a4b" stroke="#ffffff" stroke-width="3" class="hotspot-core" />
+                <text x="1035" y="495" fill="#ffffff" font-size="26" font-family="'JetBrains Mono', monospace" font-weight="bold" filter="drop-shadow(0 2px 6px #000)">Ludhiana (3 Murders / 48h)</text>
+              </g>
 
-                <!-- Hotspot 6: Fazilka / Jalalabad (Blast) -->
-                <g class="hotspot-pin cursor-pointer" onmouseenter="playSonarBlip()" data-cat="violent" onclick="selectIncident('fazilka')">
-                  <circle cx="95" cy="280" r="14" fill="url(#hotspotGlowCrimson)" class="hotspot-ring" />
-                  <circle cx="95" cy="280" r="5" fill="#e11d48" stroke="#fff" stroke-width="1.5" />
-                  <text x="20" y="270" fill="#ffffff" font-size="9" font-family="'JetBrains Mono', monospace" font-weight="bold" filter="drop-shadow(0 2px 4px #000)">Jalalabad Blast &amp; ₹62Cr Drug</text>
-                </g>
+              <!-- 5. Faridkot (Jail Contraband) -->
+              <g class="hotspot-pin cursor-pointer" data-id="faridkot" data-cat="drugs" onmouseenter="playSonarBlip()" onclick="selectIncident('faridkot')">
+                <circle cx="800" cy="510" r="38" fill="url(#pinGlowAmber)" class="hotspot-ring" />
+                <circle cx="800" cy="510" r="14" fill="#f59e0b" stroke="#ffffff" stroke-width="3" class="hotspot-core" />
+                <text x="540" y="515" fill="#f59e0b" font-size="26" font-family="'JetBrains Mono', monospace" font-weight="bold" filter="drop-shadow(0 2px 6px #000)">Faridkot Jail Ring</text>
+              </g>
 
-                <!-- Hotspot 7: Sangrur (DSP Jail Racket) -->
-                <g class="hotspot-pin cursor-pointer" onmouseenter="playSonarBlip()" data-cat="drugs" onclick="selectIncident('sangrur')">
-                  <circle cx="280" cy="300" r="15" fill="url(#hotspotGlowAmber)" class="hotspot-ring" />
-                  <circle cx="280" cy="300" r="5" fill="#f59e0b" stroke="#fff" stroke-width="2" />
-                  <text x="285" y="315" fill="#f59e0b" font-size="10" font-family="'JetBrains Mono', monospace" font-weight="bold" filter="drop-shadow(0 2px 4px #000)">Sangrur Jail (DSP Syndicate)</text>
-                </g>
+              <!-- 6. Bathinda (Village on Sale) -->
+              <g class="hotspot-pin cursor-pointer" data-id="bathinda" data-cat="drugs" onmouseenter="playSonarBlip()" onclick="selectIncident('bathinda')">
+                <circle cx="780" cy="650" r="38" fill="url(#pinGlowAmber)" class="hotspot-ring" />
+                <circle cx="780" cy="650" r="14" fill="#f59e0b" stroke="#ffffff" stroke-width="3" class="hotspot-core" />
+                <text x="470" y="655" fill="#f59e0b" font-size="26" font-family="'JetBrains Mono', monospace" font-weight="bold" filter="drop-shadow(0 2px 6px #000)">Bathinda (Village on Sale)</text>
+              </g>
 
-                <!-- Hotspot 8: Jalandhar (Extortion Murder) -->
-                <g class="hotspot-pin cursor-pointer" onmouseenter="playSonarBlip()" data-cat="violent" onclick="selectIncident('jalandhar')">
-                  <circle cx="230" cy="170" r="15" fill="url(#hotspotGlowCrimson)" class="hotspot-ring" />
-                  <circle cx="230" cy="170" r="5" fill="#e11d48" stroke="#fff" stroke-width="2" />
-                  <text x="240" y="170" fill="#ffffff" font-size="10" font-family="'JetBrains Mono', monospace" font-weight="bold" filter="drop-shadow(0 2px 4px #000)">Jalandhar (Extortion Slaying)</text>
-                </g>
+              <!-- 7. Mansa (Moosewala Ambush) -->
+              <g class="hotspot-pin cursor-pointer" data-id="mansa" data-cat="violent" onmouseenter="playSonarBlip()" onclick="selectIncident('mansa')">
+                <circle cx="910" cy="720" r="38" fill="url(#pinGlowCrimson)" class="hotspot-ring" />
+                <circle cx="910" cy="720" r="14" fill="#ff1d48" stroke="#ffffff" stroke-width="3" class="hotspot-core" />
+                <text x="945" y="730" fill="#ffffff" font-size="26" font-family="'JetBrains Mono', monospace" font-weight="bold" filter="drop-shadow(0 2px 6px #000)">Mansa (Moosewala Assassination)</text>
+              </g>
 
-                <!-- Hotspot 9: Mansa (Sidhu Moosewala) -->
-                <g class="hotspot-pin cursor-pointer" onmouseenter="playSonarBlip()" data-cat="violent" onclick="selectIncident('mansa')">
-                  <circle cx="230" cy="345" r="16" fill="url(#hotspotGlowCrimson)" class="hotspot-ring" />
-                  <circle cx="230" cy="345" r="5" fill="#ff1d48" stroke="#fff" stroke-width="2" />
-                  <text x="240" y="355" fill="#ffffff" font-size="10" font-family="'JetBrains Mono', monospace" font-weight="bold" filter="drop-shadow(0 2px 4px #000)">Mansa (Moosewala Assassination)</text>
-                </g>
-              </svg>
-            </div>
+              <!-- 8. Sangrur (Hooch Tragedy & Jail) -->
+              <g class="hotspot-pin cursor-pointer" data-id="sangrur" data-cat="drugs" onmouseenter="playSonarBlip()" onclick="selectIncident('sangrur')">
+                <circle cx="1060" cy="680" r="38" fill="url(#pinGlowAmber)" class="hotspot-ring" />
+                <circle cx="1060" cy="680" r="14" fill="#f59e0b" stroke="#ffffff" stroke-width="3" class="hotspot-core" />
+                <text x="1095" y="685" fill="#f59e0b" font-size="26" font-family="'JetBrains Mono', monospace" font-weight="bold" filter="drop-shadow(0 2px 6px #000)">Sangrur (Hooch Tragedy)</text>
+              </g>
+
+              <!-- 9. Fazilka / Jalalabad (Blast) -->
+              <g class="hotspot-pin cursor-pointer" data-id="fazilka" data-cat="violent" onmouseenter="playSonarBlip()" onclick="selectIncident('fazilka')">
+                <circle cx="700" cy="480" r="38" fill="url(#pinGlowCrimson)" class="hotspot-ring" />
+                <circle cx="700" cy="480" r="14" fill="#e11d48" stroke="#ffffff" stroke-width="3" class="hotspot-core" />
+                <text x="440" y="475" fill="#ffffff" font-size="26" font-family="'JetBrains Mono', monospace" font-weight="bold" filter="drop-shadow(0 2px 6px #000)">Jalalabad Blast</text>
+              </g>
+            </svg>
           </div>
 
-          <div class="mt-2 flex items-center justify-between text-slate-400 font-mono text-[11px] pt-3 border-t border-panelBorder">
-            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-crimson"></span> Terror / Police Attacks</span>
-            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amberAlert"></span> Prison Drug Cartels</span>
-            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-yellow-400"></span> Public Protests</span>
+          <!-- Bottom Map Legend -->
+          <div class="mt-3 flex items-center justify-between text-slate-400 font-mono text-[11px] pt-3 border-t border-slate-800/80">
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-crimson"></span> Targeted Attacks</span>
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amberAlert"></span> Drug Syndicates</span>
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-yellow-400"></span> Citizen Protests</span>
           </div>
         </div>
 
-        <!-- Right: Live Tactical Incident Terminal (5 Cols) -->
-        <div class="lg:col-span-5 bg-charcoal rounded-2xl border border-panelBorder p-6 flex flex-col justify-between space-y-4">
+        <!-- Right: Interactive News Spotlight (5 Cols) -->
+        <div class="lg:col-span-5 bg-[#121318] rounded-2xl border border-slate-800 p-5 sm:p-6 flex flex-col justify-between space-y-4 shadow-2xl min-h-[480px]">
           <div>
-            <div class="flex items-center justify-between border-b border-panelBorder pb-3">
-              <span class="text-xs font-mono text-crimson font-bold uppercase tracking-wider flex items-center gap-1.5">
-                <i data-lucide="shield-alert" class="w-4 h-4"></i>
-                <span id="incidentBadge">Incident Details</span>
-              </span>
-              <span id="incidentDate" class="font-mono text-xs text-slate-400"></span>
+            <!-- Top News Photojournalism Image (16:9, nested radius) -->
+            <div class="relative w-full aspect-[16/9] rounded-xl overflow-hidden border border-slate-800/80 bg-black/60 shadow-md">
+              <img id="incidentImg" src="img/rpg_mohali_headquarters.jpg" alt="Incident News Photo" class="w-full h-full object-cover transition-all duration-300 ease-out" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none"></div>
+              
+              <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono pointer-events-none">
+                <span id="incidentDistrictPill" class="px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md border border-white/10 text-white font-semibold">SAS Nagar / Mohali</span>
+                <span id="incidentDatePill" class="px-2 py-0.5 rounded bg-black/60 text-slate-300">May 2022</span>
+              </div>
             </div>
 
-            <div class="mt-4 space-y-4">
-              <div>
-                <span id="incidentDistrict" class="text-xs font-mono px-2 py-0.5 rounded bg-slateDark border border-slate-700 text-slate-300">SAS Nagar / Mohali</span>
-                <h3 id="incidentTitle" class="text-2xl font-display font-extrabold text-white mt-1.5">
-                  RPG Attack on Punjab Police Intelligence HQ
-                </h3>
-              </div>
+            <!-- Headline & Narrative -->
+            <div id="incidentContentArea" class="mt-4 transition-all duration-300">
+              <h3 id="incidentTitle" class="text-xl sm:text-2xl font-display font-bold text-white leading-snug">
+                RPG Attack on Punjab Police Intelligence HQ
+              </h3>
 
-
-
-              <p id="incidentDesc" class="text-slate-300 text-sm leading-relaxed">
+              <p id="incidentDesc" class="text-slate-300 text-sm leading-relaxed mt-2.5">
                 Attackers fired a Rocket-Propelled Grenade directly at the high-security Punjab Police Intelligence Headquarters in Mohali. This attack is part of an alarming trend where 22 police stations and establishments have suffered grenade and blast attacks under the current government.
               </p>
 
-              <div class="border-l-2 border-crimson pl-3 py-1 text-xs text-slate-300 font-medium leading-relaxed">
+              <div id="incidentQuoteBox" class="border-l-2 border-crimson pl-3.5 py-1.5 text-xs text-slate-300 font-medium leading-relaxed bg-crimson/5 rounded-r-lg mt-3.5">
                 <span id="incidentQuote">"If the state cannot protect its own Intelligence Headquarters and police stations, how can ordinary citizens feel secure?"</span>
               </div>
             </div>
           </div>
 
-          <div class="pt-4 border-t border-panelBorder flex flex-col sm:flex-row items-center justify-between gap-3">
-            <span class="text-xs font-mono text-slate-500">Select a pin on the map</span>
-            <button id="mapInspectCaseBtn" onclick="openCaseFromMap('rpg-mohali')" class="w-full sm:w-auto py-2.5 px-4 rounded-xl bg-crimson hover:bg-crimsonBright text-white text-xs font-mono font-bold flex items-center justify-center gap-2 transition-all duration-200 ease-base shadow-lg shadow-crimson/30 active:scale-[0.98]">
-              <span>View in Cases That Shook Punjab</span>
-              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          <!-- Bottom Navigation & Counter (Self-Contained) -->
+          <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between gap-3">
+            <button onclick="navigateIncident(-1)" class="p-2 sm:px-3 sm:py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-200 text-xs font-mono font-medium flex items-center gap-1.5 transition active:scale-95" aria-label="Previous Incident">
+              <i data-lucide="chevron-left" class="w-4 h-4"></i>
+              <span class="hidden sm:inline">Prev</span>
+            </button>
+
+            <div class="text-xs font-mono text-slate-400">
+              Case <span id="incidentCounter" class="text-white font-bold">01</span> of <span id="incidentTotal">09</span>
+            </div>
+
+            <button onclick="navigateIncident(1)" class="p-2 sm:px-3 sm:py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-200 text-xs font-mono font-medium flex items-center gap-1.5 transition active:scale-95" aria-label="Next Incident">
+              <span class="hidden sm:inline">Next</span>
+              <i data-lucide="chevron-right" class="w-4 h-4"></i>
             </button>
           </div>
         </div>
@@ -4460,162 +4497,143 @@
     const mapIncidents = {
       mohali: {
         district: "SAS Nagar / Mohali",
-        caseId: "rpg-mohali",
         date: "May 2022",
-        badge: "Security Breach",
         title: "RPG Attack on Punjab Police Intelligence HQ",
-        target: "State Intelligence Headquarters, Sector 77",
-        weapon: "Rocket-Propelled Grenade (RPG)",
-        severity: "State Intelligence Facility",
-        desc: "Assailants fired a Rocket-Propelled Grenade directly at the Punjab Police Intelligence Headquarters in Mohali. This attack is part of a pattern where police stations and establishments have suffered grenade and blast attacks under the current government.",
+        image: "img/rpg_mohali_headquarters.jpg",
+        desc: "Assailants fired a Rocket-Propelled Grenade directly at the high-security Punjab Police Intelligence Headquarters in Mohali. This attack is part of a pattern where police stations and establishments have suffered grenade and blast attacks under the current government.",
         quote: "Direct hit on state police intelligence headquarters while senior officials were on site."
       },
       amritsar: {
         district: "Amritsar",
-        caseId: "suri",
         date: "October 2024",
-        badge: "Police Officer Killed",
-        title: "Police ASI Sukhchain Singh Shot on Duty",
-        target: "On-Duty Police Officer",
-        weapon: "Firearms",
-        severity: "Attack on Law Enforcement",
-        desc: "Assailants shot ASI Sukhchain Singh while he was returning home after duty, raising serious concerns over officer safety across the state.",
-        quote: "When law enforcement officers are targeted on duty, citizen security is compromised."
-      },
-      ludhiana: {
-        district: "Ludhiana",
-        caseId: "timmy",
-        date: "2024",
-        badge: "Multiple Homicides",
-        title: "Three Broad Daylight Murders in 48 Hours",
-        target: "Civic Leaders and Business Owners",
-        weapon: "Firearms",
-        severity: "Public Safety Breakdown",
-        desc: "Ludhiana recorded three daylight homicides in a 48-hour span, including the fatal shooting of a former village sarpanch in active commercial areas.",
-        quote: "Over 2,100 murders logged across Punjab between 2022 and 2024."
-      },
-      bathinda: {
-        district: "Bathinda",
-        caseId: "village",
-        date: "July 2024",
-        badge: "Village Protest",
-        title: "Bhai Bhakhtaur: 'Our Village is for Sale'",
-        target: "Village Community",
-        weapon: "Illicit Narcotics",
-        severity: "Citizen Grievance",
-        desc: "Residents of Bhai Bhakhtaur village put up banners reading 'Our village is for sale' as a public protest against unchecked illicit drug peddling.",
-        quote: "Villagers highlighted the crisis after repeated appeals yielded no sustained enforcement."
-      },
-      faridkot: {
-        district: "Faridkot",
-        caseId: "pardeep",
-        date: "November 2022",
-        badge: "Prison Incident",
-        title: "Faridkot Jail Contraband Network",
-        target: "Correctional Facility",
-        weapon: "Contraband & Mobile Phones",
-        severity: "Prison Security Breach",
-        desc: "Faridkot Central Jail was placed under High Court scrutiny following reports of illicit mobile networks and contraband operations within the facility.",
-        quote: "High Court noted the seriousness of unauthorized networks operating from inside state prisons."
-      },
-      fazilka: {
-        district: "Fazilka / Jalalabad",
-        date: "September 2024",
-        badge: "Station Explosion",
-        title: "Jalalabad Police Station Blast",
-        target: "Local Police Station",
-        weapon: "Explosive Device",
-        severity: "Station Security",
-        desc: "An explosion inside the Jalalabad police station raised alarms over facility security, alongside wider cross-border drug seizures in the district.",
-        quote: "The incident exposed operational vulnerabilities in border district stations."
-      },
-      sangrur: {
-        district: "Sangrur",
-        date: "March 2024",
-        badge: "Prison Inquiry",
-        title: "Smuggling Inquiries at Sangrur Jail",
-        target: "Central Jail Premises",
-        weapon: "Illicit Contraband",
-        severity: "Official Misconduct Inquiry",
-        desc: "Investigations were initiated into allegations of unauthorized contraband distribution operating inside Sangrur Central Jail.",
-        quote: "Inquiries were ordered to determine departmental accountability inside the jail."
+        title: "Police Officer Shot & Ajnala Station Siege",
+        image: "img/ajnala_station_siege.jpg",
+        desc: "Assailants shot on-duty ASI Sukhchain Singh, alongside the armed storming of the Ajnala police station, highlighting serious law and order breakdowns in border districts.",
+        quote: "When law enforcement officers and stations are targeted, citizen security is compromised."
       },
       jalandhar: {
         district: "Jalandhar",
         date: "March 2022",
-        badge: "Targeted Shooting",
-        title: "Lucky Oberoi & Nakodar Shootings",
-        target: "Traders and Political Workers",
-        weapon: "Firearms",
-        severity: "Business Community Distress",
-        desc: "Targeted shootings in Jalandhar and Nakodar led to widespread protests among business owners regarding safety and extortion threats.",
-        quote: "Local business associations raised concerns over rising extortion calls."
+        title: "Extortion Shootings & Kabaddi Star Slaying",
+        image: "img/sandeep_nangal_ambia.jpg",
+        desc: "International athlete Sandeep Nangal Ambia was gunned down in broad daylight, alongside targeted extortion murders of business owners in Nakodar that sparked statewide panic.",
+        quote: "Local business associations raised serious alarms over unchecked extortion calls."
+      },
+      ludhiana: {
+        district: "Ludhiana",
+        date: "2024",
+        title: "Three Broad Daylight Murders in 48 Hours",
+        image: "img/nakodar_merchant_murder.jpg",
+        desc: "Ludhiana recorded three daylight homicides in a 48-hour span, including the fatal shooting of a former village sarpanch in active commercial markets.",
+        quote: "Over 2,100 murders logged across Punjab between 2022 and 2024."
+      },
+      faridkot: {
+        district: "Faridkot",
+        date: "November 2022",
+        title: "Faridkot Jail Contraband Network & Kotkapura Slaying",
+        image: "img/pardeep_singh_kotkapura.jpg",
+        desc: "High Court intervention exposed widespread illicit mobile phone rings operating inside Faridkot Central Jail, directly directing criminal cartels on the outside.",
+        quote: "High Court noted the gravity of illicit networks operating from inside state prisons."
+      },
+      bathinda: {
+        district: "Bathinda",
+        date: "July 2024",
+        title: "Bhai Bhakhtaur: 'Our Village is for Sale'",
+        image: "img/village_for_sale.jpg",
+        desc: "Residents of Bhai Bhakhtaur village put up banners reading 'Our village is for sale' as a public protest against unchecked synthetic drug peddling and police inaction.",
+        quote: "Villagers highlighted the crisis after repeated appeals yielded no sustained enforcement."
       },
       mansa: {
         district: "Mansa",
         date: "May 2022",
-        badge: "High-Profile Ambush",
         title: "Assassination of Sidhu Moosewala",
-        target: "Shubhdeep Singh Sidhu",
-        weapon: "Automatic Rifles",
-        severity: "Major Law & Order Failure",
-        desc: "Sidhu Moosewala was ambushed and killed in Jawaharke village shortly after his security detail was publicly pruned by the state administration.",
-        quote: "Public disclosure of trimmed security details preceded the ambush."
+        image: "img/moosewala_ambush_scene.jpg",
+        desc: "Singer Shubhdeep Singh Sidhu was ambushed and killed in Jawaharke village by automatic rifle fire, shortly after his security detail was publicly pruned by the administration.",
+        quote: "Public disclosure of trimmed security details preceded the fatal ambush."
+      },
+      sangrur: {
+        district: "Sangrur",
+        date: "March 2024",
+        title: "Sangrur Hooch Tragedy & Jail Inquiries",
+        image: "img/sangrur_hooch_tragedy.jpg",
+        desc: "Over 20 citizens died from toxic spurious liquor in the Chief Minister's home district, alongside high-level probes into illicit contraband syndicates inside Sangrur Jail.",
+        quote: "Inquiries were ordered to determine departmental accountability inside the jail."
+      },
+      fazilka: {
+        district: "Fazilka / Jalalabad",
+        date: "September 2024",
+        title: "Jalalabad Police Station Blast & Border Drugs",
+        image: "img/sarhali_rpg_attack.jpg",
+        desc: "An explosion inside the Jalalabad police station raised alarms over facility security, alongside major cross-border drug seizures across the border district.",
+        quote: "The incident exposed operational vulnerabilities in border district stations."
       }
     };
 
-    
-    function openCaseFromMap(caseId) {
-      const targetCaseIndex = SENSATIONAL_CASES_DATA.findIndex(c => c.id === caseId);
-      if (targetCaseIndex !== -1) {
-        currentSensationalCategory = 'all';
-        activeFilteredCases = [...SENSATIONAL_CASES_DATA];
-        activeCaseIndex = targetCaseIndex;
-        renderSensationalCases(0, true);
-        const section = document.getElementById('cases-that-shook-punjab');
-        if (section) {
-          section.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    }
+    const mapIncidentKeys = ['mohali', 'amritsar', 'jalandhar', 'ludhiana', 'faridkot', 'bathinda', 'mansa', 'sangrur', 'fazilka'];
+    let currentIncidentId = 'mohali';
 
-    function selectIncident(id) {
+    function selectIncident(id, playSound = true) {
       const data = mapIncidents[id];
       if (!data) return;
+      currentIncidentId = id;
 
-      const badgeEl = document.getElementById('incidentBadge');
-      if (badgeEl) badgeEl.innerText = data.badge;
-      const dateEl = document.getElementById('incidentDate');
-      if (dateEl) dateEl.innerText = data.date;
-      const distEl = document.getElementById('incidentDistrict');
-      if (distEl) distEl.innerText = data.district;
+      const idx = mapIncidentKeys.indexOf(id);
+      const counterEl = document.getElementById('incidentCounter');
+      if (counterEl && idx !== -1) {
+        counterEl.innerText = String(idx + 1).padStart(2, '0');
+      }
+
+      // Smooth Crossfade Image
+      const imgEl = document.getElementById('incidentImg');
+      if (imgEl && data.image) {
+        imgEl.style.opacity = '0.35';
+        imgEl.style.transform = 'scale(0.97)';
+        setTimeout(() => {
+          imgEl.src = data.image;
+          imgEl.style.opacity = '1';
+          imgEl.style.transform = 'scale(1)';
+        }, 140);
+      }
+
+      const distPill = document.getElementById('incidentDistrictPill');
+      if (distPill) distPill.innerText = data.district;
+      const datePill = document.getElementById('incidentDatePill');
+      if (datePill) datePill.innerText = data.date;
       const titleEl = document.getElementById('incidentTitle');
       if (titleEl) titleEl.innerText = data.title;
-      const targetEl = document.getElementById('incidentTarget');
-      if (targetEl) targetEl.innerText = data.target;
-      const weaponEl = document.getElementById('incidentWeapon');
-      if (weaponEl) weaponEl.innerText = data.weapon;
-      const severityEl = document.getElementById('incidentSeverity');
-      if (severityEl) severityEl.innerText = data.severity;
       const descEl = document.getElementById('incidentDesc');
       if (descEl) descEl.innerText = data.desc;
       const quoteEl = document.getElementById('incidentQuote');
       if (quoteEl) quoteEl.innerText = `"${data.quote}"`;
 
-      const inspectBtn = document.getElementById('mapInspectCaseBtn');
-      if (inspectBtn) {
-        inspectBtn.onclick = () => openCaseFromMap(data.caseId || 'jhota');
+      // Update Active Pin on SVG Map
+      document.querySelectorAll('.hotspot-pin').forEach(pin => {
+        if (pin.dataset.id === id) {
+          pin.classList.add('active');
+        } else {
+          pin.classList.remove('active');
+        }
+      });
+
+      if (playSound && typeof playSonarBlip === 'function') {
+        playSonarBlip();
       }
 
       lucide.createIcons();
     }
 
+    function navigateIncident(dir) {
+      const currentIdx = mapIncidentKeys.indexOf(currentIncidentId);
+      const nextIdx = (currentIdx + dir + mapIncidentKeys.length) % mapIncidentKeys.length;
+      selectIncident(mapIncidentKeys[nextIdx], true);
+    }
+
     function filterMapHotspots(category) {
       document.querySelectorAll('.map-filter-btn').forEach(btn => {
         if (btn.dataset.cat === category) {
-          btn.className = 'map-filter-btn px-2.5 py-1 rounded bg-crimson text-white font-bold';
+          btn.className = 'map-filter-btn px-2.5 py-1 rounded-lg bg-crimson text-white font-bold transition-all';
         } else {
-          btn.className = 'map-filter-btn px-2.5 py-1 rounded bg-slateDark text-slate-300 hover:text-white';
+          btn.className = 'map-filter-btn px-2.5 py-1 rounded-lg bg-slate-800/80 text-slate-300 hover:text-white transition-all';
         }
       });
 
@@ -4626,6 +4644,10 @@
           pin.style.display = 'none';
         }
       });
+    }
+
+    function openCaseFromMap(caseId) {
+      // Compatibility shim
     }
 
     
@@ -6617,9 +6639,25 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       renderWingCards();
       setupCard3dTilt();
       initCasesMotionCanvas();
-      selectIncident('mohali');
+      selectIncident('mohali', false);
       selectHeroAct(0, false);
       initHeroStorylineLoop();
+
+      // Satellite Video Observer
+      const satVideo = document.getElementById('punjabSatelliteVideo');
+      if (satVideo && window.IntersectionObserver) {
+        const satObs = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              satVideo.play().catch(() => {});
+            } else {
+              satVideo.pause();
+            }
+          });
+        }, { threshold: 0.15 });
+        const crimeMapSec = document.getElementById('crime-map');
+        if (crimeMapSec) satObs.observe(crimeMapSec);
+      }
 
       setTimeout(() => {
         if (window.lenis) {
