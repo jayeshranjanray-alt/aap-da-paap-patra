@@ -1071,29 +1071,100 @@
       z-index: 15;
     }
 
-    /* Floating Modern Tactical Dark Glass Overlay */
+    /* Floating Modern Tactical Glass / Paper Dossier Overlay */
     .chargesheet-glass-panel {
       position: relative;
       width: 100%;
       max-width: 1040px;
       max-height: 86vh;
-      background: rgba(13, 17, 26, 0.94);
-      backdrop-filter: blur(28px) saturate(140%);
-      -webkit-backdrop-filter: blur(28px) saturate(140%);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 1.5rem;
-      box-shadow: 
-        0 40px 100px -20px rgba(0, 0, 0, 0.98),
-        0 0 50px rgba(225, 29, 72, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
       display: flex;
       flex-direction: column;
       overflow: hidden;
       z-index: 30;
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+      border-radius: 1.25rem;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      perspective: 2000px;
     }
 
-    /* Glass Panel Category Tabs */
+    /* 1. DARK OPS THEME (Toggleable) */
+    .chargesheet-glass-panel.theme-dark {
+      background: rgba(13, 17, 26, 0.94);
+      backdrop-filter: blur(28px) saturate(140%);
+      -webkit-backdrop-filter: blur(28px) saturate(140%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 
+        0 40px 100px -20px rgba(0, 0, 0, 0.98),
+        0 0 50px rgba(225, 29, 72, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      color: #f1f5f9;
+    }
+
+    /* 2. AUTHENTIC ARCHIVAL PAPER THEME (Default) */
+    .chargesheet-glass-panel.theme-paper {
+      background: #fbf9f4;
+      background-image: 
+        radial-gradient(#d5ccb8 0.75px, transparent 0.75px),
+        linear-gradient(to right, rgba(160, 140, 110, 0.04) 1px, transparent 1px);
+      background-size: 16px 16px, 32px 32px;
+      border: 1px solid rgba(180, 160, 130, 0.55);
+      box-shadow: 
+        0 35px 85px -15px rgba(0, 0, 0, 0.95),
+        0 0 0 1px rgba(255, 255, 255, 0.8) inset,
+        0 10px 30px rgba(0, 0, 0, 0.35);
+      color: #0f172a;
+    }
+
+    /* Paper mode header bars */
+    .theme-paper .cs-header-bar {
+      background: #f2eee3 !important;
+      border-bottom: 1px solid #dfd7c5 !important;
+    }
+    .theme-paper .cs-meta-bar {
+      background: #f7f4ec !important;
+      border-bottom: 1px solid #dfd7c5 !important;
+    }
+    .theme-paper .cs-footer-bar {
+      background: #f2eee3 !important;
+      border-top: 1px solid #dfd7c5 !important;
+    }
+    .theme-paper #csStageTitle {
+      color: #0f172a !important;
+    }
+    .theme-paper #csStagePunjabi {
+      color: #991b1b !important;
+    }
+    .theme-paper .cs-stat-box {
+      background: #ffffff !important;
+      border: 1px solid #dfd7c5 !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+    .theme-paper .cs-stat-box span:first-child {
+      color: #64748b !important;
+    }
+    .theme-paper .cs-stat-box #csStageStat {
+      color: #dc2626 !important;
+    }
+
+    /* Red rubber stamp */
+    .paper-rubber-stamp {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      border: 2px solid #dc2626;
+      color: #dc2626;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 4px;
+      transform: rotate(-2deg);
+      box-shadow: 0 0 0 1px rgba(220, 38, 38, 0.15);
+      user-select: none;
+    }
+
+    /* Category Tabs */
     .cs-tab-btn {
       padding: 0.45rem 0.9rem;
       border-radius: 0.75rem;
@@ -1126,8 +1197,75 @@
       color: #ffffff;
       border-color: rgba(225, 29, 72, 0.4);
     }
+    .theme-paper .cs-tab-btn {
+      background: #e8e2d2;
+      color: #475569;
+      border: 1px solid #d5ccb8;
+    }
+    .theme-paper .cs-tab-btn:hover {
+      background: #ded7c4;
+      color: #0f172a;
+    }
+    .theme-paper .cs-tab-btn.active {
+      background: #ffffff !important;
+      color: #0f172a !important;
+      border-color: #dc2626 !important;
+      border-top: 2.5px solid #dc2626 !important;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08) !important;
+    }
 
-    /* Floating Charge Count Cards */
+    /* Search input and buttons in paper mode */
+    .theme-paper input#csStageSearch {
+      background: #ffffff !important;
+      border-color: #d5ccb8 !important;
+      color: #0f172a !important;
+    }
+    .theme-paper input#csStageSearch::placeholder {
+      color: #94a3b8 !important;
+    }
+    .theme-paper .cs-util-btn {
+      background: #ffffff !important;
+      border-color: #d5ccb8 !important;
+      color: #334155 !important;
+    }
+    .theme-paper .cs-util-btn:hover {
+      background: #f1ebd8 !important;
+      color: #0f172a !important;
+      border-color: #b0a58e !important;
+    }
+
+    /* 3D Page Flip Mechanics */
+    .dossier-page-flip-wrap {
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      will-change: transform, opacity;
+      transform-origin: left center;
+      transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.22s ease;
+    }
+    .dossier-page-flip-wrap.flip-out-forward {
+      transform: rotateY(-75deg) scale(0.96) translateZ(15px);
+      opacity: 0.2;
+    }
+    .dossier-page-flip-wrap.flip-prep-forward {
+      transform: rotateY(75deg) scale(0.96) translateZ(15px);
+      opacity: 0.2;
+      transition: none !important;
+    }
+    .dossier-page-flip-wrap.flip-out-backward {
+      transform-origin: right center;
+      transform: rotateY(75deg) scale(0.96) translateZ(15px);
+      opacity: 0.2;
+    }
+    .dossier-page-flip-wrap.flip-prep-backward {
+      transform-origin: right center;
+      transform: rotateY(-75deg) scale(0.96) translateZ(15px);
+      opacity: 0.2;
+      transition: none !important;
+    }
+
+    /* Charge Cards */
     .cs-charge-card {
       background: rgba(9, 13, 20, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1159,6 +1297,40 @@
       box-shadow: 0 0 12px #e11d48;
     }
 
+    /* Charge Cards in Paper Mode */
+    .theme-paper .cs-charge-card {
+      background: #ffffff !important;
+      border: 1px solid #e5ded2 !important;
+      border-left: 4px solid #dc2626 !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+      color: #0f172a !important;
+    }
+    .theme-paper .cs-charge-card:hover {
+      background: #ffffff !important;
+      border-color: #d0c4b2 !important;
+      border-left-color: #b91c1c !important;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08) !important;
+    }
+    .theme-paper .cs-charge-card::before {
+      display: none;
+    }
+    .theme-paper .cs-charge-card h4 {
+      color: #0f172a !important;
+    }
+    .theme-paper .cs-charge-card:hover h4 {
+      color: #dc2626 !important;
+    }
+    .theme-paper .cs-charge-card p.text-slate-300 {
+      color: #334155 !important;
+    }
+    .theme-paper .cs-charge-card .border-panelBorder\/70 {
+      border-color: #e5ded2 !important;
+    }
+    .theme-paper .cs-charge-card .text-slate-400 {
+      color: #64748b !important;
+    }
+
     /* Redacted Tape Effect */
     .redacted-tape {
       display: inline-block;
@@ -1179,6 +1351,20 @@
       border-bottom-color: #eab308;
       box-shadow: 0 0 12px rgba(234, 179, 8, 0.35);
       user-select: text;
+    }
+    .theme-paper .redacted-tape {
+      background: #0f172a;
+      color: transparent;
+      border-bottom: 2px solid #dc2626;
+      border-radius: 2px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+    .theme-paper .redacted-tape:hover,
+    .theme-paper .redacted-tape.revealed {
+      background: #fef08a !important;
+      color: #854d0e !important;
+      border-bottom-color: #eab308 !important;
+      box-shadow: 0 0 10px rgba(250, 204, 21, 0.5) !important;
     }
   </style>
 </head>
@@ -1795,37 +1981,41 @@
 
           <!-- 5. Floating Modern Tactical Dark Glass Overlay (Reveals real points over the open folder at progress > 0.65) -->
           <div id="chargesheetGlassOverlay" class="absolute inset-0 z-30 flex items-center justify-center p-3 sm:p-6 opacity-0 pointer-events-none transition-all duration-300">
-            <div class="chargesheet-glass-panel" id="chargesheetGlassPanel">
+            <div class="chargesheet-glass-panel theme-paper" id="chargesheetGlassPanel">
               
-              <!-- Top Category Tabs & Search Bar -->
-              <div class="p-3 sm:p-4 bg-obsidian/95 border-b border-panelBorder flex flex-wrap items-center justify-between gap-3 shrink-0">
+              <!-- Top Category Tabs, Theme Switcher & Search Bar -->
+              <div class="cs-header-bar p-3 sm:p-4 bg-obsidian/95 border-b border-panelBorder flex flex-wrap items-center justify-between gap-3 shrink-0">
                 <!-- 4 Interactive Dossier Tabs -->
                 <div class="flex flex-wrap items-center gap-1.5" id="csStageTabs">
                   <button onclick="selectStageDossier('drugs')" id="csStageTab-drugs" class="cs-tab-btn active">
-                    <span class="text-crimson font-black">01</span>
+                    <span class="font-black text-crimson">01</span>
                     <span>Drugs &amp; Chitta</span>
                   </button>
                   <button onclick="selectStageDossier('law')" id="csStageTab-law" class="cs-tab-btn">
-                    <span class="text-amberAlert font-black">02</span>
+                    <span class="font-black text-amberAlert">02</span>
                     <span>Law &amp; Order</span>
                   </button>
                   <button onclick="selectStageDossier('vadakhilafi')" id="csStageTab-vadakhilafi" class="cs-tab-btn">
-                    <span class="text-red-400 font-black">03</span>
+                    <span class="font-black text-red-500">03</span>
                     <span>Broken Guarantees</span>
                   </button>
                   <button onclick="selectStageDossier('corruption')" id="csStageTab-corruption" class="cs-tab-btn">
-                    <span class="text-yellow-400 font-black">04</span>
+                    <span class="font-black text-yellow-500">04</span>
                     <span>Graft &amp; Scams</span>
                   </button>
                 </div>
 
-                <!-- Live Search & Print -->
+                <!-- Theme Toggle, Live Search & Print -->
                 <div class="flex items-center gap-2">
-                  <div class="relative w-40 sm:w-56">
+                  <button id="csThemeToggleBtn" onclick="toggleChargesheetTheme()" class="cs-util-btn px-2.5 py-1.5 rounded-xl border border-panelBorder text-xs font-mono transition flex items-center gap-1.5" title="Switch between Paper and Dark Ops view">
+                    <i data-lucide="moon" class="w-3.5 h-3.5 text-slate-500"></i>
+                    <span class="hidden sm:inline font-bold">Dark Ops</span>
+                  </button>
+                  <div class="relative w-36 sm:w-52">
                     <input type="text" id="csStageSearch" oninput="filterStageDossier(this.value)" placeholder="Search charges..." class="w-full bg-charcoal/90 border border-panelBorder focus:border-crimson rounded-xl px-3 py-1.5 text-xs font-mono text-white placeholder-slate-500 outline-none transition" />
                     <i data-lucide="search" class="w-3.5 h-3.5 text-slate-500 absolute right-2.5 top-2"></i>
                   </div>
-                  <button onclick="window.print()" class="px-2.5 py-1.5 rounded-xl bg-charcoal hover:bg-crimson border border-panelBorder text-slate-300 hover:text-white text-xs font-mono transition flex items-center gap-1" title="Print this exhibit">
+                  <button onclick="window.print()" class="cs-util-btn px-2.5 py-1.5 rounded-xl bg-charcoal hover:bg-crimson border border-panelBorder text-slate-300 hover:text-white text-xs font-mono transition flex items-center gap-1" title="Print this exhibit">
                     <i data-lucide="printer" class="w-3.5 h-3.5"></i>
                     <span class="hidden md:inline">Print</span>
                   </button>
@@ -1833,12 +2023,13 @@
               </div>
 
               <!-- Active Dossier Metadata Row -->
-              <div class="px-5 py-3.5 bg-obsidian/75 border-b border-panelBorder flex flex-col sm:flex-row sm:items-center justify-between gap-3 shrink-0">
+              <div class="cs-meta-bar px-5 py-3.5 bg-obsidian/75 border-b border-panelBorder flex flex-col sm:flex-row sm:items-center justify-between gap-3 shrink-0">
                 <div>
-                  <div class="flex items-center gap-2 text-xs font-mono">
+                  <div class="flex items-center gap-2 text-xs font-mono mb-1">
+                    <span class="paper-rubber-stamp"><i data-lucide="shield-alert" class="w-3 h-3 text-red-600"></i> OFFICIAL EXHIBIT</span>
                     <span class="text-crimson font-extrabold uppercase tracking-wider" id="csStageTag">Issue 01: Narcotics Crisis</span>
-                    <span class="text-slate-600">|</span>
-                    <span class="text-slate-400" id="csStageCount">9 Documented Findings</span>
+                    <span class="text-slate-400">|</span>
+                    <span class="text-slate-500 font-bold" id="csStageCount">9 Documented Findings</span>
                   </div>
                   <h3 class="text-lg sm:text-2xl font-display font-black text-white mt-0.5 tracking-tight" id="csStageTitle">
                     Drugs &amp; The Chitta Epidemic
@@ -1848,30 +2039,40 @@
                   </p>
                 </div>
 
-                <div class="p-2 sm:p-2.5 rounded-xl bg-black/70 border border-panelBorder font-mono text-xs text-right shrink-0">
+                <div class="cs-stat-box p-2 sm:p-2.5 rounded-xl bg-black/70 border border-panelBorder font-mono text-xs text-right shrink-0">
                   <span class="text-[10px] text-slate-400 block uppercase font-bold">Key Forensic Metric</span>
                   <span id="csStageStat" class="text-amberAlert font-black text-xs sm:text-sm">58% traced to Punjab (2025)</span>
                 </div>
               </div>
 
-              <!-- Scrollable Charge Points Cards Container (Inside the Glass Panel) -->
-              <div class="p-4 sm:p-6 overflow-y-auto space-y-3.5 flex-1 custom-scroll" id="csStageEntriesContainer">
-                <!-- Dynamically populated floating chargesheet points -->
+              <!-- 3D Page Flip Outer Wrapper -->
+              <div id="csStageFlipWrap" class="dossier-page-flip-wrap flex-1 flex flex-col overflow-hidden">
+                <!-- Scrollable Charge Points Cards Container (Inside the Paper Dossier) -->
+                <div class="p-4 sm:p-6 overflow-y-auto space-y-3.5 flex-1 custom-scroll" id="csStageEntriesContainer">
+                  <!-- Dynamically populated floating chargesheet points -->
+                </div>
               </div>
 
-              <!-- Glass Panel Footer -->
-              <div class="p-3 sm:p-3.5 bg-obsidian/95 border-t border-panelBorder flex items-center justify-between text-xs font-mono shrink-0">
-                <span class="text-slate-400 flex items-center gap-1.5 text-[11px] sm:text-xs">
+              <!-- Dossier Footer with Page Turner Navigation -->
+              <div class="cs-footer-bar p-3 sm:p-3.5 bg-obsidian/95 border-t border-panelBorder flex flex-wrap items-center justify-between gap-2 text-xs font-mono shrink-0">
+                <span class="text-slate-500 flex items-center gap-1.5 text-[11px] sm:text-xs">
                   <i data-lucide="key-round" class="w-3.5 h-3.5 text-crimson"></i>
-                  <span>Hover or tap black redacted bars to uncover classified notes</span>
+                  <span>Tap black redacted tape to declassify findings</span>
                 </span>
-                <div class="flex items-center gap-2">
-                  <button onclick="navigateStageCategory(-1)" class="px-2 py-1 rounded bg-charcoal hover:bg-slateDark border border-panelBorder text-slate-300 text-[11px] transition">
-                    ← Prev
-                  </button>
-                  <button onclick="navigateStageCategory(1)" class="px-2 py-1 rounded bg-charcoal hover:bg-slateDark border border-panelBorder text-slate-300 text-[11px] transition">
-                    Next →
-                  </button>
+                <div class="flex items-center gap-3">
+                  <span id="csStagePageIndicator" class="font-mono text-xs font-bold text-slate-500">
+                    Page 1 of 4 · Drugs
+                  </span>
+                  <div class="flex items-center gap-1.5">
+                    <button onclick="flipToStageDossier(-1)" class="cs-util-btn px-2.5 py-1 rounded-lg border border-panelBorder text-slate-300 text-[11px] font-bold transition flex items-center gap-1" title="Turn to Previous Dossier (Left Arrow)">
+                      <i data-lucide="chevron-left" class="w-3.5 h-3.5"></i>
+                      <span class="hidden sm:inline">Prev Page</span>
+                    </button>
+                    <button onclick="flipToStageDossier(1)" class="cs-util-btn px-2.5 py-1 rounded-lg border border-panelBorder text-slate-300 text-[11px] font-bold transition flex items-center gap-1" title="Turn to Next Dossier (Right Arrow)">
+                      <span class="hidden sm:inline">Next Page</span>
+                      <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -3903,15 +4104,43 @@
       try {
         const ctx = getDossierAudioCtx();
         if (!ctx) return;
-        const osc = ctx.createOscillator();
+        
+        // Authentic paper swish via filtered noise buffer
+        const bufferSize = Math.floor(ctx.sampleRate * 0.16);
+        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.35));
+        }
+        const noise = ctx.createBufferSource();
+        noise.buffer = buffer;
+
+        // Bandpass filter centered around 1800Hz (paper flick resonance)
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.setValueAtTime(2200, ctx.currentTime);
+        filter.frequency.exponentialRampToValueAtTime(750, ctx.currentTime + 0.16);
+        filter.Q.value = 1.8;
+
         const gain = ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(300, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(110, ctx.currentTime + 0.14);
-        gain.gain.setValueAtTime(0.12, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.14);
-        osc.connect(gain);
+        gain.gain.setValueAtTime(0.25, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.16);
+
+        noise.connect(filter);
+        filter.connect(gain);
         gain.connect(ctx.destination);
+        noise.start();
+
+        // Subtle low-frequency body rustle
+        const osc = ctx.createOscillator();
+        const oscGain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(200, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(75, ctx.currentTime + 0.14);
+        oscGain.gain.setValueAtTime(0.08, ctx.currentTime);
+        oscGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.14);
+        osc.connect(oscGain);
+        oscGain.connect(ctx.destination);
         osc.start();
         osc.stop(ctx.currentTime + 0.14);
       } catch (e) {}
@@ -4165,7 +4394,127 @@
       playChargesheetRevealAudio();
     }
 
+    // --- SECTION 4 INTERACTIVE DOSSIER STATE & 3D PAGE FLIP ---
+    let currentChargesheetTheme = 'paper'; // Default: authentic declassified archival paper
+    let isPageFlipping = false;
+
+    const dossierCategoryMeta = {
+      drugs: {
+        pageNumber: 1,
+        shortName: "Drugs & Chitta",
+        tag: "Issue 01: Narcotics Crisis",
+        title: "Drugs & The Chitta Epidemic",
+        punjabi: "ਚਿੱਟਾ ਅਤੇ ਨਸ਼ਿਆਂ ਦੀ ਮਹਾਂਮਾਰੀ — ਜੇਲ੍ਹ ਰੈਕੇਟ ਤੇ ਅਧਿਕਾਰਤ ਮਿਲੀਭੁਗਤ",
+        stat: "58% traced to Punjab (2025)"
+      },
+      law: {
+        pageNumber: 2,
+        shortName: "Law & Order",
+        tag: "Issue 02: Law & Order Collapse",
+        title: "Gangster Rule & Police Station Attacks",
+        punjabi: "ਗੈਂਗਸਟਰ ਰਾਜ, ਜਬਰੀ ਵਸੂਲੀ ਅਤੇ ਥਾਣਿਆਂ 'ਤੇ ਹਮਲੇ",
+        stat: "22 Police Stations Attacked"
+      },
+      vadakhilafi: {
+        pageNumber: 3,
+        shortName: "Broken Guarantees",
+        tag: "Issue 03: Broken Guarantees",
+        title: "Vadakhilafi: 25 Lakh Jobs & Women Pension Betrayal",
+        punjabi: "ਵਾਅਦਾਖਿਲਾਫ਼ੀ: ਨੌਕਰੀਆਂ, ਪੈਨਸ਼ਨ ਅਤੇ ਕਿਸਾਨ ਗਰੰਟੀਆਂ ਤੋੜੀਆਂ",
+        stat: "₹4.47 Lakh Cr State Debt"
+      },
+      corruption: {
+        pageNumber: 4,
+        shortName: "Graft & Scams",
+        tag: "Issue 04: Corruption & Scams",
+        title: "Institutional Graft & Central Probes",
+        punjabi: "ਮੰਤਰੀਆਂ ਦੀ ਗ੍ਰਿਫ਼ਤਾਰੀ, ਜ਼ਮੀਨ ਘੁਟਾਲੇ ਅਤੇ ਸੀਬੀਆਈ ਛਾਪੇ",
+        stat: "CM Camp Office CBI Search"
+      }
+    };
+
+    function toggleChargesheetTheme() {
+      const panel = document.getElementById('chargesheetGlassPanel');
+      const btn = document.getElementById('csThemeToggleBtn');
+      if (!panel) return;
+      if (currentChargesheetTheme === 'paper') {
+        currentChargesheetTheme = 'dark';
+        panel.classList.remove('theme-paper');
+        panel.classList.add('theme-dark');
+        if (btn) btn.innerHTML = `<i data-lucide="sun" class="w-3.5 h-3.5 text-amber-400"></i><span class="hidden sm:inline font-bold">Paper View</span>`;
+      } else {
+        currentChargesheetTheme = 'paper';
+        panel.classList.remove('theme-dark');
+        panel.classList.add('theme-paper');
+        if (btn) btn.innerHTML = `<i data-lucide="moon" class="w-3.5 h-3.5 text-slate-500"></i><span class="hidden sm:inline font-bold">Dark Ops</span>`;
+      }
+      lucide.createIcons();
+      playPageFlipSound();
+      renderStageDossierEntries(currentChargesheetCategory);
+    }
+
+    function flipToStageDossier(dirOrCategory) {
+      if (isPageFlipping) return;
+      const currentIdx = stageDossierCategories.indexOf(currentChargesheetCategory);
+      let targetIdx = currentIdx;
+      let isForward = true;
+
+      if (typeof dirOrCategory === 'number') {
+        targetIdx = (currentIdx + dirOrCategory + stageDossierCategories.length) % stageDossierCategories.length;
+        isForward = dirOrCategory >= 0;
+      } else if (typeof dirOrCategory === 'string') {
+        targetIdx = stageDossierCategories.indexOf(dirOrCategory);
+        if (targetIdx === -1 || targetIdx === currentIdx) return;
+        isForward = targetIdx > currentIdx;
+      }
+
+      const targetCategory = stageDossierCategories[targetIdx];
+      const flipWrap = document.getElementById('csStageFlipWrap');
+
+      if (!flipWrap) {
+        applyStageDossier(targetCategory);
+        return;
+      }
+
+      isPageFlipping = true;
+      playPageFlipSound();
+
+      // Step 1: Animate current page folding away in 3D
+      const outClass = isForward ? 'flip-out-forward' : 'flip-out-backward';
+      const prepClass = isForward ? 'flip-prep-forward' : 'flip-prep-backward';
+
+      flipWrap.classList.remove('flip-out-forward', 'flip-out-backward', 'flip-prep-forward', 'flip-prep-backward');
+      flipWrap.classList.add(outClass);
+
+      // Step 2: At mid-point (160ms), update content while edge-on to the user
+      setTimeout(() => {
+        applyStageDossier(targetCategory);
+        flipWrap.classList.remove(outClass);
+        flipWrap.classList.add(prepClass);
+
+        // Force browser layout reflow
+        void flipWrap.offsetWidth;
+
+        // Step 3: Animate next page folding open smoothly into view
+        requestAnimationFrame(() => {
+          flipWrap.classList.remove(prepClass);
+          setTimeout(() => {
+            isPageFlipping = false;
+          }, 320);
+        });
+      }, 160);
+    }
+
     function selectStageDossier(category) {
+      if (!chargesheetData[category]) category = 'drugs';
+      if (category === currentChargesheetCategory) {
+        applyStageDossier(category);
+        return;
+      }
+      flipToStageDossier(category);
+    }
+
+    function applyStageDossier(category) {
       if (!chargesheetData[category]) category = 'drugs';
       currentChargesheetCategory = category;
 
@@ -4180,37 +4529,24 @@
         }
       });
 
+      const meta = dossierCategoryMeta[category] || dossierCategoryMeta.drugs;
       const tagEl = document.getElementById('csStageTag');
       const titleEl = document.getElementById('csStageTitle');
       const punjabiEl = document.getElementById('csStagePunjabi');
       const statEl = document.getElementById('csStageStat');
+      const pageIndicator = document.getElementById('csStagePageIndicator');
 
-      if (category === 'drugs') {
-        if (tagEl) tagEl.innerText = 'Issue 01: Narcotics Crisis';
-        if (titleEl) titleEl.innerText = 'Drugs & The Chitta Epidemic';
-        if (punjabiEl) punjabiEl.innerText = 'ਚਿੱਟਾ ਅਤੇ ਨਸ਼ਿਆਂ ਦੀ ਮਹਾਂਮਾਰੀ — ਜੇਲ੍ਹ ਰੈਕੇਟ ਤੇ ਅਧਿਕਾਰਤ ਮਿਲੀਭੁਗਤ';
-        if (statEl) statEl.innerText = '58% traced to Punjab (2025)';
-      } else if (category === 'law') {
-        if (tagEl) tagEl.innerText = 'Issue 02: Law & Order Collapse';
-        if (titleEl) titleEl.innerText = 'Gangster Rule & Police Station Attacks';
-        if (punjabiEl) punjabiEl.innerText = 'ਗੈਂਗਸਟਰ ਰਾਜ, ਜਬਰੀ ਵਸੂਲੀ ਅਤੇ ਥਾਣਿਆਂ \'ਤੇ ਹਮਲੇ';
-        if (statEl) statEl.innerText = '22 Police Stations Attacked';
-      } else if (category === 'vadakhilafi') {
-        if (tagEl) tagEl.innerText = 'Issue 03: Broken Guarantees';
-        if (titleEl) titleEl.innerText = 'Vadakhilafi: 25 Lakh Jobs & Women Pension Betrayal';
-        if (punjabiEl) punjabiEl.innerText = 'ਵਾਅਦਾਖਿਲਾਫ਼ੀ: ਨੌਕਰੀਆਂ, ਪੈਨਸ਼ਨ ਅਤੇ ਕਿਸਾਨ ਗਰੰਟੀਆਂ ਤੋੜੀਆਂ';
-        if (statEl) statEl.innerText = '₹4.47 Lakh Cr State Debt';
-      } else if (category === 'corruption') {
-        if (tagEl) tagEl.innerText = 'Issue 04: Corruption & Scams';
-        if (titleEl) titleEl.innerText = 'Institutional Graft & Central Probes';
-        if (punjabiEl) punjabiEl.innerText = 'ਮੰਤਰੀਆਂ ਦੀ ਗ੍ਰਿਫ਼ਤਾਰੀ, ਜ਼ਮੀਨ ਘੁਟਾਲੇ ਅਤੇ ਸੀਬੀਆਈ ਛਾਪੇ';
-        if (statEl) statEl.innerText = 'CM Camp Office CBI Search';
+      if (tagEl) tagEl.innerText = meta.tag;
+      if (titleEl) titleEl.innerText = meta.title;
+      if (punjabiEl) punjabiEl.innerText = meta.punjabi;
+      if (statEl) statEl.innerText = meta.stat;
+      if (pageIndicator) {
+        pageIndicator.innerText = `Page ${meta.pageNumber} of 4 · ${meta.shortName}`;
       }
 
       const searchInput = document.getElementById('csStageSearch');
       const query = searchInput ? searchInput.value : '';
       renderStageDossierEntries(category, query);
-      playPageFlipSound();
     }
 
     function filterStageDossier(query) {
@@ -4218,9 +4554,7 @@
     }
 
     function navigateStageCategory(dir) {
-      const currentIdx = stageDossierCategories.indexOf(currentChargesheetCategory);
-      const nextIdx = (currentIdx + dir + stageDossierCategories.length) % stageDossierCategories.length;
-      selectStageDossier(stageDossierCategories[nextIdx]);
+      flipToStageDossier(dir);
     }
 
     function renderStageDossierEntries(category, filterQuery = '') {
@@ -4247,9 +4581,9 @@
 
       if (filtered.length === 0) {
         container.innerHTML = `
-          <div class="p-8 text-center space-y-2 rounded-2xl bg-black/50 border border-panelBorder">
+          <div class="p-8 text-center space-y-2 rounded-2xl bg-black/30 border border-panelBorder">
             <i data-lucide="search-x" class="w-8 h-8 text-slate-500 mx-auto"></i>
-            <p class="text-xs font-mono text-slate-400">No chargesheet findings matched: "${filterQuery}"</p>
+            <p class="text-xs font-mono text-slate-500">No chargesheet findings matched: "${filterQuery}"</p>
           </div>
         `;
         lucide.createIcons();
@@ -4258,18 +4592,18 @@
 
       let badgeColor = 'text-crimson bg-crimson/15 border-crimson/40';
       if (category === 'law') badgeColor = 'text-amberAlert bg-amber-500/15 border-amber-500/40';
-      if (category === 'vadakhilafi') badgeColor = 'text-red-400 bg-red-500/15 border-red-500/40';
-      if (category === 'corruption') badgeColor = 'text-yellow-400 bg-yellow-500/15 border-yellow-500/40';
+      if (category === 'vadakhilafi') badgeColor = 'text-red-500 bg-red-500/15 border-red-500/40';
+      if (category === 'corruption') badgeColor = 'text-yellow-500 bg-yellow-500/15 border-yellow-500/40';
 
       container.innerHTML = filtered.map((item, idx) => `
         <div class="cs-charge-card group">
           <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
             <span class="font-mono text-xs px-2.5 py-0.5 rounded-md border ${badgeColor} font-bold">${item.id} // COUNT #${idx + 1}</span>
-            <span class="px-2.5 py-0.5 rounded bg-black/60 border border-panelBorder text-amberAlert font-bold text-[11px] sm:text-xs">⚡ ${item.stat}</span>
+            <span class="cs-stat-tag px-2.5 py-0.5 rounded bg-black/60 border border-panelBorder text-amberAlert font-bold text-[11px] sm:text-xs">⚡ ${item.stat}</span>
           </div>
           <div>
             <h4 class="text-base sm:text-lg font-display font-bold text-white group-hover:text-crimson transition-colors">${item.title}</h4>
-            ${item.punjabi ? `<p class="text-xs font-mono text-crimson/90 mt-0.5">${item.punjabi}</p>` : ''}
+            ${item.punjabi ? `<p class="text-xs font-mono text-crimson/90 mt-0.5 font-semibold">${item.punjabi}</p>` : ''}
           </div>
           <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">${item.desc}</p>
           <div class="pt-2 flex flex-wrap items-center gap-2 text-xs font-mono border-t border-panelBorder/70">
@@ -4277,7 +4611,7 @@
               <i data-lucide="file-key" class="w-3.5 h-3.5 text-crimson"></i>
               <span>Classified Finding:</span>
             </span>
-            <span class="redacted-tape" onclick="toggleRedactedTape(this)" title="Click or tap to uncover classified note">${item.redacted}</span>
+            <span class="redacted-tape" onclick="toggleRedactedTape(this)" title="Click or tap to declassify confidential details">${item.redacted}</span>
           </div>
         </div>
       `).join('');
@@ -4290,6 +4624,54 @@
         el.classList.toggle('revealed');
         playPageFlipSound();
       }
+    }
+
+    // Keyboard navigation (ArrowLeft / ArrowRight) for 3D page flip when Section 4 is active
+    window.addEventListener('keydown', (e) => {
+      const stage = document.getElementById('chargesheetStickyStage');
+      if (!stage) return;
+      const rect = stage.getBoundingClientRect();
+      const isInViewport = rect.top <= 120 && rect.bottom >= window.innerHeight - 120;
+      if (!isInViewport) return;
+
+      if (document.activeElement && (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA')) {
+        return;
+      }
+
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        e.preventDefault();
+        flipToStageDossier(1);
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        flipToStageDossier(-1);
+      }
+    });
+
+    // Mobile touch swipe gestures for 3D page turn
+    let csTouchStartX = 0;
+    let csTouchStartY = 0;
+    const csPanelEl = document.getElementById('chargesheetGlassPanel');
+    if (csPanelEl) {
+      csPanelEl.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches.length === 1) {
+          csTouchStartX = e.touches[0].clientX;
+          csTouchStartY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      csPanelEl.addEventListener('touchend', (e) => {
+        if (e.changedTouches && e.changedTouches.length === 1) {
+          const deltaX = e.changedTouches[0].clientX - csTouchStartX;
+          const deltaY = e.changedTouches[0].clientY - csTouchStartY;
+          if (Math.abs(deltaX) > 40 && Math.abs(deltaX) > Math.abs(deltaY) * 1.4) {
+            if (deltaX < 0) {
+              flipToStageDossier(1);
+            } else {
+              flipToStageDossier(-1);
+            }
+          }
+        }
+      }, { passive: true });
     }
 
     // Modal compatibility shims so any external link smoothly redirects to Section 4
