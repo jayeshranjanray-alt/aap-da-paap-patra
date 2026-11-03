@@ -112,21 +112,6 @@
       transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    /* B11 Tagline Reveal Section */
-    .tagline-word {
-      display: inline;
-      color: rgba(255, 255, 255, 0.28);
-      transition: color 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .tagline-word.active {
-      color: #ffffff;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .tagline-word {
-        color: #ffffff !important;
-      }
-    }
-
     /* Cinematic Film Grain Overlay */
     .film-grain {
       position: fixed;
@@ -1600,31 +1585,6 @@
 
       </div>
 
-    </section>
-
-    <!-- ==============================================
-         TAGLINE REVEAL SECTION (LANDING PAGE DESIGN B11)
-         Word-by-word scroll reveal on B7 base curve
-         ============================================== -->
-    <section id="tagline-reveal" class="relative py-16 sm:py-24 w-full max-w-5xl mx-auto px-4 sm:px-8 text-center scroll-mt-24 border-y border-white/[0.06]">
-      <div class="space-y-5">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-crimson/10 border border-crimson/30">
-          <span class="w-2 h-2 rounded-full bg-crimson animate-pulse"></span>
-          <span class="text-xs font-mono font-bold tracking-wider text-crimson uppercase">Forensic Truth</span>
-        </div>
-        
-        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-display font-bold leading-snug sm:leading-tight tracking-tight text-white/30 max-w-4xl mx-auto" id="taglineWordsContainer">
-          The verified indictment of broken guarantees, institutional collapse, and state accountability. Documenting four years of official inquiry records, judicial findings, and forensic evidence across Punjab.
-        </h2>
-        
-        <div class="pt-3 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-mono text-slate-400">
-          <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-crimson"></span> ₹4.47 Lakh Cr State Debt</span>
-          <span class="hidden sm:inline text-white/20">|</span>
-          <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-amberAlert"></span> 58% National Narcotics Share</span>
-          <span class="hidden sm:inline text-white/20">|</span>
-          <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-red-400"></span> 22 Police Stations Attacked</span>
-        </div>
-      </div>
     </section>
 
     <!-- ==============================================
@@ -4034,14 +3994,8 @@
 
     // High-Level Audio Triggers (Dual Layer: Dedicated MP3 + Web Audio Synth)
     function playDossierSwooshSound() {
-      if (!dossierAudioEnabled && !soundEnabled) return;
-      try {
-        dossierAudioElements.unseal.currentTime = 0;
-        dossierAudioElements.unseal.volume = 0.95;
-        const p = dossierAudioElements.unseal.play();
-        if (p) p.catch(() => {});
-      } catch (e) {}
-      withActiveAudioContext(synthDossierSwoosh);
+      // Silenced per user request: removed dush/swish noise
+      return;
     }
 
     function playStampSlamSound() {
@@ -4078,7 +4032,6 @@
 
     function playChargesheetRevealAudio() {
       if (!dossierAudioEnabled && !soundEnabled) return;
-      playDossierSwooshSound();
       setTimeout(playStampSlamSound, 260);
       setTimeout(playChargesheetAudioTrack, 140);
     }
@@ -4275,7 +4228,6 @@
       // Tactile sound effects matching physical document motion during scroll scrub
       if (progress >= 0.28 && !chargesheetCoverUnsealedSoundPlayed) {
         chargesheetCoverUnsealedSoundPlayed = true;
-        playDossierSwooshSound();
       }
       if (progress >= 0.64 && !chargesheetStampSlamSoundPlayed) {
         chargesheetStampSlamSoundPlayed = true;
@@ -6586,45 +6538,6 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       drawFrame();
     }
 
-    // B11: Tagline Scroll-Driven Word Reveal
-    function initTaglineWordReveal() {
-      const container = document.getElementById('taglineWordsContainer');
-      if (!container) return;
-      const rawText = container.innerText.trim();
-      const words = rawText.split(/\s+/);
-      container.innerHTML = words.map(w => `<span class="tagline-word">${w}</span> `).join('');
-      const wordSpans = container.querySelectorAll('.tagline-word');
-      
-      let ticking = false;
-      function updateTaglineScroll() {
-        if (!ticking) {
-          requestAnimationFrame(() => {
-            const rect = container.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            const startY = windowHeight * 0.85;
-            const endY = windowHeight * 0.35;
-            const progress = Math.max(0, Math.min(1, (startY - rect.top) / (startY - endY)));
-            const activeCount = Math.floor(progress * wordSpans.length);
-            wordSpans.forEach((span, i) => {
-              if (i <= activeCount) {
-                span.classList.add('active');
-              } else {
-                span.classList.remove('active');
-              }
-            });
-            ticking = false;
-          });
-          ticking = true;
-        }
-      }
-      
-      window.addEventListener('scroll', updateTaglineScroll, { passive: true });
-      if (window.lenis) {
-        window.lenis.on('scroll', updateTaglineScroll);
-      }
-      setTimeout(updateTaglineScroll, 120);
-    }
-
     window.addEventListener('DOMContentLoaded', () => {
       // Guarantee website opens at the very top (Hero Section #home)
       if ('scrollRestoration' in history) {
@@ -6636,7 +6549,6 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       }
 
       lucide.createIcons();
-      initTaglineWordReveal();
       renderChargesheetList();
       preloadChargesheetFrames();
       selectStageDossier('drugs', false);
