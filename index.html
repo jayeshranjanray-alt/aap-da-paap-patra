@@ -697,21 +697,41 @@
     }
 
     .hotspot-pin {
-      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
       cursor: pointer;
+      user-select: none;
+      transition: opacity 0.25s ease;
     }
-    .hotspot-pin:hover {
-      transform: scale(1.15);
+    .hotspot-pin text {
+      transition: fill 0.2s ease, filter 0.2s ease;
+      pointer-events: none;
     }
     .hotspot-pin .hotspot-ring {
       animation: hotspotPulse 2.4s infinite ease-out;
       transform-origin: center;
+      pointer-events: none;
+    }
+    .hotspot-pin .hotspot-core {
+      transition: stroke-width 0.2s ease, filter 0.2s ease, fill 0.2s ease;
+    }
+    .hotspot-pin:hover .hotspot-core {
+      stroke-width: 5px;
+      stroke: #ffffff !important;
+      filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.95));
+    }
+    .hotspot-pin:hover text {
+      fill: #ffffff !important;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.95));
     }
     .hotspot-pin.active .hotspot-core {
       fill: #ffffff !important;
       stroke: #ff1d48 !important;
-      stroke-width: 4px;
-      filter: drop-shadow(0 0 12px #ff1d48);
+      stroke-width: 5px;
+      filter: drop-shadow(0 0 16px #ff1d48);
+    }
+    .hotspot-pin.active text {
+      fill: #ff2a4b !important;
+      font-weight: 800;
+      filter: drop-shadow(0 0 12px rgba(225, 29, 72, 0.9));
     }
     .hotspot-pin.active .hotspot-ring {
       animation: hotspotPulseActive 1.2s infinite ease-out;
@@ -1631,37 +1651,38 @@
         </div>
       </div>
 
-      <!-- Tracker Container with Satellite Video Map & Interactive Incident Spotlight -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+      <!-- Spatial Tracker: Unboxed Satellite Map Canvas & Integrated Editorial Story -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
         
-        <!-- Left: Satellite Night Map Video Stage (7 Cols) -->
-        <div class="lg:col-span-7 bg-[#121318] rounded-2xl border border-slate-800 p-4 sm:p-5 flex flex-col justify-between shadow-2xl">
-          <div class="flex items-center justify-between border-b border-slate-800/80 pb-3 mb-3">
-            <div class="flex items-center gap-2 font-mono text-xs text-slate-300">
-              <span class="w-2.5 h-2.5 rounded-full bg-crimson animate-ping"></span>
-              <span class="font-bold tracking-wide">Live Incident Map</span>
-            </div>
-            <div class="flex items-center gap-2 text-xs font-mono">
-              <button onclick="filterMapHotspots('all')" class="map-filter-btn px-2.5 py-1 rounded-lg bg-crimson text-white font-bold transition-all" data-cat="all">ALL</button>
-              <button onclick="filterMapHotspots('violent')" class="map-filter-btn px-2.5 py-1 rounded-lg bg-slate-800/80 text-slate-300 hover:text-white transition-all" data-cat="violent">ATTACKS</button>
-              <button onclick="filterMapHotspots('drugs')" class="map-filter-btn px-2.5 py-1 rounded-lg bg-slate-800/80 text-slate-300 hover:text-white transition-all" data-cat="drugs">DRUGS</button>
-              <button onclick="filterMapHotspots('corruption')" class="map-filter-btn px-2.5 py-1 rounded-lg bg-slate-800/80 text-slate-300 hover:text-white transition-all" data-cat="corruption">SCAMS</button>
-            </div>
-          </div>
-
-          <!-- Video Map Stage -->
-          <div class="relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-xl overflow-hidden border border-slate-800 bg-black shadow-inner">
+        <!-- Left: Satellite Night Map Canvas (7 Cols) -->
+        <div class="lg:col-span-7 flex flex-col justify-between relative group">
+          <!-- Map Stage: Unboxed, expansive, sleek borderless look -->
+          <div class="relative w-full flex-1 min-h-[520px] rounded-2xl overflow-hidden bg-black shadow-2xl border border-white/10 ring-1 ring-white/5">
             <!-- Satellite Map Video (plays ONCE on view, no loop) -->
             <video id="punjabSatelliteVideo" src="video/punjab_satellite_map.mp4" poster="img/punjab_satellite_poster.jpg" playsinline muted class="w-full h-full object-cover select-none pointer-events-none"></video>
             
             <!-- Vignette Edge Shading -->
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/40 pointer-events-none"></div>
 
-            <!-- Radar Sweep Beam (Retained for Tactical Atmosphere) -->
+            <!-- Radar Sweep Beam (Atmosphere) -->
             <div class="radar-sweep-beam pointer-events-none"></div>
 
+            <!-- Floating Top Controls HUD: Clean Glass Pill -->
+            <div class="absolute top-3 left-3 right-3 z-20 flex items-center justify-between pointer-events-none">
+              <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/10 text-xs font-mono text-slate-300 pointer-events-auto shadow-md">
+                <span class="w-2 h-2 rounded-full bg-crimson animate-ping"></span>
+                <span class="font-bold tracking-wide">Live Incident Map</span>
+              </div>
+              <div class="flex items-center gap-1 text-xs font-mono pointer-events-auto bg-black/75 backdrop-blur-md border border-white/10 rounded-full p-1 shadow-md">
+                <button onclick="filterMapHotspots('all')" class="map-filter-btn px-2.5 py-0.5 rounded-full bg-crimson text-white font-bold transition-all text-[11px]" data-cat="all">ALL</button>
+                <button onclick="filterMapHotspots('violent')" class="map-filter-btn px-2.5 py-0.5 rounded-full bg-transparent text-slate-300 hover:text-white transition-all text-[11px]" data-cat="violent">ATTACKS</button>
+                <button onclick="filterMapHotspots('drugs')" class="map-filter-btn px-2.5 py-0.5 rounded-full bg-transparent text-slate-300 hover:text-white transition-all text-[11px]" data-cat="drugs">DRUGS</button>
+                <button onclick="filterMapHotspots('corruption')" class="map-filter-btn px-2.5 py-0.5 rounded-full bg-transparent text-slate-300 hover:text-white transition-all text-[11px]" data-cat="corruption">SCAMS</button>
+              </div>
+            </div>
+
             <!-- Interactive Clickable Pins Overlay (SVG layer): Initially hidden (opacity-0), reveals when map fully loads -->
-            <svg id="mapPinsLayer" viewBox="0 0 1920 1080" class="absolute inset-0 w-full h-full z-10 cursor-pointer overflow-visible transition-opacity duration-700 ease-out opacity-0 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+            <svg id="mapPinsLayer" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" class="absolute inset-0 w-full h-full z-10 cursor-pointer overflow-visible transition-opacity duration-700 ease-out opacity-0 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <radialGradient id="pinGlowCrimson" cx="50%" cy="50%" r="50%">
                   <stop offset="0%" stop-color="#ff1d48" stop-opacity="0.95"/>
@@ -1738,78 +1759,48 @@
             </svg>
           </div>
 
-          <!-- Bottom Map Legend -->
-          <div class="mt-3 flex items-center justify-between text-slate-400 font-mono text-[11px] pt-3 border-t border-slate-800/80">
+          <!-- Bottom Map Legend: Clean & Unboxed -->
+          <div class="mt-3 flex items-center justify-between text-slate-400 font-mono text-[11px] px-1">
             <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-crimson"></span> Targeted Attacks</span>
             <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amberAlert"></span> Drug Syndicates</span>
             <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-yellow-400"></span> Citizen Protests</span>
           </div>
         </div>
 
-        <!-- Right: Interactive News Spotlight (5 Cols) -->
-        <div class="lg:col-span-5 bg-[#101116] rounded-2xl border border-slate-800 p-5 sm:p-6 flex flex-col justify-between space-y-4 shadow-2xl min-h-[520px] relative overflow-hidden group">
+        <!-- Right: Unboxed Editorial Story Column (5 Cols) -->
+        <div class="lg:col-span-5 flex flex-col justify-between space-y-4 min-h-[500px] relative">
           
-          <!-- Subtle Ambient Corner Flare -->
-          <div class="absolute -top-12 -right-12 w-48 h-48 bg-crimson/10 rounded-full blur-3xl pointer-events-none"></div>
-
           <div class="relative z-10">
-            <!-- Top Photojournalism Image with Nested Radius & Badges -->
-            <div class="relative w-full aspect-[16/9] rounded-xl overflow-hidden border border-slate-800/90 bg-black shadow-lg">
+            <!-- Top Photojournalism Image with Single Clean Location/Date Chip -->
+            <div class="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-black shadow-xl border border-white/10 group">
               <img id="incidentImg" src="img/rpg_mohali_headquarters.jpg" alt="Incident News Photo" class="w-full h-full object-cover transition-all duration-300 ease-out" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10 pointer-events-none"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none"></div>
               
-              <!-- Top Header Bar on Image -->
-              <div class="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between text-[11px] font-mono pointer-events-none">
-                <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md border border-white/10 text-white shadow-sm">
-                  <span class="w-1.5 h-1.5 rounded-full bg-crimson animate-ping"></span>
-                  <span class="font-bold tracking-wider uppercase text-crimson">INCIDENT DISPATCH</span>
-                </div>
-                <span id="incidentSourceBadge" class="px-2 py-0.5 rounded bg-black/75 backdrop-blur-md text-[10px] font-mono text-slate-300 border border-white/10">VERIFIED ARCHIVE</span>
-              </div>
-
-              <!-- Bottom Overlay on Image -->
-              <div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-xs font-mono pointer-events-none">
-                <span id="incidentDistrictPill" class="px-2.5 py-1 rounded-lg bg-black/85 backdrop-blur-md border border-white/15 text-white font-bold flex items-center gap-1.5 shadow-md">
+              <!-- Bottom Location & Date Badge (Clean, No Jargon) -->
+              <div class="absolute bottom-3 left-3 flex items-center text-xs font-mono pointer-events-none">
+                <span id="incidentDistrictPill" class="px-3 py-1.5 rounded-lg bg-black/85 backdrop-blur-md border border-white/15 text-white font-bold flex items-center gap-2 shadow-md">
                   <i data-lucide="map-pin" class="w-3.5 h-3.5 text-crimson"></i>
                   <span id="incidentDistrictText">SAS Nagar / Mohali</span>
-                </span>
-                <span id="incidentDatePill" class="px-2 py-1 rounded-lg bg-black/75 backdrop-blur-md border border-white/10 text-slate-300 flex items-center gap-1">
-                  <i data-lucide="calendar" class="w-3 h-3 text-slate-400"></i>
-                  <span id="incidentDateText">May 2022</span>
+                  <span class="text-slate-500">·</span>
+                  <span id="incidentDateText" class="text-slate-300 font-normal">May 2022</span>
                 </span>
               </div>
             </div>
 
-            <!-- Key Fact Quick-Stats Rack (3 Punchy Chips) -->
-            <div id="incidentStatsRack" class="grid grid-cols-3 gap-2 mt-3.5">
-              <div class="p-2 rounded-xl bg-slate-900/90 border border-slate-800/80 flex flex-col justify-center">
-                <span class="text-[9px] font-mono uppercase tracking-wider text-slate-400 font-bold" id="statLabel1">TARGET</span>
-                <span class="text-xs font-mono font-bold text-white truncate mt-0.5" id="statValue1">Sector 77 HQ</span>
-              </div>
-              <div class="p-2 rounded-xl bg-slate-900/90 border border-slate-800/80 flex flex-col justify-center">
-                <span class="text-[9px] font-mono uppercase tracking-wider text-slate-400 font-bold" id="statLabel2">WEAPON</span>
-                <span class="text-xs font-mono font-bold text-crimson truncate mt-0.5" id="statValue2">RPG Rocket</span>
-              </div>
-              <div class="p-2 rounded-xl bg-slate-900/90 border border-slate-800/80 flex flex-col justify-center">
-                <span class="text-[9px] font-mono uppercase tracking-wider text-slate-400 font-bold" id="statLabel3">IMPACT</span>
-                <span class="text-xs font-mono font-bold text-amberAlert truncate mt-0.5" id="statValue3">Intel Breach</span>
-              </div>
-            </div>
-
-            <!-- Headline & Narrative -->
-            <div id="incidentContentArea" class="mt-3.5 transition-all duration-300">
-              <h3 id="incidentTitle" class="text-xl sm:text-2xl font-display font-extrabold text-white leading-snug tracking-tight">
+            <!-- Headline & Narrative (No Clutter, Pure High-Impact Journalism) -->
+            <div id="incidentContentArea" class="mt-4 transition-all duration-300">
+              <h3 id="incidentTitle" class="text-2xl sm:text-3xl font-display font-extrabold text-white leading-tight tracking-tight">
                 RPG Attack on Punjab Police Intelligence HQ
               </h3>
 
-              <p id="incidentDesc" class="text-slate-300 text-sm leading-relaxed mt-2 font-normal">
+              <p id="incidentDesc" class="text-slate-300 text-sm sm:text-base leading-relaxed mt-2.5 font-normal">
                 Attackers fired a Rocket-Propelled Grenade directly at the high-security Punjab Police Intelligence Headquarters in Mohali. This attack is part of an alarming trend where 22 police stations and establishments have suffered grenade and blast attacks under the current government.
               </p>
 
               <!-- Editorial Pullquote -->
-              <div id="incidentQuoteBox" class="relative mt-3 pl-4 pr-3 py-2.5 rounded-xl bg-crimson/5 border-l-2 border-crimson">
+              <div id="incidentQuoteBox" class="relative mt-3.5 pl-4 pr-3 py-2.5 rounded-xl bg-crimson/5 border-l-2 border-crimson">
                 <span class="text-crimson/50 text-xl font-serif absolute -top-0.5 left-1 pointer-events-none">“</span>
-                <p id="incidentQuote" class="text-xs text-slate-300 font-medium leading-relaxed italic">
+                <p id="incidentQuote" class="text-xs sm:text-sm text-slate-300 font-medium leading-relaxed italic">
                   "Direct hit on state police intelligence headquarters while senior officials were on site."
                 </p>
               </div>
@@ -1817,7 +1808,7 @@
           </div>
 
           <!-- Bottom: Interactive 9-Step Progress Timeline & Nav -->
-          <div class="pt-3 border-t border-slate-800/80 flex flex-col gap-3 relative z-10">
+          <div class="pt-4 border-t border-slate-800/80 flex flex-col gap-3 relative z-10">
             <!-- 9 Interactive Segmented Pills -->
             <div class="flex items-center justify-between gap-1.5 w-full" id="incidentProgressDots">
               <!-- Dynamically populated in JS -->
@@ -1825,7 +1816,7 @@
 
             <!-- Previous / Next Controls -->
             <div class="flex items-center justify-between gap-3">
-              <button onclick="navigateIncident(-1)" class="px-3.5 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 hover:text-white text-slate-300 text-xs font-mono font-semibold flex items-center gap-1.5 transition active:scale-95" aria-label="Previous Incident">
+              <button onclick="navigateIncident(-1)" class="px-3.5 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 hover:text-white text-slate-300 text-xs font-mono font-semibold flex items-center gap-1.5 transition border border-white/5 active:scale-95" aria-label="Previous Incident">
                 <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
                 <span>Previous</span>
               </button>
@@ -4728,19 +4719,6 @@
       if (descEl) descEl.innerText = data.desc;
       const quoteEl = document.getElementById('incidentQuote');
       if (quoteEl) quoteEl.innerText = `"${data.quote}"`;
-
-      // Update Key Fact Quick-Stats Rack
-      if (data.stats && data.stats.length === 3) {
-        ['1', '2', '3'].forEach((num, i) => {
-          const lEl = document.getElementById('statLabel' + num);
-          const vEl = document.getElementById('statValue' + num);
-          if (lEl) lEl.innerText = data.stats[i].label;
-          if (vEl) {
-            vEl.innerText = data.stats[i].val;
-            vEl.className = `text-xs font-mono font-bold truncate mt-0.5 ${data.stats[i].color || 'text-white'}`;
-          }
-        });
-      }
 
       // Update Active Pin on SVG Map
       document.querySelectorAll('.hotspot-pin').forEach(pin => {
