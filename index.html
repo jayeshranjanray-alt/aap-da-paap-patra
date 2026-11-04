@@ -1147,16 +1147,40 @@
     }
 
     /* Floating Modern Tactical Dark Glass Overlay */
+    #chargesheetGlassOverlay {
+      position: absolute;
+      top: 102px; /* Positioned safely below the sticky 96px top navbar & ticker */
+      bottom: 56px; /* Positioned safely above the bottom scrub bar */
+      left: 0;
+      right: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1rem;
+      box-sizing: border-box;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    @media (max-width: 640px) {
+      #chargesheetGlassOverlay {
+        top: 92px;
+        bottom: 50px;
+        padding: 0 0.5rem;
+      }
+    }
+
     .chargesheet-glass-panel {
       position: relative;
       width: 100%;
       max-width: 1040px;
-      max-height: 86vh;
-      background: rgba(13, 17, 26, 0.94);
+      max-height: 100%; /* Perfectly constrained to the clear viewport area */
+      background: rgba(13, 17, 26, 0.95);
       backdrop-filter: blur(28px) saturate(140%);
       -webkit-backdrop-filter: blur(28px) saturate(140%);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 1.5rem;
+      border-radius: 1.25rem;
       box-shadow: 
         0 40px 100px -20px rgba(0, 0, 0, 0.98),
         0 0 50px rgba(225, 29, 72, 0.15),
@@ -1919,11 +1943,11 @@
           </div>
 
           <!-- 5. Floating Modern Tactical Dark Glass Overlay (Reveals real points over the open folder at progress > 0.65) -->
-          <div id="chargesheetGlassOverlay" class="absolute inset-0 z-30 flex items-center justify-center p-3 sm:p-6 opacity-0 pointer-events-none transition-all duration-300">
+          <div id="chargesheetGlassOverlay" class="opacity-0 pointer-events-none transition-all duration-300">
             <div class="chargesheet-glass-panel" id="chargesheetGlassPanel">
               
               <!-- Top Category Tabs & Search Bar -->
-              <div class="p-3 sm:p-4 bg-obsidian/95 border-b border-panelBorder flex flex-wrap items-center justify-between gap-3 shrink-0">
+              <div class="p-2.5 sm:p-3 bg-obsidian/95 border-b border-panelBorder flex flex-wrap items-center justify-between gap-2.5 shrink-0 sticky top-0 z-20">
                 <!-- 4 Interactive Dossier Tabs -->
                 <div class="flex flex-wrap items-center gap-1.5" id="csStageTabs">
                   <button onclick="selectStageDossier('drugs')" id="csStageTab-drugs" class="cs-tab-btn active">
@@ -1936,17 +1960,17 @@
                   </button>
                   <button onclick="selectStageDossier('vadakhilafi')" id="csStageTab-vadakhilafi" class="cs-tab-btn">
                     <span class="text-red-400 font-bold">03</span>
-                    <span>Broken Guarantees</span>
+                    <span>Vadakhilafi</span>
                   </button>
                   <button onclick="selectStageDossier('corruption')" id="csStageTab-corruption" class="cs-tab-btn">
                     <span class="text-yellow-400 font-bold">04</span>
-                    <span>Graft &amp; Scams</span>
+                    <span>Corruption</span>
                   </button>
                 </div>
 
                 <!-- Live Search & Print -->
                 <div class="flex items-center gap-2">
-                  <div class="relative w-40 sm:w-56">
+                  <div class="relative w-36 sm:w-52">
                     <input type="text" id="csStageSearch" oninput="filterStageDossier(this.value)" placeholder="Search charges..." class="w-full bg-charcoal/90 border border-panelBorder focus:border-crimson rounded-xl px-3 py-1.5 text-xs font-mono text-white placeholder-slate-500 outline-none transition" />
                     <i data-lucide="search" class="w-3.5 h-3.5 text-slate-500 absolute right-2.5 top-2"></i>
                   </div>
@@ -1958,43 +1982,40 @@
               </div>
 
               <!-- Active Dossier Metadata Row -->
-              <div class="px-5 py-3.5 bg-obsidian/75 border-b border-panelBorder flex flex-col sm:flex-row sm:items-center justify-between gap-3 shrink-0">
+              <div class="px-4 py-2.5 sm:px-5 sm:py-3 bg-obsidian/85 border-b border-panelBorder flex items-center justify-between gap-3 shrink-0">
                 <div>
                   <div class="flex items-center gap-2 text-xs font-mono">
-                    <span class="text-crimson font-extrabold uppercase tracking-wider" id="csStageTag">Issue 01: Narcotics Crisis</span>
+                    <span class="text-crimson font-extrabold uppercase tracking-wider" id="csStageTag">Issue 01: Drugs &amp; Chitta</span>
                     <span class="text-slate-600">|</span>
-                    <span class="text-slate-400" id="csStageCount">9 Documented Findings</span>
+                    <span class="text-slate-400" id="csStageCount">7 Key Points</span>
                   </div>
-                  <h3 class="text-lg sm:text-2xl font-display font-bold text-white mt-0.5 tracking-tight" id="csStageTitle">
+                  <h3 class="text-base sm:text-xl font-display font-bold text-white mt-0.5 tracking-tight" id="csStageTitle">
                     Drugs &amp; The Chitta Epidemic
                   </h3>
-                  <p class="text-xs font-mono text-slate-400 mt-0.5" id="csStagePunjabi">
-                    ਚਿੱਟਾ ਅਤੇ ਨਸ਼ਿਆਂ ਦੀ ਮਹਾਂਮਾਰੀ — ਜੇਲ੍ਹ ਰੈਕੇਟ ਤੇ ਅਧਿਕਾਰਤ ਮਿਲੀਭੁਗਤ
-                  </p>
                 </div>
 
                 <div class="p-2 sm:p-2.5 rounded-xl bg-black/70 border border-panelBorder font-mono text-xs text-right shrink-0">
-                  <span class="text-[10px] text-slate-400 block uppercase font-bold">Key Forensic Metric</span>
+                  <span class="text-[10px] text-slate-400 block uppercase font-bold">Key Metric</span>
                   <span id="csStageStat" class="text-amberAlert font-bold text-xs sm:text-sm">58% traced to Punjab (2025)</span>
                 </div>
               </div>
 
               <!-- Scrollable Charge Points Cards Container (Inside the Glass Panel) -->
-              <div class="p-4 sm:p-6 overflow-y-auto space-y-3.5 flex-1 custom-scroll" id="csStageEntriesContainer">
+              <div class="p-3.5 sm:p-5 overflow-y-auto space-y-3 flex-1 custom-scroll" id="csStageEntriesContainer">
                 <!-- Dynamically populated floating chargesheet points -->
               </div>
 
               <!-- Glass Panel Footer -->
-              <div class="p-3 sm:p-3.5 bg-obsidian/95 border-t border-panelBorder flex items-center justify-between text-xs font-mono shrink-0">
+              <div class="p-2.5 sm:p-3 bg-obsidian/95 border-t border-panelBorder flex items-center justify-between text-xs font-mono shrink-0">
                 <span class="text-slate-400 flex items-center gap-1.5 text-[11px] sm:text-xs">
-                  <i data-lucide="key-round" class="w-3.5 h-3.5 text-crimson"></i>
-                  <span>Hover or tap black redacted bars to uncover classified notes</span>
+                  <i data-lucide="shield-alert" class="w-3.5 h-3.5 text-crimson"></i>
+                  <span>Verified Public Records &amp; CAG Inquiries</span>
                 </span>
                 <div class="flex items-center gap-2">
-                  <button onclick="navigateStageCategory(-1)" class="px-2 py-1 rounded bg-charcoal hover:bg-slateDark border border-panelBorder text-slate-300 text-[11px] transition">
+                  <button onclick="navigateStageCategory(-1)" class="px-2.5 py-1 rounded bg-charcoal hover:bg-slateDark border border-panelBorder text-slate-300 text-[11px] transition">
                     ← Prev
                   </button>
-                  <button onclick="navigateStageCategory(1)" class="px-2 py-1 rounded bg-charcoal hover:bg-slateDark border border-panelBorder text-slate-300 text-[11px] transition">
+                  <button onclick="navigateStageCategory(1)" class="px-2.5 py-1 rounded bg-charcoal hover:bg-slateDark border border-panelBorder text-slate-300 text-[11px] transition">
                     Next →
                   </button>
                 </div>
@@ -3493,334 +3514,206 @@
     const chargesheetData = {
       drugs: [
         {
-          id: "DRG-01",
+          id: "01",
           cat: "drugs",
-          title: "Chitta Sold Like Candies Across Punjab Villages",
-          punjabi: "ਪਿੰਡਾਂ ਵਿੱਚ ਟੌਫੀਆਂ ਵਾਂਗ ਵਿਕ ਰਿਹਾ ਚਿੱਟਾ",
-          desc: "Just as villagers once visited flour mills, today youth flock to drug dens for Chitta (heroin). Reports of doorstep delivery have become pervasive across rural Punjab.",
-          stat: "Highest overdose fatalities in India for 2 consecutive years.",
-          redacted: "Speaker Kultar Singh Sandhwan publicly admitted government failure to eradicate Chitta."
+          title: "Broken 30-Day Eradication Pledge",
+          desc: "Solemnly promised to eliminate drugs within 30 days of taking office; 4 years later, narcotics remain openly accessible across Punjab villages.",
+          stat: "Unfulfilled Promise"
         },
         {
-          id: "DRG-02",
+          id: "02",
           cat: "drugs",
-          title: "Broken 1-Month Eradication Promise",
-          punjabi: "ਇੱਕ ਮਹੀਨੇ ਵਿੱਚ ਨਸ਼ਾ ਖਤਮ ਕਰਨ ਦਾ ਝੂਠਾ ਵਾਅਦਾ",
-          desc: "In 2022, AAP solemnly pledged to eradicate drugs within 30 days of forming government. Over 4 years later, the network has only expanded into school ecosystems.",
-          stat: "29 NDPS cases per lakh population in 2024 (nearly 4x national average).",
-          redacted: "Internal enforcement reports reveal supply chains remain fully entrenched."
+          title: "51,516 NDPS FIRs & 67,519 Arrests",
+          desc: "Punjab registered 29 NDPS cases per lakh population in 2024—nearly 4x the national average—overwhelming state prisons.",
+          stat: "51,516 FIRs Logged"
         },
         {
-          id: "DRG-03",
+          id: "03",
           cat: "drugs",
-          title: "7 Lakh Children Trapped in Narcotics Abuse",
-          punjabi: "10 ਤੋਂ 17 ਸਾਲ ਦੇ 7 ਲੱਖ ਬੱਚੇ ਨਸ਼ਿਆਂ ਦੇ ਜਾਲ ਵਿੱਚ",
-          desc: "Official projections estimate that approximately 7 lakh minors aged 10 to 17 are actively consuming narcotics across Punjab at an age intended for education and sports.",
-          stat: "700,000 minors affected; overdose fatalities grossly underreported due to stigma.",
-          redacted: "State officers confirmed large numbers of youth fatalities are concealed without autopsies."
+          title: "7 Lakh Minors Trapped in Substance Abuse",
+          desc: "Official projections estimate that approximately 7 lakh minors aged 10 to 17 are actively consuming narcotics in Punjab.",
+          stat: "700,000 Minors Affected"
         },
         {
-          id: "DRG-04",
+          id: "04",
           cat: "drugs",
-          title: "Overdose Tragedy in Shaheed Bhagat Singh's Native Village",
-          punjabi: "ਸ਼ਹੀਦ ਭਗਤ ਸਿੰਘ ਦੇ ਜੱਦੀ ਪਿੰਡ ਖਟਕੜ ਕਲਾਂ ਵਿੱਚ ਨੌਜਵਾਨ ਦੀ ਓਵਰਡੋਜ਼ ਨਾਲ ਮੌਤ",
-          desc: "In Khatkar Kalan—the sacred village where Chief Minister Bhagwant Mann took his ceremonial oath—a young man died of a drug overdose with syringes found beside his body.",
-          stat: "Overdose death occurred in the very symbol of Punjab's revolutionary heritage.",
-          redacted: "Syringes frequently recovered from public village sports grounds and roadsides."
+          title: "Overdose Death in CM's Oath Village",
+          desc: "In Khatkar Kalan, where CM Mann took his ceremonial oath, a youth died of an overdose with syringes recovered beside his body.",
+          stat: "Khatkar Kalan Overdose"
         },
         {
-          id: "DRG-05",
+          id: "05",
           cat: "drugs",
-          title: "Endless Queues for Daily Sublingual De-addiction Tablets",
-          punjabi: "ਨਸ਼ਾ ਛੁਡਾਊ ਕੇਂਦਰਾਂ ਦੇ ਬਾਹਰ ਲੰਬੀਆਂ ਲਾਈਨਾਂ",
-          desc: "Desperate queues of young men snake outside government OOAT centers waiting for sublingual buprenorphine tablets, demonstrating the overwhelming scale of dependency.",
-          stat: "Lakhs registered in OOAT clinics across 23 districts.",
-          redacted: "Sublingual tablet shortages frequently reported, forcing addicts back to illicit street supply."
+          title: "Drug Rackets Run from Inside Central Jails",
+          desc: "Punjab & Haryana High Court issued strict warnings after kingpins were caught operating drug distribution networks directly from state prisons.",
+          stat: "High Court Reprimand"
         },
         {
-          id: "DRG-06",
+          id: "06",
           cat: "drugs",
-          title: "51,516 NDPS FIRs & 67,519 Arrests (Mar 2025–Jul 2026)",
-          punjabi: "51,516 ਐਨਡੀਪੀਐਸ ਐਫਆਈਆਰ ਅਤੇ 67,519 ਗ੍ਰਿਫਤਾਰੀਆਂ",
-          desc: "Massive volume of cases registered under the NDPS Act within a 16-month period, reflecting an uncontrolled narcotic crisis engulfing everyday life.",
-          stat: "51,516 FIRs logged; prisons overwhelmed beyond certified capacities.",
-          redacted: "58% of all heroin seized in India in 2025 was seized within or routed via Punjab."
+          title: "Police-Smuggler Collusion Indicted",
+          desc: "A DSP and a drug inspector were indicted for running smuggling networks, including a ₹62 crore illicit syndicate in border district Fazilka.",
+          stat: "₹62 Cr Syndicate Exposed"
         },
         {
-          id: "DRG-07",
+          id: "07",
           cat: "drugs",
-          title: "Narcotics Rackets Run from Central Jails (HC Warning)",
-          punjabi: "ਜੇਲ੍ਹਾਂ ਵਿੱਚੋਂ ਚੱਲ ਰਹੇ ਵੱਡੇ ਨਸ਼ਾ ਰੈਕੇਟ — ਹਾਈ ਕੋਰਟ ਦੀ ਸਖ਼ਤ ਚਿਤਾਵਨੀ",
-          desc: "Punjab & Haryana High Court warned: 'Nothing can be more serious than this' after disclosures that kingpins conduct distribution networks directly from Kapurthala, Faridkot, Sangrur, and Hoshiarpur central prisons.",
-          stat: "High Court issued strict directions over prison administrative failure.",
-          redacted: "Contraband, smart devices, and SIM cards routinely recovered during sporadic security sweeps."
-        },
-        {
-          id: "DRG-08",
-          cat: "drugs",
-          title: "Police-Smuggler Nexus: DSP and Drug Inspector Indicted",
-          punjabi: "ਡੀਐਸਪੀ ਅਤੇ ਡਰੱਗ ਇੰਸਪੈਕਟਰ ਨਸ਼ਾ ਤਸਕਰੀ ਵਿੱਚ ਸ਼ਾਮਲ",
-          desc: "Collusion exposed at the highest departmental levels: a DSP indicted for running smuggling operations from Sangrur Jail, and a Fazilka drug inspector linked to an illicit ₹62 crore network.",
-          stat: "₹62 Crore syndicate uncovered in border district Fazilka.",
-          redacted: "Faridkot senior administrative personnel faced bribery charges from smuggling syndicates."
-        },
-        {
-          id: "DRG-09",
-          cat: "drugs",
-          title: "Desperate Distress: 'Our Village is for Sale' Banners",
-          punjabi: "'ਸਾਡਾ ਪਿੰਡ ਵਿਕਾਊ ਹੈ' — ਲੋਕਾਂ ਦਾ ਦਰਦਨਾਕ ਪ੍ਰਦਰਸ਼ਨ",
-          desc: "In Bhai Bhakhtaur village (Bathinda) and Kotkapura (Faridkot), aggrieved citizens hung banners advertising their homes and entire village for sale to escape peddlers.",
-          stat: "Banners displayed publicly in multiple Malwa districts.",
-          redacted: "Villagers alleged local police intimidation against those reporting drug peddlers."
+          title: "'Our Village is For Sale' Citizen Protests",
+          desc: "Desperate villagers in Bathinda and Faridkot put up public banners putting their homes and villages up for sale to escape local drug cartels.",
+          stat: "Widespread Citizen Despair"
         }
       ],
       law: [
         {
-          id: "LAW-01",
+          id: "01",
+          cat: "law",
+          title: "Sidhu Moosewala Daylight Assassination",
+          desc: "Gunned down in Mansa by 30+ automatic rounds just 24 hours after AAP publicly leaked the withdrawal of his security detail on social media.",
+          stat: "30+ Automatic Rounds"
+        },
+        {
+          id: "02",
+          cat: "law",
+          title: "RPG Rocket Strike on Police Headquarters",
+          desc: "Assailants fired a Rocket-Propelled Grenade directly into Punjab Police Intelligence HQ in Mohali, exposing catastrophic state security gaps.",
+          stat: "State Intelligence Breach"
+        },
+        {
+          id: "03",
+          cat: "law",
+          title: "22 Police Stations Attacked with Explosives",
+          desc: "From Mohali to Jalalabad, 22 police stations and border outposts faced coordinated grenade and explosive strikes under AAP rule.",
+          stat: "22 Stations Targeted"
+        },
+        {
+          id: "04",
           cat: "law",
           title: "1,40,000+ Crimes & 2,100+ Murders in 3 Years",
-          punjabi: "3 ਸਾਲਾਂ ਵਿੱਚ 1,40,000 ਤੋਂ ਵੱਧ ਅਪਰਾਧ ਅਤੇ 2,100 ਕਤਲ",
-          desc: "Overall crimes escalated from 43,000+ in 2022 to over 47,000+ in 2024, representing an average of 21 violent crimes every single day.",
-          stat: "2,100+ murders registered between 2022 and 2024.",
-          redacted: "Violent offenses spiked from 6,000+ in 2023 to 7,700+ in 2024."
+          desc: "State crime figures surged to 21 violent crimes per day, with annual violent offenses climbing from 6,000 to over 7,700.",
+          stat: "2,100+ Murders Logged"
         },
         {
-          id: "LAW-02",
+          id: "05",
           cat: "law",
-          title: "Rocket-Propelled Grenade (RPG) Strike on Intelligence HQ",
-          punjabi: "ਮੁਹਾਲੀ ਇੰਟੈਲੀਜੈਂਸ ਹੈੱਡਕੁਆਰਟਰ 'ਤੇ ਆਰਪੀਜੀ ਹਮਲਾ",
-          desc: "Attackers fired an RPG warhead into the Punjab Police Intelligence Headquarters in Mohali, exposing catastrophic vulnerabilities in the state security apparatus.",
-          stat: "Direct rocket strike on high-security state intelligence building.",
-          redacted: "Part of 22 coordinated grenade/explosive strikes across Punjab police stations."
+          title: "On-Duty Policemen Slain in Broad Daylight",
+          desc: "Punjab Police ASI Sukhchain Singh was shot dead in Amritsar while returning home from duty, proving even police officers have no protection.",
+          stat: "ASI Sukhchain Singh Slain"
         },
         {
-          id: "LAW-03",
+          id: "06",
           cat: "law",
-          title: "22 Police Stations Attacked with Grenades & Explosives",
-          punjabi: "22 ਥਾਣਿਆਂ 'ਤੇ ਗ੍ਰਨੇਡ ਅਤੇ ਬੰਬ ਹਮਲੇ",
-          desc: "From the Jalalabad police station explosion in September 2026 to repeated grenade tosses in border districts, state stations have turned into vulnerable targets.",
-          stat: "22 police stations targeted under AAP governance.",
-          redacted: "Police personnel inside their own outposts report severe lack of basic blast barriers."
+          title: "Extortion Syndicates Targeting Traders",
+          desc: "Over 560 extortion FIRs logged as businessmen in Abohar, Nakodar, and Ludhiana were executed in broad daylight for resisting ransom demands.",
+          stat: "560+ Gangster FIRs"
         },
         {
-          id: "LAW-04",
+          id: "07",
           cat: "law",
-          title: "On-Duty ASI Sukhchain Singh Gunned Down in Amritsar",
-          punjabi: "ਅੰਮ੍ਰਿਤਸਰ ਵਿੱਚ ਪੁਲਿਸ ਏਐਸਆਈ ਸੁਖਚੈਨ ਸਿੰਘ ਦਾ ਗੋਲੀਆਂ ਮਾਰ ਕੇ ਕਤਲ",
-          desc: "In October 2026, Punjab Police ASI Sukhchain Singh was shot dead by motorcycle-borne assailants while returning home from duty, proving even police officers have no protection.",
-          stat: "Assassination of law enforcement officer in broad daylight.",
-          redacted: "Assailants escaped without interception through heavily surveilled corridor roads."
-        },
-        {
-          id: "LAW-05",
-          cat: "law",
-          title: "Daylight Assassination of Sidhu Moosewala",
-          punjabi: "ਸਿੱਧੂ ਮੂਸੇਵਾਲਾ ਦਾ ਦਿਨ-ਦਿਹਾੜੇ ਬੇਰਹਿਮੀ ਨਾਲ ਕਤਲ",
-          desc: "Global icon and singer Sidhu Moosewala was gunned down in Mansa shortly after the AAP government publicly publicized the pruning of his security detail on social media.",
-          stat: "Over 30 rounds fired from automatic weapons in Jawaharke village.",
-          redacted: "State PR machinery's premature disclosure of pruned security leaked vital operational intel."
-        },
-        {
-          id: "LAW-06",
-          cat: "law",
-          title: "Triple Daylight Murders in 48 Hours in Ludhiana (2026)",
-          punjabi: "ਲੁਧਿਆਣਾ ਵਿੱਚ 48 ਘੰਟਿਆਂ ਵਿੱਚ 3 ਸ਼ਰੇਆਮ ਕਤਲ",
-          desc: "Punjab's industrial capital witnessed three brazen daylight homicides within 48 hours, including the execution of a former sarpanch in broad public view.",
-          stat: "3 murders within 48 hours in a single city commissionerate.",
-          redacted: "Traders shuttered shops in fear as police response was delayed by hours."
-        },
-        {
-          id: "LAW-07",
-          cat: "law",
-          title: "Assassinations of Kabaddi Legends Sandeep Nangal & Gurvinder",
-          punjabi: "ਕਬੱਡੀ ਖਿਡਾਰੀ ਸੰਦੀਪ ਨੰਗਲ ਅੰਬੀਆਂ ਅਤੇ ਗੁਰਵਿੰਦਰ ਸਿੰਘ ਦੇ ਕਤਲ",
-          desc: "International athletes gunned down during live tournaments and public settings by international gangster syndicates operating freely in Punjab.",
-          stat: "Multiple international athletes murdered in targeted gangster hits.",
-          redacted: "Extortion syndicates demanded protection cuts from rural sports federation organizers."
-        },
-        {
-          id: "LAW-08",
-          cat: "law",
-          title: "16,000+ Crimes Against Women (2022–2024)",
-          punjabi: "ਔਰਤਾਂ ਵਿਰੁੱਧ 16,000 ਤੋਂ ਵੱਧ ਅਪਰਾਧ",
-          desc: "Alarming degradation in the security environment for women, with official records documenting over 16,000 crimes against women across the state.",
-          stat: "16,000+ recorded crimes against women in 3 years.",
-          redacted: "Conviction rates remain under 18% due to backlogged forensic reporting."
-        },
-        {
-          id: "LAW-09",
-          cat: "law",
-          title: "Extortion Industry: Abohar & Nakodar Traders Slain",
-          punjabi: "ਵਪਾਰੀਆਂ ਤੋਂ ਜਬਰੀ ਵਸੂਲੀ — ਅਬੋਹਰ ਅਤੇ ਨਕੋਦਰ ਵਿੱਚ ਵਪਾਰੀ ਮਾਰੇ ਗਏ",
-          desc: "Garment trader Bhupinder Singh Chawla shot over a ₹30 lakh ransom demand; businessman Sanjay Verma murdered in Abohar; Nakodar cloth merchant and his bodyguard executed.",
-          stat: "560+ FIRs registered over gangster extortion demands.",
-          redacted: "Dozens of affluent business families relocated headquarters to UP and Uttarakhand."
-        },
-        {
-          id: "LAW-10",
-          cat: "law",
-          title: "Daylight Slaying of AAP Leader Lucky Oberoi & Wedding AK-47 Hit",
-          punjabi: "ਲੱਕੀ ਓਬਰਾਏ ਦਾ ਕਤਲ ਅਤੇ ਵਿਆਹ ਵਿੱਚ ਏਕੇ-47 ਨਾਲ ਸਰਪੰਚ ਦੀ ਹੱਤਿਆ",
-          desc: "AAP leader Lucky Oberoi assassinated outside a Jalandhar gurdwara; AAP sarpanch of Thathian Mehta gunned down with an AK-47 assault rifle during a family wedding.",
-          stat: "AK-47 assault rifles used openly in public social gatherings.",
-          redacted: "Factional rivalry and protection payouts cited in internal intelligence memorandums."
+          title: "Kabaddi Legends Murdered at Live Tournaments",
+          desc: "International athletes Sandeep Nangal Ambia and Gurvinder Singh were assassinated in public venues by gangster syndicates operating with impunity.",
+          stat: "Targeted Athlete Murders"
         }
       ],
       vadakhilafi: [
         {
-          id: "VAD-01",
+          id: "01",
           cat: "vadakhilafi",
-          title: "Only 2.45% of Promised 25 Lakh Jobs Delivered",
-          punjabi: "25 ਲੱਖ ਨੌਕਰੀਆਂ ਦੇ ਵਾਅਦੇ ਵਿੱਚੋਂ ਸਿਰਫ਼ 2.45% ਨੌਕਰੀਆਂ ਮਿਲੀਆਂ",
-          desc: "AAP promised 25 lakh employment opportunities. After four years, only 61,281 government positions have been filled. Youth unemployment in Punjab stands at 20.2%.",
-          stat: "61,281 delivered vs 2,500,000 promised (2.45%).",
-          redacted: "Tens of thousands of qualified youth forced to pay unregulated immigration agents to flee abroad."
+          title: "₹1,000/Month for Women Never Paid",
+          desc: "The premier guarantee of ₹1,000 monthly allowance for every adult woman remains completely unfulfilled after 4 full years in government.",
+          stat: "0 Payments Disbursed"
         },
         {
-          id: "VAD-02",
+          id: "02",
           cat: "vadakhilafi",
-          title: "Mohalla Clinics Scaled Down by 91% (16,000 → 1,432)",
-          punjabi: "16,000 ਮੁਹੱਲਾ ਕਲੀਨਿਕਾਂ ਦਾ ਵਾਅਦਾ ਘਟਾ ਕੇ 1,432 ਕੀਤਾ",
-          desc: "Flagship healthcare commitment of 16,000 primary clinics was quietly slashed by more than 91% to barely 1,432 clinics across 5 years.",
-          stat: "Target reduced by 91.05% after election victory.",
-          redacted: "Existing rural dispensaries were merely repainted without adding specialized diagnostic equipment."
+          title: "Only 2.45% of Promised 25 Lakh Jobs Given",
+          desc: "Promised 25 lakh jobs to youth, but delivered only 61,281 positions while Punjab youth unemployment reached 20.2%.",
+          stat: "61,281 vs 25 Lakh (2.45%)"
         },
         {
-          id: "VAD-03",
+          id: "03",
           cat: "vadakhilafi",
-          title: "Debt Surging to ₹4.47 Lakh Crore by March 2027",
-          punjabi: "ਪੰਜਾਬ ਦਾ ਕਰਜ਼ਾ ਵੱਧ ਕੇ 4.47 ਲੱਖ ਕਰੋੜ ਰੁਪਏ ਤੱਕ ਪਹੁੰਚਿਆ",
-          desc: "Pledged to balance budget and curb debt. Outstanding debt ballooned from ₹2.83 lakh crore in March 2022 to a projected ₹4.47 lakh crore, with debt-to-GSDP worsening beyond 45%.",
-          stat: "Debt-to-GSDP worsened from 41.6% to >45%.",
-          redacted: "State compelled to borrow fresh funds merely to pay interest obligations on prior loans."
+          title: "Mohalla Clinics Slashed by 91%",
+          desc: "The 16,000 primary clinic guarantee was reduced to barely 1,432, mostly by repainting existing rural dispensaries without hiring new doctors.",
+          stat: "91% Target Reduction"
         },
         {
-          id: "VAD-04",
+          id: "04",
           cat: "vadakhilafi",
-          title: "0 MT Moong Procured at MSP: ₹20 Cr Farmer Losses",
-          punjabi: "ਐਮਐਸਪੀ 'ਤੇ ਮੂੰਗੀ ਦੀ ਜ਼ੀਰੋ ਖਰੀਦ — ਕਿਸਾਨਾਂ ਦਾ ਭਾਰੀ ਨੁਕਸਾਨ",
-          desc: "Guaranteed MSP procurement for 22 crops. In 2024, out of 26,966 MT moong arriving at state mandis, not a single metric tonne was bought at MSP; 99.6% was sold at distress prices.",
-          stat: "₹14 to 20 Crore estimated direct financial loss to farmers.",
-          redacted: "Government procurement agencies refused to intervene when private buyers dropped prices."
+          title: "State Debt Surging to ₹4.47 Lakh Crore",
+          desc: "Pledged to balance the budget, yet outstanding state debt surged from ₹2.83 lakh crore to ₹4.47 lakh crore, pushing debt-to-GSDP beyond 45%.",
+          stat: "₹4.47 Lakh Cr Debt"
         },
         {
-          id: "VAD-05",
+          id: "05",
           cat: "vadakhilafi",
-          title: "Zero of 16 Promised Medical Colleges Established",
-          punjabi: "16 ਮੈਡੀਕਲ ਕਾਲਜਾਂ ਦੇ ਵਾਅਦੇ ਵਿੱਚੋਂ ਇੱਕ ਵੀ ਕਾਲਜ ਚਾਲੂ ਨਹੀਂ",
-          desc: "Pledged 16 world-class medical institutions in 5 years. After four years, the government has failed to make even a single new government medical college fully operational.",
-          stat: "0 of 16 medical colleges functioning.",
-          redacted: "Budget allocations for announced college foundations lapsed without civil construction."
+          title: "Zero Moong Procured at Guaranteed MSP",
+          desc: "Pledged MSP on 22 crops, but bought 0 MT of moong at MSP in 2024, causing ₹20 crore losses and forcing 99.6% into distress sales.",
+          stat: "₹20 Cr Farmer Losses"
         },
         {
-          id: "VAD-06",
+          id: "06",
           cat: "vadakhilafi",
-          title: "₹54,000 Cr Mining Revenue Mirage & Continued Sand Mafia",
-          punjabi: "ਮਾਈਨਿੰਗ ਤੋਂ 54,000 ਕਰੋੜ ਦੀ ਕਮਾਈ ਦਾ ਝੂਠ",
-          desc: "Guaranteed ₹54,000 crore annual revenue by eliminating mining graft. Instead, allegations of a ₹400 crore revenue loss from sand and gravel emerged under AAP's tenure.",
-          stat: "₹54,000 Cr promise vs ₹400 Cr reported loss.",
-          redacted: "Enforcement teams routinely recalled following political interference in riverbed zones."
+          title: "0 of 16 Promised Medical Colleges Built",
+          desc: "Guaranteed 16 world-class medical institutions in 5 years; after four years, not a single new government medical college is functional.",
+          stat: "0 of 16 Operational"
         },
         {
-          id: "VAD-07",
+          id: "07",
           cat: "vadakhilafi",
-          title: "Anganwadi & ASHA Workers Await Doubled Salaries",
-          punjabi: "ਆਂਗਣਵਾੜੀ ਅਤੇ ਆਸ਼ਾ ਵਰਕਰਾਂ ਦੇ ਮਾਣ-ਭੱਤੇ ਦੁੱਗਣੇ ਕਰਨ ਦਾ ਵਾਅਦਾ ਅਧੂਰਾ",
-          desc: "Pledged to double honorariums and salaries for frontline female health workers. Four years later, workers continue massive demonstrations on state highways.",
-          stat: "Thousands of Anganwadi workers protesting salary stagnation.",
-          redacted: "Police used water cannons and barricades against female workers demonstrating outside ministers' homes."
-        },
-        {
-          id: "VAD-08",
-          cat: "vadakhilafi",
-          title: "Bargari Sacrilege & Firing Justice Unfulfilled",
-          punjabi: "ਬਰਗਾੜੀ ਬੇਅਦਬੀ ਇਨਸਾਫ਼ ਦਾ ਅਣਸੁਲਝਿਆ ਮਾਮਲਾ",
-          desc: "Promised prompt and decisive closure in the 2015 Bargari sacrilege and police firing cases. Victims' families and Sikh panthic organizations continue waiting after 4+ years.",
-          stat: "Over a decade since 2015 incidents without final justice.",
-          redacted: "Special Investigation Team chargesheets remain ensnarled in procedural delays."
+          title: "₹54,000 Cr Mining Revenue Mirage",
+          desc: "Guaranteed ₹54,000 crore annual revenue from sand mining, yet illegal extraction continued unabated with reported losses of ₹400 crore.",
+          stat: "₹400 Cr Revenue Loss"
         }
       ],
       corruption: [
         {
-          id: "COR-01",
+          id: "01",
           cat: "corruption",
-          title: "CBI Raid on CM Camp Office: OSD Rajbir Singh Ghuman Case",
-          punjabi: "ਮੁੱਖ ਮੰਤਰੀ ਕੈਂਪ ਆਫਿਸ 'ਤੇ ਸੀਬੀਆਈ ਛਾਪਾ — ਓਐਸਡੀ ਰਾਜਬੀਰ ਘੁਮਣ ਮਾਮਲਾ",
-          desc: "Following Punjab & Haryana High Court orders, the CBI raided eight locations including the CM Camp Office in a cash-for-postings and tender-fixing scandal involving CM's OSD.",
-          stat: "8 locations searched by CBI under High Court directions.",
-          redacted: "Court records documented recorded audio tapes negotiating postings for lucrative kickbacks."
+          title: "CBI Raid on CM Camp Office",
+          desc: "High Court ordered CBI raids on 8 locations including CM Camp Office over a cash-for-postings scandal involving CM's OSD Rajbir Ghuman.",
+          stat: "High Court Ordered Probe"
         },
         {
-          id: "COR-02",
+          id: "02",
           cat: "corruption",
-          title: "₹10,000 Crore GMADA Land Auction Rigging Controversy",
-          punjabi: "ਗਮਾਡਾ ਜ਼ਮੀਨ ਨਿਲਾਮੀ ਵਿੱਚ 10,000 ਕਰੋੜ ਦਾ ਘੁਟਾਲਾ",
-          desc: "Allegations of arbitrary suppression of reserve prices during prime urban land auctions in Mohali, causing estimated losses of up to ₹10,000 crore to the state treasury.",
-          stat: "Estimated ₹10,000 Cr loss in state asset realization.",
-          redacted: "Select private consortiums granted exclusive bidding windows without competitive advertisement."
+          title: "₹10,000 Crore GMADA Land Auction Scandal",
+          desc: "Reserve prices for prime Mohali commercial land auctions were intentionally suppressed, causing up to ₹10,000 crore losses to the state treasury.",
+          stat: "₹10,000 Cr Estimated Loss"
         },
         {
-          id: "COR-03",
+          id: "03",
           cat: "corruption",
-          title: "₹348 Crore Suntec City & Forged CLU Land Clearances",
-          punjabi: "ਸਨਟੈਕ ਸਿਟੀ ਵਿੱਚ 348 ਕਰੋੜ ਦੇ ਅਪਰਾਧਿਕ ਲੈਣ-ਦੇਣ ਅਤੇ ਜਾਅਲੀ ਸੀਐਲਯੂ",
-          desc: "ED investigations revealed forged landowner consent letters across 108.58 acres to obtain fraudulent Change of Land Use (CLU) clearances, citing ₹348 crore in proceeds of crime.",
-          stat: "₹348 Crore proceeds of crime tagged by ED.",
-          redacted: "Senior town planning officials summoned over fraudulent expedited files."
+          title: "₹348 Crore Suntec City & Forged CLU Approvals",
+          desc: "ED uncovered forged landowner consent across 108 acres used to obtain fraudulent CLU clearances, citing ₹348 crore in proceeds of crime.",
+          stat: "₹348 Cr Tagged by ED"
         },
         {
-          id: "COR-04",
+          id: "04",
           cat: "corruption",
-          title: "AAP Leader Deepak Singla Arrested in ₹155.21 Cr Bank Fraud",
-          punjabi: "ਆਪ ਆਗੂ ਦੀਪਕ ਸਿੰਗਲਾ 155.21 ਕਰੋੜ ਦੇ ਬੈਂਕ ਧੋਖਾਧੜੀ ਮਾਮਲੇ ਵਿੱਚ ਗ੍ਰਿਫ਼ਤਾਰ",
-          desc: "In May 2026, the Enforcement Directorate arrested prominent AAP leader Deepak Singla under PMLA in a money-laundering case involving fraudulent Letters of Credit.",
-          stat: "₹155.21 Crore bank fraud chargesheet filed.",
-          redacted: "Funds diverted into shell companies and election campaign publicity logistics."
+          title: "AAP Leader Arrested in ₹155 Cr Bank Fraud",
+          desc: "Enforcement Directorate arrested prominent AAP leader Deepak Singla under PMLA in connection with a ₹155.21 crore bank fraud scheme.",
+          stat: "ED Arrest Under PMLA"
         },
         {
-          id: "COR-05",
+          id: "05",
           cat: "corruption",
-          title: "₹200 Crore Punjab Liquor Policy Cartelization",
-          punjabi: "ਪੰਜਾਬ ਸ਼ਰਾਬ ਨੀਤੀ ਵਿੱਚ 200 ਕਰੋੜ ਦੀਆਂ ਬੇਨਿਯਮੀਆਂ",
-          desc: "Following the controversial excise template, the wholesale L-1 licence fee was hiked tenfold from ₹25 lakh to ₹5 crore, slashing wholesale licences from 74 down to just 7 favored entities.",
-          stat: "Wholesalers cut from 74 to 7; ₹200 Cr irregularities alleged.",
-          redacted: "Small independent vendors driven out of business by monopolistic liquor syndicates."
+          title: "₹200 Crore Punjab Liquor Cartelization",
+          desc: "Wholesale L-1 fee was hiked tenfold to ₹5 crore, slashing distributors from 74 to just 7 favored entities in a ₹200 crore cartelization scam.",
+          stat: "Wholesalers Cut 74 to 7"
         },
         {
-          id: "COR-06",
+          id: "06",
           cat: "corruption",
-          title: "90,248 Ghost Pensioners: Deceased Kept on Welfare Rolls",
-          punjabi: "90,248 ਮ੍ਰਿਤਕ ਪੈਨਸ਼ਨਰਾਂ ਦੇ ਨਾਂ 'ਤੇ ਕਰੋੜਾਂ ਦਾ ਘਪਲਾ",
-          desc: "Social welfare verification revealed 90,248 deceased persons were kept on the active monthly pension rolls, with ₹23.94 crore subsequently recovered after public exposure.",
-          stat: "90,248 deceased individuals collecting public welfare funds.",
-          redacted: "Intermediaries and local office clerks pocketed direct payments for over two years."
+          title: "90,248 Ghost Pensioners Welfare Scam",
+          desc: "Over 90,000 deceased persons were kept on active monthly welfare payrolls for years, siphoning off ₹23.94 crore in public taxpayer funds.",
+          stat: "90,248 Dead on Payroll"
         },
         {
-          id: "COR-07",
+          id: "07",
           cat: "corruption",
-          title: "₹5 Crore FIR Influence Case & CM Relative Summoned",
-          punjabi: "ਐਫਆਈਆਰ ਰੱਦ ਕਰਾਉਣ ਲਈ 5 ਕਰੋੜ ਦੀ ਰਿਸ਼ਵਤ ਮਾਮਲਾ",
-          desc: "Allegations of demanding ₹4-5 crore to influence or quash a criminal FIR were recorded in judicial court proceedings. ED summoned Amardeep Singh Grewal, CM Mann's brother-in-law.",
-          stat: "Court proceedings recorded ₹5 Crore bribe extortion demand.",
-          redacted: "ED summoned CM's brother-in-law in connection with wider transaction trail."
-        },
-        {
-          id: "COR-08",
-          cat: "corruption",
-          title: "Recruitment Scams: Naib Tehsildar & Pharmacy Officer Exams",
-          punjabi: "ਨਾਇਬ ਤਹਿਸੀਲਦਾਰ ਅਤੇ ਫਾਰਮੇਸੀ ਅਫਸਰ ਭਰਤੀ ਘੁਟਾਲਾ",
-          desc: "Aspirants paid bribes exceeding ₹20 lakh in the Naib Tehsildar exam; 2026 Pharmacy Officer test saw allegations of paper compromises for ₹3.5 to ₹13 lakh per candidate.",
-          stat: "₹20+ Lakh per seat bribes in government competitive exams.",
-          redacted: "Bluetooth devices and compromised test centers identified across Malwa examination halls."
-        },
-        {
-          id: "COR-09",
-          cat: "corruption",
-          title: "144 Luxury Toyota Hilux Procurement & Governor Inquiry",
-          punjabi: "144 ਟੋਇਟਾ ਹਿਲਕਸ ਖਰੀਦ ਵਿੱਚ 14.5 ਕਰੋੜ ਦਾ ਬੋਝ — ਰਾਜਪਾਲ ਵੱਲੋਂ ਜਾਂਚ",
-          desc: "Controversy erupted over spending taxpayers' money on 144 luxury Hilux vehicles, adding a ₹14.5 crore+ burden on the debt-ridden state exchequer, prompting a Governor-directed inquiry.",
-          stat: "₹14.5+ Crore burden on exchequer for VIP vehicle convoys.",
-          redacted: "Purchase prioritized despite hospitals lacking basic life-support ambulances."
+          title: "Recruitment Exam Bribes Exceeding ₹20 Lakh",
+          desc: "Aspirants paid ₹20+ lakh bribes for Naib Tehsildar seats, and Pharmacy Officer exam papers were compromised for ₹3.5 to ₹13 lakh per candidate.",
+          stat: "₹20+ Lakh per Seat Bribe"
         }
       ]
     };
@@ -4450,29 +4343,24 @@
 
       const tagEl = document.getElementById('csStageTag');
       const titleEl = document.getElementById('csStageTitle');
-      const punjabiEl = document.getElementById('csStagePunjabi');
       const statEl = document.getElementById('csStageStat');
 
       if (category === 'drugs') {
-        if (tagEl) tagEl.innerText = 'Issue 01: Narcotics Crisis';
+        if (tagEl) tagEl.innerText = 'Issue 01: Drugs & Chitta';
         if (titleEl) titleEl.innerText = 'Drugs & The Chitta Epidemic';
-        if (punjabiEl) punjabiEl.innerText = 'ਚਿੱਟਾ ਅਤੇ ਨਸ਼ਿਆਂ ਦੀ ਮਹਾਂਮਾਰੀ — ਜੇਲ੍ਹ ਰੈਕੇਟ ਤੇ ਅਧਿਕਾਰਤ ਮਿਲੀਭੁਗਤ';
-        if (statEl) statEl.innerText = '58% traced to Punjab (2025)';
+        if (statEl) statEl.innerText = '58% traced to Punjab';
       } else if (category === 'law') {
-        if (tagEl) tagEl.innerText = 'Issue 02: Law & Order Collapse';
-        if (titleEl) titleEl.innerText = 'Gangster Rule & Police Station Attacks';
-        if (punjabiEl) punjabiEl.innerText = 'ਗੈਂਗਸਟਰ ਰਾਜ, ਜਬਰੀ ਵਸੂਲੀ ਅਤੇ ਥਾਣਿਆਂ \'ਤੇ ਹਮਲੇ';
+        if (tagEl) tagEl.innerText = 'Issue 02: Law & Order';
+        if (titleEl) titleEl.innerText = 'Law & Order Collapse';
         if (statEl) statEl.innerText = '22 Police Stations Attacked';
       } else if (category === 'vadakhilafi') {
-        if (tagEl) tagEl.innerText = 'Issue 03: Broken Guarantees';
-        if (titleEl) titleEl.innerText = 'Vadakhilafi: 25 Lakh Jobs & Women Pension Betrayal';
-        if (punjabiEl) punjabiEl.innerText = 'ਵਾਅਦਾਖਿਲਾਫ਼ੀ: ਨੌਕਰੀਆਂ, ਪੈਨਸ਼ਨ ਅਤੇ ਕਿਸਾਨ ਗਰੰਟੀਆਂ ਤੋੜੀਆਂ';
-        if (statEl) statEl.innerText = '₹4.47 Lakh Cr State Debt';
+        if (tagEl) tagEl.innerText = 'Issue 03: Vadakhilafi';
+        if (titleEl) titleEl.innerText = 'Broken Guarantees & Pledges';
+        if (statEl) statEl.innerText = 'Only 2.45% Jobs Delivered';
       } else if (category === 'corruption') {
-        if (tagEl) tagEl.innerText = 'Issue 04: Corruption & Scams';
-        if (titleEl) titleEl.innerText = 'Institutional Graft & Central Probes';
-        if (punjabiEl) punjabiEl.innerText = 'ਮੰਤਰੀਆਂ ਦੀ ਗ੍ਰਿਫ਼ਤਾਰੀ, ਜ਼ਮੀਨ ਘੁਟਾਲੇ ਅਤੇ ਸੀਬੀਆਈ ਛਾਪੇ';
-        if (statEl) statEl.innerText = 'CM Camp Office CBI Search';
+        if (tagEl) tagEl.innerText = 'Issue 04: Corruption';
+        if (titleEl) titleEl.innerText = 'Graft & Institutional Scams';
+        if (statEl) statEl.innerText = 'CBI Raid on CM Office';
       }
 
       const searchInput = document.getElementById('csStageSearch');
@@ -4503,14 +4391,12 @@
         ? data.filter(item =>
             (item.title && item.title.toLowerCase().includes(query)) ||
             (item.desc && item.desc.toLowerCase().includes(query)) ||
-            (item.stat && item.stat.toLowerCase().includes(query)) ||
-            (item.punjabi && item.punjabi.toLowerCase().includes(query)) ||
-            (item.redacted && item.redacted.toLowerCase().includes(query))
+            (item.stat && item.stat.toLowerCase().includes(query))
           )
         : data;
 
       if (countEl) {
-        countEl.innerText = `${filtered.length} Documented Findings`;
+        countEl.innerText = `${filtered.length} Key Points`;
       }
 
       if (filtered.length === 0) {
@@ -4530,34 +4416,21 @@
       if (category === 'corruption') badgeColor = 'text-yellow-400 bg-yellow-500/15 border-yellow-500/40';
 
       container.innerHTML = filtered.map((item, idx) => `
-        <div class="cs-charge-card group">
-          <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
-            <span class="font-mono text-xs px-2.5 py-0.5 rounded-md border ${badgeColor} font-bold">${item.id} // COUNT #${idx + 1}</span>
-            <span class="px-2.5 py-0.5 rounded bg-black/60 border border-panelBorder text-amberAlert font-bold text-[11px] sm:text-xs">⚡ ${item.stat}</span>
+        <div class="cs-charge-card group p-3.5 sm:p-4 rounded-xl border border-white/10 bg-black/40 hover:bg-black/60 transition-all duration-200">
+          <div class="flex items-center justify-between gap-2 text-xs font-mono mb-1.5">
+            <span class="font-mono text-xs px-2.5 py-0.5 rounded-md border ${badgeColor} font-bold tracking-wider">Point ${item.id}</span>
+            <span class="px-2.5 py-0.5 rounded bg-black/70 border border-panelBorder text-amberAlert font-bold text-[11px] sm:text-xs">⚡ ${item.stat}</span>
           </div>
-          <div>
-            <h4 class="text-base sm:text-lg font-display font-bold text-white group-hover:text-crimson transition-colors">${item.title}</h4>
-            ${item.punjabi ? `<p class="text-xs font-mono text-crimson/90 mt-0.5">${item.punjabi}</p>` : ''}
-          </div>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">${item.desc}</p>
-          <div class="pt-2 flex flex-wrap items-center gap-2 text-xs font-mono border-t border-panelBorder/70">
-            <span class="text-slate-400 font-bold uppercase tracking-wider flex items-center gap-1 text-[11px]">
-              <i data-lucide="file-key" class="w-3.5 h-3.5 text-crimson"></i>
-              <span>Classified Finding:</span>
-            </span>
-            <span class="redacted-tape" onclick="toggleRedactedTape(this)" title="Click or tap to uncover classified note">${item.redacted}</span>
-          </div>
+          <h4 class="text-sm sm:text-base font-display font-bold text-white group-hover:text-crimson transition-colors leading-snug">
+            ${item.title}
+          </h4>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mt-1">
+            ${item.desc}
+          </p>
         </div>
       `).join('');
 
       lucide.createIcons();
-    }
-
-    function toggleRedactedTape(el) {
-      if (el) {
-        el.classList.toggle('revealed');
-        playPageFlipSound();
-      }
     }
 
     // Modal compatibility shims so any external link smoothly redirects to Section 4
