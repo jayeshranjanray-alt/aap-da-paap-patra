@@ -790,79 +790,90 @@
     .eq-bar-2 { animation: eqBar 0.45s ease-in-out infinite 0.15s; }
     .eq-bar-3 { animation: eqBar 0.8s ease-in-out infinite 0.3s; }
 
-    /* Fix Split Wipe Boundaries for 100% Full Slide */
-    .split-wipe-wrapper {
+    /* ========================================================
+       TACTILE 3D "CLAIM VS. REALITY" FLIP CARD SYSTEM (SECTION 7)
+       ======================================================== */
+    .promise-flip-card {
+      perspective: 1400px;
+      min-height: 360px;
+      height: 100%;
+      cursor: pointer;
+      user-select: none;
+    }
+    .promise-flip-inner {
       position: relative;
       width: 100%;
-      height: 440px;
-      overflow: hidden;
+      height: 100%;
+      min-height: 360px;
+      text-align: left;
+      transition: transform 0.65s cubic-bezier(0.34, 1.35, 0.64, 1);
+      transform-style: preserve-3d;
       border-radius: 1.5rem;
-      user-select: none;
-      touch-action: pan-y;
-      cursor: ew-resize;
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.1);
     }
-    @media (max-width: 768px) {
-      .split-wipe-wrapper {
-        height: 540px;
-      }
+    /* Desktop hover flip OR mobile .is-flipped toggle */
+    .promise-flip-card:hover .promise-flip-inner,
+    .promise-flip-card.is-flipped .promise-flip-inner {
+      transform: rotateY(180deg);
     }
-    .split-wipe-before {
+    .promise-flip-face {
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, #06151a 0%, #082129 100%);
-      border: 1px solid rgba(6, 182, 212, 0.35);
-      padding: 2.25rem;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: 1.5rem;
+      padding: 1.5rem 1.65rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       overflow: hidden;
+      box-shadow: 0 15px 35px -8px rgba(0, 0, 0, 0.75);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     }
-    .split-wipe-after {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, #1b070b 0%, #2f0910 100%);
-      border: 1px solid rgba(225, 29, 72, 0.5);
-      padding: 2.25rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
-      clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
-      will-change: clip-path;
+    /* Front: 2022 Manifesto Promise (Cyan / Deep Navy Hope Aesthetic) */
+    .promise-flip-front {
+      background: linear-gradient(145deg, #07121a 0%, #0d1e2b 55%, #08131c 100%);
+      border: 1px solid rgba(6, 182, 212, 0.28);
+      transform: rotateY(0deg);
     }
-    .split-wipe-handle {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      width: 4px;
-      background: #ffffff;
-      box-shadow: 0 0 25px #e11d48, 0 0 10px #06b6d4;
-      transform: translateX(-50%);
-      cursor: ew-resize;
-      z-index: 25;
-      will-change: left;
+    .promise-flip-card:hover .promise-flip-front {
+      border-color: rgba(6, 182, 212, 0.65);
+      box-shadow: 0 20px 45px -8px rgba(6, 182, 212, 0.25);
     }
-    .split-wipe-button {
+    /* Back: 2026 Audit Ground Reality (Crimson / Deep Obsidian Crisis Aesthetic) */
+    .promise-flip-back {
+      background: linear-gradient(145deg, #18060a 0%, #290812 55%, #130407 100%);
+      border: 1px solid rgba(225, 29, 72, 0.55);
+      transform: rotateY(180deg);
+    }
+    .promise-flip-card:hover .promise-flip-back,
+    .promise-flip-card.is-flipped .promise-flip-back {
+      border-color: rgba(225, 29, 72, 0.9);
+      box-shadow: 0 25px 55px -10px rgba(225, 29, 72, 0.4);
+    }
+    /* Decorative Watermark & Ambient Radial Glows */
+    .promise-flip-front::before {
+      content: '“';
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: #050508;
-      border: 2px solid #ffffff;
-      box-shadow: 0 0 30px rgba(225, 29, 72, 0.85), 0 0 12px rgba(255, 255, 255, 0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      font-size: 13px;
-      font-weight: 800;
-      font-family: 'JetBrains Mono', monospace;
+      top: -15px;
+      right: 15px;
+      font-size: 7rem;
+      font-family: Georgia, serif;
+      color: rgba(6, 182, 212, 0.07);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .promise-flip-back::before {
+      content: '⚠';
+      position: absolute;
+      top: 5px;
+      right: 18px;
+      font-size: 4rem;
+      font-family: sans-serif;
+      color: rgba(225, 29, 72, 0.1);
+      line-height: 1;
+      pointer-events: none;
     }
 
   
@@ -2473,190 +2484,68 @@
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <div class="flex items-center gap-2 mb-1">
-            <span class="evidence-stamp text-xs">AUDIT VERIFICATION REPORT</span>
-            <span class="text-xs font-mono text-crimson font-bold">11 CORE MANIFESTO AUDITS</span>
+            <span class="evidence-stamp text-xs">MANIFESTO AUDIT VERIFICATION</span>
+            <span class="text-xs font-mono text-crimson font-bold uppercase tracking-wider">11 Core Guarantees</span>
           </div>
           <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white">
             Electoral Promises vs. Documented Delivery
           </h2>
           <p class="text-slate-400 text-sm mt-1 max-w-2xl">
-            Interactive comparative audit: drag the slider curtain all the way left or right to contrast the 2022 campaign manifesto pledges with verified on-ground reality in 2026.
+            Tactile Claim vs. Reality Audit: Hover over any card on desktop (or tap on mobile) to flip between the 2022 campaign pledge and the verified 2026 ground reality.
           </p>
         </div>
 
-        <!-- Mode Toggle & Dynamic Truth Meter Indicator -->
+        <!-- Master Controls: Delivery KPI Index + Flip All Master Button -->
         <div class="flex flex-wrap items-center gap-3 shrink-0">
-          <!-- View Mode Toggle -->
-          <div class="flex items-center bg-charcoal border border-panelBorder p-1 rounded-xl font-mono text-xs">
-            <button onclick="setPromiseViewMode('slider')" id="viewModeSliderBtn" class="px-3 py-1.5 rounded-lg bg-crimson text-white font-bold flex items-center gap-1.5 shadow">
-              <i data-lucide="split" class="w-3.5 h-3.5"></i>
-              <span>Slider View</span>
-            </button>
-            <button onclick="setPromiseViewMode('matrix')" id="viewModeMatrixBtn" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white flex items-center gap-1.5 transition">
-              <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
-              <span>All 11 Grid</span>
-            </button>
-          </div>
-
-          <div class="p-2.5 sm:p-3 rounded-2xl bg-charcoal border border-panelBorder flex items-center gap-3.5 shadow-xl">
-            <div class="w-10 h-10 rounded-xl bg-crimson/20 border border-crimson/40 flex items-center justify-center text-crimson font-mono font-bold text-sm">
+          <div class="p-2 sm:p-2.5 rounded-2xl bg-charcoal border border-panelBorder flex items-center gap-3 shadow-xl">
+            <div class="w-9 h-9 rounded-xl bg-crimson/20 border border-crimson/40 flex items-center justify-center text-crimson font-mono font-bold text-sm">
               ⚖️
             </div>
             <div>
-              <div class="text-[10px] font-mono text-slate-400 uppercase tracking-widest">DELIVERY STATUS INDEX</div>
-              <div id="truthMeterText" class="font-display font-bold text-sm sm:text-base text-crimson">2.45% // CRITICAL BREACH</div>
+              <div class="text-[10px] font-mono text-slate-400 uppercase tracking-widest">STATEWIDE AUDIT VERDICT</div>
+              <div class="font-display font-bold text-xs sm:text-sm text-crimson">11 AUDITS // 0 FULLY DELIVERED</div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <!-- 11 Topic Selector Horizontal Filter Bar (Scrollable on small devices) -->
-      <div class="relative">
-        <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2 px-1">
-          <span class="flex items-center gap-1.5 font-bold uppercase tracking-wider text-slate-300">
-            <i data-lucide="layers" class="w-3.5 h-3.5 text-crimson"></i>
-            <span>SELECT AUDIT TOPIC (11 INVESTIGATIVE FINDINGS)</span>
-          </span>
-          <span id="topicCounterLabel" class="text-crimson font-bold">TOPIC 01 OF 11</span>
-        </div>
-
-        <div class="flex flex-nowrap overflow-x-auto gap-2 pb-2.5 pt-1 scrollbar-thin scrollbar-thumb-crimson/40 scrollbar-track-charcoal" id="promiseTopicButtons">
-          <button onclick="selectPromiseTopic('jobs')" id="promiseBtn-jobs" class="promise-topic-btn flex-none px-3.5 py-2 rounded-xl bg-crimson text-white font-bold text-xs font-mono transition shadow-lg shadow-crimson/25 whitespace-nowrap">
-            1. 25 Lakh Jobs
-          </button>
-          <button onclick="selectPromiseTopic('clinics')" id="promiseBtn-clinics" class="promise-topic-btn flex-none px-3.5 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white text-xs font-mono transition whitespace-nowrap">
-            2. 16,000 Clinics
-          </button>
-          <button onclick="selectPromiseTopic('debt')" id="promiseBtn-debt" class="promise-topic-btn flex-none px-3.5 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white text-xs font-mono transition whitespace-nowrap">
-            3. State Debt Surge
-          </button>
-          <button onclick="selectPromiseTopic('farmers')" id="promiseBtn-farmers" class="promise-topic-btn flex-none px-3.5 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white text-xs font-mono transition whitespace-nowrap">
-            4. Farmers MSP
-          </button>
-          <button onclick="selectPromiseTopic('drugs')" id="promiseBtn-drugs" class="promise-topic-btn flex-none px-3.5 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white text-xs font-mono transition whitespace-nowrap">
-            5. Nasha Mukt
-          </button>
-          <button onclick="selectPromiseTopic('colleges')" id="promiseBtn-colleges" class="promise-topic-btn flex-none px-3.5 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white text-xs font-mono transition whitespace-nowrap">
-            6. 16 Medical Colleges
-          </button>
-          <button onclick="selectPromiseTopic('education')" id="promiseBtn-education" class="promise-topic-btn flex-none px-3.5 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white text-xs font-mono transition whitespace-nowrap">
-            7. Delhi Education Model
-          </button>
-          <button onclick="selectPromiseTopic('revenue')" id="promiseBtn-revenue" class="promise-topic-btn flex-none px-3.5 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white text-xs font-mono transition whitespace-nowrap">
-            8. ₹54,000 Cr Mining
-          </button>
-          <button onclick="selectPromiseTopic('corruption')" id="promiseBtn-corruption" class="promise-topic-btn flex-none px-3.5 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white text-xs font-mono transition whitespace-nowrap">
-            9. Anti-Corruption
-          </button>
-          <button onclick="selectPromiseTopic('workers')" id="promiseBtn-workers" class="promise-topic-btn flex-none px-3.5 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white text-xs font-mono transition whitespace-nowrap">
-            10. Anganwadi &amp; ASHA
-          </button>
-          <button onclick="selectPromiseTopic('bargari')" id="promiseBtn-bargari" class="promise-topic-btn flex-none px-3.5 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white text-xs font-mono transition whitespace-nowrap">
-            11. Bargari Justice
+          <!-- Flip All Cards Master Button -->
+          <button id="flipAllPromisesBtn" onclick="toggleFlipAllPromises()" class="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-red-950/80 via-crimson to-red-950 text-white font-mono text-xs font-bold transition-all duration-200 hover:shadow-lg hover:shadow-crimson/30 hover:scale-102 flex items-center gap-2 border border-crimson/50 active:scale-95 cursor-pointer">
+            <i data-lucide="rotate-3d" class="w-4 h-4 text-white"></i>
+            <span>Flip All to Reality</span>
           </button>
         </div>
       </div>
 
-      <!-- Quick Slider Snap Bar & Topic Stepper -->
-      <div id="sliderControlsBar" class="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-slate-400 pt-1">
-        
-        <!-- Topic Stepper Controls -->
-        <div class="flex items-center gap-2">
-          <button onclick="stepPromiseTopic(-1)" class="px-3 py-1.5 rounded-lg bg-charcoal border border-panelBorder hover:border-crimson text-slate-300 hover:text-white transition flex items-center gap-1 active:scale-95" title="Previous Audit Point">
-            <i data-lucide="chevron-left" class="w-4 h-4 text-crimson"></i>
-            <span>Prev Topic</span>
+      <!-- Category Filter Pills & Interaction Hint Bar -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1 border-t border-panelBorder/70">
+        <!-- Interactive Category Filter Pills -->
+        <div class="flex flex-nowrap overflow-x-auto gap-2 pb-1 scrollbar-none" id="promiseCategoryFilterBar">
+          <button onclick="filterPromiseCategory('all')" data-category="all" class="promise-cat-btn px-3.5 py-1.5 rounded-xl bg-crimson text-white font-bold text-xs font-mono transition shadow-md whitespace-nowrap cursor-pointer">
+            All 11 Guarantees
           </button>
-          <button onclick="stepPromiseTopic(1)" class="px-3 py-1.5 rounded-lg bg-charcoal border border-panelBorder hover:border-crimson text-slate-300 hover:text-white transition flex items-center gap-1 active:scale-95" title="Next Audit Point">
-            <span>Next Topic</span>
-            <i data-lucide="chevron-right" class="w-4 h-4 text-crimson"></i>
+          <button onclick="filterPromiseCategory('economy')" data-category="economy" class="promise-cat-btn px-3.5 py-1.5 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white text-xs font-mono transition whitespace-nowrap cursor-pointer">
+            Jobs &amp; Economy
           </button>
-        </div>
-
-        <!-- Snap Presets: 100% Reality | 50/50 | 100% Promise -->
-        <div class="flex items-center gap-1.5 bg-obsidian p-1 rounded-xl border border-panelBorder">
-          <span class="text-[10px] uppercase tracking-wider text-slate-500 px-2 font-bold hidden sm:inline">SNAP:</span>
-          <button onclick="snapWipeTo(0)" class="px-2.5 py-1 rounded-lg bg-red-950/80 border border-crimson/40 hover:bg-crimson text-white font-bold text-[11px] transition">
-            100% Reality (Left)
+          <button onclick="filterPromiseCategory('health')" data-category="health" class="promise-cat-btn px-3.5 py-1.5 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white text-xs font-mono transition whitespace-nowrap cursor-pointer">
+            Healthcare &amp; Schools
           </button>
-          <button onclick="snapWipeTo(50)" class="px-2.5 py-1 rounded-lg bg-slateDark border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white text-[11px] transition">
-            50 / 50 Split
+          <button onclick="filterPromiseCategory('farmers')" data-category="farmers" class="promise-cat-btn px-3.5 py-1.5 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white text-xs font-mono transition whitespace-nowrap cursor-pointer">
+            Farmers &amp; Rural
           </button>
-          <button onclick="snapWipeTo(100)" class="px-2.5 py-1 rounded-lg bg-cyan-950/80 border border-cyan-500/40 hover:bg-cyan-700 text-white font-bold text-[11px] transition">
-            100% Promise (Right)
+          <button onclick="filterPromiseCategory('governance')" data-category="governance" class="promise-cat-btn px-3.5 py-1.5 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white text-xs font-mono transition whitespace-nowrap cursor-pointer">
+            Governance &amp; Law
           </button>
         </div>
 
-      </div>
-
-      <!-- VIEW 1: INTERACTIVE SPLIT WIPE STAGE (0% TO 100% UNCONSTRAINED FULL SLIDE) -->
-      <div id="promiseSliderViewWrapper" class="space-y-3">
-        <div class="split-wipe-wrapper" id="splitWipeStage">
-          
-          <!-- Left Pane: 2022 AAP PLEDGE -->
-          <div class="split-wipe-before">
-            <div class="space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="px-3 py-1 rounded-full bg-cyan-950/90 border border-cyan-500/50 text-cyan-400 font-mono text-xs font-bold uppercase tracking-wider">
-                  2022 MANIFESTO GUARANTEE
-                </span>
-                <span class="text-cyan-300 font-mono text-xs font-bold hidden sm:inline">PLEDGED MANIFESTO</span>
-              </div>
-              <h3 id="wipePledgeTitle" class="font-display font-bold text-2xl sm:text-3xl text-white tracking-tight">
-                Create 25 Lakh Jobs for Punjab Youth
-              </h3>
-              <p id="wipePledgeDetail" class="text-slate-300 font-sans text-sm sm:text-base leading-relaxed max-w-xl">
-                Solemnly pledged to eradicate youth unemployment in Punjab within five years, promising 25 lakh formal and industrial employment opportunities across all districts.
-              </p>
-            </div>
-
-            <div class="pt-4 border-t border-cyan-500/20 flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-cyan-300">
-              <span id="wipePledgeBadge">OFFICIAL GUARANTEE SIGNED BY LEADERSHIP</span>
-              <span class="text-slate-400">PLEDGE STATUS: UNFULFILLED</span>
-            </div>
-          </div>
-
-          <!-- Right Pane: 2026 DOCUMENTED GROUND REALITY (Wiped via clip-path 0% to 100%) -->
-          <div class="split-wipe-after" id="splitWipeAfter">
-            <div class="space-y-3">
-              <div class="flex items-center justify-between">
-                <span class="px-3 py-1 rounded-full bg-red-950/90 border border-crimson/60 text-crimsonBright font-mono text-xs font-bold uppercase tracking-wider">
-                  2026 DOCUMENTED AUDIT REALITY
-                </span>
-                <span class="text-red-300 font-mono text-xs font-bold hidden sm:inline">OFFICIAL CAG / GOVT DATA</span>
-              </div>
-              <h3 id="wipeRealityTitle" class="font-display font-bold text-2xl sm:text-3xl text-white tracking-tight">
-                Only 61,281 Jobs Delivered (2.45%)
-              </h3>
-              <p id="wipeRealityDetail" class="text-slate-200 font-sans text-sm sm:text-base leading-relaxed max-w-xl">
-                Only 61,281 government jobs have been delivered, just 2.45% of the promise. Punjab's unemployment rate stands at 7%, above the national average of 4.8%, while youth unemployment is 20.2%.
-              </p>
-            </div>
-
-            <div class="pt-4 border-t border-crimson/30 flex flex-wrap items-center justify-between gap-2 font-mono text-xs text-red-300">
-              <span id="wipeRealitySource">AUDIT SOURCE: CAG &amp; STATE LABOUR BUREAU 2026</span>
-              <span id="wipeDeficitBadge" class="font-bold text-white bg-crimson px-2.5 py-0.5 rounded shadow">DEFICIT: 97.55%</span>
-            </div>
-          </div>
-
-          <!-- Draggable Handle Divider (Unconstrained from 0% to 100%) -->
-          <div class="split-wipe-handle" id="splitWipeHandle">
-            <div class="split-wipe-button" id="splitWipeButton">
-              <span>◀▶</span>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="flex items-center justify-between text-xs font-mono text-slate-400 px-2">
-          <span>◀ SLIDE ALL THE WAY LEFT TO REVEAL 100% REALITY</span>
-          <span class="hidden sm:inline">FULL UNCONSTRAINED 0% TO 100% WIPING</span>
-          <span>SLIDE ALL THE WAY RIGHT TO REVEAL 100% PROMISE ▶</span>
+        <!-- Tactile Hint -->
+        <div class="flex items-center gap-2 text-[11px] font-mono text-slate-400 shrink-0">
+          <span class="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+          <span>Hover card to reveal reality · Tap on mobile</span>
         </div>
       </div>
 
-      <!-- VIEW 2: ALL 11 AUDIT MATRIX GRID (HIDDEN BY DEFAULT, TOGGLED ON DEMAND) -->
-      <div id="promiseMatrixViewWrapper" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
-        <!-- Dynamically populated with all 11 full cards by renderPromiseMatrix() -->
+      <!-- MULTI-COLUMN 3D FLIP CARD SHOWCASE (3 Columns Desktop, 2 Columns Tablet, 1 Column Mobile) -->
+      <div id="promiseFlipGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+        <!-- Dynamically populated with all 11 3D flip cards by renderPromiseFlipGrid() -->
       </div>
 
     </section>
@@ -3094,18 +2983,19 @@
     });
 
     
-    // --- 5. COMPREHENSIVE 11-TOPIC AUDIT & UNCONSTRAINED SLIDER CONTROLLER ---
+    // --- 5. COMPREHENSIVE 11-TOPIC AUDIT & 3D TACTILE FLIP CARD SYSTEM ---
     const PROMISE_DATA = {
       jobs: {
         id: "jobs",
         num: "01",
-        tabLabel: "1. 25 Lakh Jobs",
+        category: "economy",
+        categoryLabel: "Jobs & Economy",
         pledgeTitle: "Create 25 Lakh Jobs for Punjab Youth",
-        pledgeDetail: "Solemnly pledged to eradicate youth unemployment in Punjab within five years, promising 25 lakh formal and industrial employment opportunities across all districts.",
-        pledgeBadge: "OFFICIAL 2022 MANIFESTO GUARANTEE",
+        pledgeDetail: "Solemnly pledged to eradicate youth unemployment in Punjab within five years, promising 25 lakh formal and industrial opportunities across all districts.",
+        pledgeBadge: "2022 MANIFESTO GUARANTEE",
         realityTitle: "Only 61,281 Jobs Delivered (2.45%)",
-        realityDetail: "Only 61,281 government jobs have been delivered, just 2.45% of the promise. Punjab's unemployment rate stands at 7%, above the national average of 4.8%, while youth unemployment is 20.2%.",
-        realitySource: "AUDIT: CAG & LABOUR BUREAU 2026",
+        realityDetail: "Only 61,281 government jobs have been delivered, just 2.45% of the promise. Punjab's youth unemployment stands at 20.2%, far above national average.",
+        realitySource: "CAG & Labour Bureau 2026",
         deficitBadge: "DEFICIT: 97.55%",
         truthIndex: "2.45% // CRITICAL BREACH",
         percent: 2.45
@@ -3113,13 +3003,14 @@
       clinics: {
         id: "clinics",
         num: "02",
-        tabLabel: "2. 16,000 Clinics",
+        category: "health",
+        categoryLabel: "Healthcare & Schools",
         pledgeTitle: "Establish 16,000 Mohalla Clinics",
         pledgeDetail: "Promised to establish 16,000 Mohalla Clinics across every village and ward in Punjab to fundamentally transform primary healthcare delivery.",
         pledgeBadge: "PRIMARY HEALTHCARE GUARANTEE",
         realityTitle: "Target Slashed by Over 91% (1,432 Clinics)",
-        realityDetail: "The target was quietly reduced by over 91% to just 1,432 clinics over five years. Existing rural dispensaries were merely repainted without adding doctors or essential diagnostic facilities.",
-        realitySource: "HEALTH DEPARTMENT INTERNAL MEMORANDUM",
+        realityDetail: "The target was quietly reduced by over 91% to just 1,432 clinics over five years. Existing rural dispensaries were merely repainted without adding doctors.",
+        realitySource: "Health Dept Internal Memorandum",
         deficitBadge: "DEFICIT: 91.05%",
         truthIndex: "8.95% // TARGET SLASHED",
         percent: 8.95
@@ -3127,27 +3018,29 @@
       debt: {
         id: "debt",
         num: "03",
-        tabLabel: "3. State Debt Surge",
-        pledgeTitle: "Reduce Punjab's Debt & Restore Fiscal Discipline",
+        category: "economy",
+        categoryLabel: "Jobs & Economy",
+        pledgeTitle: "Reduce Punjab's Debt & Restore Fiscal Health",
         pledgeDetail: "Promised to slash state borrowings, wipe out fiscal deficit, eliminate corruption leaks, and restore Punjab to revenue-surplus financial health.",
-        pledgeBadge: "FISCAL RECOVERY MANIFESTO PLEDGE",
+        pledgeBadge: "FISCAL RECOVERY PLEDGE",
         realityTitle: "Debt Surging to ₹4.47 Lakh Crore (+58%)",
-        realityDetail: "Punjab's outstanding debt is projected to rise from ₹2.83 lakh crore in March 2022 to ₹4.47 lakh crore by March 2027, with the debt-to-GSDP ratio worsening from 41.62% to over 45%.",
-        realitySource: "RESERVE BANK OF INDIA & CAG STATE AUDIT",
+        realityDetail: "Punjab's debt surged from ₹2.83 lakh crore in March 2022 to a projected ₹4.47 lakh crore by March 2027, pushing debt-to-GSDP beyond 45%.",
+        realitySource: "Reserve Bank of India & CAG",
         deficitBadge: "DEBT SPIKE: +58%",
-        truthIndex: "+₹1.64 LAKH CR // FISCAL COLLAPSE",
+        truthIndex: "+₹1.64 LAKH CR // FISCAL CRISIS",
         percent: 0.0
       },
       farmers: {
         id: "farmers",
         num: "04",
-        tabLabel: "4. Farmers MSP",
+        category: "farmers",
+        categoryLabel: "Farmers & Rural",
         pledgeTitle: "Ensure MSP Procurement for 22 Crops",
         pledgeDetail: "Pledged legal guarantees and immediate state procurement at Minimum Support Price (MSP) for 22 alternative crops to lift farmers out of debt.",
         pledgeBadge: "AGRICULTURAL REVIVAL PLEDGE",
-        realityTitle: "0 MT Moong Procured at MSP (99.6% Sold at Loss)",
-        realityDetail: "Procurement remains largely limited to wheat and paddy. In 2024, despite 26,966 MT of moong reaching Punjab mandis, not a single metric tonne was procured at MSP. 99.6% of the crop was sold below MSP, causing an estimated ₹14-20 crore loss to farmers.",
-        realitySource: "PUNJAB MANDI BOARD PROCUREMENT AUDIT 2024",
+        realityTitle: "0 MT Moong Procured at MSP (99.6% at Loss)",
+        realityDetail: "In 2024, out of 26,966 MT of moong reaching Punjab mandis, not a single metric tonne was bought at MSP; 99.6% was sold at distress loss.",
+        realitySource: "Punjab Mandi Board Audit 2024",
         deficitBadge: "BELOW MSP: 99.6%",
         truthIndex: "0.00% MSP // ₹20 CR LOSS",
         percent: 0.0
@@ -3155,27 +3048,29 @@
       drugs: {
         id: "drugs",
         num: "05",
-        tabLabel: "5. Nasha Mukt",
-        pledgeTitle: "Make Punjab 'Nasha Mukt' Within Four Months",
-        pledgeDetail: "Solemnly pledged on oath to eradicate Chitta and the narcotics syndicate within four months of forming government, cutting all cross-border and political supply chains.",
-        pledgeBadge: "SACRED FOUR-MONTH TIMELINE PLEDGE",
+        category: "governance",
+        categoryLabel: "Governance & Law",
+        pledgeTitle: "Make Punjab 'Nasha Mukt' Within 4 Months",
+        pledgeDetail: "Solemnly pledged on oath to eradicate Chitta and narcotics cartels within four months of forming government, cutting all cross-border supply chains.",
+        pledgeBadge: "FOUR-MONTH TIMELINE PLEDGE",
         realityTitle: "29 NDPS Cases/Lakh (Nearly 4x National Average)",
-        realityDetail: "Punjab recorded 29 NDPS cases per lakh population in 2024, the second highest in India and nearly four times the national average of 7.8. 21 citizens died in the Sangrur spurious hooch tragedy in the CM's home district.",
-        realitySource: "NCRB 2024 & STATE POLICE ARCHIVE",
+        realityDetail: "Punjab recorded 29 NDPS cases per lakh population in 2024—nearly four times the national average of 7.8—with devastating rural overdose clusters.",
+        realitySource: "NCRB 2024 & State Police Archive",
         deficitBadge: "NDPS RATE: 29 / LAKH",
-        truthIndex: "4x NATIONAL AVG // OVERDOSE SURGE",
+        truthIndex: "4x NATIONAL AVG // NARCOTICS SURGE",
         percent: 0.0
       },
       colleges: {
         id: "colleges",
         num: "06",
-        tabLabel: "6. 16 Medical Colleges",
+        category: "health",
+        categoryLabel: "Healthcare & Schools",
         pledgeTitle: "Establish 16 New Medical Colleges in 5 Years",
-        pledgeDetail: "Guaranteed 16 state-of-the-art government medical colleges with attached super-specialty hospitals to stop brain drain of medical students.",
+        pledgeDetail: "Guaranteed 16 state-of-the-art government medical colleges with attached super-specialty hospitals to stop brain drain of medical talent.",
         pledgeBadge: "TERTIARY HEALTHCARE GUARANTEE",
         realityTitle: "0 Operationalized in 4 Years (Zero Delivered)",
-        realityDetail: "Even after completing four years in power, the Bhagwant Mann Government has failed to establish a single new fully operational government medical college.",
-        realitySource: "NATIONAL MEDICAL COMMISSION (NMC) REGISTRY",
+        realityDetail: "Even after four full years in power, the Bhagwant Mann Government has failed to make a single new government medical college fully operational.",
+        realitySource: "National Medical Commission Registry",
         deficitBadge: "DELIVERED: 0.00%",
         truthIndex: "0 OF 16 // 0% DELIVERED",
         percent: 0.0
@@ -3183,27 +3078,29 @@
       education: {
         id: "education",
         num: "07",
-        tabLabel: "7. Delhi Education Model",
-        pledgeTitle: "Replicate 'Delhi Model' to Transform Government Schools",
+        category: "health",
+        categoryLabel: "Healthcare & Schools",
+        pledgeTitle: "Replicate 'Delhi Model' in Government Schools",
         pledgeDetail: "Promised world-class infrastructure, smart labs, and teacher empowerment to turn Punjab's state schools into premier education centers.",
         pledgeBadge: "DELHI SCHOOL EDUCATION MODEL",
-        realityTitle: "Chronic Teacher Shortages & Infrastructure Gaps",
-        realityDetail: "Government schools continue to face infrastructure gaps, teacher shortages and poor learning outcomes despite repeated claims of education reforms. Protesting teachers were repeatedly water-cannoned in Sangrur and Mohali.",
-        realitySource: "EDUCATION DEPARTMENT ENROLLMENT REPORT",
-        deficitBadge: "UNRESOLVED VACANCIES",
-        truthIndex: "CRITICAL DEFICITS // TEACHER UNREST",
+        realityTitle: "Chronic Teacher Shortages & Infrastructure Decay",
+        realityDetail: "State schools face chronic teacher vacancies and infrastructure deficits. Protesting teachers were repeatedly water-cannoned in Sangrur and Mohali.",
+        realitySource: "Education Dept Enrollment Audit",
+        deficitBadge: "CRITICAL VACANCIES",
+        truthIndex: "TEACHER UNREST // UNFULFILLED",
         percent: 5.0
       },
       revenue: {
         id: "revenue",
         num: "08",
-        tabLabel: "8. ₹54,000 Cr Mining",
-        pledgeTitle: "Generate ₹54,000 Cr via Anti-Corruption & Mining Regulation",
-        pledgeDetail: "Claimed Punjab would generate ₹20,000 Cr from sand mining and ₹34,000 Cr from curbing corruption annually to fund all social guarantees without borrowing.",
+        category: "economy",
+        categoryLabel: "Jobs & Economy",
+        pledgeTitle: "Generate ₹54,000 Cr via Mining & Anti-Graft",
+        pledgeDetail: "Claimed Punjab would generate ₹20,000 Cr from sand mining and ₹34,000 Cr from curbing corruption annually to fund all social guarantees.",
         pledgeBadge: "PROMISED REVENUE BOAST",
-        realityTitle: "Mining Inflow Disappoints, Borrowings Hit New Highs",
-        realityDetail: "The promised ₹54,000 crore revenue surge has not materialized, allegations of irregularities in the mining sector persist, and Punjab continues to face significant fiscal stress, forcing the government to borrow ₹3,000+ crore every month.",
-        realitySource: "STATE FINANCE DEPARTMENT WHITE PAPER",
+        realityTitle: "Mining Inflow Disappoints, ₹400 Cr Losses Alleged",
+        realityDetail: "The promised ₹54,000 crore revenue surge never materialized; allegations of a ₹400 crore loss from sand mining surfaced as borrowings broke records.",
+        realitySource: "State Finance Dept White Paper",
         deficitBadge: "TARGET MISSED: 95%+",
         truthIndex: "₹0 SURGE // RECORD BORROWINGS",
         percent: 2.0
@@ -3211,13 +3108,14 @@
       corruption: {
         id: "corruption",
         num: "09",
-        tabLabel: "9. Anti-Corruption",
-        pledgeTitle: "Deliver 100% Transparent, Corruption-Free Governance",
+        category: "governance",
+        categoryLabel: "Governance & Law",
+        pledgeTitle: "Deliver 100% Corruption-Free Governance",
         pledgeDetail: "Promised zero tolerance for corruption, immediate dismissal of tainted officials, and transparent executive governance without kickbacks.",
         pledgeBadge: "ZERO TOLERANCE ANTI-GRAFT PLEDGE",
-        realityTitle: "Sitting Health Minister Arrested for 1% Commission",
-        realityDetail: "Repeated allegations of corruption, favouritism and abuse of power have severely undermined AAP's anti-corruption claims. Sitting Health Minister Dr. Vijay Singla was arrested for demanding a 1% kickback on tenders, and Punjab High Court ordered CBI raids on the CM's Camp Office in cash-for-postings scams.",
-        realitySource: "HIGH COURT OF PUNJAB & HARYANA RECORDS",
+        realityTitle: "Sitting Health Minister Arrested; CBI Raids CM Office",
+        realityDetail: "Sitting Health Minister Dr. Vijay Singla was arrested for demanding a 1% kickback; Punjab High Court ordered CBI raids on CM's Camp Office in cash-for-postings scams.",
+        realitySource: "Punjab & Haryana High Court Records",
         deficitBadge: "CORRUPTION INDICTMENTS",
         truthIndex: "CABINET EXTORTION // CBI RAIDS",
         percent: 0.0
@@ -3225,13 +3123,14 @@
       workers: {
         id: "workers",
         num: "10",
-        tabLabel: "10. Anganwadi & ASHA",
-        pledgeTitle: "Double Salaries & Incentives of Anganwadi & ASHA Workers",
+        category: "farmers",
+        categoryLabel: "Farmers & Rural",
+        pledgeTitle: "Double Salaries of Anganwadi & ASHA Workers",
         pledgeDetail: "Solemnly promised to double honorariums, regularize frontline women workers, and provide dignity to Anganwadi and ASHA workers across Punjab.",
         pledgeBadge: "FRONTLINE WORKERS GUARANTEE",
         realityTitle: "Zero Salary Doubling After 4+ Years of Office",
-        realityDetail: "Anganwadi and ASHA workers continue to await the promised salary hike after more than four years in office, forced to hold statewide protests and gheraos outside ministers' residences.",
-        realitySource: "ALL PUNJAB ANGANWADI EMPLOYEES UNION",
+        realityDetail: "Anganwadi and ASHA workers continue to await the promised salary hike after more than four years in office, forced into statewide highway blockades.",
+        realitySource: "All Punjab Anganwadi Union",
         deficitBadge: "HIKE DELIVERED: 0%",
         truthIndex: "0% SALARY HIKE // PROMISES DUMPED",
         percent: 0.0
@@ -3239,13 +3138,14 @@
       bargari: {
         id: "bargari",
         num: "11",
-        tabLabel: "11. Bargari Justice",
-        pledgeTitle: "Deliver Justice in Bargari Sacrilege & Police Firing",
+        category: "governance",
+        categoryLabel: "Governance & Law",
+        pledgeTitle: "Deliver Decisive Justice in Bargari Sacrilege",
         pledgeDetail: "Promised to hold main conspirators accountable within 24 hours of taking oath and deliver historic justice for the sacred Guru Granth Sahib sacrilege.",
         pledgeBadge: "HISTORIC SACRED PLEDGE",
         realityTitle: "Victim Families Still Awaiting Justice After 4+ Years",
-        realityDetail: "More than a decade after the 2015 incidents and over four years into the Mann Government's tenure, victims' families and Sikh organisations continue to await meaningful justice as key accused remain untried and investigative reports languish without prosecution.",
-        realitySource: "BARGARI INSAAF MORCHA MEMORANDUM",
+        realityDetail: "More than a decade after the 2015 incidents and over four years into the Mann Government's tenure, victim families await justice as SIT chargesheets remain stalled.",
+        realitySource: "Bargari Insaaf Morcha Memorandum",
         deficitBadge: "JUSTICE DELAYED",
         truthIndex: "UNRESOLVED // INQUIRIES STALLED",
         percent: 0.0
@@ -3253,261 +3153,159 @@
     };
 
     const promiseKeys = Object.keys(PROMISE_DATA);
-    let activePromiseTopic = 'jobs';
-    let currentWipePercent = 50;
+    let allPromisesFlipped = false;
+    let currentPromiseCategory = 'all';
 
-    function selectPromiseTopic(topic) {
-      if (!PROMISE_DATA[topic]) return;
-      activePromiseTopic = topic;
-      const data = PROMISE_DATA[topic];
+    function renderPromiseFlipGrid() {
+      const grid = document.getElementById('promiseFlipGrid');
+      if (!grid) return;
 
-      // Update button active states
-      document.querySelectorAll('.promise-topic-btn').forEach(btn => {
-        btn.className = 'promise-topic-btn flex-none px-3.5 py-2 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white text-xs font-mono transition whitespace-nowrap';
-      });
-      const activeBtn = document.getElementById(`promiseBtn-${topic}`);
-      if (activeBtn) {
-        activeBtn.className = 'promise-topic-btn flex-none px-3.5 py-2 rounded-xl bg-crimson text-white font-bold text-xs font-mono transition shadow-lg shadow-crimson/25 whitespace-nowrap';
-      }
-
-      // Update Topic Counter Label
-      const idx = promiseKeys.indexOf(topic);
-      const counterLabel = document.getElementById('topicCounterLabel');
-      if (counterLabel) {
-        counterLabel.innerText = `TOPIC ${String(idx + 1).padStart(2, '0')} OF ${String(promiseKeys.length).padStart(2, '0')}`;
-      }
-
-      // Update Text Elements in Slider
-      const pTitle = document.getElementById('wipePledgeTitle');
-      const pDetail = document.getElementById('wipePledgeDetail');
-      const pBadge = document.getElementById('wipePledgeBadge');
-      const rTitle = document.getElementById('wipeRealityTitle');
-      const rDetail = document.getElementById('wipeRealityDetail');
-      const rSource = document.getElementById('wipeRealitySource');
-      const rDeficit = document.getElementById('wipeDeficitBadge');
-      const tText = document.getElementById('truthMeterText');
-
-      if (pTitle) pTitle.innerText = data.pledgeTitle;
-      if (pDetail) pDetail.innerText = data.pledgeDetail;
-      if (pBadge) pBadge.innerText = data.pledgeBadge;
-      if (rTitle) rTitle.innerText = data.realityTitle;
-      if (rDetail) rDetail.innerText = data.realityDetail;
-      if (rSource) rSource.innerText = data.realitySource;
-      if (rDeficit) rDeficit.innerText = data.deficitBadge;
-      if (tText) tText.innerText = data.truthIndex;
-    }
-
-    function stepPromiseTopic(step) {
-      const idx = promiseKeys.indexOf(activePromiseTopic);
-      const nextIdx = (idx + step + promiseKeys.length) % promiseKeys.length;
-      selectPromiseTopic(promiseKeys[nextIdx]);
-    }
-
-    // Unconstrained 0% to 100% Split Wipe Slider Logic
-    const splitWipeStage = document.getElementById('splitWipeStage');
-    const splitWipeAfter = document.getElementById('splitWipeAfter');
-    const splitWipeHandle = document.getElementById('splitWipeHandle');
-    let isWipeDragging = false;
-
-    function setWipePosition(xPos) {
-      if (!splitWipeStage || !splitWipeAfter || !splitWipeHandle) return;
-      const rect = splitWipeStage.getBoundingClientRect();
-      let percent = ((xPos - rect.left) / rect.width) * 100;
-      
-      // FULL 0% TO 100% UNCONSTRAINED RANGE - NO GETTING STUCK AT 90%!
-      percent = Math.max(0, Math.min(100, percent));
-      currentWipePercent = percent;
-
-      splitWipeAfter.style.clipPath = `polygon(${percent}% 0, 100% 0, 100% 100%, ${percent}% 100%)`;
-      splitWipeHandle.style.left = `${percent}%`;
-
-      // Update button text / indicator
-      const btn = document.getElementById('splitWipeButton');
-      if (btn) {
-        if (percent <= 5) {
-          btn.innerHTML = '<span class="text-[10px] text-crimson">REAL</span>';
-        } else if (percent >= 95) {
-          btn.innerHTML = '<span class="text-[10px] text-cyan-400">PLEDGE</span>';
-        } else {
-          btn.innerHTML = '<span>◀▶</span>';
-        }
-      }
-
-      // Audio modulation when dragging (if sound enabled)
-      if (soundEnabled && audioCtx && isWipeDragging) {
-        modulateWipeAudio(percent);
-      }
-    }
-
-    function snapWipeTo(percent) {
-      if (!splitWipeStage || !splitWipeAfter || !splitWipeHandle) return;
-      percent = Math.max(0, Math.min(100, percent));
-      currentWipePercent = percent;
-
-      splitWipeAfter.style.transition = 'clip-path 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
-      splitWipeHandle.style.transition = 'left 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
-
-      splitWipeAfter.style.clipPath = `polygon(${percent}% 0, 100% 0, 100% 100%, ${percent}% 100%)`;
-      splitWipeHandle.style.left = `${percent}%`;
-
-      setTimeout(() => {
-        if (splitWipeAfter) splitWipeAfter.style.transition = '';
-        if (splitWipeHandle) splitWipeHandle.style.transition = '';
-      }, 360);
-
-      const btn = document.getElementById('splitWipeButton');
-      if (btn) {
-        if (percent <= 5) btn.innerHTML = '<span class="text-[10px] text-crimson">REAL</span>';
-        else if (percent >= 95) btn.innerHTML = '<span class="text-[10px] text-cyan-400">PLEDGE</span>';
-        else btn.innerHTML = '<span>◀▶</span>';
-      }
-      playClickSound();
-    }
-
-    // Audio frequency shift while wiping
-    let wipeOsc = null;
-    let wipeGain = null;
-    function modulateWipeAudio(percent) {
-      try {
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if (!wipeOsc) {
-          wipeOsc = audioCtx.createOscillator();
-          wipeGain = audioCtx.createGain();
-          wipeOsc.type = 'triangle';
-          wipeGain.gain.setValueAtTime(0.015, audioCtx.currentTime);
-          wipeOsc.connect(wipeGain);
-          wipeGain.connect(audioCtx.destination);
-          wipeOsc.start();
-        }
-        // Frequency moves from 80Hz (Reality) to 240Hz (Promise)
-        const targetFreq = 80 + (percent * 1.6);
-        wipeOsc.frequency.setTargetAtTime(targetFreq, audioCtx.currentTime, 0.05);
-      } catch (e) {}
-    }
-
-    function stopWipeAudio() {
-      if (wipeGain && audioCtx) {
-        try {
-          wipeGain.gain.linearRampToValueAtTime(0.0001, audioCtx.currentTime + 0.1);
-          setTimeout(() => {
-            if (wipeOsc) { wipeOsc.stop(); wipeOsc.disconnect(); wipeOsc = null; }
-            wipeGain = null;
-          }, 110);
-        } catch (e) {}
-      }
-    }
-
-    if (splitWipeStage) {
-      splitWipeStage.addEventListener('mousedown', (e) => {
-        isWipeDragging = true;
-        setWipePosition(e.clientX);
-      });
-      window.addEventListener('mousemove', (e) => {
-        if (!isWipeDragging) return;
-        setWipePosition(e.clientX);
-      });
-      window.addEventListener('mouseup', () => {
-        if (isWipeDragging) {
-          isWipeDragging = false;
-          stopWipeAudio();
-        }
-      });
-
-      // Touch Events for Mobile & Tablet
-      splitWipeStage.addEventListener('touchstart', (e) => {
-        isWipeDragging = true;
-        setWipePosition(e.touches[0].clientX);
-      }, { passive: true });
-      window.addEventListener('touchmove', (e) => {
-        if (!isWipeDragging) return;
-        setWipePosition(e.touches[0].clientX);
-      }, { passive: true });
-      window.addEventListener('touchend', () => {
-        if (isWipeDragging) {
-          isWipeDragging = false;
-          stopWipeAudio();
-        }
-      });
-    }
-
-    // Toggle View Mode: Slider vs Matrix Grid
-    function setPromiseViewMode(mode) {
-      const sliderWrapper = document.getElementById('promiseSliderViewWrapper');
-      const matrixWrapper = document.getElementById('promiseMatrixViewWrapper');
-      const sliderControls = document.getElementById('sliderControlsBar');
-      const sliderBtn = document.getElementById('viewModeSliderBtn');
-      const matrixBtn = document.getElementById('viewModeMatrixBtn');
-
-      if (mode === 'slider') {
-        if (sliderWrapper) sliderWrapper.classList.remove('hidden');
-        if (sliderControls) sliderControls.classList.remove('hidden');
-        if (matrixWrapper) matrixWrapper.classList.add('hidden');
-        if (sliderBtn) {
-          sliderBtn.className = 'px-3 py-1.5 rounded-lg bg-crimson text-white font-bold flex items-center gap-1.5 shadow';
-        }
-        if (matrixBtn) {
-          matrixBtn.className = 'px-3 py-1.5 rounded-lg text-slate-400 hover:text-white flex items-center gap-1.5 transition';
-        }
-      } else {
-        if (sliderWrapper) sliderWrapper.classList.add('hidden');
-        if (sliderControls) sliderControls.classList.add('hidden');
-        if (matrixWrapper) {
-          matrixWrapper.classList.remove('hidden');
-          renderPromiseMatrix();
-        }
-        if (matrixBtn) {
-          matrixBtn.className = 'px-3 py-1.5 rounded-lg bg-crimson text-white font-bold flex items-center gap-1.5 shadow';
-        }
-        if (sliderBtn) {
-          sliderBtn.className = 'px-3 py-1.5 rounded-lg text-slate-400 hover:text-white flex items-center gap-1.5 transition';
-        }
-      }
-      playClickSound();
-    }
-
-    function renderPromiseMatrix() {
-      const matrixWrapper = document.getElementById('promiseMatrixViewWrapper');
-      if (!matrixWrapper) return;
-
-      matrixWrapper.innerHTML = promiseKeys.map(k => {
-        const item = PROMISE_DATA[k];
+      grid.innerHTML = promiseKeys.map((key) => {
+        const item = PROMISE_DATA[key];
         return `
-          <div class="p-6 rounded-3xl bg-charcoal/90 border border-panelBorder space-y-4 hover:border-crimson/50 transition-all duration-300 shadow-xl flex flex-col justify-between">
-            <div class="space-y-3">
-              <div class="flex items-center justify-between text-xs font-mono">
-                <span class="px-2.5 py-0.5 rounded-lg bg-crimson/20 border border-crimson/40 text-crimson font-bold">
-                  #${item.num} // ${item.id.toUpperCase()}
-                </span>
-                <span class="text-slate-400 font-bold">${item.deficitBadge}</span>
-              </div>
-              <h4 class="font-display font-extrabold text-white text-lg leading-tight">
-                ${item.pledgeTitle}
-              </h4>
+          <div class="promise-flip-card group" data-topic="${item.id}" data-category="${item.category}" onclick="togglePromiseCard(this)">
+            <div class="promise-flip-inner">
               
-              <!-- Comparative Split Card Box -->
-              <div class="space-y-2 text-xs font-mono">
-                <div class="p-3 rounded-xl bg-cyan-950/30 border border-cyan-500/30">
-                  <span class="text-cyan-400 font-bold block mb-1 uppercase text-[10px]">2022 PLEDGE:</span>
-                  <p class="font-sans text-slate-300 text-xs leading-relaxed">${item.pledgeDetail}</p>
+              <!-- FRONT FACE: 2022 MANIFESTO PROMISE -->
+              <div class="promise-flip-face promise-flip-front">
+                <div class="flex items-center justify-between text-xs font-mono">
+                  <span class="px-2.5 py-1 rounded-lg bg-cyan-950/90 border border-cyan-500/40 text-cyan-300 font-bold tracking-wider">
+                    PROMISE #${item.num}
+                  </span>
+                  <span class="text-xs font-mono text-cyan-400 font-semibold flex items-center gap-1">
+                    <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
+                    <span>2022 PLEDGE</span>
+                  </span>
                 </div>
-                <div class="p-3 rounded-xl bg-red-950/30 border border-crimson/40">
-                  <span class="text-crimson block font-bold mb-1 uppercase text-[10px]">2026 AUDIT REALITY:</span>
-                  <p class="font-sans text-slate-200 text-xs leading-relaxed">${item.realityDetail}</p>
+
+                <div class="my-auto py-2 space-y-2">
+                  <span class="text-cyan-400/40 font-mono text-[10px] uppercase tracking-widest block font-bold">
+                    ${item.pledgeBadge}
+                  </span>
+                  <h4 class="text-base sm:text-lg font-display font-bold text-white group-hover:text-cyan-300 transition-colors leading-snug">
+                    ${item.pledgeTitle}
+                  </h4>
+                  <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans line-clamp-4">
+                    ${item.pledgeDetail}
+                  </p>
+                </div>
+
+                <div class="pt-3 border-t border-cyan-500/20 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                  <span class="text-cyan-400/80 truncate flex items-center gap-1 font-medium">
+                    <i data-lucide="pen-tool" class="w-3 h-3 text-cyan-400"></i>
+                    <span>Signed Guarantee</span>
+                  </span>
+                  <span class="text-cyan-400 font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    <span>Flip Reality</span>
+                    <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                  </span>
                 </div>
               </div>
-            </div>
 
-            <div class="pt-3 border-t border-panelBorder flex items-center justify-between text-[11px] font-mono text-slate-400">
-              <span class="truncate">${item.realitySource.split(':')[0]}</span>
-              <button onclick="setPromiseViewMode('slider'); selectPromiseTopic('${item.id}'); snapWipeTo(50);" class="text-crimson hover:text-white font-bold flex items-center gap-1 transition">
-                <span>Inspect on Slider</span>
-                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-              </button>
+              <!-- BACK FACE: 2026 AUDIT GROUND REALITY -->
+              <div class="promise-flip-face promise-flip-back">
+                <div class="flex items-center justify-between text-xs font-mono">
+                  <span class="px-2.5 py-1 rounded-lg bg-crimson/25 border border-crimson/50 text-crimson font-bold tracking-wider">
+                    REALITY #${item.num}
+                  </span>
+                  <span class="px-2 py-0.5 rounded bg-black/70 border border-crimson/40 text-white font-mono text-[11px] font-bold">
+                    ${item.deficitBadge}
+                  </span>
+                </div>
+
+                <div class="my-auto py-2 space-y-2">
+                  <span class="text-crimson/80 font-mono text-[10px] uppercase tracking-widest block font-bold">
+                    ${item.truthIndex}
+                  </span>
+                  <h4 class="text-base sm:text-lg font-display font-bold text-white leading-snug">
+                    ${item.realityTitle}
+                  </h4>
+                  <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-sans line-clamp-4">
+                    ${item.realityDetail}
+                  </p>
+                </div>
+
+                <div class="pt-3 border-t border-crimson/30 flex items-center justify-between text-[11px] font-mono">
+                  <span class="text-slate-400 truncate flex items-center gap-1" title="${item.realitySource}">
+                    <i data-lucide="shield-alert" class="w-3 h-3 text-crimson"></i>
+                    <span class="truncate">${item.realitySource.split(':')[0]}</span>
+                  </span>
+                  <span class="text-crimson font-bold flex items-center gap-1">
+                    <i data-lucide="rotate-ccw" class="w-3 h-3"></i>
+                    <span>Flip Back</span>
+                  </span>
+                </div>
+              </div>
+
             </div>
           </div>
         `;
       }).join('');
+
       lucide.createIcons();
+    }
+
+    function togglePromiseCard(cardEl) {
+      if (!cardEl) return;
+      cardEl.classList.toggle('is-flipped');
+      playClickSound();
+    }
+
+    function toggleFlipAllPromises() {
+      allPromisesFlipped = !allPromisesFlipped;
+      const cards = document.querySelectorAll('.promise-flip-card');
+      const btn = document.getElementById('flipAllPromisesBtn');
+
+      cards.forEach((card, idx) => {
+        setTimeout(() => {
+          if (allPromisesFlipped) {
+            card.classList.add('is-flipped');
+          } else {
+            card.classList.remove('is-flipped');
+          }
+        }, idx * 55);
+      });
+
+      if (btn) {
+        btn.innerHTML = allPromisesFlipped
+          ? `<i data-lucide="rotate-ccw" class="w-4 h-4 text-cyan-300"></i><span>Reset to Promises</span>`
+          : `<i data-lucide="rotate-3d" class="w-4 h-4 text-white"></i><span>Flip All to Reality</span>`;
+        lucide.createIcons();
+      }
+      playPageFlipSound();
+    }
+
+    function filterPromiseCategory(category) {
+      currentPromiseCategory = category;
+      const buttons = document.querySelectorAll('.promise-cat-btn');
+      buttons.forEach(btn => {
+        if (btn.dataset.category === category) {
+          btn.className = 'promise-cat-btn px-3.5 py-1.5 rounded-xl bg-crimson text-white font-bold text-xs font-mono transition shadow-md whitespace-nowrap cursor-pointer';
+        } else {
+          btn.className = 'promise-cat-btn px-3.5 py-1.5 rounded-xl bg-charcoal border border-panelBorder text-slate-300 hover:text-white text-xs font-mono transition whitespace-nowrap cursor-pointer';
+        }
+      });
+
+      const cards = document.querySelectorAll('.promise-flip-card');
+      cards.forEach(card => {
+        const itemCat = card.dataset.category;
+        if (category === 'all' || itemCat === category) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+      playClickSound();
+    }
+
+    // Compatibility shims for legacy callers
+    function setPromiseViewMode() { renderPromiseFlipGrid(); }
+    function selectPromiseTopic(id) {
+      const card = document.querySelector(`.promise-flip-card[data-topic="${id}"]`);
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.classList.add('is-flipped');
+      }
     }
 
     // --- 4. CHARGESHEET DATA DATABASE ---
@@ -6732,6 +6530,7 @@ Seized materials, mobile transcripts, and register entries concerning OSD Rajbir
       setupCard3dTilt();
       initCasesMotionCanvas();
       selectIncident('mohali', false);
+      renderPromiseFlipGrid();
       selectHeroAct(0, false);
       initHeroStorylineLoop();
 
