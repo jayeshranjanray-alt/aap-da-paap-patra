@@ -2982,6 +2982,111 @@
       }
     });
 
+    // --- TACTILE 3D CARD FLIP ACOUSTIC ENGINE ---
+    let lastCardFlipSoundTime = 0;
+    const cardFlipAudioPool = [];
+    for (let i = 0; i < 4; i++) {
+      try {
+        const audio = new Audio('audio/page_flip.mp3');
+        audio.preload = 'auto';
+        cardFlipAudioPool.push(audio);
+      } catch (e) {}
+    }
+    let cardFlipAudioPoolIdx = 0;
+
+    function playCardFlipSound(direction = 'forward') {
+      if (!soundEnabled) return;
+      const now = performance.now();
+      if (now - lastCardFlipSoundTime < 45) return;
+      lastCardFlipSoundTime = now;
+
+      // Layer 1: Dedicated Physical Paper / Card Page-Flip Sample
+      if (cardFlipAudioPool.length > 0) {
+        try {
+          const sound = cardFlipAudioPool[cardFlipAudioPoolIdx];
+          cardFlipAudioPoolIdx = (cardFlipAudioPoolIdx + 1) % cardFlipAudioPool.length;
+          sound.currentTime = 0;
+          sound.volume = direction === 'forward' ? 0.65 : 0.45;
+          sound.playbackRate = direction === 'forward' ? 1.05 : 1.2;
+          const p = sound.play();
+          if (p) p.catch(() => {});
+        } catch (e) {}
+      }
+
+      // Layer 2: Web Audio API Synthesized Air Whoosh & Tactile Snap
+      try {
+        if (!audioCtx && (window.AudioContext || window.webkitAudioContext)) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx && audioCtx.state === 'suspended') {
+          audioCtx.resume().catch(() => {});
+        }
+        if (audioCtx && audioCtx.state === 'running') {
+          const t = audioCtx.currentTime;
+
+          // Component A: Aerodynamic air whoosh / card flick (bandpass noise flutter)
+          const bufferSize = Math.floor(audioCtx.sampleRate * 0.12);
+          const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+          const data = noiseBuffer.getChannelData(0);
+          for (let i = 0; i < bufferSize; i++) {
+            data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (audioCtx.sampleRate * 0.038));
+          }
+          const noise = audioCtx.createBufferSource();
+          noise.buffer = noiseBuffer;
+          const filter = audioCtx.createBiquadFilter();
+          filter.type = 'bandpass';
+          filter.frequency.setValueAtTime(direction === 'forward' ? 2200 : 2600, t);
+          filter.frequency.exponentialRampToValueAtTime(direction === 'forward' ? 600 : 800, t + 0.11);
+          filter.Q.value = 2.0;
+
+          const noiseGain = audioCtx.createGain();
+          noiseGain.gain.setValueAtTime(direction === 'forward' ? 0.32 : 0.22, t);
+          noiseGain.gain.exponentialRampToValueAtTime(0.001, t + 0.11);
+
+          noise.connect(filter);
+          filter.connect(noiseGain);
+          noiseGain.connect(audioCtx.destination);
+          noise.start(t);
+
+          // Component B: Tactile card snap / resonance (solid cardstock landing)
+          const snapOsc = audioCtx.createOscillator();
+          const snapGain = audioCtx.createGain();
+          snapOsc.type = 'triangle';
+          snapOsc.frequency.setValueAtTime(direction === 'forward' ? 540 : 680, t + 0.015);
+          snapOsc.frequency.exponentialRampToValueAtTime(direction === 'forward' ? 140 : 190, t + 0.085);
+
+          snapGain.gain.setValueAtTime(direction === 'forward' ? 0.22 : 0.14, t + 0.015);
+          snapGain.gain.exponentialRampToValueAtTime(0.001, t + 0.085);
+
+          snapOsc.connect(snapGain);
+          snapGain.connect(audioCtx.destination);
+          snapOsc.start(t + 0.015);
+          snapOsc.stop(t + 0.085);
+        }
+      } catch (err) {}
+    }
+
+    function onPromiseCardMouseEnter(cardEl) {
+      if (!cardEl) return;
+      playCardFlipSound('forward');
+    }
+
+    function onPromiseCardMouseLeave(cardEl) {
+      if (!cardEl) return;
+      if (!cardEl.classList.contains('is-flipped')) {
+        playCardFlipSound('backward');
+      }
+    }
+
+    // Proactively unlock AudioContext on first user pointer/scroll gesture
+    ['click', 'pointerdown', 'touchstart', 'scroll', 'mouseenter'].forEach(evt => {
+      window.addEventListener(evt, () => {
+        if (audioCtx && audioCtx.state === 'suspended') {
+          audioCtx.resume().catch(() => {});
+        }
+      }, { passive: true, once: true });
+    });
+
     
     // --- 5. COMPREHENSIVE 11-TOPIC AUDIT & 3D TACTILE FLIP CARD SYSTEM ---
     const PROMISE_DATA = {
@@ -3163,7 +3268,7 @@
       grid.innerHTML = promiseKeys.map((key) => {
         const item = PROMISE_DATA[key];
         return `
-          <div class="promise-flip-card group" data-topic="${item.id}" data-category="${item.category}" onclick="togglePromiseCard(this)">
+          <div class="promise-flip-card group" data-topic="${item.id}" data-category="${item.category}" onclick="togglePromiseCard(this)" onmouseenter="onPromiseCardMouseEnter(this)" onmouseleave="onPromiseCardMouseLeave(this)">
             <div class="promise-flip-inner">
               
               <!-- FRONT FACE: 2022 MANIFESTO PROMISE -->
@@ -3247,8 +3352,9 @@
 
     function togglePromiseCard(cardEl) {
       if (!cardEl) return;
+      const willBeFlipped = !cardEl.classList.contains('is-flipped');
       cardEl.classList.toggle('is-flipped');
-      playClickSound();
+      playCardFlipSound(willBeFlipped ? 'forward' : 'backward');
     }
 
     function toggleFlipAllPromises() {
@@ -3263,7 +3369,8 @@
           } else {
             card.classList.remove('is-flipped');
           }
-        }, idx * 55);
+          playCardFlipSound(allPromisesFlipped ? 'forward' : 'backward');
+        }, idx * 45);
       });
 
       if (btn) {
@@ -3272,7 +3379,6 @@
           : `<i data-lucide="rotate-3d" class="w-4 h-4 text-white"></i><span>Flip All to Reality</span>`;
         lucide.createIcons();
       }
-      playPageFlipSound();
     }
 
     function filterPromiseCategory(category) {
@@ -3305,6 +3411,7 @@
       if (card) {
         card.scrollIntoView({ behavior: 'smooth', block: 'center' });
         card.classList.add('is-flipped');
+        playCardFlipSound('forward');
       }
     }
 
